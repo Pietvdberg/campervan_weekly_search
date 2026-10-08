@@ -15,7 +15,7 @@ from datetime import datetime
 from urllib.request import Request, urlopen
 
 BASE = "https://opendata.rdw.nl/resource"
-DATASETS = {"vehicle": "m9d7-ebf2", "defects": "a34c-vvps"}
+DATASETS = {"vehicle": "m9d7-ebf2", "defects": "a34c-vvps", "catalogue": "hx2c-gt7k"}
 
 
 def normalize_plate(plate):
@@ -26,7 +26,8 @@ def normalize_plate(plate):
 
 
 def fetch(dataset, plate, attempts=3):
-    url = f"{BASE}/{DATASETS[dataset]}.json?" + urlencode({"kenteken": plate, "$limit": 1000})
+    field = "gebrek_identificatie" if dataset == "catalogue" else "kenteken"
+    url = f"{BASE}/{DATASETS[dataset]}.json?" + urlencode({field: plate, "$limit": 1000})
     headers = {"Accept": "application/json", "User-Agent": "campervan-weekly-search/1.0"}
     token = os.environ.get("SOCRATA_APP_TOKEN")
     if token:
@@ -47,7 +48,7 @@ def fetch(dataset, plate, attempts=3):
         time.sleep(2 ** attempt)
 
 
-def summarize_defects(response):
+def summarize_defects(response, catalogue_by_code=None):
     """Summarize recorded APK defects without inventing code descriptions."""
     if response["status"] != "ok":
         return {
@@ -56,6 +57,7 @@ def summarize_defects(response):
             "caution": "RDW defect records could not be retrieved; no conclusion about defect history is possible.",
         }
 
+    catalogue_by_code = catalogue_by_code or {}
     entries = []
     for record in response["records"]:
         raw_date = record.get("meld_datum_door_keuringsinstantie", "")
@@ -68,13 +70,17 @@ def summarize_defects(response):
             quantity = int(raw_quantity) if raw_quantity is not None else None
         except (ValueError, TypeError):
             quantity = None
+        code = record.get("gebrek_identificatie")
+        catalogue = catalogue_by_code.get(code, {})
+        description = catalogue.get("gebrek_omschrijving")
         entries.append({
             "inspection_date": inspection_date,
             "inspection_date_raw": raw_date or None,
-            "defect_code": record.get("gebrek_identificatie"),
+            "defect_code": code,
             "quantity": quantity,
-            "description": None,
-            "description_status": "not_validated_against_official_catalogue",
+            "description": description,
+            "description_status": "official_rdw_catalogue" if description else "not_found_in_official_catalogue",
+            "description_source": catalogue.get("_source"),
         })
 
     return {
@@ -83,8 +89,8 @@ def summarize_defects(response):
         "entries": entries,
         "caution": (
             "RDW public APK defect entries are not a complete maintenance history "
-            "and do not establish current mechanical condition. Defect codes have "
-            "not been decoded or validated against the official defect catalogue. "
+            "and do not establish current mechanical condition. Descriptions are "
+            "retrieved from the official RDW defect catalogue where available. "
             "No entries returned does not prove a vehicle has never had defects."
         ),
     }
@@ -115,7 +121,7 @@ def main():
             f.write(data + "\n")
     else:
         print(data)
-    return int(any(entry[name]["status"] != "ok" for entry in results for name in DATASETS))
+    return int(any(entry[name]["status"] != "ok" for entry in results for name in ("vehicle", "defects")))
 
 
 if __name__ == "__main__":

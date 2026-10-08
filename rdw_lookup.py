@@ -98,11 +98,25 @@ def summarize_defects(response, catalogue_by_code=None):
 
 def lookup(plate):
     plate = normalize_plate(plate)
-    data = {name: fetch(name, plate) for name in DATASETS}
+    data = {name: fetch(name, plate) for name in ("vehicle", "defects")}
+    catalogue_by_code = {}
+    catalogue_errors = []
+    if data["defects"]["status"] == "ok":
+        codes = sorted({record.get("gebrek_identificatie") for record in data["defects"]["records"] if record.get("gebrek_identificatie")})
+        for code in codes:
+            catalogue = fetch("catalogue", code)
+            if catalogue["status"] != "ok":
+                catalogue_errors.append({"code": code, "error": catalogue["error"]})
+                continue
+            descriptions = [item for item in catalogue["records"] if item.get("gebrek_omschrijving")]
+            if descriptions:
+                selected = descriptions[0]
+                catalogue_by_code[code] = {**selected, "_source": catalogue["source"]}
     return {
         "kenteken": plate,
         **data,
-        "apk_defect_summary": summarize_defects(data["defects"]),
+        "defect_catalogue_errors": catalogue_errors,
+        "apk_defect_summary": summarize_defects(data["defects"], catalogue_by_code),
     }
 
 

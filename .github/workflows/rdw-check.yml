@@ -79,4 +79,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "results/$RESULT_KEY.json"
           git commit -m "Add RDW result for $RESULT_KEY"
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main

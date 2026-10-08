@@ -1,0 +1,108 @@
+{
+  "results": [
+    {
+      "kenteken": "VL034B",
+      "vehicle": {
+        "status": "ok",
+        "records": [
+          {
+            "kenteken": "VL034B",
+            "voertuigsoort": "Bedrijfsauto",
+            "merk": "PEUGEOT",
+            "handelsbenaming": "PEUGEOT BOXER",
+            "vervaldatum_apk": "20270115",
+            "datum_tenaamstelling": "20230609",
+            "bruto_bpm": "9735",
+            "inrichting": "gesloten opbouw",
+            "aantal_zitplaatsen": "3",
+            "eerste_kleur": "N.v.t.",
+            "tweede_kleur": "N.v.t.",
+            "aantal_cilinders": "4",
+            "cilinderinhoud": "2198",
+            "massa_ledig_voertuig": "1900",
+            "toegestane_maximum_massa_voertuig": "3000",
+            "massa_rijklaar": "2000",
+            "maximum_massa_trekken_ongeremd": "750",
+            "datum_eerste_toelating": "20141127",
+            "datum_eerste_tenaamstelling_in_nederland": "20141127",
+            "wacht_op_keuren": "Geen verstrekking in Open Data",
+            "catalogusprijs": "40110",
+            "wam_verzekerd": "Ja",
+            "laadvermogen": "1100",
+            "aanhangwagen_autonoom_geremd": "2500",
+            "aanhangwagen_middenas_geremd": "2500",
+            "aantal_deuren": "0",
+            "aantal_wielen": "4",
+            "afstand_hart_koppeling_tot_achterzijde_voertuig": "0",
+            "afstand_voorzijde_voertuig_tot_hart_koppeling": "0",
+            "lengte": "541",
+            "breedte": "205",
+            "europese_voertuigcategorie": "N1",
+            "plaats_chassisnummer": "r. voorwielscherm",
+            "technische_max_massa_voertuig": "3000",
+            "type": "Y",
+            "typegoedkeuringsnummer": "e3*2007/46*0045*10",
+            "variant": "ATMFB",
+            "uitvoering": "HY",
+            "volgnummer_wijziging_eu_typegoedkeuring": "1",
+            "vermogen_massarijklaar": "0.05",
+            "wielbasis": "345",
+            "export_indicator": "Nee",
+            "openstaande_terugroepactie_indicator": "Nee",
+            "taxi_indicator": "Nee",
+            "maximum_massa_samenstelling": "5500",
+            "aantal_rolstoelplaatsen": "0",
+            "jaar_laatste_registratie_tellerstand": "2026",
+            "tellerstandoordeel": "Logisch",
+            "code_toelichting_tellerstandoordeel": "00",
+            "tenaamstellen_mogelijk": "Ja",
+            "vervaldatum_apk_dt": "2027-01-15T00:00:00.000",
+            "datum_tenaamstelling_dt": "2023-06-09T00:00:00.000",
+            "datum_eerste_toelating_dt": "2014-11-27T00:00:00.000",
+            "datum_eerste_tenaamstelling_in_nederland_dt": "2014-11-27T00:00:00.000",
+            "maximum_last_onder_de_vooras_sen_tezamen_koppeling": "0",
+            "api_gekentekende_voertuigen_assen": "https://opendata.rdw.nl/resource/3huj-srit.json",
+            "api_gekentekende_voertuigen_brandstof": "https://opendata.rdw.nl/resource/8ys7-d773.json",
+            "api_gekentekende_voertuigen_carrosserie": "https://opendata.rdw.nl/resource/vezc-m2t6.json",
+            "api_gekentekende_voertuigen_carrosserie_specifiek": "https://opendata.rdw.nl/resource/jhie-znh9.json",
+            "api_gekentekende_voertuigen_voertuigklasse": "https://opendata.rdw.nl/resource/kmfi-hrps.json"
+          }
+        ],
+        "source": "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=VL034B&%24limit=1000"
+      },
+      "defects": {
+        "status": "ok",
+        "records": [
+          {
+            "kenteken": "VL034B",
+            "soort_erkenning_keuringsinstantie": "AL",
+            "meld_datum_door_keuringsinstantie": "20241224",
+            "meld_tijd_door_keuringsinstantie": "1409",
+            "gebrek_identificatie": "AC1",
+            "soort_erkenning_omschrijving": "APK Lichte voertuigen",
+            "aantal_gebreken_geconstateerd": "1",
+            "meld_datum_door_keuringsinstantie_dt": "2024-12-24T14:09:00.000"
+          }
+        ],
+        "source": "https://opendata.rdw.nl/resource/a34c-vvps.json?kenteken=VL034B&%24limit=1000"
+      },
+      "defect_catalogue_errors": [],
+      "apk_defect_summary": {
+        "status": "ok",
+        "recorded_entry_count": 1,
+        "entries": [
+          {
+            "inspection_date": "2024-12-24",
+            "inspection_date_raw": "20241224",
+            "defect_code": "AC1",
+            "quantity": 1,
+            "description": "Band(en) aanwezig met een profieldiepte van 1,6 t/m 2,5 mm",
+            "description_status": "official_rdw_catalogue",
+            "description_source": "https://opendata.rdw.nl/resource/hx2c-gt7k.json?gebrek_identificatie=AC1&%24limit=1000"
+          }
+        ],
+        "caution": "RDW public APK defect entries are not a complete maintenance history and do not establish current mechanical condition. Descriptions are retrieved from the official RDW defect catalogue where available. No entries returned does not prove a vehicle has never had defects."
+      }
+    }
+  ]
+}

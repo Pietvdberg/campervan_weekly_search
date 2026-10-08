@@ -11,7 +11,7 @@ import subprocess
 from datetime import date
 from pathlib import Path
 
-DATE_PREFIX = re.compile(r"^(\\d{4}-\\d{2}-\\d{2})(?:-|\\.json$)")
+DATE_PREFIX = re.compile(r"^([0-9]{4}-[0-9]{2}-[0-9]{2})(?:-|[.]json$)")
 ROOT = Path(__file__).resolve().parent
 
 

@@ -1,0 +1,57 @@
+name: RDW vehicle and APK checks
+
+on:
+  workflow_dispatch:
+    inputs:
+      plates:
+        description: 'Dutch registration plates separated by spaces or commas'
+        required: true
+        type: string
+  schedule:
+    # Thursday 12:30 UTC: before the 15:00 Europe/Amsterdam camper search.
+    # GitHub cron uses UTC; local run time varies with daylight saving.
+    - cron: '30 12 * * 4'
+
+permissions:
+  contents: read
+
+jobs:
+  lookup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Resolve registration plates
+        id: plates
+        env:
+          INPUT_PLATES: ${{ inputs.plates }}
+          SCHEDULED_PLATES: ${{ vars.RDW_PLATES }}
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            plates="$INPUT_PLATES"
+          else
+            plates="$SCHEDULED_PLATES"
+          fi
+          plates="${plates//,/ }"
+          if [[ -z "${plates//[[:space:]]/}" ]]; then
+            echo "No registration plates configured; nothing to check."
+            echo "has_plates=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_plates=true" >> "$GITHUB_OUTPUT"
+            printf '%s\n' "$plates" > plates.txt
+          fi
+      - name: Query official RDW datasets
+        if: steps.plates.outputs.has_plates == 'true'
+        shell: bash
+        run: |
+          read -r -a plates < plates.txt
+          python3 rdw_lookup.py "${plates[@]}" --output rdw_results.json
+      - name: Upload RDW results
+        if: always() && steps.plates.outputs.has_plates == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: rdw-results-${{ github.run_id }}
+          path: rdw_results.json
+          if-no-files-found: warn
+          retention-days: 30

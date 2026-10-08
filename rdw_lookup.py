@@ -11,6 +11,7 @@ import sys
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
+from datetime import datetime
 from urllib.request import Request, urlopen
 
 BASE = "https://opendata.rdw.nl/resource"
@@ -46,9 +47,57 @@ def fetch(dataset, plate, attempts=3):
         time.sleep(2 ** attempt)
 
 
+def summarize_defects(response):
+    """Summarize recorded APK defects without inventing code descriptions."""
+    if response["status"] != "ok":
+        return {
+            "status": "unavailable",
+            "entries": [],
+            "caution": "RDW defect records could not be retrieved; no conclusion about defect history is possible.",
+        }
+
+    entries = []
+    for record in response["records"]:
+        raw_date = record.get("meld_datum_door_keuringsinstantie", "")
+        try:
+            inspection_date = datetime.strptime(raw_date, "%Y%m%d").date().isoformat()
+        except ValueError:
+            inspection_date = None
+        raw_quantity = record.get("aantal_gebreken_geconstateerd")
+        try:
+            quantity = int(raw_quantity) if raw_quantity is not None else None
+        except (ValueError, TypeError):
+            quantity = None
+        entries.append({
+            "inspection_date": inspection_date,
+            "inspection_date_raw": raw_date or None,
+            "defect_code": record.get("gebrek_identificatie"),
+            "quantity": quantity,
+            "description": None,
+            "description_status": "not_validated_against_official_catalogue",
+        })
+
+    return {
+        "status": "ok",
+        "recorded_entry_count": len(entries),
+        "entries": entries,
+        "caution": (
+            "RDW public APK defect entries are not a complete maintenance history "
+            "and do not establish current mechanical condition. Defect codes have "
+            "not been decoded or validated against the official defect catalogue. "
+            "No entries returned does not prove a vehicle has never had defects."
+        ),
+    }
+
+
 def lookup(plate):
     plate = normalize_plate(plate)
-    return {"kenteken": plate, **{name: fetch(name, plate) for name in DATASETS}}
+    data = {name: fetch(name, plate) for name in DATASETS}
+    return {
+        "kenteken": plate,
+        **data,
+        "apk_defect_summary": summarize_defects(data["defects"]),
+    }
 
 
 def main():

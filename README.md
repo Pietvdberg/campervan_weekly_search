@@ -1,10 +1,8 @@
-# Camper van weekly search
+# Camper van weekly search — RDW lookup
 
-Official RDW checks for camper-van candidates with confirmed Dutch registration plates.
+The Python script `rdw_lookup.py` checks official RDW registration (`m9d7-ebf2`) and recorded APK defects (`a34c-vvps`) for **confirmed plates found in the current camper search**.
 
-## Vehicle and APK lookup
-
-`rdw_lookup.py` queries two public RDW datasets: vehicle registration (`m9d7-ebf2`) and recorded APK defects (`a34c-vvps`). Requires Python 3 and internet access; no packages to install.
+## Run locally
 
 ```bash
 python3 rdw_lookup.py VL-034-B --output rdw_results.json
@@ -12,10 +10,8 @@ python3 rdw_lookup.py VL-034-B --output rdw_results.json
 
 ## GitHub Actions
 
-Open **Actions → RDW vehicle and APK checks → Run workflow** and enter one or more registration plates separated by spaces or commas. After completion, download the `rdw-results-<run-id>` JSON artifact.
+Use **Actions → RDW vehicle and APK checks → Run workflow** and supply the current week's confirmed plates separated by spaces or commas. Download the `rdw-results-<run-id>` artifact and examine the JSON records.
 
-For scheduled Thursday checks, set repository variable `RDW_PLATES` in **Settings → Secrets and variables → Actions → Variables** to a space-separated list of confirmed plates. The workflow runs Thursdays at 12:30 UTC (14:30 during Dutch summer time, 13:30 during winter time). With no configured plates, it skips the lookup.
+The workflow is **on-demand only**: it no longer checks a stale static list on Thursdays. To automate the full discovery → dispatch → artifact → email chain, the orchestrator needs permission to invoke GitHub's `workflow_dispatch` API and retrieve the corresponding artifact. The currently connected ChatGPT GitHub tools can read workflow artifacts but do **not** expose a workflow dispatch operation, so the GitHub Action cannot yet be automatically triggered from the scheduled ChatGPT task.
 
-The GitHub Action does **not** automatically discover new listing plates, transfer its results into the ChatGPT camper search, or send email. The existing Thursday 15:00 ChatGPT search and email delivery are separate. A future integration must retrieve the real JSON artifact or directly query RDW for each newly discovered confirmed plate.
-
-Never infer missing APK records or interpret an empty defects response as evidence of full maintenance history. Do not commit credentials or private data.
+The scheduled ChatGPT camper search should query the same public RDW endpoints directly for confirmed plates where possible. Never claim the script ran or an APK history was checked unless vehicle-specific data was actually retrieved. An empty defects list is not proof of full maintenance history.

@@ -11,6 +11,8 @@ jobs:
       - name: Compose smoke-test report
         run: |
           printf 'Camper van pipeline smoke test. No vehicle search was performed.\n' > report.txt
+      - name: Validate sender syntax
+        run: python3 -m py_compile send_report.py
       - name: Send and verify Gmail
         env:
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}

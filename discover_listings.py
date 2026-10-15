@@ -62,7 +62,7 @@ def extract(title,url,source,markup):
     checks["conversion_suitable"]=True  # model-category proxy; payload and dimensions still unknown
     city=next((x for x in CITIES if re.search(r"\b"+re.escape(x)+r"\b",header,re.I)),None)
     # Mention of a nearby town is NOT independent verification of driving distance.
-    plate_hit=re.search(r"(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{2,3}-[A-Z0-9]{2,3}-[A-Z0-9]{1,3})\b",text,re.I)
+    plate_hit=re.search(r"(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3})\b",text,re.I)
     plate=plate_hit.group(1) if plate_hit else None
     price_hit=re.search(r"(?:€|EUR)\s*([\d.]+(?:,\d{2})?)",header,re.I)
     title_match=re.search(r"<title[^>]*>(.*?)</title>",markup,re.I|re.S)

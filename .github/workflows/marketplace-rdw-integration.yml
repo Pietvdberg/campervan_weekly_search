@@ -1,0 +1,49 @@
+name: Marketplace discovery and RDW integration (development only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: camper-verification
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check syntax and regression tests
+        run: |
+          python3 -m compileall -q discover_listings.py camper_pipeline.py rdw_lookup.py rdw_probe_report.py send_report.py
+          python3 -m unittest -v test_discover_listings.py test_camper_pipeline.py test_mail_routing.py
+      - name: Attempt nine-source public search-index discovery
+        run: python3 discover_listings.py --output discovered_candidates.json
+      - name: Screen discovered listings and check confirmed plates with RDW
+        run: python3 camper_pipeline.py --input discovered_candidates.json
+      - name: Live RDW API connectivity probe on historical test plate
+        shell: bash
+        run: |
+          set +e
+          python3 rdw_lookup.py V-706-SG --output rdw_probe.json
+          code=$?
+          set -e
+          echo "RDW lookup exit code: $code"
+          python3 rdw_probe_report.py rdw_probe.json
+      - name: Store audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: marketplace-rdw-verification-${{ github.run_id }}
+          path: |
+            discovered_candidates.json
+            screening_results.json
+            rdw_probe.json
+            report.txt
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Email development report ONLY to Hotmail
+        env:
+          MAIL_MODE: development
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 send_report.py report.txt

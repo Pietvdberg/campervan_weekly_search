@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evidence-gated candidate screening and RDW lookup; does NOT discover listings."""
+"""Evidence-gated candidate screening and RDW lookup for discovered listings."""
 import argparse
 from datetime import date
 import json
@@ -35,13 +35,14 @@ def evaluate(data, rdw_lookup=lookup):
         if vehicle.get("status") != "ok" or not vehicle.get("records"):
             item["qualified"]=False
             item["reasons"].append("RDW registration not verified")
-    return {"generated_on":date.today().isoformat(),"source_coverage":data.get("source_coverage",{}),
+    return {"generated_on":date.today().isoformat(),"source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
             "results":results,"qualifiers":sum(x["qualified"] for x in results)}
 
 def report(data):
     rows=["Camper van pipeline verification", "Generated: "+data["generated_on"],
           "Verified >=90% qualifiers: "+str(data["qualifiers"]),
-          "LIMITATION: This job does not discover marketplace listings. No source is claimed searched automatically.",
+          "Discovery: "+data.get("discovery_method","not performed"),
+          "CAUTION: index results are incomplete; listing and location claims are unverified.",
           "", "Source coverage:"]
     rows += ["- "+s+": "+str(data["source_coverage"].get(s,"not checked")) for s in SOURCES]
     rows.append("\nRanked candidates / watchlist / rejections:")
@@ -63,7 +64,7 @@ def report(data):
             for defect in rdw.get("apk_defect_summary",{}).get("entries",[]):
                 rows.append("  APK defect: "+str(defect.get("defect_code"))+" / "+str(defect.get("description") or "description unavailable"))
     if not data["results"]:
-        rows.append("No independently confirmed candidate input. This is not proof that no matching vans are on sale.")
+        rows.append("No candidate listing pages could be validated by this run. This is not proof that no matching vans are on sale.")
     rows.append("\nAPK approval is not a mechanical inspection; seller claims are not verified facts.")
     return "\n".join(rows)+"\n"
 

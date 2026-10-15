@@ -3,6 +3,7 @@
 import argparse
 from datetime import datetime, timezone
 import html
+import os
 import json
 from pathlib import Path
 import re
@@ -10,6 +11,7 @@ from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from listing_evidence import enrich
+from browser_render import render as browser_render
 from html.parser import HTMLParser
 from urllib.parse import urljoin,urldefrag
 
@@ -143,6 +145,10 @@ def discover(fetcher=fetch,max_per_source=4):
                 seed_success += 1
                 parser = LinkCollector()
                 parser.feed(page)
+                if not parser.links and os.environ.get("ENABLE_BROWSER_RENDER")=="1":
+                    page,typ=browser_render(seed)
+                    parser=LinkCollector()
+                    parser.feed(page)
                 anchor_count += len(parser.links)
                 for label, href in parser.links:
                     url = urldefrag(urljoin(seed, href))[0]
@@ -177,6 +183,9 @@ def discover(fetcher=fetch,max_per_source=4):
                         if len(samples)<3: samples.append({"reason":"non-HTML listing response","url":url[:250]})
                         continue
                     item=extract(title,url,source,markup)
+                    if item is None and os.environ.get("ENABLE_BROWSER_RENDER")=="1" and "__NEXT_DATA__" in markup:
+                        rendered,_=browser_render(url)
+                        item=extract(title,url,source,rendered)
                     if item: candidates.append(item);found+=1
                     elif len(samples)<3: samples.append({"reason":"listing text lacks searched vehicle model","url":url[:250]})
                 except Exception as exc:

@@ -1,6 +1,16 @@
 name: Marketplace discovery and RDW integration (development only)
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'discover_listings.py'
+      - 'camper_pipeline.py'
+      - 'rdw_lookup.py'
+      - 'rdw_probe_report.py'
+      - 'test_discover_listings.py'
+      - 'test_camper_pipeline.py'
+      - '.github/workflows/marketplace-rdw-integration.yml'
 permissions:
   contents: read
 concurrency:
@@ -42,6 +52,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
       - name: Email development report ONLY to Hotmail
+        if: github.event_name == 'workflow_dispatch'
         env:
           MAIL_MODE: development
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}

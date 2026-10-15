@@ -1,6 +1,16 @@
 name: Marketplace discovery and RDW integration (development only)
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'discover_listings.py'
+      - 'camper_pipeline.py'
+      - 'rdw_lookup.py'
+      - 'rdw_probe_report.py'
+      - 'test_discover_listings.py'
+      - 'test_camper_pipeline.py'
+      - '.github/workflows/marketplace-rdw-integration.yml'
 permissions:
   contents: read
 concurrency:
@@ -42,8 +52,20 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
       - name: Email development report ONLY to Hotmail
+        if: github.event_name == 'workflow_dispatch'
         env:
           MAIL_MODE: development
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python3 send_report.py report.txt
+      - name: Enforce discovery acceptance criteria after report delivery
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path("discovered_candidates.json").read_text(encoding="utf-8"))
+          count=len(data.get("candidates",[]))
+          if count==0:
+              raise SystemExit("DISCOVERY NOT VERIFIED: no usable individual listings; development report delivered but end-to-end validation FAILED")
+          print("Individual candidate pages retrieved:",count)
+          PY

@@ -59,7 +59,7 @@ def extract(title,url,source,markup):
     checks={key:None for key in ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")}
     if ROOF.search(header): checks["high_roof"]=True
     if AC.search(header): checks["cab_ac"]=True
-    checks["conversion_suitable"]=True  # model-category proxy; payload and dimensions still unknown
+    # Conversion suitability requires independently checked payload and dimensions.
     city=next((x for x in CITIES if re.search(r"\b"+re.escape(x)+r"\b",header,re.I)),None)
     # Mention of a nearby town is NOT independent verification of driving distance.
     plate_hit=re.search(r"(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3})\b",text,re.I)
@@ -83,20 +83,32 @@ def discover(fetcher=fetch,max_per_source=4):
         try:
             xml,_=fetcher(rss)
             hits=search_links(xml)
-            found=0;failures=0
+            found=0;failures=0;rejected=0;matched=0;samples=[]
             for title,url in hits[:25]:
                 if found>=max_per_source: break
-                if url in seen or not valid_url(url,source): continue
+                if url in seen: continue
+                if not valid_url(url,source):
+                    rejected+=1
+                    if len(samples)<3: samples.append({"reason":"not an eligible individual listing URL","url":url[:250]})
+                    continue
+                matched+=1
                 seen.add(url)
                 try:
                     markup,ctype=fetcher(url)
-                    if "html" not in ctype.lower(): failures+=1;continue
+                    if "html" not in ctype.lower():
+                        failures+=1
+                        if len(samples)<3: samples.append({"reason":"non-HTML listing response","url":url[:250]})
+                        continue
                     item=extract(title,url,source,markup)
                     if item: candidates.append(item);found+=1
-                except Exception:
+                    elif len(samples)<3: samples.append({"reason":"listing text lacks searched vehicle model","url":url[:250]})
+                except Exception as exc:
                     failures+=1
-            coverage[source]={"status":"partial_index_search","index_hits":len(hits),"individual_pages_fetched":found,
-                              "fetch_errors":failures,"method":"public Bing RSS index; NOT complete source inventory"}
+                    if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
+            coverage[source]={"status":"individual_pages_found" if found else "no_usable_individual_pages",
+                              "index_hits":len(hits),"eligible_urls":matched,"rejected_index_urls":rejected,
+                              "individual_pages_fetched":found,"fetch_errors":failures,"diagnostic_samples":samples,
+                              "method":"public Bing RSS index; NOT complete source inventory"}
         except Exception as exc:
             coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0}
     return {"candidates":candidates,"source_coverage":coverage,

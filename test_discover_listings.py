@@ -17,6 +17,10 @@ class DiscoveryTests(unittest.TestCase):
         d=discover(fetcher=error)
         self.assertEqual(len(d["source_coverage"]),9)
         self.assertTrue(all(v["status"]=="unavailable" for v in d["source_coverage"].values()))
+    def test_missing_payload_cannot_be_claimed_suitable(self):
+        c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",
+                  "Marktplaats","<html><title>Peugeot Boxer L2H2 airco</title></html>")
+        self.assertIsNone(c["checks"]["conversion_suitable"])
     def test_failed_listing_fetch_is_not_candidate(self):
         rss="<rss><channel><item><title>Boxer L2H2</title><link>https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-x</link></item></channel></rss>"
         def f(url):

@@ -21,6 +21,9 @@ class DiscoveryTests(unittest.TestCase):
         c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",
                   "Marktplaats","<html><title>Peugeot Boxer L2H2 airco</title></html>")
         self.assertIsNone(c["checks"]["conversion_suitable"])
+    def test_local_dealer_directory_is_not_a_vehicle_listing(self):
+        self.assertFalse(valid_url("https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html","Local dealers"))
+        self.assertFalse(valid_url("https://unrelated.nl/something/boxer","Local dealers"))
     def test_direct_marketplace_listing_works_without_bing(self):
         from discover_listings import SEED_PAGES
         target="https://www.marktplaats.nl/v/auto-s/bestelauto-s/m1234567-boxer"

@@ -95,6 +95,7 @@ def valid_url(url,source):
     if source=="AutoTrack": return "/aanbod/" in path and path.count("/")>=3
     if source=="Gaspedaal" and "/autobedrijven/" in path: return False
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
+    if source=="Gaspedaal" and "/autobedrijven/" in path: return False
     if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/")!="/auto-kopen"
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     return len([s for s in path.split("/") if s])>=2
@@ -175,7 +176,7 @@ def discover(fetcher=fetch,max_per_source=4):
                 except Exception as exc:
                     failures+=1
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
-            coverage[source]={"status":"individual_pages_found" if found else "no_usable_individual_pages",
+            coverage[source]={"status":"individual_pages_found" if found else ("unavailable" if seed_success==0 and index_error else "no_usable_individual_pages"),
                               "inventory_pages":len(SEED_PAGES[source]),"inventory_pages_fetched":seed_success,
                               "inventory_links":anchor_count,"direct_eligible_urls":len(direct_urls),
                               "inventory_errors":seed_errors,"index_error":index_error,

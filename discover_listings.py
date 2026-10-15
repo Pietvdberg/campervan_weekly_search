@@ -142,10 +142,15 @@ def discover(fetcher=fetch,max_per_source=4):
         if source=="Local dealers": query+=' ("Roosendaal" OR "Breda" OR "Bergen op Zoom")'
         rss="https://www.bing.com/search?"+urlencode({"q":query,"format":"rss"})
         try:
-            xml,_=fetcher(rss)
-            hits=search_links(xml)
+            try:
+                xml,_=fetcher(rss)
+                hits=search_links(xml)
+                index_error=None
+            except Exception as exc:
+                hits=[]
+                index_error=str(exc)[:140]
             found=0;failures=0;rejected=0;matched=0;samples=[]
-            for title,url in list((title,url) for url,title in direct_urls.items()) + hits[:25]:
+            for title,url in [(title,url) for url,title in direct_urls.items()] + hits[:25]:
                 if found>=max_per_source: break
                 if url in seen: continue
                 if not valid_url(url,source):
@@ -169,12 +174,12 @@ def discover(fetcher=fetch,max_per_source=4):
             coverage[source]={"status":"individual_pages_found" if found else "no_usable_individual_pages",
                               "inventory_pages":len(SEED_PAGES[source]),"inventory_pages_fetched":seed_success,
                               "inventory_links":anchor_count,"direct_eligible_urls":len(direct_urls),
-                              "inventory_errors":seed_errors,
+                              "inventory_errors":seed_errors,"index_error":index_error,
                               "index_hits":len(hits),"eligible_urls":matched,"rejected_index_urls":rejected,
                               "individual_pages_fetched":found,"fetch_errors":failures,"diagnostic_samples":samples,
                               "method":"public Bing RSS index; NOT complete source inventory"}
         except Exception as exc:
-            coverage[source]={"status":"index_unavailable","error":str(exc)[:160],"individual_pages_fetched":0,
+            coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0,
                               "inventory_pages_fetched":seed_success,"direct_eligible_urls":len(direct_urls),"inventory_errors":seed_errors}
     return {"candidates":candidates,"source_coverage":coverage,
             "discovery_method":"Source-specific category/dealer inventory first, public search index fallback; no completeness, VAT, distance or availability guarantee."}

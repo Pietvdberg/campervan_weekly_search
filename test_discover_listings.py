@@ -2,7 +2,7 @@ import unittest
 from discover_listings import SOURCES,discover,extract,valid_url
 
 class DiscoveryTests(unittest.TestCase):
-    def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
+    def test_nine_sources(self): self.assertEqual(len(SOURCES),10)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))
     def test_wrong_host(self): self.assertFalse(valid_url("https://evil.test/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))
@@ -21,6 +21,20 @@ class DiscoveryTests(unittest.TestCase):
         c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",
                   "Marktplaats","<html><title>Peugeot Boxer L2H2 airco</title></html>")
         self.assertIsNone(c["checks"]["conversion_suitable"])
+    def test_direct_marketplace_listing_works_without_bing(self):
+        from discover_listings import SEED_PAGES
+        target="https://www.marktplaats.nl/v/auto-s/bestelauto-s/m1234567-boxer"
+        def fetcher(url):
+            if "bing.com" in url: raise OSError("index offline")
+            if url == target:
+                return "<html><title>Peugeot Boxer L2H2 airco</title><body>Kenteken: V-360-SJ</body></html>","text/html"
+            if url in SEED_PAGES["Marktplaats"]:
+                return '<html><a href="'+target+'">Boxer L2H2 airco</a></html>',"text/html"
+            raise OSError("unavailable")
+        data=discover(fetcher=fetcher)
+        self.assertEqual(len(data["candidates"]),1)
+        self.assertEqual(data["candidates"][0]["plate"],"V-360-SJ")
+        self.assertEqual(data["source_coverage"]["Marktplaats"]["direct_eligible_urls"],1)
     def test_failed_listing_fetch_is_not_candidate(self):
         rss="<rss><channel><item><title>Boxer L2H2</title><link>https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-x</link></item></channel></rss>"
         def f(url):

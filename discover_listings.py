@@ -40,6 +40,9 @@ SEED_PAGES = {
         "https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html",
         "https://www.autowereld.nl/aanbieder/louwman-mercedes-benz-bedrijfswagens-roosendaal-1306925/auto.html",
         "https://www.autowereld.nl/aanbieder/volkswagen-breda-10209/auto.html",
+        "https://www.autowereld.nl/aanbieder/louwman-mercedes-benz-bedrijfswagens-goes-1306923/auto.html",
+        "https://www.autowereld.nl/aanbieder/van-mossel-breda-1013023/auto.html",
+        "https://www.autowereld.nl/aanbieder/auto-goes-5455/auto.html",
         "https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod",
         "https://www.vanmossel.nl/vestigingen/van-mossel-renault-dacia-roosendaal"],
 }
@@ -93,6 +96,7 @@ def valid_url(url,source):
     if source=="Gaspedaal" and "/autobedrijven/" in path: return False
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/")!="/auto-kopen"
+    if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     return len([s for s in path.split("/") if s])>=2
 
 def extract(title,url,source,markup):

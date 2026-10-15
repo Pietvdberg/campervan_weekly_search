@@ -5,6 +5,9 @@ class DiscoveryTests(unittest.TestCase):
     def test_nine_sources(self): self.assertEqual(len(SOURCES),10)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))
+    def test_all_sources_present(self):
+        self.assertIn("wijkopenautos",SOURCES)
+        self.assertIn("TrucksNL",SOURCES)
     def test_wrong_host(self): self.assertFalse(valid_url("https://evil.test/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))
     def test_vat_and_distance_unknown(self):
         c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",
@@ -15,7 +18,7 @@ class DiscoveryTests(unittest.TestCase):
     def test_missing_sources_reported(self):
         def error(url): raise OSError("offline")
         d=discover(fetcher=error)
-        self.assertEqual(len(d["source_coverage"]),9)
+        self.assertEqual(len(d["source_coverage"]),10)
         self.assertTrue(all(v["status"]=="unavailable" for v in d["source_coverage"].values()))
     def test_missing_payload_cannot_be_claimed_suitable(self):
         c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",

@@ -41,6 +41,25 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(len(data["candidates"]),1)
         self.assertEqual(data["candidates"][0]["plate"],"V-360-SJ")
         self.assertEqual(data["source_coverage"]["Marktplaats"]["direct_eligible_urls"],1)
+    def test_category_pages_not_candidate_listings(self):
+        self.assertFalse(valid_url("https://www.autotrack.nl/aanbod/carrosserievorm/suv","AutoTrack"))
+        self.assertFalse(valid_url("https://www.viabovag.nl/auto/occasion","viaBOVAG"))
+    def test_429_stops_requests_for_a_source(self):
+        from urllib.error import HTTPError
+        from discover_listings import SEED_PAGES
+        targets=[f"https://www.marktplaats.nl/v/auto-s/bestelauto-s/m{90000+i}-boxer" for i in range(20)]
+        count=[0]
+        def fake(url):
+            if "bing.com" in url: return "<rss><channel></channel></rss>","application/rss+xml"
+            if url in SEED_PAGES["Marktplaats"]:
+                return "<html>"+"".join(f'<a href="{t}">Boxer L2H2</a>' for t in targets)+"</html>","text/html"
+            if url in targets:
+                count[0]+=1
+                raise HTTPError(url,429,"Too Many Requests",{},None)
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(count[0],1)
+        self.assertTrue(result["source_coverage"]["Marktplaats"]["rate_limited"])
     def test_failed_listing_fetch_is_not_candidate(self):
         rss="<rss><channel><item><title>Boxer L2H2</title><link>https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-x</link></item></channel></rss>"
         def f(url):

@@ -54,7 +54,8 @@ MODEL = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|craft
 ROOF = re.compile(r"\bL[234]H[23]\b|\bhoog ?dak\b",re.I)
 AC = re.compile(r"\b(airco|airconditioning|climate control)\b",re.I)
 CITIES = ("bergen op zoom","roosendaal","zevenbergen","breda","etten-leur","halsteren","steenbergen","tholen","goes","tilburg","dordrecht","rotterdam","oosterhout","hoogerheide","rucphen")
-MAX_BYTES=900000
+MAX_BYTES=2600000
+MAX_FETCH_ATTEMPTS=10
 
 class LinkCollector(HTMLParser):
     def __init__(self):
@@ -95,8 +96,9 @@ def valid_url(url,source):
     path=parsed.path.lower()
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
     if source=="AutoScout24": return path.startswith("/aanbod/") and path.count("/")>=2
-    if source=="AutoTrack": return "/aanbod/" in path and path.count("/")>=3
+    if source=="AutoTrack": return "/aanbod/" in path and not any(x in path for x in ("/brandstofsoort/","/carrosserievorm/","/merk/","/prijs/","/bouwjaar/")) and path.count("/")>=3
     if source=="Gaspedaal" and "/autobedrijven/" in path: return False
+    if source=="viaBOVAG" and (path.count("/")<3 or path in ("/auto/nieuw","/auto/occasion","/auto/elektriciteit")): return False
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False
     if source=="Gaspedaal" and "/autobedrijven/" in path: return False
@@ -166,15 +168,16 @@ def discover(fetcher=fetch,max_per_source=4):
             except Exception as exc:
                 hits=[]
                 index_error=str(exc)[:140]
-            found=0;failures=0;rejected=0;matched=0;samples=[]
+            found=0;failures=0;rejected=0;matched=0;samples=[];attempts=0;rate_limited=False
             for title,url in [(title,url) for url,title in direct_urls.items()] + hits[:25]:
-                if found>=max_per_source: break
+                if found>=max_per_source or attempts>=MAX_FETCH_ATTEMPTS or rate_limited: break
                 if url in seen: continue
                 if not valid_url(url,source):
                     rejected+=1
                     if len(samples)<3: samples.append({"reason":"not an eligible individual listing URL","url":url[:250]})
                     continue
                 matched+=1
+                attempts+=1
                 seen.add(url)
                 try:
                     markup,ctype=fetcher(url)
@@ -190,14 +193,15 @@ def discover(fetcher=fetch,max_per_source=4):
                     elif len(samples)<3: samples.append({"reason":"listing text lacks searched vehicle model","url":url[:250]})
                 except Exception as exc:
                     failures+=1
+                    if "429" in str(exc): rate_limited=True
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
             coverage[source]={"status":"individual_pages_found" if found else ("unavailable" if seed_success==0 and index_error else "no_usable_individual_pages"),
                               "inventory_pages":len(SEED_PAGES[source]),"inventory_pages_fetched":seed_success,
                               "inventory_links":anchor_count,"direct_eligible_urls":len(direct_urls),
                               "inventory_errors":seed_errors,"index_error":index_error,
-                              "index_hits":len(hits),"eligible_urls":matched,"rejected_index_urls":rejected,
+                              "index_hits":len(hits),"eligible_urls":matched,"attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,
                               "individual_pages_fetched":found,"fetch_errors":failures,"diagnostic_samples":samples,
-                              "method":"public Bing RSS index; NOT complete source inventory"}
+                              "method":"direct source inventory with bounded individual requests; Bing untrusted fallback"}
         except Exception as exc:
             coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0,
                               "inventory_pages_fetched":seed_success,"direct_eligible_urls":len(direct_urls),"inventory_errors":seed_errors}

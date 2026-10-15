@@ -55,7 +55,7 @@ ROOF = re.compile(r"\bL[234]H[23]\b|\bhoog ?dak\b",re.I)
 AC = re.compile(r"\b(airco|airconditioning|climate control)\b",re.I)
 CITIES = ("bergen op zoom","roosendaal","zevenbergen","breda","etten-leur","halsteren","steenbergen","tholen","goes","tilburg","dordrecht","rotterdam","oosterhout","hoogerheide","rucphen")
 MAX_BYTES=2600000
-MAX_FETCH_ATTEMPTS=10
+MAX_FETCH_ATTEMPTS=50
 
 class LinkCollector(HTMLParser):
     def __init__(self):
@@ -133,7 +133,7 @@ def extract(title,url,source,markup):
             "evidence_note":"Individual page returned HTML; structured price and GPS evidence can be checked, but seller claims and actual condition remain unverified.",
             "observed_at":datetime.now(timezone.utc).isoformat()}
 
-def discover(fetcher=fetch,max_per_source=4):
+def discover(fetcher=fetch,max_per_source=50):
     coverage={};candidates=[];seen=set()
     for source,domain in SOURCES.items():
         direct_urls = {}

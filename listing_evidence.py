@@ -15,7 +15,7 @@ ORIGIN=(4.2930,51.4945)  # Bergen op Zoom approximate city centre (lon, lat)
 TARGET_TYPES={"Vehicle","Car","Product","Offer"}
 SCRIPT=re.compile(r'<script\b([^>]*)>(.*?)</script\s*>',re.I|re.S)
 PLATE=re.compile(r'\b(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3})\b',re.I)
-PRICE=re.compile(r'(?:€|EUR)\s*(\d{1,3}(?:\.\d{3})*(?:,\d{2})?|\d{4,6}(?:,\d{2})?)',re.I)
+PRICE=re.compile(r'(?:€|EUR)\s*(\d{1,3}(?:\.\d{3})+(?:,\d{2})?|\d{4,6}(?:[.,]\d{2})?|\d{1,3}(?:,\d{2})?)(?!\d)',re.I)
 LOCATION=re.compile(r'\b(?:plaats|vestiging|locatie|standplaats)\s*:\s*([A-ZÀ-ÿ][A-Za-zÀ-ÿ -]{2,45})',re.I)
 
 def objects(value,depth=0):

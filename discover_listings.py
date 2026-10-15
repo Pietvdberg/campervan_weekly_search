@@ -95,6 +95,7 @@ def valid_url(url,source):
     if source=="AutoTrack": return "/aanbod/" in path and path.count("/")>=3
     if source=="Gaspedaal" and "/autobedrijven/" in path: return False
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
+    if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False
     if source=="Gaspedaal" and "/autobedrijven/" in path: return False
     if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/")!="/auto-kopen"
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False

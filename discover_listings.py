@@ -9,11 +9,14 @@ import re
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
+from html.parser import HTMLParser
+from urllib.parse import urljoin,urldefrag
 
 SOURCES = {
     "Marktplaats": "marktplaats.nl",
     "AutoScout24": "autoscout24.nl",
     "Gaspedaal": "gaspedaal.nl",
+    "wijkopenautos": "wijkopenautos.nl",
     "AutoTrack": "autotrack.nl",
     "viaBOVAG": "viabovag.nl",
     "AutoWereld": "autowereld.nl",
@@ -21,11 +24,52 @@ SOURCES = {
     "TrucksNL": "trucksnl.com",
     "Local dealers": None,
 }
+# Direct category/dealer entry points. A returned page is not proof of complete inventory.
+SEED_PAGES = {
+    "Marktplaats": ["https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/boxer+l2h2/","https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/transit+l2h2/"],
+    "Gaspedaal": ["https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod","https://www.gaspedaal.nl/"],
+    "wijkopenautos": ["https://www.wijkopenautos.nl/auto-kopen/"],
+    "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit"],
+    "AutoTrack": ["https://www.autotrack.nl/"],
+    "viaBOVAG": ["https://www.viabovag.nl/"],
+    "AutoWereld": ["https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html","https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html"],
+    "Bedrijfsauto": ["https://www.bedrijfsauto.nl/"],
+    "TrucksNL": ["https://www.trucksnl.com/"],
+    "Local dealers": [
+        "https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html",
+        "https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html",
+        "https://www.autowereld.nl/aanbieder/louwman-mercedes-benz-bedrijfswagens-roosendaal-1306925/auto.html",
+        "https://www.autowereld.nl/aanbieder/volkswagen-breda-10209/auto.html",
+        "https://www.autowereld.nl/aanbieder/louwman-mercedes-benz-bedrijfswagens-goes-1306923/auto.html",
+        "https://www.autowereld.nl/aanbieder/van-mossel-breda-1013023/auto.html",
+        "https://www.autowereld.nl/aanbieder/auto-goes-5455/auto.html",
+        "https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod",
+        "https://www.vanmossel.nl/vestigingen/van-mossel-renault-dacia-roosendaal"],
+}
+
 MODEL = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|nv400)\b",re.I)
 ROOF = re.compile(r"\bL[234]H[23]\b|\bhoog ?dak\b",re.I)
 AC = re.compile(r"\b(airco|airconditioning|climate control)\b",re.I)
 CITIES = ("bergen op zoom","roosendaal","zevenbergen","breda","etten-leur","halsteren","steenbergen","tholen","goes","tilburg","dordrecht","rotterdam","oosterhout","hoogerheide","rucphen")
 MAX_BYTES=900000
+
+class LinkCollector(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.links = []
+        self.href = None
+        self.label = []
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            self.href = dict(attrs).get("href")
+            self.label = []
+    def handle_data(self, data):
+        if self.href is not None:
+            self.label.append(data)
+    def handle_endtag(self, tag):
+        if tag == "a" and self.href is not None:
+            self.links.append((" ".join(" ".join(self.label).split()), self.href))
+            self.href = None
 
 def fetch(url):
     req=Request(url,headers={"User-Agent":"Mozilla/5.0 CamperVanResearch/1.0","Accept":"text/html,application/rss+xml,application/xml"})
@@ -44,11 +88,16 @@ def valid_url(url,source):
     domain=SOURCES[source]
     if parsed.scheme!="https": return False
     if domain and not (host==domain or host.endswith("."+domain)): return False
-    if source=="Local dealers" and not host.endswith(".nl"): return False
+    if source=="Local dealers" and not any(host == d or host.endswith("."+d) for d in ("autowereld.nl","gaspedaal.nl","vanmossel.nl")): return False
     path=parsed.path.lower()
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
     if source=="AutoScout24": return path.startswith("/aanbod/") and path.count("/")>=2
-    if source=="AutoTrack": return "/aanbod/" in path and path.count("/")>=4
+    if source=="AutoTrack": return "/aanbod/" in path and path.count("/")>=3
+    if source=="Gaspedaal" and "/autobedrijven/" in path: return False
+    if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
+    if source=="Gaspedaal" and "/autobedrijven/" in path: return False
+    if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/")!="/auto-kopen"
+    if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     return len([s for s in path.split("/") if s])>=2
 
 def extract(title,url,source,markup):
@@ -77,14 +126,36 @@ def extract(title,url,source,markup):
 def discover(fetcher=fetch,max_per_source=4):
     coverage={};candidates=[];seen=set()
     for source,domain in SOURCES.items():
+        direct_urls = {}
+        seed_success = 0
+        seed_errors = []
+        anchor_count = 0
+        for seed in SEED_PAGES[source]:
+            try:
+                page, typ = fetcher(seed)
+                if "html" not in typ.lower(): raise ValueError("non-HTML inventory page")
+                seed_success += 1
+                parser = LinkCollector()
+                parser.feed(page)
+                anchor_count += len(parser.links)
+                for label, href in parser.links:
+                    url = urldefrag(urljoin(seed, href))[0]
+                    if valid_url(url,source): direct_urls.setdefault(url,label)
+            except Exception as exc:
+                if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
         query=("site:"+domain+" " if domain else "")+'("L2H2" OR "L3H2") (boxer OR jumper OR ducato OR transit OR master) airco bestelbus'
         if source=="Local dealers": query+=' ("Roosendaal" OR "Breda" OR "Bergen op Zoom")'
         rss="https://www.bing.com/search?"+urlencode({"q":query,"format":"rss"})
         try:
-            xml,_=fetcher(rss)
-            hits=search_links(xml)
+            try:
+                xml,_=fetcher(rss)
+                hits=search_links(xml)
+                index_error=None
+            except Exception as exc:
+                hits=[]
+                index_error=str(exc)[:140]
             found=0;failures=0;rejected=0;matched=0;samples=[]
-            for title,url in hits[:25]:
+            for title,url in [(title,url) for url,title in direct_urls.items()] + hits[:25]:
                 if found>=max_per_source: break
                 if url in seen: continue
                 if not valid_url(url,source):
@@ -105,14 +176,18 @@ def discover(fetcher=fetch,max_per_source=4):
                 except Exception as exc:
                     failures+=1
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
-            coverage[source]={"status":"individual_pages_found" if found else "no_usable_individual_pages",
+            coverage[source]={"status":"individual_pages_found" if found else ("unavailable" if seed_success==0 and index_error else "no_usable_individual_pages"),
+                              "inventory_pages":len(SEED_PAGES[source]),"inventory_pages_fetched":seed_success,
+                              "inventory_links":anchor_count,"direct_eligible_urls":len(direct_urls),
+                              "inventory_errors":seed_errors,"index_error":index_error,
                               "index_hits":len(hits),"eligible_urls":matched,"rejected_index_urls":rejected,
                               "individual_pages_fetched":found,"fetch_errors":failures,"diagnostic_samples":samples,
                               "method":"public Bing RSS index; NOT complete source inventory"}
         except Exception as exc:
-            coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0}
+            coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0,
+                              "inventory_pages_fetched":seed_success,"direct_eligible_urls":len(direct_urls),"inventory_errors":seed_errors}
     return {"candidates":candidates,"source_coverage":coverage,
-            "discovery_method":"Best-effort public index. No completeness, distance, VAT or availability guarantee."}
+            "discovery_method":"Source-specific category/dealer inventory first, public search index fallback; no completeness, VAT, distance or availability guarantee."}
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser()

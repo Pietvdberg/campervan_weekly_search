@@ -9,6 +9,7 @@ import re
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
+from listing_evidence import enrich
 from html.parser import HTMLParser
 from urllib.parse import urljoin,urldefrag
 
@@ -117,11 +118,15 @@ def extract(title,url,source,markup):
     price_hit=re.search(r"(?:€|EUR)\s*([\d.]+(?:,\d{2})?)",header,re.I)
     title_match=re.search(r"<title[^>]*>(.*?)</title>",markup,re.I|re.S)
     name=(" ".join(html.unescape(title_match.group(1)).split()) if title_match else title)[:180]
+    evidence=enrich(markup)
+    checks.update(evidence["checks"])
     return {"name":name,"source":source,"listing_url":url,"individual_listing_confirmed":True,
             "checks":checks,"plate":plate,"plate_confirmed_from_listing":bool(plate),
             "city_mentioned":city,"price_advertised":price_hit.group(1) if price_hit else None,
-            "price_incl_vat":None,"mechanical_concerns":"Service history, rust, driveline, cab A/C operation and payload unverified.",
-            "evidence_note":"Individual page returned HTML; text matches are advertised claims. Status/availability not independently confirmed.",
+            "price_incl_vat":evidence["vat"]["amount_incl_vat"],"vat_basis":evidence["vat"]["basis"],
+            "distance_km":evidence["distance_km"],"location_coordinates":evidence["location_coordinates"],
+            "mechanical_concerns":"Service history, rust, driveline, cab A/C operation and payload unverified.",
+            "evidence_note":"Individual page returned HTML; structured price and GPS evidence can be checked, but seller claims and actual condition remain unverified.",
             "observed_at":datetime.now(timezone.utc).isoformat()}
 
 def discover(fetcher=fetch,max_per_source=4):

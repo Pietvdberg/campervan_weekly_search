@@ -39,9 +39,49 @@ def main():
         try:
             with imaplib.IMAP4_SSL("imap.gmail.com", 993) as imap:
                 imap.login(sender, password)
-                status, _ = imap.select('"[Gmail]/Sent Mail"', readonly=True)
+                status, folders = imap.list()
                 if status != "OK":
-                    raise RuntimeError("Cannot select Gmail Sent Mail folder")
+                    raise RuntimeError("Could not list Gmail folders")
+                import re
+                sent_folder = None
+                for folder in folders:
+                    line = folder.decode("utf-8", errors="replace")
+                    if re.search(r"\\Sent\\b", line, re.IGNORECASE):
+                        match = re.search(r'(?:"([^\"]+)"|([^ ]+))
+                status, data = imap.uid("SEARCH", None, "HEADER", "Message-ID", message["Message-ID"])
+                if status != "OK":
+                    raise RuntimeError("IMAP search failed")
+                for uid in data[0].split():
+                    status, fetched = imap.uid("FETCH", uid, "(RFC822)")
+                    if status != "OK":
+                        continue
+                    raw = next((part[1] for part in fetched if isinstance(part, tuple)), None)
+                    if not raw:
+                        continue
+                    stored = email.message_from_bytes(raw)
+                    actual = {addr.lower() for _, addr in getaddresses(stored.get_all("To", []))}
+                    if (stored.get("Message-ID") == message["Message-ID"]
+                            and str(email.header.make_header(email.header.decode_header(stored.get("Subject", "")))) == subject
+                            and set(RECIPIENTS).issubset(actual)):
+                        print("Verified exact subject and both recipients in Gmail Sent; Message-ID:", message["Message-ID"])
+                        return 0
+        except (imaplib.IMAP4.error, OSError) as exc:
+            print("IMAP verification attempt failed:", str(exc), flush=True)
+        time.sleep(5)
+    raise RuntimeError("SMTP accepted mail but Gmail Sent verification failed for " + message["Message-ID"])
+
+if __name__ == "__main__":
+    sys.exit(main())
+, line)
+                        if match:
+                            sent_folder = match.group(1) or match.group(2)
+                            break
+                if sent_folder is None:
+                    raise RuntimeError("No folder marked with IMAP Sent special-use flag")
+                mailbox = '"' + sent_folder.replace('\\', '\\\\').replace('"', '\\"') + '"'
+                status, _ = imap.select(mailbox, readonly=True)
+                if status != "OK":
+                    raise RuntimeError("Cannot select Gmail Sent folder discovered via IMAP")
                 status, data = imap.uid("SEARCH", None, "HEADER", "Message-ID", message["Message-ID"])
                 if status != "OK":
                     raise RuntimeError("IMAP search failed")

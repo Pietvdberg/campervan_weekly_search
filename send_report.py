@@ -1,69 +1,68 @@
 #!/usr/bin/env python3
-"""Send an existing weekly report via Gmail OAuth2 and verify the Sent copy."""
-import base64
-from datetime import datetime
+"""Send report using Gmail SMTP and verify the exact message in Gmail Sent via IMAP."""
+import email
 from email.message import EmailMessage
-import json
+from email.utils import make_msgid, getaddresses
+from datetime import datetime
+import imaplib
 import os
+import smtplib
+import ssl
 import sys
 import time
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
 
 RECIPIENTS = ["piet.v.d.berg@hotmail.com", "hagenaars.danielle@gmail.com"]
-
-def request_json(url, payload=None, token=None):
-    headers = {"Accept": "application/json"}
-    if token:
-        headers["Authorization"] = "Bearer " + token
-    if payload is not None:
-        headers["Content-Type"] = "application/json"
-        data = json.dumps(payload).encode()
-    else:
-        data = None
-    with urlopen(Request(url, data=data, headers=headers), timeout=30) as response:
-        return json.load(response)
-
-def access_token():
-    body = urlencode({
-        "client_id": os.environ["GMAIL_CLIENT_ID"],
-        "client_secret": os.environ["GMAIL_CLIENT_SECRET"],
-        "refresh_token": os.environ["GMAIL_REFRESH_TOKEN"],
-        "grant_type": "refresh_token",
-    }).encode()
-    with urlopen(Request("https://oauth2.googleapis.com/token", data=body), timeout=30) as response:
-        return json.load(response)["access_token"]
 
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else "report.txt"
     date = os.environ.get("REPORT_DATE", datetime.now().strftime("%Y-%m-%d"))
     subject = f"Weekly camper van search — {date}"
     sender = os.environ["GMAIL_SENDER"]
+    password = os.environ["GMAIL_APP_PASSWORD"].replace(" ", "")
     message = EmailMessage()
     message["From"] = sender
     message["To"] = ", ".join(RECIPIENTS)
     message["Subject"] = subject
+    message["Message-ID"] = make_msgid(domain=sender.split("@")[-1])
     with open(path, encoding="utf-8") as f:
         message.set_content(f.read())
-    token = access_token()
-    raw = base64.urlsafe_b64encode(message.as_bytes()).decode().rstrip("=")
-    sent = request_json("https://gmail.googleapis.com/gmail/v1/users/me/messages/send", {"raw": raw}, token)
-    message_id = sent["id"]
-    print("Gmail API accepted message ID:", message_id)
-    for attempt in range(5):
-        record = request_json(
-            f"https://gmail.googleapis.com/gmail/v1/users/me/messages/{message_id}?format=metadata",
-            token=token,
-        )
-        headers = {h["name"].lower(): h["value"] for h in record.get("payload", {}).get("headers", [])}
-        actual_recipients = headers.get("to", "").lower()
-        if ("SENT" in record.get("labelIds", [])
-                and headers.get("subject") == subject
-                and all(addr in actual_recipients for addr in RECIPIENTS)):
-            print("Verified Sent copy, subject and both recipients:", message_id)
-            return 0
-        time.sleep(3)
-    raise RuntimeError("Message was accepted but Sent-copy verification failed: " + message_id)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context(), timeout=30) as smtp:
+        smtp.login(sender, password)
+        refused = smtp.send_message(message)
+        if refused:
+            raise RuntimeError(f"SMTP refused recipients: {list(refused)}")
+    print("SMTP accepted message; Message-ID:", message["Message-ID"], flush=True)
+
+    # Gmail normally saves SMTP-submitted mail in Sent automatically.
+    # Confirm that exact Message-ID and both recipient headers are present.
+    for attempt in range(6):
+        try:
+            with imaplib.IMAP4_SSL("imap.gmail.com", 993) as imap:
+                imap.login(sender, password)
+                status, _ = imap.select('"[Gmail]/Sent Mail"', readonly=True)
+                if status != "OK":
+                    raise RuntimeError("Cannot select Gmail Sent Mail folder")
+                status, data = imap.uid("SEARCH", None, "HEADER", "Message-ID", message["Message-ID"])
+                if status != "OK":
+                    raise RuntimeError("IMAP search failed")
+                for uid in data[0].split():
+                    status, fetched = imap.uid("FETCH", uid, "(RFC822)")
+                    if status != "OK":
+                        continue
+                    raw = next((part[1] for part in fetched if isinstance(part, tuple)), None)
+                    if not raw:
+                        continue
+                    stored = email.message_from_bytes(raw)
+                    actual = {addr.lower() for _, addr in getaddresses(stored.get_all("To", []))}
+                    if (stored.get("Message-ID") == message["Message-ID"]
+                            and str(email.header.make_header(email.header.decode_header(stored.get("Subject", "")))) == subject
+                            and set(RECIPIENTS).issubset(actual)):
+                        print("Verified exact subject and both recipients in Gmail Sent; Message-ID:", message["Message-ID"])
+                        return 0
+        except (imaplib.IMAP4.error, OSError) as exc:
+            print("IMAP verification attempt failed:", str(exc), flush=True)
+        time.sleep(5)
+    raise RuntimeError("SMTP accepted mail but Gmail Sent verification failed for " + message["Message-ID"])
 
 if __name__ == "__main__":
     sys.exit(main())

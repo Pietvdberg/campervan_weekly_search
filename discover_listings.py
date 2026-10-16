@@ -116,7 +116,7 @@ def valid_url(url,source):
         return bool(re.fullmatch(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",path))
     if source=="Local dealers" and host.endswith("vanmossel.nl"):
         # Dealer stock URLs must be vehicle-specific; branch and inventory pages are not listings.
-        return bool(re.search(r"/(?:voorraad|occasions)/[^/]+/[a-z0-9-]*\d{5,}/?$",path))
+        return bool(re.fullmatch(r"/[a-z0-9-]+/(?:voorraad|occasions)/\d{6,}-[a-z0-9-]+/?",path))
     if source=="wijkopenautos": return False  # Its individual sales cards are Autohero referrals.
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Bedrijfsauto" and ("/lease/" in path or path.rstrip("/") in ("/aanbod","/aanbod/volkswagen","/aanbod/mercedes-benz")): return False

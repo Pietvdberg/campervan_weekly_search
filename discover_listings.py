@@ -207,7 +207,7 @@ def discover(fetcher=fetch,max_per_source=50):
                     parser=LinkCollector()
                     parser.feed(page)
                 anchor_count += len(parser.links)
-                if source in ("AutoScout24","Bedrijfsauto","AutoWereld"):
+                if source in ("AutoScout24","AutoWereld"):
                     extra=extract_marketplace_links(page,seed,source)
                     for label,url in extra:
                         direct_urls.setdefault(url,label)
@@ -221,7 +221,7 @@ def discover(fetcher=fetch,max_per_source=50):
                 for label, href in parser.links:
                     url = urldefrag(urljoin(seed, href))[0]
                     if valid_url(url,source) and relevant_link(label,url,source): direct_urls.setdefault(url,label)
-                if source in ("AutoScout24","AutoTrack","AutoWereld","Bedrijfsauto"):
+                if source in ("AutoScout24","AutoTrack","AutoWereld"):
                     # Public application state can include advert URLs absent from anchors.
                     # Only accept source-specific detail URL shapes, never search URLs.
                     for raw in re.findall(r"(?:https?://[^\"\s<>]+|/(?:aanbod|a)/[^\"\s<>]+)",page)[:2500]:

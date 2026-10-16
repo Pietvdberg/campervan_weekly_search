@@ -122,6 +122,28 @@ class DiscoveryTests(unittest.TestCase):
             raise OSError("offline")
         result=discover(fetcher=fake)
         self.assertEqual(result["source_coverage"]["AutoWereld"]["attempts"],0)
+    def test_autowereld_valid_xml_without_items_recovers_links(self):
+        from discover_listings import discover, AUTOWERELD_RSS
+        url="https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-43911117/details.html"
+        xml="<rss><channel><description>Browse "+url+"</description></channel></rss>"
+        def fake(target):
+            if target in AUTOWERELD_RSS:
+                return (xml if target==AUTOWERELD_RSS[0] else "<rss><channel/></rss>"),"application/rss+xml"
+            if "bing.com" in target:return "<rss><channel/></rss>","application/rss+xml"
+            if target==url:return "<title>Peugeot Boxer L2H2 Airco</title>","text/html"
+            raise OSError("offline")
+        data=discover(fetcher=fake)
+        self.assertEqual(data["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
+        self.assertEqual(data["source_coverage"]["AutoWereld"]["feed_diagnostics"][0]["accepted_new_urls"],1)
+    def test_autowereld_valid_feed_no_urls_reports_diagnostics(self):
+        from discover_listings import discover, AUTOWERELD_RSS
+        def fake(target):
+            if target in AUTOWERELD_RSS or "bing.com" in target:
+                return "<rss><channel/></rss>","application/rss+xml"
+            raise OSError("offline")
+        data=discover(fetcher=fake)
+        self.assertEqual(data["source_coverage"]["AutoWereld"]["individual_pages_fetched"],0)
+        self.assertEqual(data["source_coverage"]["AutoWereld"]["feed_diagnostics"][0]["accepted_new_urls"],0)
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

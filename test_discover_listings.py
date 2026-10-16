@@ -64,7 +64,10 @@ class DiscoveryTests(unittest.TestCase):
             if url==vehicle:return '<title>Peugeot Boxer L2H2</title><p>Airco 7000 euro</p>',"text/html"
             if url in SEED_PAGES["AutoWereld"]:return '<a href="'+vehicle+'">Peugeot Boxer L2H2</a>',"text/html"
             raise OSError("offline")
-        result=discover(fetcher=fake)
+        from unittest.mock import patch
+        # Isolate inventory behaviour from the independent live smoke-test seed.
+        with patch.dict(SEED_PAGES, {"AutoWereld":[u for u in SEED_PAGES["AutoWereld"] if u != "https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise-43911117/details.html"]}):
+            result=discover(fetcher=fake)
         self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
     def test_bedrijfsauto_advert_seed_is_considered(self):
         from discover_listings import discover,SEED_PAGES
@@ -112,7 +115,7 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
         self.assertIn(url,[c["listing_url"] for c in result["candidates"]])
     def test_autowereld_malformed_rss_ignores_external_urls(self):
-        from discover_listings import discover, AUTOWERELD_RSS
+        from discover_listings import discover, AUTOWERELD_RSS, SEED_PAGES
         fake_url="https://other-site.nl/peugeot/boxer/330-l2h2-43911117/details.html"
         def fake(target):
             if target in AUTOWERELD_RSS:
@@ -120,7 +123,9 @@ class DiscoveryTests(unittest.TestCase):
             if "bing.com" in target:
                 return "<rss><channel/></rss>","application/rss+xml"
             raise OSError("offline")
-        result=discover(fetcher=fake)
+        from unittest.mock import patch
+        with patch.dict(SEED_PAGES, {"AutoWereld":[u for u in SEED_PAGES["AutoWereld"] if u != "https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise-43911117/details.html"]}):
+            result=discover(fetcher=fake)
         self.assertEqual(result["source_coverage"]["AutoWereld"]["attempts"],0)
     def test_autowereld_valid_xml_without_items_recovers_links(self):
         from discover_listings import discover, AUTOWERELD_RSS

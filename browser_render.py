@@ -6,9 +6,9 @@ No captcha-solving, login, stealth behavior or anti-bot circumvention.
 from urllib.parse import urlparse
 
 ALLOWED_DOMAINS=(
- "marktplaats.nl","gaspedaal.nl","wijkopenautos.nl","autoscout24.nl",
+ "marktplaats.nl","autoscout24.nl",
  "autotrack.nl","viabovag.nl","autowereld.nl","bedrijfsauto.nl",
- "trucksnl.com","vanmossel.nl"
+"vanmossel.nl"
 )
 
 def render(url,timeout_ms=12000):

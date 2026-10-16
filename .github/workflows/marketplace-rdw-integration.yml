@@ -32,7 +32,7 @@ jobs:
         run: |
           python3 -m compileall -q inventory_discovery.py discover_listings.py listing_evidence.py browser_render.py camper_pipeline.py rdw_lookup.py rdw_probe_report.py send_report.py
           python3 -m unittest -v test_discover_listings.py test_inventory_discovery.py test_listing_evidence.py test_browser_render.py test_camper_pipeline.py test_mail_routing.py
-      - name: Attempt ten-source direct marketplace discovery
+      - name: Attempt nine-source direct marketplace discovery
         run: python3 discover_listings.py --output discovered_candidates.json
       - name: Screen discovered listings and check confirmed plates with RDW
         run: python3 camper_pipeline.py --input discovered_candidates.json

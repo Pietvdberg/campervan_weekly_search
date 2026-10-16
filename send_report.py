@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Send report using Gmail SMTP and verify the exact message in Gmail Sent via IMAP."""
 import email
+import json
+from pathlib import Path
+from report_html import render_html
 from email.message import EmailMessage
 from email.utils import make_msgid, getaddresses
 from datetime import datetime
@@ -77,6 +80,9 @@ def main():
     message["Message-ID"] = make_msgid(domain=sender.split("@")[-1])
     with open(path, encoding="utf-8") as f:
         message.set_content(f.read())
+    audit = Path(path).with_name("screening_results.json")
+    if audit.is_file():
+        message.add_alternative(render_html(json.loads(audit.read_text(encoding="utf-8"))), subtype="html")
     print("Mail mode:", mode, "Recipients:", ", ".join(recipients), flush=True)
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context(), timeout=30) as smtp:
         smtp.login(sender, password)

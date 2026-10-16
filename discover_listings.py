@@ -155,14 +155,13 @@ def is_vehicle_detail(url, source, markup):
     return bool(re.search(r"\\b(?:kenteken|nummerplaat)\\s*[:\\-]?\\s*[A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3}\\b",plain,re.I))
 
 def extract(title,url,source,markup):
-    if re.search(r"<title[^>]*>\\s*(?:access denied|forbidden|just a moment|captcha|verify you are human|toegang geweigerd)[^<]*</title>",markup[:10000],re.I):
+    if re.search(r"<title[^>]*>\s*(?:access denied|forbidden|just a moment|captcha|verify you are human|toegang geweigerd)[^<]*</title>",markup[:10000],re.I):
         return None
     no_scripts=re.sub(r"<(?:script|style)\b[^>]*>.*?</(?:script|style)>"," ",markup,flags=re.I|re.S)
     text=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",no_scripts)).split())
     header=title+" "+text[:5000]
     # A title supplied by a directory is not proof that the response is a listing.
-    if not MODEL.search(text[:5000]) and not MODEL.search(html.unescape(re.sub(
-            r"<title[^>]*>(.*?)</title>",r"\\1",markup[:5000],flags=re.I|re.S))):
+    if not MODEL.search(text[:5000]):
         return None
     if not is_vehicle_detail(url,source,markup): return None
     checks={key:None for key in ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")}

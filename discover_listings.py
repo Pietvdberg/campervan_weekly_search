@@ -195,6 +195,7 @@ def discover(fetcher=fetch,max_per_source=50):
         seed_errors = []
         anchor_count = 0
         response_diagnostics=[]
+        source_rate_limited=False
         if source=="viaBOVAG":
             inventory_stats=crawl_inventory(source,SEED_PAGES[source],fetcher)
             direct_urls.update(inventory_stats["details"])
@@ -222,6 +223,7 @@ def discover(fetcher=fetch,max_per_source=50):
                 extra_diagnostics=(marketplace_diagnostics(page,seed,source)
                     if source=="AutoScout24" else {})
                 response_diagnostics.append({"seed":seed,"bytes":len(page),"content_type":typ[:70],
+                    "html_title":(re.search(r"<title[^>]*>(.*?)</title>",page[:16000],re.I|re.S).group(1).strip()[:110] if re.search(r"<title[^>]*>(.*?)</title>",page[:16000],re.I|re.S) else None),
                     "auto_scout_structure":extra_diagnostics,
                     "anchors":len(parser.links),"new_vehicle_urls":len(direct_urls),
                     "suspected_interstitial":bool(re.search(r"captcha|access denied|toegang geweigerd|verify you are human|bot detection|javascript required",page[:18000],re.I))})
@@ -238,6 +240,9 @@ def discover(fetcher=fetch,max_per_source=50):
                             direct_urls.setdefault(url,"")
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
+                if "429" in str(exc):
+                    source_rate_limited=True
+                    break
         feed_diagnostics=[]
         if source=="AutoWereld":
             advert_pattern=re.compile(
@@ -281,7 +286,7 @@ def discover(fetcher=fetch,max_per_source=50):
             except Exception as exc:
                 hits=[]
                 index_error=str(exc)[:140]
-            found=0;failures=0;rejected=0;matched=0;samples=[];attempts=0;rate_limited=False
+            found=0;failures=0;rejected=0;matched=0;samples=[];attempts=0;rate_limited=source_rate_limited
             for title,url in [(title,url) for url,title in direct_urls.items()] + hits[:25]:
                 if found>=max_per_source or attempts>=MAX_FETCH_ATTEMPTS or rate_limited: break
                 if url in seen: continue
@@ -311,9 +316,14 @@ def discover(fetcher=fetch,max_per_source=50):
                     if "429" in str(exc): rate_limited=True
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
             status=("individual_pages_found" if found else
+                    "rate_limited" if rate_limited else
                     "source_unavailable" if seed_success==0 else
                     "inventory_only_unverified" if inventory_stats is not None else
                     "no_verified_individual_pages")
+            if source=="AutoWereld" and not found and seed_success and not any(x.get("anchors",0) for x in response_diagnostics) and not any(x.get("accepted_new_urls",0) for x in feed_diagnostics):
+                status="unexpected_html_no_vehicle_inventory"
+            if source=="wijkopenautos" and not found:
+                status="buying_service_no_sale_inventory_verified"
             coverage[source]={"status":status,
                               "inventory_pages":len(SEED_PAGES[source]),"inventory_pages_fetched":seed_success,
                               "inventory_pages_checked":inventory_stats["inventory_pages_checked"] if inventory_stats else seed_success,
@@ -323,6 +333,7 @@ def discover(fetcher=fetch,max_per_source=50):
                               "direct_eligible_urls":len(direct_urls),
                               "referral_target":"Autohero" if source=="wijkopenautos" else None,
                               "inventory_errors":seed_errors,"feed_diagnostics":feed_diagnostics,
+                              "source_context":("Wijkopenautos purchases cars; its affiliate Autohero sells cars. No target van stock verified." if source=="wijkopenautos" else None),
                               "index_error":index_error,
                               "index_hits":len(hits),"detail_urls_discovered":len(direct_urls),"eligible_urls":matched,
                               "attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,

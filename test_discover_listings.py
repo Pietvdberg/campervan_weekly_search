@@ -171,6 +171,43 @@ class DiscoveryTests(unittest.TestCase):
         good="https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad/225359584-1-volkswagen-crafter-35-20-tdi-l3h2-comfortline-diesel-2020"
         self.assertTrue(valid_url(good,"Local dealers"))
         self.assertFalse(valid_url("https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad","Local dealers"))
+    def test_bedrijfsauto_429_on_seed_stops_detail_requests(self):
+        from discover_listings import discover, SEED_PAGES
+        from urllib.error import HTTPError
+        touched=[]
+        def fake(url):
+            if url==SEED_PAGES["Bedrijfsauto"][0]:
+                touched.append(url)
+                raise HTTPError(url,429,"Too Many Requests",{},None)
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            if "bedrijfsauto.nl" in url:
+                touched.append(url)
+                raise AssertionError("rate-limited source must not be retried")
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(len(touched),1)
+        self.assertEqual(result["source_coverage"]["Bedrijfsauto"]["status"],"rate_limited")
+        self.assertEqual(result["source_coverage"]["Bedrijfsauto"]["attempts"],0)
+    def test_autowereld_common_html_is_not_reported_as_empty_stock(self):
+        from discover_listings import discover, SEED_PAGES, AUTOWERELD_RSS
+        def fake(url):
+            if url in SEED_PAGES["AutoWereld"] or url in AUTOWERELD_RSS:
+                return "<html><title>Unavailable</title><body>Temporarily unavailable</body></html>","text/html"
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["status"],"unexpected_html_no_vehicle_inventory")
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],0)
+    def test_buying_service_is_not_assumed_to_have_sale_inventory(self):
+        from discover_listings import discover, SEED_PAGES
+        def fake(url):
+            if url in SEED_PAGES["wijkopenautos"]:
+                return "<html><title>Auto verkopen</title></html>","text/html"
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            raise OSError("offline")
+        data=discover(fetcher=fake)
+        self.assertEqual(data["source_coverage"]["wijkopenautos"]["status"],"buying_service_no_sale_inventory_verified")
+        self.assertEqual(data["source_coverage"]["wijkopenautos"]["individual_pages_fetched"],0)
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

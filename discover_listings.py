@@ -241,7 +241,7 @@ def discover(fetcher=fetch,max_per_source=50):
                             direct_urls.setdefault(url,title)
                     feed_diagnostics.append({"feed":feed_url,"bytes":len(rss_xml),
                         "content_type":feed_content_type[:80],
-                        "response_prefix":re.sub(r"\\s+"," ",rss_xml[:220])[:180],
+                        "response_prefix":re.sub(r"\s+"," ",rss_xml[:220])[:180],
                         "xml_items":len(feed_items),"recovered_urls":len(recovered),
                         "accepted_new_urls":len(direct_urls)-before,
                         "xml_error":xml_error})

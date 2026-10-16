@@ -36,7 +36,7 @@ class ScreeningTests(unittest.TestCase):
         self.assertEqual(stats["verified_prices"],0)
         self.assertEqual(stats["verified_distances"],0)
         self.assertEqual(data["qualifiers"],0)
-        self.assertIn("Local dealers: 1 candidates",report(data))
+        self.assertIn("Local dealers: 1 examined",report(data))
     def test_dealer_audit_rows_preserve_unknowns(self):
         from camper_pipeline import dealer_audit_rows
         c=self.example()
@@ -76,4 +76,62 @@ class ScreeningTests(unittest.TestCase):
         self.assertIn("RSS-only",text)
     def test_zero_candidates_honesty(self):
         self.assertIn("not proof",report(evaluate({"candidates":[]})))
+
+    def test_hard_failure_trumps_high_score(self):
+        from camper_pipeline import candidate_state
+        c=self.example()
+        c["checks"]["price_incl_vat_within_8000"]=False
+        item=screen(c)
+        self.assertEqual(item["score"],80)
+        self.assertEqual(candidate_state(item),"REJECTED")
+        result=evaluate({"candidates":[c]},lambda _:self.fail("Should not call RDW for explicit budget rejection"))
+        self.assertNotIn("Synthetic fixture",report(result))
+
+    def test_tracking_query_and_confirmed_plate_duplicates_only_in_email(self):
+        from camper_pipeline import unique_report_items
+        a=self.example()
+        b=self.example()
+        a["listing_url"]="https://www.autotrack.nl/a/sample-123456?from_srp=true"
+        b["listing_url"]="https://www.autotrack.nl/a/sample-123456"
+        a["plate"]=b["plate"]=None
+        a["plate_confirmed_from_listing"]=b["plate_confirmed_from_listing"]=False
+        result=evaluate({"candidates":[a,b]})
+        self.assertEqual(len(result["results"]),2)
+        self.assertEqual(len(list(unique_report_items(result["results"]))),1)
+        self.assertEqual(report(result).count("  Listing: https://www.autotrack.nl/a/sample-123456"),1)
+
+    def test_rss_prefilter_removes_expensive_open_bed_and_damaged(self):
+        from camper_pipeline import rss_shortlist
+        def lead(title,price):
+            return {"url":"https://www.autowereld.nl/renault/master/" +
+                    str(len(title)) + "-" + str(price) + "/details.html",
+                    "title":title,"description":"Vraagprijs : € "+price}
+        sample=[
+            lead("Renault Master L2H2 Airco","7.250"),
+            lead("Renault Master L2H2 Airco open laadbak","6.000"),
+            lead("Renault Master L3H2 Airco","19.950"),
+            lead("Renault Master L1H1 Airco","3.000"),
+            lead("Renault Master L2H2 motor niet goed","2.000"),
+        ]
+        chosen=rss_shortlist(sample)
+        self.assertEqual(len(chosen),1)
+        self.assertIn("Airco",chosen[0]["title"])
+
+    def test_no_vat_inference_for_rss(self):
+        from camper_pipeline import rss_shortlist
+        lead={"url":"https://www.autowereld.nl/renault/master/l2h2-123/details.html",
+              "title":"Renault Master L2H2 Airco","description":"Vraagprijs : € 7.900"}
+        data=evaluate({"unverified_rss_leads":[lead]})
+        self.assertEqual(data["qualifiers"],0)
+        self.assertIn("VAT basis unknown",report(data))
+        self.assertIn("RSS-only",report(data))
+
+    def test_audit_keeps_expensive_and_rejected_vehicles(self):
+        c=self.example()
+        c["checks"]["price_incl_vat_within_8000"]=False
+        result=evaluate({"candidates":[c]})
+        self.assertEqual(len(result["results"]),1)
+        self.assertEqual(result["source_screening"]["Unknown"]["total"],1)
+        self.assertIn("Explicitly rejected: 1",report(result))
+
 if __name__=="__main__":unittest.main()

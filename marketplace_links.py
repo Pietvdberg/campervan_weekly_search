@@ -37,6 +37,8 @@ def decode(value):
     value=html.unescape(value)
     value=value.replace(r"\/","/").replace(r"\u002F","/").replace(r"\u002f","/")
     value=value.replace(r"\u0026","&").replace(r"\u003d","=")
+    value=value.replace(r"\u002D","-").replace(r"\u002d","-")
+    value=value.replace(r"\u003A",":").replace(r"\u003a",":")
     return value
 
 def source_detail(url,source):
@@ -62,7 +64,9 @@ def diagnostics(markup,base,source):
     own=[urlparse(urljoin(base,href)).path for _,href in parser.links
          if href and urlparse(urljoin(base,href)).hostname in
          ("autoscout24.nl","www.autoscout24.nl")]
+    offer_fragments=[m.group(0)[:180] for m in re.finditer(r'/aanbod/[^\s"<>]{4,220}',text,re.I)]
     return {
+        "offer_path_samples":list(dict.fromkeys(offer_fragments))[:3],
         "raw_aanbod_references":len(re.findall(r"/aanbod/",text,re.I)),
         "uuid_occurrences":len(re.findall(UUID,text,re.I)),
         "first_party_aanbod_anchors":sum(p.startswith("/aanbod/") for p in own),
@@ -83,6 +87,13 @@ def extract(markup,base,source,limit=1000):
     # Links inside Next.js/JSON responses may not be HTML anchors.
     for m in re.finditer(r'https?://[^\s"<>\\]+|/(?:aanbod|peugeot|ford|citroen|fiat|renault|opel|mercedes|volkswagen|iveco)/[^\s"<>\\]+',markup,re.I):
         pairs.append(("",m.group()))
+    if source=="AutoScout24":
+        # Embedded application data can concatenate JSON keys or flags after a
+        # detail URL, so capture a bounded, exact slug+UUID rather than
+        # requiring the entire surrounding script token to be a URL.
+        detail=re.compile(r"/aanbod/([a-z0-9-]+-"+UUID+r")(?=[^a-z0-9-]|$)",re.I)
+        for found in detail.finditer(markup):
+            pairs.append(("",found.group(0)))
     results={}
     for label,raw in pairs:
         url=urldefrag(urljoin(base,decode(raw).strip()))[0].split("?")[0].rstrip(".,;)")

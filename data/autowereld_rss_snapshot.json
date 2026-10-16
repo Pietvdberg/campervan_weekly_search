@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "collected_at": "2026-10-16T21:27:13.617550+00:00",
+  "collected_at": "2026-10-16T21:43:08.035334+00:00",
   "source": "AutoWereld public RSS",
   "feeds_checked": [
     "https://www.autowereld.nl/rss/peugeot/boxer/",
@@ -326,6 +326,27 @@
       "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
     },
     {
+      "url": "https://www.autowereld.nl/fiat/ducato/professional-standaard-chassis-cabine-cruise-control-met-begrenzer-43926194/details.html",
+      "title": "Fiat Ducato - Professional Standaard - Chassis Cabine | Cruise control met begrenzer",
+      "description": "<img src=\"https://www.autowereld.nl/I781714742/240x180/fiat-ducato-professional-standaard-chassis-cabine-cruise-control-met-begrenzer.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Chassis Cabine | Cruise control met begrenzer\" /><br /><b>Vraagprijs</b>: € 52.086<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
+      "pub_date": "Fri, 16 Oct 2026 23:37:15 +0200",
+      "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
+    },
+    {
+      "url": "https://www.autowereld.nl/fiat/ducato/professional-standaard-elektrisch-cruise-control-met-begrenzer-43926190/details.html",
+      "title": "Fiat Ducato - Professional Standaard - Elektrisch | Cruise control met begrenzer",
+      "description": "<img src=\"https://www.autowereld.nl/I781714674/240x180/fiat-ducato-professional-standaard-elektrisch-cruise-control-met-begrenzer.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Elektrisch | Cruise control met begrenzer\" /><br /><b>Vraagprijs</b>: € 69.636<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
+      "pub_date": "Fri, 16 Oct 2026 23:37:09 +0200",
+      "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
+    },
+    {
+      "url": "https://www.autowereld.nl/fiat/ducato/professional-standaard-elektrisch-cruise-control-met-begrenzer-pakket-city-plus-43926132/details.html",
+      "title": "Fiat Ducato - Professional Standaard - Elektrisch | Cruise control met begrenzer | Pakket City Plus",
+      "description": "<img src=\"https://www.autowereld.nl/I781714091/240x180/fiat-ducato-professional-standaard-elektrisch-cruise-control-met-begrenzer-pakket-city-plus.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Elektrisch | Cruise control met begrenzer | Pakket City Plus\" /><br /><b>Vraagprijs</b>: € 58.148<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
+      "pub_date": "Fri, 16 Oct 2026 23:35:18 +0200",
+      "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
+    },
+    {
       "url": "https://www.autowereld.nl/fiat/ducato/2-3-pick-up-dc-pritsche-2020-7-persoons-navi-trekhaak-43925285/details.html",
       "title": "Fiat Ducato - 2.3 Pick up DC - Pritsche - 2020 - 7 persoons - Navi - Trekhaak",
       "description": "<img src=\"https://www.autowereld.nl/I781686339/240x180/fiat-ducato-2-3-pick-up-dc-pritsche-2020-7-persoons-navi-trekhaak.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 2.3 Pick up DC - Pritsche - 2020 - 7 persoons - Navi - Trekhaak\" /><br /><b>Vraagprijs</b>: € 14.950<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 139.485 km",
@@ -398,7 +419,7 @@
     {
       "url": "https://www.autowereld.nl/fiat/ducato/professional-standaard-elektrisch-achteruitrijcamera-met-dynamische-rasterlijnen-cru-43912968/details.html",
       "title": "Fiat Ducato - Professional Standaard - Elektrisch | Achteruitrijcamera met dynamische rasterlijnen | Cru",
-      "description": "<img src=\"https://www.autowereld.nl/I781324046/240x180/fiat-ducato-professional-standaard-elektrisch-achteruitrijcamera-met-dynamische-rasterlijnen-cru.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Elektrisch | Achteruitrijcamera met dynamische rasterlijnen | Cru\" /><br /><b>Vraagprijs</b>: € 67.337<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
+      "description": "<img src=\"https://www.autowereld.nl/I781324046/240x180/fiat-ducato-professional-standaard-elektrisch-achteruitrijcamera-met-dynamische-rasterlijnen-cru.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Elektrisch | Achteruitrijcamera met dynamische rasterlijnen | Cru\" /><br /><b>Vraagprijs</b>: € 67.821<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
       "pub_date": "Wed, 14 Oct 2026 23:24:09 +0200",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
@@ -407,27 +428,6 @@
       "title": "Fiat Ducato - 35 3.0 MJ L2H2",
       "description": "<img src=\"https://www.autowereld.nl/I781305593/240x180/fiat-ducato-35-3-0-mj-l2h2.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 35 3.0 MJ L2H2\" /><br /><b>Vraagprijs</b>: € 10.950<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 218.840 km",
       "pub_date": "Wed, 14 Oct 2026 18:41:11 +0200",
-      "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
-    },
-    {
-      "url": "https://www.autowereld.nl/fiat/ducato/30-2-0-multijet-l1h1-dc-43911484/details.html",
-      "title": "Fiat Ducato - 30 2.0 MultiJet L1H1 DC",
-      "description": "<img src=\"https://www.autowereld.nl/I781280442/240x180/fiat-ducato-30-2-0-multijet-l1h1-dc-30-2-0-multijet-l1h1-dc.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 30 2.0 MultiJet L1H1 DC\" /><br /><b>Vraagprijs</b>: € 7.250<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 204.409 km",
-      "pub_date": "Wed, 14 Oct 2026 16:53:59 +0200",
-      "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
-    },
-    {
-      "url": "https://www.autowereld.nl/fiat/ducato/35h-2-3-multijet-l4h3-bakwagen-export-schade-l-airco-l-cruise-l-laadklep-l-btw-43910969/details.html",
-      "title": "Fiat Ducato - 35H 2.3 MultiJet L4H3 bakwagen export/schade l airco l cruise l laadklep l BTW",
-      "description": "<img src=\"https://www.autowereld.nl/I781264826/240x180/fiat-ducato-35h-2-3-multijet-l4h3-bakwagen-export-schade-l-airco-l-cruise-l-laadklep-l-btw.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 35H 2.3 MultiJet L4H3 bakwagen export/schade l airco l cruise l laadklep l BTW\" /><br /><b>Vraagprijs</b>: € 3.950<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 465.863 km",
-      "pub_date": "Wed, 14 Oct 2026 16:06:58 +0200",
-      "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
-    },
-    {
-      "url": "https://www.autowereld.nl/fiat/ducato/30-2-3-multijet-l1-h1-airco-navigatie-imperiaal-43910819/details.html",
-      "title": "Fiat Ducato - 30 2.3 MultiJet L1 H1 Airco Navigatie Imperiaal",
-      "description": "<img src=\"https://www.autowereld.nl/I781260198/240x180/fiat-ducato-30-2-3-multijet-l1h1-30-2-3-multijet-l1-h1.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 30 2.3 MultiJet L1 H1 Airco Navigatie Imperiaal\" /><br /><b>Vraagprijs</b>: € 10.950<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 123.352 km",
-      "pub_date": "Wed, 14 Oct 2026 15:50:52 +0200",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {

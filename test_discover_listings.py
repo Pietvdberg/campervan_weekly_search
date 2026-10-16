@@ -249,7 +249,8 @@ class DiscoveryTests(unittest.TestCase):
         data=discover(fetcher=fake)
         self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["individual_pages_fetched"],1)
         self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["attempts"],1)
-        self.assertEqual([u for u in visited if "bedrijfsauto.nl" in u],[seed,ad])
+        from urllib.parse import urlparse
+        self.assertEqual([u for u in visited if urlparse(u).hostname=="www.bedrijfsauto.nl"],[seed,ad])
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

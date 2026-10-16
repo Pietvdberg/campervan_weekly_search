@@ -216,22 +216,35 @@ def discover(fetcher=fetch,max_per_source=50):
                             direct_urls.setdefault(url,"")
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
+        feed_diagnostics=[]
         if source=="AutoWereld":
+            advert_pattern=re.compile(
+                r"https://(?:www\\.)?autowereld\\.nl/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\\d+/details\\.html",
+                re.I)
             for feed_url in AUTOWERELD_RSS:
                 try:
                     rss_xml,_=fetcher(feed_url)
+                    xml_error=None
                     try:
                         feed_items=search_links(rss_xml)
-                    except ET.ParseError:
-                        # AutoWereld can publish malformed item descriptions.
-                        # Recover only exact, first-party advert links, not arbitrary HTML.
-                        feed_items=[("",html.unescape(u)) for u in re.findall(
-                            r"https://(?:www\.)?autowereld\.nl/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",
-                            rss_xml,re.I)]
-                    for title,url in feed_items:
+                    except ET.ParseError as exc:
+                        feed_items=[]
+                        xml_error=str(exc)[:120]
+                    # A source may return a nominally valid document without
+                    # conventional <item> elements. Recover literal advert URLs
+                    # in BOTH cases, with first-party /details.html validation.
+                    recovered=advert_pattern.findall(html.unescape(rss_xml).replace("\\\\/","/"))
+                    before=len(direct_urls)
+                    for title,url in feed_items+[( "",u) for u in recovered]:
+                        url=html.unescape(url).strip()
                         if valid_url(url,source) and relevant_link(title,url,source):
                             direct_urls.setdefault(url,title)
+                    feed_diagnostics.append({"feed":feed_url,"bytes":len(rss_xml),
+                        "xml_items":len(feed_items),"recovered_urls":len(recovered),
+                        "accepted_new_urls":len(direct_urls)-before,
+                        "xml_error":xml_error})
                 except Exception as exc:
+                    feed_diagnostics.append({"feed":feed_url,"error":str(exc)[:120]})
                     if len(seed_errors)<4: seed_errors.append("RSS: "+str(exc)[:120])
         query=("site:"+domain+" " if domain else "")+'("L2H2" OR "L3H2") (boxer OR jumper OR ducato OR transit OR master) airco bestelbus'
         if source=="Local dealers": query+=' ("Roosendaal" OR "Breda" OR "Bergen op Zoom")'
@@ -284,7 +297,8 @@ def discover(fetcher=fetch,max_per_source=50):
                               "inventory_diagnostics":inventory_stats["inventory_diagnostics"] if inventory_stats else [],
                               "inventory_links":anchor_count,"direct_eligible_urls":len(direct_urls),
                               "referral_target":"Autohero" if source=="wijkopenautos" else None,
-                              "inventory_errors":seed_errors,"index_error":index_error,
+                              "inventory_errors":seed_errors,"feed_diagnostics":feed_diagnostics,
+                              "index_error":index_error,
                               "index_hits":len(hits),"detail_urls_discovered":len(direct_urls),"eligible_urls":matched,
                               "attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,
                               "individual_pages_fetched":found,"fetch_errors":failures,"diagnostic_samples":samples,

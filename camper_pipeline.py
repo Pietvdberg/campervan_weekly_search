@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from rdw_lookup import lookup, normalize_plate
 
-SOURCES = ("Marktplaats","AutoScout24","Gaspedaal","wijkopenautos","AutoTrack","viaBOVAG","AutoWereld","Bedrijfsauto","TrucksNL","Local dealers")
+SOURCES = ("Marktplaats","AutoScout24","wijkopenautos","AutoTrack","viaBOVAG","AutoWereld","Bedrijfsauto","TrucksNL","Local dealers")
 REQUIRED = ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")
 
 def screen(candidate):

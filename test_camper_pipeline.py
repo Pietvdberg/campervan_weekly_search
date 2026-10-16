@@ -64,6 +64,16 @@ class ScreeningTests(unittest.TestCase):
         output=report(result)
         self.assertIn("HTML fallback contained no vehicle advertisements",output)
         self.assertIn("not proof",output)
+    def test_rss_only_leads_never_qualify(self):
+        lead={"url":"https://www.autowereld.nl/peugeot/boxer/l2h2-43922209/details.html",
+              "title":"Peugeot Boxer L2H2 Airco","description":"€ 7500, seller claim",
+              "pub_date":"Fri, 16 Oct 2026 21:00:00 +0200"}
+        result=evaluate({"candidates":[],"unverified_rss_leads":[lead]})
+        self.assertEqual(result["qualifiers"],0)
+        text=report(result)
+        self.assertIn("UNVERIFIED leads",text)
+        self.assertIn("Peugeot Boxer L2H2 Airco",text)
+        self.assertIn("RSS-only",text)
     def test_zero_candidates_honesty(self):
         self.assertIn("not proof",report(evaluate({"candidates":[]})))
 if __name__=="__main__":unittest.main()

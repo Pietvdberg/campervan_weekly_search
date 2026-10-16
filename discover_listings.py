@@ -11,7 +11,7 @@ from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
-from marketplace_links import extract as extract_marketplace_links
+from marketplace_links import extract as extract_marketplace_links, inspect_autoscout
 from inventory_discovery import crawl as crawl_inventory, classify as classify_inventory
 from browser_render import render as browser_render
 from html.parser import HTMLParser
@@ -219,9 +219,11 @@ def discover(fetcher=fetch,max_per_source=50):
                     extra=extract_marketplace_links(page,seed,source)
                     for label,url in extra:
                         direct_urls.setdefault(url,label)
-                response_diagnostics.append({"seed":seed,"bytes":len(page),"content_type":typ[:70],
+                diagnostics={"seed":seed,"bytes":len(page),"content_type":typ[:70],
                     "anchors":len(parser.links),"new_vehicle_urls":len(direct_urls),
-                    "suspected_interstitial":bool(re.search(r"captcha|access denied|toegang geweigerd|verify you are human|bot detection|javascript required",page[:18000],re.I))})
+                    "suspected_interstitial":bool(re.search(r"captcha|access denied|toegang geweigerd|verify you are human|bot detection|javascript required",page[:18000],re.I))}
+                if source=="AutoScout24": diagnostics["autoscout"]=inspect_autoscout(page)
+                response_diagnostics.append(diagnostics)
                 for label, href in parser.links:
                     url = urldefrag(urljoin(seed, href))[0]
                     if valid_url(url,source) and relevant_link(label,url,source): direct_urls.setdefault(url,label)

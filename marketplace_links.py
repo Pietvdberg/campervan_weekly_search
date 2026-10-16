@@ -37,8 +37,8 @@ def decode(value):
     value=html.unescape(value)
     value=value.replace(r"\/","/").replace(r"\u002F","/").replace(r"\u002f","/")
     value=value.replace(r"\u0026","&").replace(r"\u003d","=")
-    value=value.replace(r"\\u002D","-").replace(r"\\u002d","-")
-    value=value.replace(r"\\u003A",":").replace(r"\\u003a",":")
+    value=value.replace(r"\u002D","-").replace(r"\u002d","-")
+    value=value.replace(r"\u003A",":").replace(r"\u003a",":")
     return value
 
 def source_detail(url,source):
@@ -64,7 +64,7 @@ def diagnostics(markup,base,source):
     own=[urlparse(urljoin(base,href)).path for _,href in parser.links
          if href and urlparse(urljoin(base,href)).hostname in
          ("autoscout24.nl","www.autoscout24.nl")]
-    offer_fragments=[m.group(0)[:180] for m in re.finditer(r"/aanbod/[^\\s\\\"<>]{4,220}",text,re.I)]
+    offer_fragments=[m.group(0)[:180] for m in re.finditer(r'/aanbod/[^\s"<>]{4,220}',text,re.I)]
     return {
         "offer_path_samples":list(dict.fromkeys(offer_fragments))[:3],
         "raw_aanbod_references":len(re.findall(r"/aanbod/",text,re.I)),

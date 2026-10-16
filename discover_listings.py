@@ -97,7 +97,7 @@ def valid_url(url,source):
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
     if source=="AutoScout24": return bool(re.fullmatch(r"/aanbod/[a-z0-9-]+-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}/?",path))
     if source=="AutoTrack": return bool(re.fullmatch(r"/a/[a-z0-9-]+-\d{6,}/?",path))
-    if source=="AutoWereld": return bool(re.fullmatch(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+\.html",path))
+    if source=="AutoWereld": return bool(re.fullmatch(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/(?:details\.html)?",path))
     if source=="Bedrijfsauto": return bool(re.fullmatch(r"/[a-z0-9-]+-\d{7,}",path))
     if source=="TrucksNL": return bool(re.fullmatch(r"/[a-z0-9-]+-\d{6,}-vd",path))
     if source=="viaBOVAG": return classify_inventory(url,source)=="detail"

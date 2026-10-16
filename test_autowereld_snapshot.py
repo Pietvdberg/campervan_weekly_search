@@ -4,7 +4,7 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from xml.etree.ElementTree import ElementTree
-from autowereld_snapshot import FEEDS, collect, read_snapshot, parse_rss
+from autowereld_snapshot import FEEDS, collect, read_snapshot, read_snapshot_records, parse_rss
 
 AD="https://www.autowereld.nl/peugeot/boxer/l2h2-airco-43922209/details.html"
 RSS="<rss><channel><item><title>Peugeot Boxer L2H2</title><link>"+AD+"</link><pubDate>Fri, 16 Oct 2026 22:25:44 +0200</pubDate></item></channel></rss>"
@@ -30,6 +30,18 @@ class SnapshotTests(unittest.TestCase):
             self.assertEqual(pairs,[(AD,"Peugeot Boxer L2H2")])
             _,old=read_snapshot(path,now=now+timedelta(hours=49))
             self.assertEqual(old,"stale_or_future")
+    def test_v2_metadata_preserved_without_claiming_verification(self):
+        now=datetime.now(timezone.utc)
+        feed=RSS.replace("<pubDate>","<description>Airco 123.000 km, vraagprijs € 7.500</description><pubDate>")
+        data=collect(fetcher=lambda _: feed,now=now)
+        self.assertEqual(data["version"],2)
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/"feed.json"
+            path.write_text(json.dumps(data),encoding="utf-8")
+            rows,status=read_snapshot_records(path,now=now)
+            self.assertEqual(status,"fresh_index_only")
+            self.assertIn("Airco",rows[0]["description"])
+            self.assertEqual(rows[0]["evidence"],"unverified RSS advertisement only")
     def test_external_domain_rejected(self):
         now=datetime.now(timezone.utc)
         snapshot=collect(fetcher=lambda _: RSS,now=now)

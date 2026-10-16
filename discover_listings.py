@@ -254,7 +254,7 @@ def discover(fetcher=fetch,max_per_source=50):
                     rss_xml,feed_content_type=fetcher(feed_url)
                     xml_error=None
                     try:
-                        feed_items=search_links(rss_xml)
+                        feed_items=search_links(rss_xml) if "xml" in feed_content_type.lower() or "rss" in feed_content_type.lower() else []
                     except ET.ParseError as exc:
                         feed_items=[]
                         xml_error=str(exc)[:120]
@@ -272,7 +272,9 @@ def discover(fetcher=fetch,max_per_source=50):
                         "response_prefix":re.sub(r"\s+"," ",rss_xml[:220])[:180],
                         "xml_items":len(feed_items),"recovered_urls":len(recovered),
                         "accepted_new_urls":len(direct_urls)-before,
-                        "xml_error":xml_error})
+                        "xml_error":xml_error,
+                        "unexpected_html":("html" in feed_content_type.lower()),
+                        "feed_usable":bool(feed_items or recovered)})
                 except Exception as exc:
                     feed_diagnostics.append({"feed":feed_url,"error":str(exc)[:120]})
                     if len(seed_errors)<4: seed_errors.append("RSS: "+str(exc)[:120])
@@ -317,7 +319,8 @@ def discover(fetcher=fetch,max_per_source=50):
                     if "429" in str(exc): rate_limited=True
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
             status=("individual_pages_found" if found else
-                    "source_unavailable" if seed_success==0 else
+                    "not_a_vehicle_sales_marketplace" if source=="wijkopenautos" and seed_success>0 else
+                    "source_unavailable" if source_blocked or seed_success==0 else
                     "inventory_only_unverified" if inventory_stats is not None else
                     "no_verified_individual_pages")
             coverage[source]={"status":status,
@@ -329,6 +332,9 @@ def discover(fetcher=fetch,max_per_source=50):
                               "direct_eligible_urls":len(direct_urls),
                               "referral_target":"Autohero" if source=="wijkopenautos" else None,
                               "inventory_errors":seed_errors,"source_block_reason":source_block_reason,
+                              "coverage_note":("wijkopenautos operates a vehicle purchasing service; its affiliated sales service is Autohero. No directly validated qualifying van sales inventory." if source=="wijkopenautos" else
+                                               "Source returned a 403/429 access restriction; no claim of zero inventory." if source_blocked else
+                                               "AutoWereld inventory/RSS returned HTML without discoverable advert links; content could be fallback or access page." if source=="AutoWereld" and not found else None),
                               "feed_diagnostics":feed_diagnostics,
                               "index_error":index_error,
                               "index_hits":len(hits),"detail_urls_discovered":len(direct_urls),"eligible_urls":matched,

@@ -72,3 +72,27 @@ def extract(markup,base,source,limit=1000):
             results.setdefault(url,label)
             if len(results)>=limit:break
     return [(label,url) for url,label in results.items()]
+
+def inspect_autoscout(markup):
+    """Bounded, non-sensitive diagnostics for observed AutoScout24 URL shapes."""
+    from collections import Counter
+    from urllib.parse import urlparse
+    normalized=decode(markup)
+    hrefs=Links()
+    hrefs.feed(normalized)
+    candidates=[]
+    for _,href in hrefs.links:
+        p=urlparse(urljoin("https://www.autoscout24.nl/",href))
+        if p.hostname and p.hostname.endswith("autoscout24.nl"):
+            candidates.append(p.path)
+    # Embedded link values often occur without a literal href attribute.
+    for hit in re.finditer(r'/(?:aanbod|lst|offers|details?)/[a-zA-Z0-9_/%.-]{4,220}',normalized,re.I):
+        candidates.append(hit.group().split("?")[0])
+    prefixes=Counter("/"+"/".join(p.strip("/").split("/")[:2]) for p in candidates)
+    return {
+        "anchor_count":len(hrefs.links),
+        "observed_path_prefixes":dict(prefixes.most_common(8)),
+        "contains_aanbod_literal":"/aanbod/" in normalized,
+        "contains_listing_uuid":bool(re.search(UUID,normalized,re.I)),
+        "extracted_detail_urls":len(extract(markup,"https://www.autoscout24.nl/","AutoScout24")),
+    }

@@ -76,6 +76,15 @@ def report(data):
                     " | actual vehicle pages validated: "+str(entry.get("individual_pages_fetched",0)))
         if entry.get("status") != "individual_pages_found":
             rows.append("  No verified individual adverts from this source is NOT proof of zero inventory.")
+    rows.append("\\nScreening evidence by source:")
+    for source,stats in data.get("source_screening",{}).items():
+        rows.append("- "+source+": "+str(stats["total"])+" candidates; "+
+            str(stats["verified_prices"])+" VAT-inclusive prices verified; "+
+            str(stats["verified_distances"])+" driving routes verified; "+
+            str(stats["confirmed_plates"])+" registration plates confirmed")
+        for name,counts in stats["checks"].items():
+            rows.append("  "+name+": passed "+str(counts["passed"])+
+                ", failed "+str(counts["failed"])+", unknown "+str(counts["unknown"]))
     rows.append("\nRanked candidates / watchlist / rejections:")
     for item in sorted(data["results"],key=lambda x:x["score"],reverse=True):
         c=item["candidate"]

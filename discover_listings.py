@@ -13,7 +13,7 @@ import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from autowereld_html import html_to_xml, response_identity
-from autowereld_snapshot import read_snapshot
+from autowereld_snapshot import read_snapshot_records
 from inventory_discovery import crawl as crawl_inventory, classify as classify_inventory
 from browser_render import render as browser_render
 from html.parser import HTMLParser
@@ -177,7 +177,7 @@ def extract(title,url,source,markup):
             "observed_at":datetime.now(timezone.utc).isoformat()}
 
 def discover(fetcher=fetch,max_per_source=50):
-    coverage={};candidates=[];seen=set()
+    coverage={};candidates=[];seen=set();rss_leads=[]
     for source,domain in SOURCES.items():
         direct_urls = {}
         inventory_stats = None
@@ -236,8 +236,10 @@ def discover(fetcher=fetch,max_per_source=50):
         snapshot_status="not_applicable"
         snapshot_urls=0
         if source=="AutoWereld":
-            snapshot, snapshot_status=read_snapshot(os.environ.get("AUTOWERELD_RSS_SNAPSHOT","data/autowereld_rss_snapshot.json"))
-            for url,title in snapshot:
+            snapshot, snapshot_status=read_snapshot_records(os.environ.get("AUTOWERELD_RSS_SNAPSHOT","data/autowereld_rss_snapshot.json"))
+            rss_leads=list(snapshot)
+            for row in snapshot:
+                url,title=row["url"],row["title"]
                 if valid_url(url,source) and relevant_link(title,url,source):
                     direct_urls.setdefault(url,title)
                     snapshot_urls+=1
@@ -346,6 +348,7 @@ def discover(fetcher=fetch,max_per_source=50):
             coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0,
                               "inventory_pages_fetched":seed_success,"direct_eligible_urls":len(direct_urls),"inventory_errors":seed_errors}
     return {"candidates":candidates,"source_coverage":coverage,
+            "unverified_rss_leads":rss_leads,
             "discovery_method":"Inventory pages are traversed separately from individual vehicle URLs. Sources with no validated vehicles are not presumed to have no stock; no completeness, VAT, distance or availability guarantee."}
 
 if __name__=="__main__":

@@ -84,6 +84,17 @@ class DiscoveryTests(unittest.TestCase):
             raise OSError("offline")
         result=discover(fetcher=fake)
         self.assertEqual(result["source_coverage"]["TrucksNL"]["individual_pages_fetched"],0)
+    def test_autowereld_rss_discovery_without_html_cards(self):
+        from discover_listings import discover, AUTOWERELD_RSS
+        url="https://www.autowereld.nl/peugeot/boxer/335-l2h2-airco-43861106/details.html"
+        rss='<rss><channel><item><title>Peugeot Boxer L2H2 Airco</title><link>'+url+'</link></item></channel></rss>'
+        def fake(target):
+            if target in AUTOWERELD_RSS:return rss if target==AUTOWERELD_RSS[0] else "<rss><channel/></rss>","application/rss+xml"
+            if "bing.com" in target:return "<rss><channel/></rss>","application/rss+xml"
+            if target==url:return "<title>Peugeot Boxer L2H2 Airco</title><p>€ 6500</p>","text/html"
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

@@ -10,7 +10,7 @@ from urllib.parse import urljoin, urlparse, urldefrag
 
 TARGETS = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|nv400)\b", re.I)
 UUID = r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}"
-AUTO_SCOUT = re.compile(r"/aanbod/[a-z0-9-]+-" + UUID + r"/?$", re.I)
+AUTO_SCOUT = re.compile(r"/aanbod/[a-z0-9_-]+-" + UUID + r"/?$", re.I)
 BEDRIJFSAUTO = re.compile(r"/[a-z0-9-]+-\d{7,}/?$", re.I)
 AUTOWERELD = re.compile(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html$", re.I)
 
@@ -91,7 +91,7 @@ def extract(markup,base,source,limit=1000):
         # Embedded application data can concatenate JSON keys or flags after a
         # detail URL, so capture a bounded, exact slug+UUID rather than
         # requiring the entire surrounding script token to be a URL.
-        detail=re.compile(r"/aanbod/([a-z0-9-]+-"+UUID+r")(?=[^a-z0-9-]|$)",re.I)
+        detail=re.compile(r"/aanbod/([a-z0-9_-]+-"+UUID+r")(?=[^a-z0-9-]|$)",re.I)
         for found in detail.finditer(markup):
             pairs.append(("",found.group(0)))
     results={}

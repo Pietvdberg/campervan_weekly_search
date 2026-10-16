@@ -37,6 +37,26 @@ class ScreeningTests(unittest.TestCase):
         self.assertEqual(stats["verified_distances"],0)
         self.assertEqual(data["qualifiers"],0)
         self.assertIn("Local dealers: 1 candidates",report(data))
+    def test_dealer_audit_rows_preserve_unknowns(self):
+        from camper_pipeline import dealer_audit_rows
+        c=self.example()
+        c.update({"source":"Local dealers","city_mentioned":"Roosendaal",
+                  "price_advertised":"6500","price_incl_vat":None,"vat_basis":"unknown",
+                  "distance_km":None})
+        c["checks"]["distance_within_100km"]=None
+        c["checks"]["price_incl_vat_within_8000"]=None
+        c["checks"]["conversion_suitable"]=None
+        evaluation=evaluate({"candidates":[c]},lambda _:{"vehicle":{"status":"ok","records":[{}]}})
+        rows=dealer_audit_rows(evaluation)
+        self.assertEqual(len(rows),1)
+        self.assertIsNone(rows[0]["verified_driving_distance_km"])
+        self.assertIsNone(rows[0]["price_incl_vat"])
+        self.assertIsNone(rows[0]["checks"]["conversion_suitable"])
+        self.assertEqual(rows[0]["city_mentioned_not_verified"],"Roosendaal")
+        self.assertFalse(evaluation["results"][0]["qualified"])
+    def test_dealer_audit_rows_exclude_other_sources(self):
+        from camper_pipeline import dealer_audit_rows
+        self.assertEqual(dealer_audit_rows(evaluate({"candidates":[self.example()]})),[])
     def test_zero_candidates_honesty(self):
         self.assertIn("not proof",report(evaluate({"candidates":[]})))
 if __name__=="__main__":unittest.main()

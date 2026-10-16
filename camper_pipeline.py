@@ -97,6 +97,10 @@ def report(data):
                     " | inventory pages checked: "+str(entry.get("inventory_pages_checked","unknown"))+
                     " | individual URLs discovered: "+str(entry.get("detail_urls_discovered","unknown"))+
                     " | actual vehicle pages validated: "+str(entry.get("individual_pages_fetched",0)))
+        if entry.get("coverage_note"):
+            rows.append("  Coverage note: "+str(entry["coverage_note"]))
+        if entry.get("source_block_reason"):
+            rows.append("  Source access restriction: "+str(entry["source_block_reason"]))
         if entry.get("status") != "individual_pages_found":
             rows.append("  No verified individual adverts from this source is NOT proof of zero inventory.")
     rows.append("\\nScreening evidence by source:")

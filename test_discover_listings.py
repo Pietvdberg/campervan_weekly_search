@@ -46,6 +46,18 @@ class DiscoveryTests(unittest.TestCase):
         self.assertFalse(relevant_link("Audi A3","https://www.gaspedaal.nl/audi/a3","Gaspedaal"))
         self.assertFalse(relevant_link("Regional occasions","https://www.gaspedaal.nl/regio/occasions-alkmaar","Local dealers"))
         self.assertTrue(relevant_link("Peugeot Boxer L2H2","https://www.gaspedaal.nl/peugeot/boxer","Gaspedaal"))
+    def test_category_markup_not_individual_listing(self):
+        from discover_listings import extract
+        page="<html><title>Peugeot Boxer occasions</title><p>Bekijk 50 Boxer aanbiedingen</p></html>"
+        self.assertIsNone(extract("Peugeot Boxer","https://www.gaspedaal.nl/peugeot/boxer/occasion","Gaspedaal",page))
+    def test_single_structured_vehicle_is_valid(self):
+        from discover_listings import extract
+        page='<html><title>Peugeot Boxer L2H2</title><script type="application/ld+json">{"@type":"Vehicle","name":"Peugeot Boxer L2H2","offers":{"@type":"Offer","price":"7000"}}</script></html>'
+        self.assertIsNotNone(extract("Peugeot Boxer","https://www.gaspedaal.nl/peugeot/boxer/vehicle123","Gaspedaal",page))
+    def test_multiple_product_objects_are_not_a_detail(self):
+        from discover_listings import extract
+        page='<html><title>Boxer list</title><script type="application/ld+json">[{"@type":"Product","name":"Boxer A","offers":{"price":7000}},{"@type":"Product","name":"Boxer B","offers":{"price":7500}}]</script></html>'
+        self.assertIsNone(extract("Peugeot Boxer","https://www.gaspedaal.nl/peugeot/boxer/results","Gaspedaal",page))
     def test_gaspedaal_model_page_is_not_individual_listing(self):
         self.assertFalse(valid_url("https://www.gaspedaal.nl/peugeot/boxer","Gaspedaal"))
         self.assertFalse(valid_url("https://www.gaspedaal.nl/ford/transit","Gaspedaal"))

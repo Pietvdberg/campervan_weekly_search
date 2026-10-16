@@ -36,8 +36,8 @@ SEED_PAGES = {
     "AutoTrack": ["https://www.autotrack.nl/aanbod/merk/peugeot/model/boxer","https://www.autotrack.nl/aanbod/merk/ford/model/transit","https://www.autotrack.nl/aanbod/merk/citroen/model/jumper","https://www.autotrack.nl/aanbod/merk/fiat/model/ducato","https://www.autotrack.nl/aanbod/merk/renault/model/master"],
     "viaBOVAG": ["https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","https://www.viabovag.nl/auto/merk-ford/model-transit/occasion","https://www.viabovag.nl/"],
     "AutoWereld": ["https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise-43911117/details.html","https://www.autowereld.nl/peugeot/boxer/_energy","https://www.autowereld.nl/ford/transit/","https://www.autowereld.nl/citroen/jumper/","https://www.autowereld.nl/fiat/ducato/","https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html"],
-    "Bedrijfsauto": ["https://www.bedrijfsauto.nl/peugeot-boxer-111721152","https://www.bedrijfsauto.nl/"],
-    "TrucksNL": ["https://www.trucksnl.com/box-van/peugeot/boxer","https://www.trucksnl.com/vans-lcvs/peugeot/boxer"],
+    "Bedrijfsauto": ["https://www.bedrijfsauto.nl/aanbod/peugeot/boxer","https://www.bedrijfsauto.nl/aanbod/ford/transit","https://www.bedrijfsauto.nl/aanbod/fiat/ducato","https://www.bedrijfsauto.nl/aanbod/citroen/jumper","https://www.bedrijfsauto.nl/aanbod/renault/master","https://www.bedrijfsauto.nl/peugeot-boxer-111721152"],
+    "TrucksNL": ["https://www.trucksnl.com/box-van/peugeot","https://www.trucksnl.com/box-van/ford"],
     "Local dealers": [
         "https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html",
         "https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html",
@@ -195,6 +195,8 @@ def discover(fetcher=fetch,max_per_source=50):
         seed_errors = []
         anchor_count = 0
         response_diagnostics=[]
+        source_blocked=False
+        source_block_reason=None
         if source=="viaBOVAG":
             inventory_stats=crawl_inventory(source,SEED_PAGES[source],fetcher)
             direct_urls.update(inventory_stats["details"])
@@ -202,6 +204,7 @@ def discover(fetcher=fetch,max_per_source=50):
             seed_errors=[x["error"] for x in inventory_stats["inventory_errors"]]
             anchor_count=inventory_stats["inventory_links_examined"]
         for seed in ([] if inventory_stats is not None else SEED_PAGES[source]):
+            if source_blocked: break
             if valid_url(seed,source) and relevant_link("",seed,source):
                 direct_urls.setdefault(seed,"")
             try:
@@ -238,6 +241,9 @@ def discover(fetcher=fetch,max_per_source=50):
                             direct_urls.setdefault(url,"")
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
+                if source in ("Bedrijfsauto","TrucksNL") and ("429" in str(exc) or "403" in str(exc)):
+                    source_blocked=True
+                    source_block_reason=str(exc)[:140]
         feed_diagnostics=[]
         if source=="AutoWereld":
             advert_pattern=re.compile(
@@ -248,7 +254,7 @@ def discover(fetcher=fetch,max_per_source=50):
                     rss_xml,feed_content_type=fetcher(feed_url)
                     xml_error=None
                     try:
-                        feed_items=search_links(rss_xml)
+                        feed_items=search_links(rss_xml) if "xml" in feed_content_type.lower() or "rss" in feed_content_type.lower() else []
                     except ET.ParseError as exc:
                         feed_items=[]
                         xml_error=str(exc)[:120]
@@ -266,7 +272,9 @@ def discover(fetcher=fetch,max_per_source=50):
                         "response_prefix":re.sub(r"\s+"," ",rss_xml[:220])[:180],
                         "xml_items":len(feed_items),"recovered_urls":len(recovered),
                         "accepted_new_urls":len(direct_urls)-before,
-                        "xml_error":xml_error})
+                        "xml_error":xml_error,
+                        "unexpected_html":("html" in feed_content_type.lower()),
+                        "feed_usable":bool(feed_items or recovered)})
                 except Exception as exc:
                     feed_diagnostics.append({"feed":feed_url,"error":str(exc)[:120]})
                     if len(seed_errors)<4: seed_errors.append("RSS: "+str(exc)[:120])
@@ -281,7 +289,7 @@ def discover(fetcher=fetch,max_per_source=50):
             except Exception as exc:
                 hits=[]
                 index_error=str(exc)[:140]
-            found=0;failures=0;rejected=0;matched=0;samples=[];attempts=0;rate_limited=False
+            found=0;failures=0;rejected=0;matched=0;samples=[];attempts=0;rate_limited=source_blocked
             for title,url in [(title,url) for url,title in direct_urls.items()] + hits[:25]:
                 if found>=max_per_source or attempts>=MAX_FETCH_ATTEMPTS or rate_limited: break
                 if url in seen: continue
@@ -311,7 +319,8 @@ def discover(fetcher=fetch,max_per_source=50):
                     if "429" in str(exc): rate_limited=True
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
             status=("individual_pages_found" if found else
-                    "source_unavailable" if seed_success==0 else
+                    "not_a_vehicle_sales_marketplace" if source=="wijkopenautos" and seed_success>0 else
+                    "source_unavailable" if source_blocked or seed_success==0 else
                     "inventory_only_unverified" if inventory_stats is not None else
                     "no_verified_individual_pages")
             coverage[source]={"status":status,
@@ -322,7 +331,11 @@ def discover(fetcher=fetch,max_per_source=50):
                               "inventory_links":anchor_count,"response_diagnostics":response_diagnostics,
                               "direct_eligible_urls":len(direct_urls),
                               "referral_target":"Autohero" if source=="wijkopenautos" else None,
-                              "inventory_errors":seed_errors,"feed_diagnostics":feed_diagnostics,
+                              "inventory_errors":seed_errors,"source_block_reason":source_block_reason,
+                              "coverage_note":("wijkopenautos operates a vehicle purchasing service; its affiliated sales service is Autohero. No directly validated qualifying van sales inventory." if source=="wijkopenautos" else
+                                               "Source returned a 403/429 access restriction; no claim of zero inventory." if source_blocked else
+                                               "AutoWereld inventory/RSS returned HTML without discoverable advert links; content could be fallback or access page." if source=="AutoWereld" and not found else None),
+                              "feed_diagnostics":feed_diagnostics,
                               "index_error":index_error,
                               "index_hits":len(hits),"detail_urls_discovered":len(direct_urls),"eligible_urls":matched,
                               "attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,

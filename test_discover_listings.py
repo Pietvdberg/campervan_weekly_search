@@ -171,6 +171,66 @@ class DiscoveryTests(unittest.TestCase):
         good="https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad/225359584-1-volkswagen-crafter-35-20-tdi-l3h2-comfortline-diesel-2020"
         self.assertTrue(valid_url(good,"Local dealers"))
         self.assertFalse(valid_url("https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad","Local dealers"))
+    def test_bedrijfsauto_model_inventory_discovers_individual_advert(self):
+        from discover_listings import SEED_PAGES
+        model="https://www.bedrijfsauto.nl/aanbod/peugeot/boxer"
+        ad="https://www.bedrijfsauto.nl/peugeot-boxer-503149760"
+        self.assertIn(model,SEED_PAGES["Bedrijfsauto"])
+        self.assertFalse(valid_url(model,"Bedrijfsauto"))
+        def fake(url):
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            if url==model:return '<a href="/peugeot-boxer-503149760">Peugeot Boxer L1H2 Airco</a>',"text/html"
+            if url==ad:return "<html><title>Peugeot Boxer L1H2 Airco</title></html>","text/html"
+            raise OSError("unavailable")
+        data=discover(fetcher=fake)
+        self.assertIn(ad,[v["listing_url"] for v in data["candidates"]])
+    def test_bedrijfsauto_inventory_429_stops_subsequent_inventory_requests(self):
+        from discover_listings import SEED_PAGES
+        from urllib.error import HTTPError
+        visits=[]
+        def fake(url):
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            if "bedrijfsauto.nl" in url:
+                visits.append(url)
+                raise HTTPError(url,429,"Too Many Requests",{},None)
+            raise OSError("offline")
+        data=discover(fetcher=fake)
+        self.assertEqual(visits,[SEED_PAGES["Bedrijfsauto"][0]])
+        self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["source_block_reason"][:14],"HTTP Error 429")
+        self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["attempts"],0)
+    def test_trucksnl_403_stops_after_first_inventory_seed(self):
+        from discover_listings import SEED_PAGES
+        from urllib.error import HTTPError
+        visits=[]
+        def fake(url):
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            if "trucksnl.com" in url:
+                visits.append(url)
+                raise HTTPError(url,403,"Forbidden",{},None)
+            raise OSError("offline")
+        data=discover(fetcher=fake)
+        self.assertEqual(visits,[SEED_PAGES["TrucksNL"][0]])
+        self.assertEqual(data["source_coverage"]["TrucksNL"]["status"],"source_unavailable")
+    def test_wijkopenautos_seller_only_status_not_no_inventory(self):
+        from discover_listings import SEED_PAGES
+        def fake(url):
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            if url in SEED_PAGES["wijkopenautos"]:
+                return "<html><title>Verkoop je auto</title><p>Ontvang een gegarandeerd bod</p></html>","text/html"
+            raise OSError("offline")
+        data=discover(fetcher=fake)
+        self.assertEqual(data["source_coverage"]["wijkopenautos"]["status"],"not_a_vehicle_sales_marketplace")
+        self.assertEqual(data["source_coverage"]["wijkopenautos"]["individual_pages_fetched"],0)
+    def test_autowereld_html_feed_is_not_misrepresented_as_rss(self):
+        from discover_listings import AUTOWERELD_RSS,SEED_PAGES
+        def fake(url):
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            if url in AUTOWERELD_RSS:return "<html><title>Temporary response</title></html>","text/html"
+            raise OSError("offline")
+        data=discover(fetcher=fake)
+        feed=data["source_coverage"]["AutoWereld"]["feed_diagnostics"][0]
+        self.assertTrue(feed["unexpected_html"])
+        self.assertFalse(feed["feed_usable"])
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

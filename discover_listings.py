@@ -219,7 +219,7 @@ def discover(fetcher=fetch,max_per_source=50):
         feed_diagnostics=[]
         if source=="AutoWereld":
             advert_pattern=re.compile(
-                r"https://(?:www\\.)?autowereld\\.nl/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\\d+/details\\.html",
+                r"https://(?:www\.)?autowereld\.nl/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",
                 re.I)
             for feed_url in AUTOWERELD_RSS:
                 try:

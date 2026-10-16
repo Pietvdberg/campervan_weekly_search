@@ -167,6 +167,10 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(feed["content_type"],"text/html")
         self.assertIn("Access unavailable",feed["response_prefix"])
         self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
+    def test_vanmossel_stock_url_vs_catalog(self):
+        good="https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad/225359584-1-volkswagen-crafter-35-20-tdi-l3h2-comfortline-diesel-2020"
+        self.assertTrue(valid_url(good,"Local dealers"))
+        self.assertFalse(valid_url("https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad","Local dealers"))
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

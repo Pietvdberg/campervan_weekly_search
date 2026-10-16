@@ -11,6 +11,7 @@ from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
+from inventory_discovery import crawl as crawl_inventory, classify as classify_inventory
 from browser_render import render as browser_render
 from html.parser import HTMLParser
 from urllib.parse import urljoin,urldefrag
@@ -97,9 +98,7 @@ def valid_url(url,source):
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
     if source=="AutoScout24": return path.startswith("/aanbod/") and path.count("/")>=2
     if source=="AutoTrack": return "/aanbod/" in path and not any(x in path for x in ("/brandstofsoort/","/carrosserievorm/","/merk/","/prijs/","/bouwjaar/")) and path.count("/")>=3
-    if source=="Gaspedaal" and any(path.startswith(p) for p in ("/autobedrijven/","/regio/","/blog/")): return False
-    if source=="Gaspedaal" and len([part for part in path.split("/") if part])<3: return False
-    if source=="viaBOVAG": return bool(re.fullmatch(r"/auto/aanbod/[a-z0-9-]+-[a-z0-9]{6,}",path))
+    if source in ("Gaspedaal","viaBOVAG"): return classify_inventory(url,source)=="detail"
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
     if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False
@@ -171,10 +170,17 @@ def discover(fetcher=fetch,max_per_source=50):
     coverage={};candidates=[];seen=set()
     for source,domain in SOURCES.items():
         direct_urls = {}
+        inventory_stats = None
         seed_success = 0
         seed_errors = []
         anchor_count = 0
-        for seed in SEED_PAGES[source]:
+        if source in ("Gaspedaal","viaBOVAG"):
+            inventory_stats=crawl_inventory(source,SEED_PAGES[source],fetcher)
+            direct_urls.update(inventory_stats["details"])
+            seed_success=inventory_stats["inventory_pages_accessible"]
+            seed_errors=[x["error"] for x in inventory_stats["inventory_errors"]]
+            anchor_count=inventory_stats["inventory_links_examined"]
+        for seed in ([] if inventory_stats is not None else SEED_PAGES[source]):
             try:
                 page, typ = fetcher(seed)
                 if "html" not in typ.lower(): raise ValueError("non-HTML inventory page")
@@ -224,23 +230,31 @@ def discover(fetcher=fetch,max_per_source=50):
                         rendered,_=browser_render(url)
                         item=extract(title,url,source,rendered)
                     if item: candidates.append(item);found+=1
-                    elif len(samples)<3: samples.append({"reason":"listing text lacks searched vehicle model","url":url[:250]})
+                    elif len(samples)<3: samples.append({"reason":"individual vehicle evidence missing or wrong model","url":url[:250]})
                 except Exception as exc:
                     failures+=1
                     if "429" in str(exc): rate_limited=True
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
-            coverage[source]={"status":"individual_pages_found" if found else ("unavailable" if seed_success==0 and index_error else "no_usable_individual_pages"),
+            status=("individual_pages_found" if found else
+                    "source_unavailable" if seed_success==0 else
+                    "inventory_only_unverified" if inventory_stats is not None else
+                    "no_verified_individual_pages")
+            coverage[source]={"status":status,
                               "inventory_pages":len(SEED_PAGES[source]),"inventory_pages_fetched":seed_success,
+                              "inventory_pages_checked":inventory_stats["inventory_pages_checked"] if inventory_stats else seed_success,
+                              "inventory_pages_pending":inventory_stats["inventory_pending"] if inventory_stats else None,
+                              "inventory_diagnostics":inventory_stats["inventory_diagnostics"] if inventory_stats else [],
                               "inventory_links":anchor_count,"direct_eligible_urls":len(direct_urls),
                               "inventory_errors":seed_errors,"index_error":index_error,
-                              "index_hits":len(hits),"eligible_urls":matched,"attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,
+                              "index_hits":len(hits),"detail_urls_discovered":len(direct_urls),"eligible_urls":matched,
+                              "attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,
                               "individual_pages_fetched":found,"fetch_errors":failures,"diagnostic_samples":samples,
-                              "method":"direct source inventory with bounded individual requests; Bing untrusted fallback"}
+                              "method":"bounded inventory traversal, individual-detail validation, untrusted Bing fallback"}
         except Exception as exc:
             coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0,
                               "inventory_pages_fetched":seed_success,"direct_eligible_urls":len(direct_urls),"inventory_errors":seed_errors}
     return {"candidates":candidates,"source_coverage":coverage,
-            "discovery_method":"Source-specific category/dealer inventory first, public search index fallback; no completeness, VAT, distance or availability guarantee."}
+            "discovery_method":"Inventory pages are traversed separately from individual vehicle URLs. Sources with no validated vehicles are not presumed to have no stock; no completeness, VAT, distance or availability guarantee."}
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser()

@@ -61,6 +61,11 @@ class DiscoveryTests(unittest.TestCase):
     def test_gaspedaal_model_page_is_not_individual_listing(self):
         self.assertFalse(valid_url("https://www.gaspedaal.nl/peugeot/boxer","Gaspedaal"))
         self.assertFalse(valid_url("https://www.gaspedaal.nl/ford/transit","Gaspedaal"))
+    def test_viabovag_requires_real_vehicle_detail_url(self):
+        self.assertTrue(valid_url("https://www.viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-9uh42eg","viaBOVAG"))
+        self.assertFalse(valid_url("https://www.viabovag.nl/auto/merk-ford/model-transit/occasion","viaBOVAG"))
+        self.assertFalse(valid_url("https://www.viabovag.nl/kamperen/voertuigsoort-camper/occasion","viaBOVAG"))
+        self.assertFalse(valid_url("https://www.viabovag.nl/auto/hybride/plugin-hybride-ja","viaBOVAG"))
     def test_viabovag_model_search_not_individual_listing(self):
         self.assertFalse(valid_url("https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","viaBOVAG"))
     def test_targeted_seed_pages_exist(self):

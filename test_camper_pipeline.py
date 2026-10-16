@@ -57,6 +57,16 @@ class ScreeningTests(unittest.TestCase):
     def test_dealer_audit_rows_exclude_other_sources(self):
         from camper_pipeline import dealer_audit_rows
         self.assertEqual(dealer_audit_rows(evaluate({"candidates":[self.example()]})),[])
+    def test_source_coverage_reason_visible_in_report(self):
+        result=evaluate({"candidates":[],"source_coverage":{
+            "wijkopenautos":{"status":"not_a_vehicle_sales_marketplace",
+                "coverage_note":"Primarily buys vehicles; affiliated seller Autohero."},
+            "TrucksNL":{"status":"source_unavailable",
+                "source_block_reason":"HTTP Error 403: Forbidden"}}})
+        output=report(result)
+        self.assertIn("affiliated seller Autohero",output)
+        self.assertIn("HTTP Error 403: Forbidden",output)
+        self.assertIn("not proof",output)
     def test_zero_candidates_honesty(self):
         self.assertIn("not proof",report(evaluate({"candidates":[]})))
 if __name__=="__main__":unittest.main()

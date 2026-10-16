@@ -12,7 +12,7 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
-from autowereld_html import html_to_xml
+from autowereld_html import html_to_xml, response_identity
 from inventory_discovery import crawl as crawl_inventory, classify as classify_inventory
 from browser_render import render as browser_render
 from html.parser import HTMLParser
@@ -218,6 +218,7 @@ def discover(fetcher=fetch,max_per_source=50):
                 extra_diagnostics=(marketplace_diagnostics(page,seed,source)
                     if source=="AutoScout24" else {})
                 response_diagnostics.append({"seed":seed,"bytes":len(page),"content_type":typ[:70],
+                    "autowereld_response_identity":response_identity(page,typ) if source=="AutoWereld" else None,
                     "auto_scout_structure":extra_diagnostics,
                     "anchors":len(parser.links),"new_vehicle_urls":len(direct_urls),
                     "suspected_interstitial":bool(re.search(r"captcha|access denied|toegang geweigerd|verify you are human|bot detection|javascript required",page[:18000],re.I))})
@@ -276,6 +277,7 @@ def discover(fetcher=fetch,max_per_source=50):
                         "xml_items":len(feed_items),"recovered_urls":len(recovered),
                         "accepted_new_urls":len(direct_urls)-before,
                         "xml_error":xml_error,
+                        "response_identity":response_identity(rss_xml,feed_content_type),
                         "html_conversion":html_recovery,
                         "unexpected_html":("html" in feed_content_type.lower()),
                         "feed_usable":bool(feed_items or recovered)})

@@ -126,6 +126,22 @@ class ScreeningTests(unittest.TestCase):
         self.assertIn("VAT basis unknown",report(data))
         self.assertIn("RSS-only",report(data))
 
+    def test_title_price_above_budget_does_not_appear_as_potential_match(self):
+        c=self.example()
+        c.update({"name":"Peugeot Boxer L2H2 Airco in Terneuzen voor € 19.999",
+                  "price_incl_vat":None,"vat_basis":"unknown"})
+        c["checks"].update({"conversion_suitable":None,"price_incl_vat_within_8000":None})
+        data=evaluate({"candidates":[c]},lambda _:{"vehicle":{"status":"ok","records":[{}]}})
+        self.assertEqual(len(data["results"]),1)
+        self.assertNotIn("Peugeot Boxer L2H2 Airco in Terneuzen",report(data))
+
+    def test_unknown_title_price_still_allowed_as_potential(self):
+        c=self.example()
+        c.update({"name":"Peugeot Boxer L2H2 Airco", "price_incl_vat":None})
+        c["checks"].update({"conversion_suitable":None,"price_incl_vat_within_8000":None})
+        data=evaluate({"candidates":[c]},lambda _:{"vehicle":{"status":"ok","records":[{}]}})
+        self.assertIn("Peugeot Boxer L2H2 Airco",report(data))
+
     def test_audit_keeps_expensive_and_rejected_vehicles(self):
         c=self.example()
         c["checks"]["price_incl_vat_within_8000"]=False

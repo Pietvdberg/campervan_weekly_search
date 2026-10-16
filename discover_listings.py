@@ -239,6 +239,11 @@ def discover(fetcher=fetch,max_per_source=50):
                         url=url.split("?")[0]
                         if valid_url(url,source) and relevant_link("",url,source):
                             direct_urls.setdefault(url,"")
+                # Bedrijfsauto has a tight request allowance. Once public inventory
+                # yielded real advert URLs, fetch those before exploring further
+                # category pages; any 429 on a detail page still stops immediately.
+                if source=="Bedrijfsauto" and direct_urls:
+                    break
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
                 if source in ("Bedrijfsauto","TrucksNL") and ("429" in str(exc) or "403" in str(exc)):

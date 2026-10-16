@@ -97,14 +97,22 @@ def valid_url(url,source):
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
     if source=="AutoScout24": return path.startswith("/aanbod/") and path.count("/")>=2
     if source=="AutoTrack": return "/aanbod/" in path and not any(x in path for x in ("/brandstofsoort/","/carrosserievorm/","/merk/","/prijs/","/bouwjaar/")) and path.count("/")>=3
-    if source=="Gaspedaal" and "/autobedrijven/" in path: return False
+    if source=="Gaspedaal" and any(path.startswith(p) for p in ("/autobedrijven/","/regio/","/blog/")): return False
     if source=="viaBOVAG" and (path.count("/")<3 or path in ("/auto/nieuw","/auto/occasion","/auto/elektriciteit")): return False
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
+    if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
     if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False
     if source=="Gaspedaal" and "/autobedrijven/" in path: return False
-    if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/")!="/auto-kopen"
+    if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/") not in ("/auto-kopen","/auto-kopen/favorieten")
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
+    if source=="Bedrijfsauto" and ("/lease/" in path or path.rstrip("/") in ("/aanbod","/aanbod/volkswagen","/aanbod/mercedes-benz")): return False
+    if source=="viaBOVAG" and any(x in path for x in ("/kamperen/voertuigsoort-", "/auto/hybride/", "/auto/brandstof/")): return False
     return len([s for s in path.split("/") if s])>=2
+
+def relevant_link(title,url,source):
+    """Prioritize van-specific individual links over vehicle taxonomies and generic pages."""
+    if source=="Marktplaats": return True
+    return bool(MODEL.search(title+" "+urlparse(url).path.replace("-"," ")))
 
 def extract(title,url,source,markup):
     no_scripts=re.sub(r"<(?:script|style)\b[^>]*>.*?</(?:script|style)>"," ",markup,flags=re.I|re.S)
@@ -154,7 +162,7 @@ def discover(fetcher=fetch,max_per_source=50):
                 anchor_count += len(parser.links)
                 for label, href in parser.links:
                     url = urldefrag(urljoin(seed, href))[0]
-                    if valid_url(url,source): direct_urls.setdefault(url,label)
+                    if valid_url(url,source) and relevant_link(label,url,source): direct_urls.setdefault(url,label)
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
         query=("site:"+domain+" " if domain else "")+'("L2H2" OR "L3H2") (boxer OR jumper OR ducato OR transit OR master) airco bestelbus'
@@ -172,7 +180,7 @@ def discover(fetcher=fetch,max_per_source=50):
             for title,url in [(title,url) for url,title in direct_urls.items()] + hits[:25]:
                 if found>=max_per_source or attempts>=MAX_FETCH_ATTEMPTS or rate_limited: break
                 if url in seen: continue
-                if not valid_url(url,source):
+                if not valid_url(url,source) or not relevant_link(title,url,source):
                     rejected+=1
                     if len(samples)<3: samples.append({"reason":"not an eligible individual listing URL","url":url[:250]})
                     continue

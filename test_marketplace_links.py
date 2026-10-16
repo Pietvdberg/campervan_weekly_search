@@ -6,6 +6,19 @@ TRUCK="https://www.bedrijfsauto.nl/peugeot-boxer-111721152"
 WORLD="https://www.autowereld.nl/peugeot/boxer/330-l2h2-43911117/details.html"
 
 class ExtractionTests(unittest.TestCase):
+    def test_autoscout_inventory_diagnostics(self):
+        from marketplace_links import inspect_autoscout
+        markup='<a href="/lst/peugeot/boxer">Catalog</a><a href="'+SCOUT+'">Boxer</a>'
+        d=inspect_autoscout(markup)
+        self.assertTrue(d["contains_aanbod_literal"])
+        self.assertTrue(d["contains_listing_uuid"])
+        self.assertEqual(d["extracted_detail_urls"],1)
+        self.assertTrue(d["observed_path_prefixes"])
+    def test_autoscout_missing_detail_is_reported_without_inventing_urls(self):
+        from marketplace_links import inspect_autoscout
+        d=inspect_autoscout('<a href="/lst/peugeot/boxer">Catalog</a>')
+        self.assertEqual(d["extracted_detail_urls"],0)
+        self.assertFalse(d["contains_listing_uuid"])
     def test_scout_anchor(self):
         markup='<a href="'+SCOUT+'">Peugeot Boxer L2H2</a>'
         self.assertEqual(len(extract(markup,"https://www.autoscout24.nl/lst/peugeot/boxer","AutoScout24")),1)

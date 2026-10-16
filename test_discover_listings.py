@@ -95,6 +95,33 @@ class DiscoveryTests(unittest.TestCase):
             raise OSError("offline")
         result=discover(fetcher=fake)
         self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
+    def test_autowereld_malformed_rss_recovers_real_advert_url(self):
+        from discover_listings import discover, AUTOWERELD_RSS
+        url="https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-43911117/details.html"
+        # Invalid XML must not erase real source-specific listing links.
+        broken='<rss><channel><item><title>Peugeot Boxer & Airco</title><link>'+url+'</link></item><bad><</rss>'
+        def fake(target):
+            if target in AUTOWERELD_RSS:
+                return (broken if target==AUTOWERELD_RSS[0] else "<rss><channel/></rss>"),"application/rss+xml"
+            if "bing.com" in target:
+                return "<rss><channel/></rss>","application/rss+xml"
+            if target==url:
+                return '<title>Peugeot Boxer L2H2 Airco</title>',"text/html"
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
+        self.assertIn(url,[c["listing_url"] for c in result["candidates"]])
+    def test_autowereld_malformed_rss_ignores_external_urls(self):
+        from discover_listings import discover, AUTOWERELD_RSS
+        fake_url="https://other-site.nl/peugeot/boxer/330-l2h2-43911117/details.html"
+        def fake(target):
+            if target in AUTOWERELD_RSS:
+                return "<bad><"+fake_url,"application/rss+xml"
+            if "bing.com" in target:
+                return "<rss><channel/></rss>","application/rss+xml"
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["attempts"],0)
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

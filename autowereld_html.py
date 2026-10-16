@@ -4,6 +4,7 @@ HTML-to-XML is a local representation change, not a way around access restrictio
 Never fabricate entries when a response has no source-specific advert URLs.
 """
 import html
+import hashlib
 import re
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlparse, urldefrag
@@ -62,3 +63,29 @@ def html_to_xml(markup,base_url):
     return tostring(rss,encoding="unicode"),{"html_anchors":len(parser.items),
                                          "verified_advert_links":len(selected),
                                          "conversion_usable":bool(selected)}
+
+
+def response_identity(markup,content_type):
+    """Summarize received document without persisting HTML, cookies or tokens.
+
+    The same short error document returned for category, RSS and detail pages
+    indicates a delivery/access discrepancy, not an HTML parsing defect.
+    """
+    p=Anchors()
+    p.feed(markup)
+    titles=re.findall(r"<title\b[^>]*>(.*?)</title\s*>",markup,re.I|re.S)
+    text_title=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",titles[0])).split())[:120] if titles else None
+    # Hash only stable structural indicators; avoid propagating page content.
+    body=re.sub(r"\s+"," ",markup).strip()
+    classification=("actual_rss" if re.search(r"<rss\b",markup[:2000],re.I) else
+                    "html_no_links" if not p.items else "html_has_links")
+    return {"response_class":classification,
+            "content_type":content_type[:90],
+            "bytes":len(markup.encode("utf-8")),
+            "sha256_prefix":hashlib.sha256(body.encode("utf-8")).hexdigest()[:16],
+            "html_title":text_title,
+            "anchor_count":len(p.items),
+            "has_rss_items":bool(re.search(r"<item\b",markup,re.I)),
+            "contains_vehicle_detail_url":bool(re.search(
+                r"(?:https://(?:www\.)?autowereld\.nl)?/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",
+                html.unescape(markup).replace(r"\/","/"),re.I))}

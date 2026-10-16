@@ -69,7 +69,8 @@ def price_evidence(markup,objs):
     matches=list(PRICE.finditer(text))
     # Prefer a first-party structured offer price, but do not use the VAT
     # label next to a different price elsewhere on the page.
-    ordered=sorted(matches,key=lambda m: (offer_amount is not None and parse_amount(m.group(1))!=offer_amount,m.start()))
+    ordered=([m for m in matches if parse_amount(m.group(1))==offer_amount]
+             if offer_amount is not None else matches)
     if not ordered and offer_amount is None:
         return {"amount_incl_vat":None,"basis":"unknown","source":"none"}
     for match in ordered:

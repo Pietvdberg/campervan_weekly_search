@@ -2,7 +2,7 @@ import unittest
 from discover_listings import SOURCES,discover,extract,valid_url
 
 class DiscoveryTests(unittest.TestCase):
-    def test_nine_sources(self): self.assertEqual(len(SOURCES),10)
+    def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))
     def test_all_sources_present(self):
@@ -18,7 +18,7 @@ class DiscoveryTests(unittest.TestCase):
     def test_missing_sources_reported(self):
         def error(url): raise OSError("offline")
         d=discover(fetcher=error)
-        self.assertEqual(len(d["source_coverage"]),10)
+        self.assertEqual(len(d["source_coverage"]),9)
         self.assertTrue(all(v["status"] in ("unavailable","source_unavailable") for v in d["source_coverage"].values()))
     def test_missing_payload_cannot_be_claimed_suitable(self):
         c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",
@@ -43,24 +43,16 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(data["source_coverage"]["Marktplaats"]["direct_eligible_urls"],1)
     def test_only_relevant_target_vans_enter_dealer_queue(self):
         from discover_listings import relevant_link
-        self.assertFalse(relevant_link("Audi A3","https://www.gaspedaal.nl/audi/a3","Gaspedaal"))
         self.assertFalse(relevant_link("Regional occasions","https://www.gaspedaal.nl/regio/occasions-alkmaar","Local dealers"))
-        self.assertTrue(relevant_link("Peugeot Boxer L2H2","https://www.gaspedaal.nl/peugeot/boxer","Gaspedaal"))
-    def test_category_markup_not_individual_listing(self):
-        from discover_listings import extract
-        page="<html><title>Peugeot Boxer occasions</title><p>Bekijk 50 Boxer aanbiedingen</p></html>"
-        self.assertIsNone(extract("Peugeot Boxer","https://www.gaspedaal.nl/peugeot/boxer/occasion","Gaspedaal",page))
+        self.assertTrue(relevant_link("Peugeot Boxer L2H2","https://www.viabovag.nl/auto/aanbod/peugeot-boxer-123abc","viaBOVAG"))
     def test_single_structured_vehicle_is_valid(self):
         from discover_listings import extract
         page='<html><title>Peugeot Boxer L2H2</title><script type="application/ld+json">{"@type":"Vehicle","name":"Peugeot Boxer L2H2","offers":{"@type":"Offer","price":"7000"}}</script></html>'
-        self.assertIsNotNone(extract("Peugeot Boxer","https://www.gaspedaal.nl/peugeot/boxer/vehicle123","Gaspedaal",page))
+        self.assertIsNotNone(extract("Peugeot Boxer","https://www.viabovag.nl/auto/aanbod/peugeot-boxer-123abc","viaBOVAG",page))
     def test_multiple_product_objects_are_not_a_detail(self):
         from discover_listings import extract
         page='<html><title>Boxer list</title><script type="application/ld+json">[{"@type":"Product","name":"Boxer A","offers":{"price":7000}},{"@type":"Product","name":"Boxer B","offers":{"price":7500}}]</script></html>'
-        self.assertIsNone(extract("Peugeot Boxer","https://www.gaspedaal.nl/peugeot/boxer/results","Gaspedaal",page))
-    def test_gaspedaal_model_page_is_not_individual_listing(self):
-        self.assertFalse(valid_url("https://www.gaspedaal.nl/peugeot/boxer","Gaspedaal"))
-        self.assertFalse(valid_url("https://www.gaspedaal.nl/ford/transit","Gaspedaal"))
+        self.assertIsNone(extract("Peugeot Boxer","https://www.viabovag.nl/auto/aanbod/peugeot-boxer-123abc","viaBOVAG",page))
     def test_viabovag_requires_real_vehicle_detail_url(self):
         self.assertTrue(valid_url("https://www.viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-9uh42eg","viaBOVAG"))
         self.assertFalse(valid_url("https://www.viabovag.nl/auto/merk-ford/model-transit/occasion","viaBOVAG"))
@@ -70,12 +62,13 @@ class DiscoveryTests(unittest.TestCase):
         self.assertFalse(valid_url("https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","viaBOVAG"))
     def test_targeted_seed_pages_exist(self):
         from discover_listings import SEED_PAGES
-        self.assertIn("https://www.gaspedaal.nl/peugeot/boxer",SEED_PAGES["Gaspedaal"])
+        self.assertNotIn("Gaspedaal",SEED_PAGES)
+        self.assertNotIn("Gaspedaal",SOURCES)
         self.assertIn("https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion",SEED_PAGES["viaBOVAG"])
     def test_auxiliary_pages_rejected(self):
         self.assertFalse(valid_url("https://www.wijkopenautos.nl/auto-kopen/favorieten/","wijkopenautos"))
         self.assertFalse(valid_url("https://www.bedrijfsauto.nl/lease/calculator","Bedrijfsauto"))
-        self.assertFalse(valid_url("https://www.gaspedaal.nl/regio/occasions-almere","Gaspedaal"))
+        self.assertFalse(valid_url("https://www.gaspedaal.nl/regio/occasions-almere","Local dealers"))
     def test_category_pages_not_candidate_listings(self):
         self.assertFalse(valid_url("https://www.autotrack.nl/aanbod/carrosserievorm/suv","AutoTrack"))
         self.assertFalse(valid_url("https://www.viabovag.nl/auto/occasion","viaBOVAG"))

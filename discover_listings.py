@@ -34,7 +34,7 @@ SEED_PAGES = {
     "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer/ve_l2h2","https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit"],
     "AutoTrack": ["https://www.autotrack.nl/aanbod/merk/peugeot/model/boxer","https://www.autotrack.nl/aanbod/merk/ford/model/transit","https://www.autotrack.nl/aanbod/merk/citroen/model/jumper","https://www.autotrack.nl/aanbod/merk/fiat/model/ducato","https://www.autotrack.nl/aanbod/merk/renault/model/master"],
     "viaBOVAG": ["https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","https://www.viabovag.nl/auto/merk-ford/model-transit/occasion","https://www.viabovag.nl/"],
-    "AutoWereld": ["https://www.autowereld.nl/peugeot/boxer/_energy","https://www.autowereld.nl/ford/transit/","https://www.autowereld.nl/citroen/jumper/","https://www.autowereld.nl/fiat/ducato/","https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html"],
+    "AutoWereld": ["https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise-43911117/details.html","https://www.autowereld.nl/peugeot/boxer/_energy","https://www.autowereld.nl/ford/transit/","https://www.autowereld.nl/citroen/jumper/","https://www.autowereld.nl/fiat/ducato/","https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html"],
     "Bedrijfsauto": ["https://www.bedrijfsauto.nl/peugeot-boxer-111721152","https://www.bedrijfsauto.nl/"],
     "TrucksNL": ["https://www.trucksnl.com/box-van/peugeot/boxer","https://www.trucksnl.com/vans-lcvs/peugeot/boxer"],
     "Local dealers": [
@@ -223,7 +223,7 @@ def discover(fetcher=fetch,max_per_source=50):
                 re.I)
             for feed_url in AUTOWERELD_RSS:
                 try:
-                    rss_xml,_=fetcher(feed_url)
+                    rss_xml,feed_content_type=fetcher(feed_url)
                     xml_error=None
                     try:
                         feed_items=search_links(rss_xml)
@@ -240,6 +240,8 @@ def discover(fetcher=fetch,max_per_source=50):
                         if valid_url(url,source) and relevant_link(title,url,source):
                             direct_urls.setdefault(url,title)
                     feed_diagnostics.append({"feed":feed_url,"bytes":len(rss_xml),
+                        "content_type":feed_content_type[:80],
+                        "response_prefix":re.sub(r"\\s+"," ",rss_xml[:220])[:180],
                         "xml_items":len(feed_items),"recovered_urls":len(recovered),
                         "accepted_new_urls":len(direct_urls)-before,
                         "xml_error":xml_error})

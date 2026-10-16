@@ -10,7 +10,7 @@ import re
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
-from listing_evidence import enrich
+from listing_evidence import enrich, structured
 from browser_render import render as browser_render
 from html.parser import HTMLParser
 from urllib.parse import urljoin,urldefrag
@@ -115,11 +115,36 @@ def relevant_link(title,url,source):
     if source=="Marktplaats": return True
     return bool(MODEL.search(title+" "+urlparse(url).path.replace("-"," ")))
 
+def is_vehicle_detail(url, source, markup):
+    """Reject category/search pages that mention many vehicles.
+
+    For non-Marktplaats domains require a vehicle's page-level identity:
+    structured Car/Vehicle object or an explicitly labeled registration plate.
+    Search-result grids and model directories do not satisfy this gate.
+    """
+    if source=="Marktplaats":
+        return True  # Marktplaats /v/.../m<ID> is a specific advert URL.
+    types={"vehicle","car","product"}
+    nodes=structured(markup)
+    vehicles=[]
+    for node in nodes:
+        raw_type=node.get("@type",[])
+        names=[raw_type] if isinstance(raw_type,str) else raw_type if isinstance(raw_type,list) else []
+        if any(str(x).lower() in types for x in names):
+            vehicles.append(node)
+    if len(vehicles)==1:
+        node=vehicles[0]
+        if node.get("name") and (node.get("offers") or node.get("vehicleIdentificationNumber") or node.get("sku")):
+            return True
+    # Explicit plate is useful when a site omits structured vehicle data.
+    plain=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",markup)).split())
+    return bool(re.search(r"\\b(?:kenteken|nummerplaat)\\s*[:\\-]?\\s*[A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3}\\b",plain,re.I))
+
 def extract(title,url,source,markup):
     no_scripts=re.sub(r"<(?:script|style)\b[^>]*>.*?</(?:script|style)>"," ",markup,flags=re.I|re.S)
     text=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",no_scripts)).split())
     header=title+" "+text[:5000]
-    if not MODEL.search(header): return None
+    if not MODEL.search(header) or not is_vehicle_detail(url,source,markup): return None
     checks={key:None for key in ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")}
     if ROOF.search(header): checks["high_roof"]=True
     if AC.search(header): checks["cab_ac"]=True

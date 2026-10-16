@@ -82,6 +82,18 @@ def rss_shortlist(leads, verified_urls=(), limit=5):
     return [entry[2] for entry in eligible[:limit]]
 
 
+def clearly_over_budget_title(candidate):
+    """A displayed title price over €8,000 rules out a shortlist lead even if VAT is unknown.
+
+    Only use a currency-labelled amount from the listing title; page-wide price
+    extraction can select an unrelated amount. Keep full audit and unknown VAT.
+    """
+    title = unescape(str(candidate.get("name") or ""))
+    matches = re.findall(r"(?:€|EUR)\\s*([\\d.]+(?:,\\d{2})?)", title, re.I)
+    return any(rss_price("Vraagprijs: €" + amount) > 8000 for amount in matches
+               if rss_price("Vraagprijs: €" + amount) is not None)
+
+
 def screen(candidate):
     checks = candidate.get("checks", {})
     score = 20 * sum(checks.get(key) is True for key in REQUIRED)
@@ -174,7 +186,8 @@ def report(data):
     # Do not fill the email with unpromising unknown-configuration entries.
     potential = [x for x in potential
                  if x["candidate"].get("checks", {}).get("high_roof") is True
-                 and x["candidate"].get("checks", {}).get("cab_ac") is True][:5]
+                 and x["candidate"].get("checks", {}).get("cab_ac") is True
+                 and not clearly_over_budget_title(x["candidate"])][:5]
     rejected = sum(candidate_state(x) == "REJECTED" for x in results)
     rows = ["Camper van search — concise development report",
             "Generated: " + str(data.get("generated_on", "unknown")),

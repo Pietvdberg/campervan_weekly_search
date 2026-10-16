@@ -11,7 +11,7 @@ from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
-from marketplace_links import extract as extract_marketplace_links
+from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from inventory_discovery import crawl as crawl_inventory, classify as classify_inventory
 from browser_render import render as browser_render
 from html.parser import HTMLParser
@@ -219,7 +219,10 @@ def discover(fetcher=fetch,max_per_source=50):
                     extra=extract_marketplace_links(page,seed,source)
                     for label,url in extra:
                         direct_urls.setdefault(url,label)
+                extra_diagnostics=(marketplace_diagnostics(page,seed,source)
+                    if source=="AutoScout24" else {})
                 response_diagnostics.append({"seed":seed,"bytes":len(page),"content_type":typ[:70],
+                    "auto_scout_structure":extra_diagnostics,
                     "anchors":len(parser.links),"new_vehicle_urls":len(direct_urls),
                     "suspected_interstitial":bool(re.search(r"captcha|access denied|toegang geweigerd|verify you are human|bot detection|javascript required",page[:18000],re.I))})
                 for label, href in parser.links:

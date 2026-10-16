@@ -54,6 +54,24 @@ def source_detail(url,source):
              "AutoWereld":AUTOWERELD}[source]
     return bool(matcher.fullmatch(path))
 
+def diagnostics(markup,base,source):
+    """Summarize response structure without persisting vehicle or seller data."""
+    text=decode(markup)
+    parser=Links()
+    parser.feed(text)
+    own=[urlparse(urljoin(base,href)).path for _,href in parser.links
+         if href and urlparse(urljoin(base,href)).hostname in
+         ("autoscout24.nl","www.autoscout24.nl")]
+    return {
+        "raw_aanbod_references":len(re.findall(r"/aanbod/",text,re.I)),
+        "uuid_occurrences":len(re.findall(UUID,text,re.I)),
+        "first_party_aanbod_anchors":sum(p.startswith("/aanbod/") for p in own),
+        "first_party_anchor_count":len(own),
+        "embedded_next_data":("__NEXT_DATA__" in text),
+        "vehicle_card_markers":sum(text.lower().count(token) for token in
+            ("listing-card", "listing-item", "vehicle-card")),
+    }
+
 def extract(markup,base,source,limit=1000):
     """Return distinct (label, URL) detail candidates, including JSON-escaped anchors."""
     if source not in ("AutoScout24","Bedrijfsauto","AutoWereld"):

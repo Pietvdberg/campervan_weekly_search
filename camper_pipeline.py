@@ -25,6 +25,26 @@ def screen(candidate):
     if not plate: reasons.append("plate not confirmed from individual listing")
     return {"candidate":candidate, "score":score, "plate":plate, "reasons":reasons, "qualified":score >= 90 and not reasons, "rdw":None}
 
+def evidence_summary(results):
+    """Per-source assessment: explicit failures differ from missing evidence."""
+    summary={}
+    for item in results:
+        candidate=item["candidate"]
+        source=candidate.get("source","Unknown")
+        entry=summary.setdefault(source,{"total":0,"qualified":0,
+            "checks":{name:{"passed":0,"failed":0,"unknown":0} for name in REQUIRED},
+            "verified_prices":0,"verified_distances":0,"confirmed_plates":0})
+        entry["total"]+=1
+        entry["qualified"]+=int(item["qualified"])
+        entry["verified_prices"]+=int(candidate.get("price_incl_vat") is not None)
+        entry["verified_distances"]+=int(candidate.get("distance_km") is not None)
+        entry["confirmed_plates"]+=int(bool(item.get("plate")))
+        for name in REQUIRED:
+            status=candidate.get("checks",{}).get(name)
+            entry["checks"][name]["passed" if status is True else
+                                 "failed" if status is False else "unknown"]+=1
+    return summary
+
 def evaluate(data, rdw_lookup=lookup):
     results=[screen(c) for c in data.get("candidates",[])]
     for item in results:
@@ -35,7 +55,8 @@ def evaluate(data, rdw_lookup=lookup):
         if vehicle.get("status") != "ok" or not vehicle.get("records"):
             item["qualified"]=False
             item["reasons"].append("RDW registration not verified")
-    return {"generated_on":date.today().isoformat(),"source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
+    return {"generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
+            "source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
             "results":results,"qualifiers":sum(x["qualified"] for x in results)}
 
 def report(data):
@@ -55,11 +76,21 @@ def report(data):
                     " | actual vehicle pages validated: "+str(entry.get("individual_pages_fetched",0)))
         if entry.get("status") != "individual_pages_found":
             rows.append("  No verified individual adverts from this source is NOT proof of zero inventory.")
+    rows.append("\\nScreening evidence by source:")
+    for source,stats in data.get("source_screening",{}).items():
+        rows.append("- "+source+": "+str(stats["total"])+" candidates; "+
+            str(stats["verified_prices"])+" VAT-inclusive prices verified; "+
+            str(stats["verified_distances"])+" driving routes verified; "+
+            str(stats["confirmed_plates"])+" registration plates confirmed")
+        for name,counts in stats["checks"].items():
+            rows.append("  "+name+": passed "+str(counts["passed"])+
+                ", failed "+str(counts["failed"])+", unknown "+str(counts["unknown"]))
     rows.append("\nRanked candidates / watchlist / rejections:")
     for item in sorted(data["results"],key=lambda x:x["score"],reverse=True):
         c=item["candidate"]
         rows.extend(["- "+str(c.get("name","Unknown"))+": "+str(item["score"])+"% | "+("QUALIFIER" if item["qualified"] else "WATCHLIST / REJECTED"),
-                     "  Price including VAT: "+str(c.get("price_incl_vat","not confirmed")),
+                     "  Price including VAT: "+str(c.get("price_incl_vat") if c.get("price_incl_vat") is not None else "not confirmed")+" (basis: "+str(c.get("vat_basis","unknown"))+")",
+                     "  Location: "+str(c.get("city_mentioned") or "unknown")+"; verified driving distance: "+str(c.get("distance_km") if c.get("distance_km") is not None else "unknown")+" km",
                      "  Listing: "+str(c.get("listing_url","unavailable")),
                      "  Reasons: "+("; ".join(item["reasons"]) or "none"),
                      "  Mechanical concerns: "+str(c.get("mechanical_concerns","not assessed"))])

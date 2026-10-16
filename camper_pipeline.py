@@ -57,6 +57,7 @@ def evaluate(data, rdw_lookup=lookup):
             item["reasons"].append("RDW registration not verified")
     return {"generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
             "source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
+            "unverified_rss_leads":data.get("unverified_rss_leads",[]),
             "results":results,"qualifiers":sum(x["qualified"] for x in results)}
 
 
@@ -133,6 +134,23 @@ def report(data):
                 rows.append("  APK defect: "+str(defect.get("defect_code"))+" / "+str(defect.get("description") or "description unavailable"))
     if not data["results"]:
         rows.append("No candidate listing pages could be validated by this run. This is not proof that no matching vans are on sale.")
+    rows.append("\\nAutoWereld public RSS — UNVERIFIED leads (not scored or recommended):")
+    rss_leads=data.get("unverified_rss_leads",[])
+    if not rss_leads:
+        rows.append("No fresh, validated external RSS snapshot was supplied.")
+    else:
+        verified_urls={x["candidate"].get("listing_url") for x in data["results"]}
+        for lead in rss_leads[:100]:
+            url=lead.get("url","")
+            if url in verified_urls:continue
+            name=" ".join(str(lead.get("title",""))[:220].split())
+            desc=" ".join(__import__("re").sub(r"<[^>]*>"," ",str(lead.get("description",""))).split())[:300]
+            rows.extend(["- "+name,
+                         "  Listed: "+str(lead.get("pub_date","unknown")),
+                         "  RSS description (seller claims): "+(desc or "not provided"),
+                         "  Listing: "+url,
+                         "  Status: RSS-only; no confirmed price incl VAT, route distance, plate, availability or conversion suitability."])
+        rows.append("RSS leads are excluded from the verified >=90% qualification count.")
     rows.append("\nAPK approval is not a mechanical inspection; seller claims are not verified facts.")
     return "\n".join(rows)+"\n"
 

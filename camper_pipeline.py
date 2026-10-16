@@ -36,7 +36,36 @@ def evaluate(data, rdw_lookup=lookup):
             item["qualified"]=False
             item["reasons"].append("RDW registration not verified")
     return {"generated_on":date.today().isoformat(),"source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
-            "results":results,"qualifiers":sum(x["qualified"] for x in results)}
+            "results":results,"qualifiers":sum(x["qualified"] for x in results),
+            "local_dealer_screening":dealer_screening_audit(results)}
+
+
+def dealer_screening_audit(results):
+    """Explain screening blockers per dealer without upgrading seller claims to verification."""
+    from collections import Counter
+    dealers=[x for x in results if x["candidate"].get("source")=="Local dealers"]
+    breakdown={key:dict(Counter(
+        "verified" if x["candidate"].get("checks",{}).get(key) is True else
+        "failed" if x["candidate"].get("checks",{}).get(key) is False else "unknown"
+        for x in dealers)) for key in REQUIRED}
+    vehicles=[]
+    for x in dealers[:50]:
+        c=x["candidate"]
+        vehicles.append({
+            "listing_url":c.get("listing_url"),
+            "name":c.get("name"),
+            "score":x["score"],
+            "seller_city_mentioned_unverified":c.get("city_mentioned"),
+            "price_advertised":c.get("price_advertised"),
+            "price_incl_vat":c.get("price_incl_vat"),
+            "vat_basis":c.get("vat_basis"),
+            "driving_distance_km":c.get("distance_km"),
+            "checks":{k:c.get("checks",{}).get(k) for k in REQUIRED},
+            "plate_from_advert":bool(c.get("plate_confirmed_from_listing")),
+            "rdw_status":(x.get("rdw") or {}).get("vehicle",{}).get("status","unverified"),
+            "qualification_blockers":x["reasons"],
+        })
+    return {"candidate_count":len(dealers),"checks":breakdown,"vehicles":vehicles}
 
 def report(data):
     rows=["Camper van pipeline verification", "Generated: "+data["generated_on"],

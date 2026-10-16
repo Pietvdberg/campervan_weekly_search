@@ -34,9 +34,9 @@ SEED_PAGES = {
     "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer/ve_l2h2","https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit"],
     "AutoTrack": ["https://www.autotrack.nl/aanbod/merk/peugeot/model/boxer","https://www.autotrack.nl/aanbod/merk/ford/model/transit","https://www.autotrack.nl/aanbod/merk/citroen/model/jumper","https://www.autotrack.nl/aanbod/merk/fiat/model/ducato","https://www.autotrack.nl/aanbod/merk/renault/model/master"],
     "viaBOVAG": ["https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","https://www.viabovag.nl/auto/merk-ford/model-transit/occasion","https://www.viabovag.nl/"],
-    "AutoWereld": ["https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html","https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html"],
-    "Bedrijfsauto": ["https://www.bedrijfsauto.nl/"],
-    "TrucksNL": ["https://www.trucksnl.com/"],
+    "AutoWereld": ["https://www.autowereld.nl/peugeot/boxer/_energy","https://www.autowereld.nl/ford/transit/","https://www.autowereld.nl/citroen/jumper/","https://www.autowereld.nl/fiat/ducato/","https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html"],
+    "Bedrijfsauto": ["https://www.bedrijfsauto.nl/peugeot-boxer-111721152","https://www.bedrijfsauto.nl/"],
+    "TrucksNL": ["https://www.trucksnl.com/box-van/peugeot/boxer","https://www.trucksnl.com/vans-lcvs/peugeot/boxer"],
     "Local dealers": [
         "https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html",
         "https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html",
@@ -97,6 +97,9 @@ def valid_url(url,source):
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
     if source=="AutoScout24": return bool(re.fullmatch(r"/aanbod/[a-z0-9-]+-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}/?",path))
     if source=="AutoTrack": return bool(re.fullmatch(r"/a/[a-z0-9-]+-\d{6,}/?",path))
+    if source=="AutoWereld": return bool(re.fullmatch(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+\.html",path))
+    if source=="Bedrijfsauto": return bool(re.fullmatch(r"/[a-z0-9-]+-\d{7,}",path))
+    if source=="TrucksNL": return bool(re.fullmatch(r"/[a-z0-9-]+-\d{6,}-vd",path))
     if source=="viaBOVAG": return classify_inventory(url,source)=="detail"
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
@@ -119,7 +122,7 @@ def is_vehicle_detail(url, source, markup):
     structured Car/Vehicle object or an explicitly labeled registration plate.
     Search-result grids and model directories do not satisfy this gate.
     """
-    if source in ("Marktplaats","AutoTrack","AutoScout24","wijkopenautos"):
+    if source in ("Marktplaats","AutoTrack","AutoScout24","wijkopenautos","AutoWereld","Bedrijfsauto","TrucksNL"):
         # These strict vehicle-specific URLs identify an individual advert.
         return valid_url(url,source)
     types={"vehicle","car","product"}
@@ -194,7 +197,7 @@ def discover(fetcher=fetch,max_per_source=50):
                 for label, href in parser.links:
                     url = urldefrag(urljoin(seed, href))[0]
                     if valid_url(url,source) and relevant_link(label,url,source): direct_urls.setdefault(url,label)
-                if source in ("AutoScout24","AutoTrack"):
+                if source in ("AutoScout24","AutoTrack","AutoWereld","Bedrijfsauto","TrucksNL"):
                     # Public application state can include advert URLs absent from anchors.
                     # Only accept source-specific detail URL shapes, never search URLs.
                     for raw in re.findall(r"(?:https?://[^\"\s<>]+|/(?:aanbod|a)/[^\"\s<>]+)",page)[:2500]:

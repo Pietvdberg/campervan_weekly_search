@@ -41,6 +41,15 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(len(data["candidates"]),1)
         self.assertEqual(data["candidates"][0]["plate"],"V-360-SJ")
         self.assertEqual(data["source_coverage"]["Marktplaats"]["direct_eligible_urls"],1)
+    def test_only_relevant_target_vans_enter_dealer_queue(self):
+        from discover_listings import relevant_link
+        self.assertFalse(relevant_link("Audi A3","https://www.gaspedaal.nl/audi/a3","Gaspedaal"))
+        self.assertFalse(relevant_link("Regional occasions","https://www.gaspedaal.nl/regio/occasions-alkmaar","Local dealers"))
+        self.assertTrue(relevant_link("Peugeot Boxer L2H2","https://www.gaspedaal.nl/peugeot/boxer","Gaspedaal"))
+    def test_auxiliary_pages_rejected(self):
+        self.assertFalse(valid_url("https://www.wijkopenautos.nl/auto-kopen/favorieten/","wijkopenautos"))
+        self.assertFalse(valid_url("https://www.bedrijfsauto.nl/lease/calculator","Bedrijfsauto"))
+        self.assertFalse(valid_url("https://www.gaspedaal.nl/regio/occasions-almere","Gaspedaal"))
     def test_category_pages_not_candidate_listings(self):
         self.assertFalse(valid_url("https://www.autotrack.nl/aanbod/carrosserievorm/suv","AutoTrack"))
         self.assertFalse(valid_url("https://www.viabovag.nl/auto/occasion","viaBOVAG"))

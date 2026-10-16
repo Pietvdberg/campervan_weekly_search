@@ -19,7 +19,6 @@ from urllib.parse import urljoin,urldefrag
 SOURCES = {
     "Marktplaats": "marktplaats.nl",
     "AutoScout24": "autoscout24.nl",
-    "Gaspedaal": "gaspedaal.nl",
     "wijkopenautos": "wijkopenautos.nl",
     "AutoTrack": "autotrack.nl",
     "viaBOVAG": "viabovag.nl",
@@ -31,7 +30,6 @@ SOURCES = {
 # Direct category/dealer entry points. A returned page is not proof of complete inventory.
 SEED_PAGES = {
     "Marktplaats": ["https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/boxer+l2h2/","https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/transit+l2h2/"],
-    "Gaspedaal": ["https://www.gaspedaal.nl/peugeot/boxer/l2h2","https://www.gaspedaal.nl/peugeot/boxer/l3h2","https://www.gaspedaal.nl/peugeot/boxer","https://www.gaspedaal.nl/ford/transit","https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod"],
     "wijkopenautos": ["https://www.wijkopenautos.nl/auto-kopen/"],
     "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit"],
     "AutoTrack": ["https://www.autotrack.nl/"],
@@ -47,7 +45,6 @@ SEED_PAGES = {
         "https://www.autowereld.nl/aanbieder/louwman-mercedes-benz-bedrijfswagens-goes-1306923/auto.html",
         "https://www.autowereld.nl/aanbieder/van-mossel-breda-1013023/auto.html",
         "https://www.autowereld.nl/aanbieder/auto-goes-5455/auto.html",
-        "https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod",
         "https://www.vanmossel.nl/vestigingen/van-mossel-renault-dacia-roosendaal"],
 }
 
@@ -93,17 +90,16 @@ def valid_url(url,source):
     domain=SOURCES[source]
     if parsed.scheme!="https": return False
     if domain and not (host==domain or host.endswith("."+domain)): return False
-    if source=="Local dealers" and not any(host == d or host.endswith("."+d) for d in ("autowereld.nl","gaspedaal.nl","vanmossel.nl")): return False
+    if source=="Local dealers" and not any(host == d or host.endswith("."+d) for d in ("autowereld.nl","vanmossel.nl")): return False
     path=parsed.path.lower()
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
     if source=="AutoScout24": return path.startswith("/aanbod/") and path.count("/")>=2
     if source=="AutoTrack": return "/aanbod/" in path and not any(x in path for x in ("/brandstofsoort/","/carrosserievorm/","/merk/","/prijs/","/bouwjaar/")) and path.count("/")>=3
-    if source in ("Gaspedaal","viaBOVAG"): return classify_inventory(url,source)=="detail"
+    if source=="viaBOVAG": return classify_inventory(url,source)=="detail"
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
     if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False
-    if source=="Gaspedaal" and "/autobedrijven/" in path: return False
-    if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/") not in ("/auto-kopen","/auto-kopen/favorieten")
+        if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/") not in ("/auto-kopen","/auto-kopen/favorieten")
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Bedrijfsauto" and ("/lease/" in path or path.rstrip("/") in ("/aanbod","/aanbod/volkswagen","/aanbod/mercedes-benz")): return False
 

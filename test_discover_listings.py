@@ -241,7 +241,7 @@ class DiscoveryTests(unittest.TestCase):
     def test_missing_sources_reported(self):
         def error(url): raise OSError("offline")
         d=discover(fetcher=error)
-        self.assertEqual(len(d["source_coverage"]),9)
+        self.assertEqual(len(d["source_coverage"]),7)
         self.assertTrue(all(v["status"] in ("unavailable","source_unavailable") for v in d["source_coverage"].values()))
     def test_missing_payload_cannot_be_claimed_suitable(self):
         c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",

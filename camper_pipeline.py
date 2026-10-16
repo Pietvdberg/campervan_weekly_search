@@ -4,11 +4,83 @@ import argparse
 from datetime import date
 import json
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse
+import re
+from html import unescape
 from rdw_lookup import lookup, normalize_plate
 
 SOURCES = ("Marktplaats","AutoScout24","AutoTrack","viaBOVAG","AutoWereld","Local dealers")
 REQUIRED = ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")
+
+def normalized_url(url):
+    """Strip tracking/query fragments without changing a listing's identity."""
+    p = urlparse(url or "")
+    host = (p.hostname or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    path = p.path.rstrip("/") or "/"
+    return urlunparse((p.scheme.lower(), host, path, "", "", ""))
+
+
+def candidate_state(item):
+    """Hard failures take precedence over evidence-based ranking."""
+    if any(item["candidate"].get("checks", {}).get(k) is False for k in REQUIRED):
+        return "REJECTED"
+    if item["qualified"]:
+        return "QUALIFIED"
+    return "POTENTIAL MATCH — UNVERIFIED"
+
+
+def report_identity(item):
+    c = item["candidate"]
+    if item.get("plate"):
+        # Plate confirmation is listing-derived; group identical vehicles without
+        # changing source-level counts or the independently retained audit records.
+        return "confirmed-plate:" + item["plate"]
+    return "url:" + normalized_url(c.get("listing_url", ""))
+
+
+def unique_report_items(items):
+    seen = set()
+    for item in items:
+        identity = report_identity(item)
+        if identity in seen:
+            continue
+        seen.add(identity)
+        yield item
+
+
+def rss_price(description):
+    text = unescape(re.sub(r"<[^>]*>", " ", str(description or "")))
+    match = re.search(r"vraagprijs\s*:\s*€\s*([\d.]+)(?:,\d{1,2})?", text, re.I)
+    return int(match.group(1).replace(".", "")) if match else None
+
+
+def rss_shortlist(leads, verified_urls=(), limit=5):
+    """RSS is first-party index evidence only; never treat it as a verified advert."""
+    seen = set(normalized_url(u) for u in verified_urls)
+    eligible = []
+    for lead in leads:
+        url = str(lead.get("url") or "")
+        identity = normalized_url(url)
+        title = unescape(str(lead.get("title") or ""))
+        text = title.lower()
+        if not url.startswith("https://www.autowereld.nl/") or identity in seen:
+            continue
+        seen.add(identity)
+        if not re.search(r"\bl[23]\s*[- ]?h2\b", text, re.I):
+            continue
+        if re.search(r"\b(open laadbak|pick[ -]?up|pr[iy]tsche|chassis cabine|bakwagen|laadklep|kipper|schade|motor niet|defect|hoogwerker)\b", text, re.I):
+            continue
+        price = rss_price(lead.get("description"))
+        # Any stated advertised price above the absolute VAT-inclusive limit
+        # is already disqualifying, regardless of whether VAT is included.
+        if price is not None and price > 8000:
+            continue
+        eligible.append((price is None, -(price or 0), lead))
+    eligible.sort(key=lambda x: (x[0], x[1]))
+    return [entry[2] for entry in eligible[:limit]]
+
 
 def screen(candidate):
     checks = candidate.get("checks", {})
@@ -48,7 +120,7 @@ def evidence_summary(results):
 def evaluate(data, rdw_lookup=lookup):
     results=[screen(c) for c in data.get("candidates",[])]
     for item in results:
-        if not item["plate"]: continue
+        if not item["plate"] or candidate_state(item) == "REJECTED": continue
         try: item["rdw"]=rdw_lookup(item["plate"])
         except Exception as exc: item["rdw"]={"error":str(exc)}
         vehicle=item["rdw"].get("vehicle",{})
@@ -84,75 +156,93 @@ def dealer_audit_rows(data):
     return rows
 
 def report(data):
-    rows=["Camper van pipeline verification", "Generated: "+data["generated_on"],
-          "Verified >=90% qualifiers: "+str(data["qualifiers"]),
-          "Discovery: "+data.get("discovery_method","not performed"),
-          "CAUTION: index results are incomplete; listing and location claims are unverified.",
-          "", "Source coverage:"]
-    for source in SOURCES:
-        entry=data["source_coverage"].get(source,{})
-        if not isinstance(entry,dict):
-            rows.append("- "+source+": not checked")
-            continue
-        rows.append("- "+source+": "+str(entry.get("status","unknown"))+
-                    " | inventory pages checked: "+str(entry.get("inventory_pages_checked","unknown"))+
-                    " | individual URLs discovered: "+str(entry.get("detail_urls_discovered","unknown"))+
-                    " | actual vehicle pages validated: "+str(entry.get("individual_pages_fetched",0)))
-        if entry.get("coverage_note"):
-            rows.append("  Coverage note: "+str(entry["coverage_note"]))
-        if entry.get("source_block_reason"):
-            rows.append("  Source access restriction: "+str(entry["source_block_reason"]))
-        if entry.get("status") != "individual_pages_found":
-            rows.append("  No verified individual adverts from this source is NOT proof of zero inventory.")
-    rows.append("\\nScreening evidence by source:")
-    for source,stats in data.get("source_screening",{}).items():
-        rows.append("- "+source+": "+str(stats["total"])+" candidates; "+
-            str(stats["verified_prices"])+" VAT-inclusive prices verified; "+
-            str(stats["verified_distances"])+" driving routes verified; "+
-            str(stats["confirmed_plates"])+" registration plates confirmed")
-        for name,counts in stats["checks"].items():
-            rows.append("  "+name+": passed "+str(counts["passed"])+
-                ", failed "+str(counts["failed"])+", unknown "+str(counts["unknown"]))
-    rows.append("\nRanked candidates / watchlist / rejections:")
-    for item in sorted(data["results"],key=lambda x:x["score"],reverse=True):
-        c=item["candidate"]
-        rows.extend(["- "+str(c.get("name","Unknown"))+": "+str(item["score"])+"% | "+("QUALIFIER" if item["qualified"] else "WATCHLIST / REJECTED"),
-                     "  Price including VAT: "+str(c.get("price_incl_vat") if c.get("price_incl_vat") is not None else "not confirmed")+" (basis: "+str(c.get("vat_basis","unknown"))+")",
-                     "  Location: "+str(c.get("city_mentioned") or "unknown")+"; verified driving distance: "+str(c.get("distance_km") if c.get("distance_km") is not None else "unknown")+" km",
-                     "  Listing: "+str(c.get("listing_url","unavailable")),
-                     "  Reasons: "+("; ".join(item["reasons"]) or "none"),
-                     "  Mechanical concerns: "+str(c.get("mechanical_concerns","not assessed"))])
-        if item["plate"]:
-            rows.append("  Plate independently confirmed: "+item["plate"])
-            rdw=item["rdw"] or {}
-            vehicle=rdw.get("vehicle",{})
-            rows.append("  RDW status: "+str(vehicle.get("status","unavailable")))
-            if vehicle.get("status")=="ok" and vehicle.get("records"):
-                for field in ("vervaldatum_apk","tellerstandoordeel","toegestane_maximum_massa_voertuig","massa_ledig_voertuig"):
-                    rows.append("  RDW "+field+": "+str(vehicle["records"][0].get(field,"not reported")))
-            for defect in rdw.get("apk_defect_summary",{}).get("entries",[]):
-                rows.append("  APK defect: "+str(defect.get("defect_code"))+" / "+str(defect.get("description") or "description unavailable"))
-    if not data["results"]:
-        rows.append("No candidate listing pages could be validated by this run. This is not proof that no matching vans are on sale.")
-    rows.append("\\nAutoWereld public RSS — UNVERIFIED leads (not scored or recommended):")
-    rss_leads=data.get("unverified_rss_leads",[])
-    if not rss_leads:
-        rows.append("No fresh, validated external RSS snapshot was supplied.")
+    """Concise email. Full rejected candidates and RDW evidence stay in JSON audit."""
+    results = data.get("results", [])
+    grouped = list(unique_report_items(results))
+    qualified = [x for x in grouped if candidate_state(x) == "QUALIFIED"]
+    potential = [x for x in grouped if candidate_state(x) == "POTENTIAL MATCH — UNVERIFIED"]
+    # Among potential leads, prefer verified affordable prices, established routes,
+    # explicit vehicle configuration and plate evidence. Unknown never means pass.
+    def interest(x):
+        c = x["candidate"]
+        checks = c.get("checks", {})
+        return (int(checks.get("price_incl_vat_within_8000") is True),
+                int(checks.get("distance_within_100km") is True),
+                int(checks.get("high_roof") is True and checks.get("cab_ac") is True),
+                int(bool(x.get("plate"))), x["score"])
+    potential.sort(key=interest, reverse=True)
+    # Do not fill the email with unpromising unknown-configuration entries.
+    potential = [x for x in potential
+                 if x["candidate"].get("checks", {}).get("high_roof") is True
+                 and x["candidate"].get("checks", {}).get("cab_ac") is True][:5]
+    rejected = sum(candidate_state(x) == "REJECTED" for x in results)
+    rows = ["Camper van search — concise development report",
+            "Generated: " + str(data.get("generated_on", "unknown")),
+            "Verified >=90% qualifiers: " + str(data.get("qualifiers", 0)),
+            "Individual vehicle records screened: " + str(len(results)),
+            "Explicitly rejected: " + str(rejected),
+            "CAUTION: discovery is incomplete; unknown VAT, route, availability and mechanical condition are not confirmations.",
+            "", "QUALIFIED vehicles:"]
+    def render_item(item):
+        c = item["candidate"]
+        rows.extend(["- " + unescape(str(c.get("name", "Unknown"))),
+                     "  Evidence score: " + str(item["score"]) + "%; " + candidate_state(item),
+                     "  VAT-inclusive price: " + str(c.get("price_incl_vat") if c.get("price_incl_vat") is not None else "unverified"),
+                     "  Driving route from Bergen op Zoom: " + str(c.get("distance_km") if c.get("distance_km") is not None else "unverified") + " km",
+                     "  Listing: " + str(c.get("listing_url", "unavailable")),
+                     "  Outstanding checks: " + ("; ".join(item["reasons"]) or "none")])
+    if qualified:
+        for item in sorted(qualified, key=interest, reverse=True):
+            render_item(item)
     else:
-        verified_urls={x["candidate"].get("listing_url") for x in data["results"]}
-        for lead in rss_leads[:100]:
-            url=lead.get("url","")
-            if url in verified_urls:continue
-            name=" ".join(str(lead.get("title",""))[:220].split())
-            desc=" ".join(__import__("re").sub(r"<[^>]*>"," ",str(lead.get("description",""))).split())[:300]
-            rows.extend(["- "+name,
-                         "  Listed: "+str(lead.get("pub_date","unknown")),
-                         "  RSS description (seller claims): "+(desc or "not provided"),
-                         "  Listing: "+url,
-                         "  Status: RSS-only; no confirmed price incl VAT, route distance, plate, availability or conversion suitability."])
-        rows.append("RSS leads are excluded from the verified >=90% qualification count.")
-    rows.append("\nAPK approval is not a mechanical inspection; seller claims are not verified facts.")
-    return "\n".join(rows)+"\n"
+        rows.append("None verified. This does not establish that none are for sale.")
+    rows.extend(["", "POTENTIAL MATCH — UNVERIFIED (up to 5):"])
+    if potential:
+        for item in potential:
+            render_item(item)
+    else:
+        rows.append("No individual listing had enough relevant evidence for this shortlist.")
+    rows.extend(["", "Source coverage (individual vehicle pages):"])
+    coverage = data.get("source_coverage", {})
+    for source in SOURCES:
+        entry = coverage.get(source, {})
+        if not isinstance(entry, dict):
+            rows.append("- " + source + ": not checked")
+            continue
+        rows.append("- " + source + ": " + str(entry.get("individual_pages_fetched", 0)) +
+                    " validated / " + str(entry.get("detail_urls_discovered", "?")) +
+                    " discovered | " + str(entry.get("status", "unknown")))
+        if source == "AutoWereld":
+            rows.append("  Direct GitHub-hosted page validation is separate from external Raspberry Pi RSS collection.")
+            rows.append("  External RSS status: " + str(entry.get("external_rss_snapshot_status", "unknown")) +
+                        "; index URLs accepted: " + str(entry.get("external_rss_urls_accepted", 0)) +
+                        "; these are NOT verified individual pages.")
+        elif entry.get("coverage_note"):
+            rows.append("  Coverage note: " + str(entry["coverage_note"]))
+        if entry.get("source_block_reason"):
+            rows.append("  Access restriction: " + str(entry["source_block_reason"]))
+    rows.extend(["", "Screening summary by source:"])
+    for source, stats in data.get("source_screening", {}).items():
+        rows.append("- " + source + ": " + str(stats["total"]) + " examined; " +
+                    str(stats["verified_prices"]) + " prices and " +
+                    str(stats["verified_distances"]) + " routes verified; " +
+                    str(stats["confirmed_plates"]) + " confirmed plates")
+    rows.extend(["", "AutoWereld public RSS — UNVERIFIED leads (up to 5; not scored or recommended):"])
+    rss_leads = data.get("unverified_rss_leads", [])
+    selected = rss_shortlist(rss_leads, (x["candidate"].get("listing_url") for x in results))
+    if not selected:
+        rows.append("No RSS lead with a stated L2H2/L3H2 body and no obvious budget/body exclusion.")
+    for lead in selected:
+        title = unescape(" ".join(str(lead.get("title", ""))[:220].split()))
+        rows.extend(["- " + title,
+                     "  Seller's advertised price (VAT basis unknown): " +
+                     (("€" + str(rss_price(lead.get("description")))) if rss_price(lead.get("description")) is not None else "unknown"),
+                     "  Listing: " + str(lead.get("url", "")),
+                     "  Status: RSS-only; VAT, distance, registration, availability and conversion suitability unverified."])
+    rows.extend(["RSS leads are excluded from the verified >=90% qualification count.",
+                 "", "Rejected listings and full RDW / APK evidence are retained in screening_results.json (GitHub Actions audit artifact).",
+                 "APK approval is not a mechanical inspection; seller claims are not verified facts."])
+    return "\n".join(rows) + "\n"
 
 if __name__=="__main__":
     ap=argparse.ArgumentParser()

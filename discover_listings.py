@@ -54,6 +54,13 @@ AC = re.compile(r"\b(airco|airconditioning|climate control)\b",re.I)
 CITIES = ("bergen op zoom","roosendaal","zevenbergen","breda","etten-leur","halsteren","steenbergen","tholen","goes","tilburg","dordrecht","rotterdam","oosterhout","hoogerheide","rucphen")
 MAX_BYTES=2600000
 MAX_FETCH_ATTEMPTS=50
+AUTOWERELD_RSS = [
+    "https://www.autowereld.nl/rss/peugeot/boxer/",
+    "https://www.autowereld.nl/rss/ford/transit/",
+    "https://www.autowereld.nl/rss/citroen/jumper/",
+    "https://www.autowereld.nl/rss/fiat/ducato/",
+    "https://www.autowereld.nl/rss/renault/master/",
+]
 
 class LinkCollector(HTMLParser):
     def __init__(self):
@@ -209,6 +216,15 @@ def discover(fetcher=fetch,max_per_source=50):
                             direct_urls.setdefault(url,"")
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
+        if source=="AutoWereld":
+            for feed_url in AUTOWERELD_RSS:
+                try:
+                    rss_xml,_=fetcher(feed_url)
+                    for title,url in search_links(rss_xml):
+                        if valid_url(url,source) and relevant_link(title,url,source):
+                            direct_urls.setdefault(url,title)
+                except Exception as exc:
+                    if len(seed_errors)<4: seed_errors.append("RSS: "+str(exc)[:120])
         query=("site:"+domain+" " if domain else "")+'("L2H2" OR "L3H2") (boxer OR jumper OR ducato OR transit OR master) airco bestelbus'
         if source=="Local dealers": query+=' ("Roosendaal" OR "Breda" OR "Bergen op Zoom")'
         rss="https://www.bing.com/search?"+urlencode({"q":query,"format":"rss"})

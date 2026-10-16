@@ -44,6 +44,46 @@ class DiscoveryTests(unittest.TestCase):
             raise OSError("unused")
         result=discover(fetcher=fake)
         self.assertEqual(result["source_coverage"]["wijkopenautos"]["attempts"],0)
+    def test_remaining_source_detail_url_shapes(self):
+        self.assertTrue(valid_url("https://www.autowereld.nl/peugeot/boxer/333-2-2-hdi-l2h2-42732187/details.html","AutoWereld"))
+        self.assertFalse(valid_url("https://www.autowereld.nl/peugeot/boxer/_energy","AutoWereld"))
+        self.assertTrue(valid_url("https://www.bedrijfsauto.nl/peugeot-boxer-111721152","Bedrijfsauto"))
+        self.assertFalse(valid_url("https://www.bedrijfsauto.nl/lease/calculator","Bedrijfsauto"))
+        self.assertTrue(valid_url("https://www.trucksnl.com/peugeot-boxer-30hdi-9052938-vd","TrucksNL"))
+        self.assertFalse(valid_url("https://www.trucksnl.com/vans-lcvs/peugeot/boxer","TrucksNL"))
+    def test_remaining_sources_do_not_misidentify_inventory(self):
+        from discover_listings import SEED_PAGES
+        for source in ("AutoWereld","Bedrijfsauto","TrucksNL"):
+            self.assertTrue(SEED_PAGES[source])
+        self.assertNotIn("Gaspedaal",SEED_PAGES)
+    def test_autowereld_inventory_yields_vehicle_detail(self):
+        from discover_listings import discover,SEED_PAGES
+        vehicle="https://www.autowereld.nl/peugeot/boxer/333-2-2-hdi-l2h2-42732187/details.html"
+        def fake(url):
+            if "bing.com" in url: return "<rss><channel/></rss>","application/rss+xml"
+            if url==vehicle:return '<title>Peugeot Boxer L2H2</title><p>Airco 7000 euro</p>',"text/html"
+            if url in SEED_PAGES["AutoWereld"]:return '<a href="'+vehicle+'">Peugeot Boxer L2H2</a>',"text/html"
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
+    def test_bedrijfsauto_advert_seed_is_considered(self):
+        from discover_listings import discover,SEED_PAGES
+        url="https://www.bedrijfsauto.nl/peugeot-boxer-111721152"
+        def fake(target):
+            if "bing.com" in target:return "<rss><channel/></rss>","application/rss+xml"
+            if target==url:return '<title>Peugeot Boxer L2H2</title><p>Airco</p>',"text/html"
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(result["source_coverage"]["Bedrijfsauto"]["individual_pages_fetched"],1)
+    def test_trucksnl_403_stops_without_bypass(self):
+        from discover_listings import discover
+        from urllib.error import HTTPError
+        def fake(url):
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            if "trucksnl.com" in url:raise HTTPError(url,403,"Forbidden",{},None)
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        self.assertEqual(result["source_coverage"]["TrucksNL"]["individual_pages_fetched"],0)
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

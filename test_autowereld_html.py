@@ -3,6 +3,25 @@ from xml.etree import ElementTree
 from autowereld_html import html_to_xml
 
 class HtmlToXmlTests(unittest.TestCase):
+    def test_response_identity_distinguishes_real_rss_from_fallback(self):
+        from autowereld_html import response_identity
+        rss='<rss><channel><item><link>https://www.autowereld.nl/peugeot/boxer/l2h2-43922209/details.html</link></item></channel></rss>'
+        fallback='<html><head><title>Service unavailable</title></head><body>Try again</body></html>'
+        actual=response_identity(rss,"application/rss+xml")
+        blocked=response_identity(fallback,"text/html")
+        self.assertEqual(actual["response_class"],"actual_rss")
+        self.assertTrue(actual["has_rss_items"])
+        self.assertTrue(actual["contains_vehicle_detail_url"])
+        self.assertEqual(blocked["response_class"],"html_no_links")
+        self.assertEqual(blocked["html_title"],"Service unavailable")
+        self.assertFalse(blocked["contains_vehicle_detail_url"])
+        self.assertNotEqual(actual["sha256_prefix"],blocked["sha256_prefix"])
+    def test_response_identity_does_not_expose_html_body(self):
+        from autowereld_html import response_identity
+        doc='<html><title>Fallback</title><p>private diagnostic token</p></html>'
+        item=response_identity(doc,"text/html")
+        self.assertNotIn("private diagnostic token",str(item))
+        self.assertEqual(len(item["sha256_prefix"]),16)
     def test_realistic_relative_and_absolute_adverts(self):
         base="https://www.autowereld.nl/rss/peugeot/boxer/"
         page='<html><a href="/peugeot/boxer/l2h2-43922209/details.html">Peugeot Boxer L2H2</a><script>"https://www.autowereld.nl/ford/transit/airco-43913528/details.html"</script></html>'

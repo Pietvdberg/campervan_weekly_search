@@ -62,7 +62,7 @@ def price_evidence(markup,objs):
     Price and VAT context from arbitrary other cards or scripts must not be
     combined. A bare JSON-LD offer price is not evidence of tax treatment.
     """
-    visible = re.sub(r"<(?:script|style)\\b[^>]*>.*?</(?:script|style)>", " ", markup, flags=re.I|re.S)
+    visible = re.sub(r"<(?:script|style)\b[^>]*>.*?</(?:script|style)>", " ", markup, flags=re.I|re.S)
     text=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",visible)).split())
     offer=next((d for d in objs if "price" in d and ("priceCurrency" in d or "priceSpecification" in d)),None)
     offer_amount=parse_amount(offer.get("price")) if offer else None
@@ -80,9 +80,9 @@ def price_evidence(markup,objs):
         after=text[match.end():match.end()+48].lower()
         context=before+" PRICE "+after
         # Explicit seller labels immediately adjacent to this specific amount.
-        excl=bool(re.search(r"(?:excl\\.?|exclusief)\\s*(?:21%\\s*)?(?:btw|vat)",context,re.I))
-        incl=bool(re.search(r"(?:incl\\.?|inclusief)\\s*(?:21%\\s*)?(?:btw|vat)",context,re.I))
-        margin=bool(re.search(r"\\bmarge(?:auto|regeling)?\\b",context,re.I))
+        excl=bool(re.search(r"(?:excl\.?|exclusief)\s*(?:21%\s*)?(?:btw|vat)",context,re.I))
+        incl=bool(re.search(r"(?:incl\.?|inclusief)\s*(?:21%\s*)?(?:btw|vat)",context,re.I))
+        margin=bool(re.search(r"\bmarge(?:auto|regeling)?\b",context,re.I))
         if (excl and incl) or (excl and margin):
             continue
         if excl:
@@ -97,7 +97,7 @@ def price_evidence(markup,objs):
             "basis":"unknown","source":"advertised"}
 
 
-POSTCODE=re.compile(r"\\b([1-9][0-9]{3})\\s?([A-Za-z]{2})\\b")
+POSTCODE=re.compile(r"\b([1-9][0-9]{3})\s?([A-Za-z]{2})\b")
 
 def address_from_structured(objs):
     """Only resolve independently documented full NL postcode + house number."""
@@ -107,7 +107,7 @@ def address_from_structured(objs):
         postcode=str(raw.get("postalCode") or "").upper().replace(" ","")
         number=str(raw.get("streetAddress") or "")
         match=POSTCODE.fullmatch(postcode)
-        house=re.search(r"\\b([1-9]\\d{0,4})\\s*[A-Za-z]?\\s*$",number)
+        house=re.search(r"\b([1-9]\d{0,4})\s*[A-Za-z]?\s*$",number)
         country=str(raw.get("addressCountry") or "NL").upper()
         if isinstance(raw.get("addressCountry"),dict):
             country=str(raw["addressCountry"].get("name") or "").upper()
@@ -129,7 +129,7 @@ def pdok_coordinates(address,fetcher=None):
     for doc in docs:
         found_postcode=str(doc.get("postcode") or "").upper().replace(" ","")
         found_house=str(doc.get("huisnummer") or "")
-        match=re.fullmatch(r"POINT\\s*\\(\\s*([\\d.]+)\\s+([\\d.]+)\\s*\\)",str(doc.get("centroide_ll") or ""))
+        match=re.fullmatch(r"POINT\s*\(\s*([\d.]+)\s+([\d.]+)\s*\)",str(doc.get("centroide_ll") or ""))
         if found_postcode==postcode and found_house==house and match:
             lon,lat=map(float,match.groups())
             if 3.2<=lon<=7.3 and 50.5<=lat<=53.8:return lon,lat

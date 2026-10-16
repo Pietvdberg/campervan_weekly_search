@@ -231,6 +231,25 @@ class DiscoveryTests(unittest.TestCase):
         feed=data["source_coverage"]["AutoWereld"]["feed_diagnostics"][0]
         self.assertTrue(feed["unexpected_html"])
         self.assertFalse(feed["feed_usable"])
+    def test_bedrijfsauto_prefers_adverts_over_more_inventory(self):
+        from discover_listings import SEED_PAGES
+        seed=SEED_PAGES["Bedrijfsauto"][0]
+        ad="https://www.bedrijfsauto.nl/peugeot-boxer-503149760"
+        visited=[]
+        def fake(url):
+            visited.append(url)
+            if url==seed:
+                return '<html><a href="/peugeot-boxer-503149760">Peugeot Boxer L2H2 Airco</a></html>',"text/html"
+            if url==ad:
+                return "<html><title>Peugeot Boxer L2H2 Airco</title></html>","text/html"
+            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
+            if "bedrijfsauto.nl" in url:
+                raise AssertionError("Must check discovered advert before more inventory seeds")
+            raise OSError("offline")
+        data=discover(fetcher=fake)
+        self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["individual_pages_fetched"],1)
+        self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["attempts"],1)
+        self.assertEqual([u for u in visited if "bedrijfsauto.nl" in u],[seed,ad])
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

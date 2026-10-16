@@ -59,6 +59,29 @@ def evaluate(data, rdw_lookup=lookup):
             "source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
             "results":results,"qualifiers":sum(x["qualified"] for x in results)}
 
+
+def dealer_audit_rows(data):
+    """One concise, evidence-preserving row per local-dealer vehicle."""
+    rows=[]
+    for item in data.get("results",[]):
+        c=item["candidate"]
+        if c.get("source")!="Local dealers":
+            continue
+        rows.append({
+            "url":c.get("listing_url"),
+            "name":c.get("name"),
+            "score":item["score"],
+            "price_advertised":c.get("price_advertised"),
+            "price_incl_vat":c.get("price_incl_vat"),
+            "vat_basis":c.get("vat_basis","unknown"),
+            "city_mentioned_not_verified":c.get("city_mentioned"),
+            "verified_driving_distance_km":c.get("distance_km"),
+            "checks":{k:c.get("checks",{}).get(k) for k in REQUIRED},
+            "plate_confirmed_from_listing":bool(item.get("plate")),
+            "blockers":list(item["reasons"]),
+        })
+    return rows
+
 def report(data):
     rows=["Camper van pipeline verification", "Generated: "+data["generated_on"],
           "Verified >=90% qualifiers: "+str(data["qualifiers"]),
@@ -117,3 +140,4 @@ if __name__=="__main__":
     Path("screening_results.json").write_text(json.dumps(result,indent=2,ensure_ascii=False),encoding="utf8")
     Path("report.txt").write_text(report(result),encoding="utf8")
     print("Candidates:",len(result["results"]),"qualifiers:",result["qualifiers"])
+    print("Local dealer vehicle screening:",json.dumps(dealer_audit_rows(result),ensure_ascii=False))

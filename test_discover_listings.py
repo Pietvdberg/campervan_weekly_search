@@ -1,7 +1,14 @@
 import unittest
+from unittest.mock import patch
 from discover_listings import SOURCES,discover,extract,valid_url
 
 class DiscoveryTests(unittest.TestCase):
+    def setUp(self):
+        # Offline synthetic discovery tests must not depend on a snapshot
+        # checked into the repo by the Raspberry Pi collector.
+        self.snapshot_patch=patch('discover_listings.read_snapshot_records',return_value=([], 'not_supplied'))
+        self.snapshot_patch.start()
+        self.addCleanup(self.snapshot_patch.stop)
     def test_three_sources_have_individual_url_patterns(self):
         self.assertTrue(valid_url("https://www.autoscout24.nl/aanbod/peugeot-boxer-l2h2-diesel-wit-76517dc4-5b39-4637-af35-b89dca80173e","AutoScout24"))
         self.assertFalse(valid_url("https://www.autoscout24.nl/lst/peugeot/boxer","AutoScout24"))

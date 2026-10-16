@@ -89,7 +89,7 @@ def clearly_over_budget_title(candidate):
     extraction can select an unrelated amount. Keep full audit and unknown VAT.
     """
     title = unescape(str(candidate.get("name") or ""))
-    matches = re.findall(r"(?:€|EUR)\\s*([\\d.]+(?:,\\d{2})?)", title, re.I)
+    matches = re.findall(r"(?:€|EUR)\s*([\d.]+(?:,\d{2})?)", title, re.I)
     return any(rss_price("Vraagprijs: €" + amount) > 8000 for amount in matches
                if rss_price("Vraagprijs: €" + amount) is not None)
 

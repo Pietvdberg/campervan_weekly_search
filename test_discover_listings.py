@@ -2,6 +2,48 @@ import unittest
 from discover_listings import SOURCES,discover,extract,valid_url
 
 class DiscoveryTests(unittest.TestCase):
+    def test_three_sources_have_individual_url_patterns(self):
+        self.assertTrue(valid_url("https://www.autoscout24.nl/aanbod/peugeot-boxer-l2h2-diesel-wit-76517dc4-5b39-4637-af35-b89dca80173e","AutoScout24"))
+        self.assertFalse(valid_url("https://www.autoscout24.nl/lst/peugeot/boxer","AutoScout24"))
+        self.assertTrue(valid_url("https://www.autotrack.nl/a/peugeot-boxer-diesel-2017-60208674","AutoTrack"))
+        self.assertFalse(valid_url("https://www.autotrack.nl/aanbod/merk/ford/model/transit","AutoTrack"))
+        self.assertTrue(valid_url("https://www.autohero.com/nl/ford-transit/id/5e024f14-ca52-43f4-ac97-249476c32bc3/","wijkopenautos"))
+        self.assertFalse(valid_url("https://www.wijkopenautos.nl/auto-kopen/favorieten/","wijkopenautos"))
+    def test_new_marketplace_seed_pages(self):
+        from discover_listings import SEED_PAGES
+        self.assertIn("https://www.autotrack.nl/aanbod/merk/ford/model/transit",SEED_PAGES["AutoTrack"])
+        self.assertIn("https://www.autoscout24.nl/lst/peugeot/boxer/ve_l2h2",SEED_PAGES["AutoScout24"])
+    def test_direct_three_source_discovery(self):
+        from discover_listings import SEED_PAGES
+        ads={
+            "AutoScout24":"https://www.autoscout24.nl/aanbod/peugeot-boxer-l2h2-diesel-wit-76517dc4-5b39-4637-af35-b89dca80173e",
+            "AutoTrack":"https://www.autotrack.nl/a/peugeot-boxer-diesel-2017-60208674",
+            "wijkopenautos":"https://www.autohero.com/nl/peugeot-boxer/id/5e024f14-ca52-43f4-ac97-249476c32bc3/"
+        }
+        detail="<html><title>Peugeot Boxer L2H2 Airco</title><p>Roosendaal € 7000</p></html>"
+        def fake(url):
+            if "bing.com" in url: return "<rss><channel/></rss>","application/rss+xml"
+            if url in ads.values():return detail,"text/html"
+            for source in ads:
+                if url in SEED_PAGES[source]:
+                    return '<html><a href="'+ads[source]+'">Peugeot Boxer L2H2</a></html>',"text/html"
+            raise OSError("not available")
+        result=discover(fetcher=fake)
+        for source in ads:
+            self.assertEqual(result["source_coverage"][source]["individual_pages_fetched"],1,source)
+        referral=next(x for x in result["candidates"] if x["source"]=="wijkopenautos")
+        self.assertEqual(referral["advertiser"],"Autohero")
+        self.assertEqual(referral["origin_marketplace"],"wijkopenautos")
+    def test_wijkopenautos_irrelevant_referrals_not_accepted(self):
+        from discover_listings import SEED_PAGES
+        url="https://www.autohero.com/nl/fiat-panda/id/5e024f14-ca52-43f4-ac97-249476c32bc3/"
+        def fake(target):
+            if "bing.com" in target:return "<rss><channel/></rss>","application/rss+xml"
+            if target in SEED_PAGES["wijkopenautos"]:
+                return '<html><a href="'+url+'">Fiat Panda</a></html>',"text/html"
+            raise OSError("unused")
+        result=discover(fetcher=fake)
+        self.assertEqual(result["source_coverage"]["wijkopenautos"]["attempts"],0)
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

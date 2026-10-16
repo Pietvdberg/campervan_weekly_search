@@ -23,6 +23,25 @@ class ScreeningTests(unittest.TestCase):
     def test_rdws_success_fixture(self):
         r=evaluate({"candidates":[self.example()]},lambda p:{"vehicle":{"status":"ok","records":[{"tellerstandoordeel":"Logisch"}]}})
         self.assertEqual(r["qualifiers"],1)
+    def test_dealer_audit_preserves_unknown_price_and_distance(self):
+        from camper_pipeline import dealer_screening_audit
+        c=self.example()
+        c.update({"source":"Local dealers","price_advertised":"6500","price_incl_vat":None,
+                  "vat_basis":"unknown","city_mentioned":"Breda"})
+        c["checks"]["price_incl_vat_within_8000"]=None
+        c["checks"]["distance_within_100km"]=None
+        c["checks"]["conversion_suitable"]=None
+        result=evaluate({"candidates":[c]},lambda _:{"vehicle":{"status":"ok","records":[{}]}})
+        audit=result["local_dealer_screening"]
+        self.assertEqual(audit["candidate_count"],1)
+        self.assertEqual(audit["checks"]["price_incl_vat_within_8000"]["unknown"],1)
+        self.assertEqual(audit["checks"]["distance_within_100km"]["unknown"],1)
+        self.assertEqual(audit["checks"]["conversion_suitable"]["unknown"],1)
+        self.assertEqual(audit["vehicles"][0]["seller_city_mentioned_unverified"],"Breda")
+        self.assertEqual(result["qualifiers"],0)
+    def test_dealer_audit_only_includes_dealers(self):
+        data=evaluate({"candidates":[self.example()]},lambda _:{"vehicle":{"status":"ok","records":[{}]}})
+        self.assertEqual(data["local_dealer_screening"]["candidate_count"],0)
     def test_zero_candidates_honesty(self):
         self.assertIn("not proof",report(evaluate({"candidates":[]})))
 if __name__=="__main__":unittest.main()

@@ -99,7 +99,7 @@ def valid_url(url,source):
     if source=="AutoTrack": return "/aanbod/" in path and not any(x in path for x in ("/brandstofsoort/","/carrosserievorm/","/merk/","/prijs/","/bouwjaar/")) and path.count("/")>=3
     if source=="Gaspedaal" and any(path.startswith(p) for p in ("/autobedrijven/","/regio/","/blog/")): return False
     if source=="Gaspedaal" and len([part for part in path.split("/") if part])<3: return False
-    if source=="viaBOVAG" and (path.count("/")<3 or path in ("/auto/nieuw","/auto/occasion","/auto/elektriciteit") or "/merk-" in path or "/model-" in path): return False
+    if source=="viaBOVAG": return bool(re.fullmatch(r"/auto/aanbod/[a-z0-9-]+-[a-z0-9]{6,}",path))
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
     if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False
@@ -107,7 +107,7 @@ def valid_url(url,source):
     if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/") not in ("/auto-kopen","/auto-kopen/favorieten")
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Bedrijfsauto" and ("/lease/" in path or path.rstrip("/") in ("/aanbod","/aanbod/volkswagen","/aanbod/mercedes-benz")): return False
-    if source=="viaBOVAG" and any(x in path for x in ("/kamperen/voertuigsoort-", "/auto/hybride/", "/auto/brandstof/")): return False
+
     return len([s for s in path.split("/") if s])>=2
 
 def relevant_link(title,url,source):

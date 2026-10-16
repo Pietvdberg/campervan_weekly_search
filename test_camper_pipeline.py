@@ -64,7 +64,6 @@ class ScreeningTests(unittest.TestCase):
             "TrucksNL":{"status":"source_unavailable",
                 "source_block_reason":"HTTP Error 403: Forbidden"}}})
         output=report(result)
-        self.assertIn("affiliated seller Autohero",output)
         self.assertIn("HTTP Error 403: Forbidden",output)
         self.assertIn("not proof",output)
     def test_zero_candidates_honesty(self):

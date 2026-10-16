@@ -30,11 +30,11 @@ SOURCES = {
 # Direct category/dealer entry points. A returned page is not proof of complete inventory.
 SEED_PAGES = {
     "Marktplaats": ["https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/boxer+l2h2/","https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/transit+l2h2/"],
-    "Gaspedaal": ["https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod","https://www.gaspedaal.nl/"],
+    "Gaspedaal": ["https://www.gaspedaal.nl/peugeot/boxer","https://www.gaspedaal.nl/ford/transit","https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod"],
     "wijkopenautos": ["https://www.wijkopenautos.nl/auto-kopen/"],
     "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit"],
     "AutoTrack": ["https://www.autotrack.nl/"],
-    "viaBOVAG": ["https://www.viabovag.nl/"],
+    "viaBOVAG": ["https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","https://www.viabovag.nl/auto/merk-ford/model-transit/occasion","https://www.viabovag.nl/"],
     "AutoWereld": ["https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html","https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html"],
     "Bedrijfsauto": ["https://www.bedrijfsauto.nl/"],
     "TrucksNL": ["https://www.trucksnl.com/"],
@@ -98,7 +98,8 @@ def valid_url(url,source):
     if source=="AutoScout24": return path.startswith("/aanbod/") and path.count("/")>=2
     if source=="AutoTrack": return "/aanbod/" in path and not any(x in path for x in ("/brandstofsoort/","/carrosserievorm/","/merk/","/prijs/","/bouwjaar/")) and path.count("/")>=3
     if source=="Gaspedaal" and any(path.startswith(p) for p in ("/autobedrijven/","/regio/","/blog/")): return False
-    if source=="viaBOVAG" and (path.count("/")<3 or path in ("/auto/nieuw","/auto/occasion","/auto/elektriciteit")): return False
+    if source=="Gaspedaal" and len([part for part in path.split("/") if part])<3: return False
+    if source=="viaBOVAG" and (path.count("/")<3 or path in ("/auto/nieuw","/auto/occasion","/auto/elektriciteit") or "/merk-" in path or "/model-" in path): return False
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
     if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False

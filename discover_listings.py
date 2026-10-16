@@ -12,6 +12,7 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
+from autowereld_html import html_to_xml
 from inventory_discovery import crawl as crawl_inventory, classify as classify_inventory
 from browser_render import render as browser_render
 from html.parser import HTMLParser
@@ -20,24 +21,20 @@ from urllib.parse import urljoin,urldefrag
 SOURCES = {
     "Marktplaats": "marktplaats.nl",
     "AutoScout24": "autoscout24.nl",
-    "wijkopenautos": "wijkopenautos.nl",
     "AutoTrack": "autotrack.nl",
     "viaBOVAG": "viabovag.nl",
     "AutoWereld": "autowereld.nl",
     "Bedrijfsauto": "bedrijfsauto.nl",
-    "TrucksNL": "trucksnl.com",
     "Local dealers": None,
 }
 # Direct category/dealer entry points. A returned page is not proof of complete inventory.
 SEED_PAGES = {
     "Marktplaats": ["https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/boxer+l2h2/","https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/transit+l2h2/"],
-    "wijkopenautos": ["https://www.wijkopenautos.nl/auto-kopen/"],
     "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer/ve_l2h2","https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit","https://www.autoscout24.nl/lst/fiat/ducato","https://www.autoscout24.nl/lst/renault/master"],
     "AutoTrack": ["https://www.autotrack.nl/aanbod/merk/peugeot/model/boxer","https://www.autotrack.nl/aanbod/merk/ford/model/transit","https://www.autotrack.nl/aanbod/merk/citroen/model/jumper","https://www.autotrack.nl/aanbod/merk/fiat/model/ducato","https://www.autotrack.nl/aanbod/merk/renault/model/master"],
     "viaBOVAG": ["https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","https://www.viabovag.nl/auto/merk-ford/model-transit/occasion","https://www.viabovag.nl/"],
     "AutoWereld": ["https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise-43911117/details.html","https://www.autowereld.nl/peugeot/boxer/_energy","https://www.autowereld.nl/ford/transit/","https://www.autowereld.nl/citroen/jumper/","https://www.autowereld.nl/fiat/ducato/","https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html"],
     "Bedrijfsauto": ["https://www.bedrijfsauto.nl/aanbod/peugeot/boxer","https://www.bedrijfsauto.nl/aanbod/ford/transit","https://www.bedrijfsauto.nl/aanbod/fiat/ducato","https://www.bedrijfsauto.nl/aanbod/citroen/jumper","https://www.bedrijfsauto.nl/aanbod/renault/master","https://www.bedrijfsauto.nl/peugeot-boxer-111721152"],
-    "TrucksNL": ["https://www.trucksnl.com/box-van/peugeot","https://www.trucksnl.com/box-van/ford"],
     "Local dealers": [
         "https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html",
         "https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html",
@@ -98,8 +95,6 @@ def valid_url(url,source):
     host=(parsed.hostname or "").lower()
     domain=SOURCES[source]
     if parsed.scheme!="https": return False
-    if source=="wijkopenautos" and host=="www.autohero.com":
-        return bool(re.fullmatch(r"/nl/[^/]+/id/[0-9a-f-]{36}/?",parsed.path.lower()))
     if domain and not (host==domain or host.endswith("."+domain)): return False
     if source=="Local dealers" and not any(host == d or host.endswith("."+d) for d in ("autowereld.nl","vanmossel.nl")): return False
     path=parsed.path.lower()
@@ -108,7 +103,6 @@ def valid_url(url,source):
     if source=="AutoTrack": return bool(re.fullmatch(r"/a/[a-z0-9-]+-\d{6,}/?",path))
     if source=="AutoWereld": return bool(re.fullmatch(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",path))
     if source=="Bedrijfsauto": return bool(re.fullmatch(r"/[a-z0-9-]+-\d{7,}",path))
-    if source=="TrucksNL": return bool(re.fullmatch(r"/[a-z0-9-]+-\d{6,}-vd",path))
     if source=="viaBOVAG": return classify_inventory(url,source)=="detail"
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
@@ -117,7 +111,6 @@ def valid_url(url,source):
     if source=="Local dealers" and host.endswith("vanmossel.nl"):
         # Dealer stock URLs must be vehicle-specific; branch and inventory pages are not listings.
         return bool(re.fullmatch(r"/[a-z0-9-]+/(?:voorraad|occasions)/\d{6,}-[a-z0-9-]+/?",path))
-    if source=="wijkopenautos": return False  # Its individual sales cards are Autohero referrals.
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Bedrijfsauto" and ("/lease/" in path or path.rstrip("/") in ("/aanbod","/aanbod/volkswagen","/aanbod/mercedes-benz")): return False
 
@@ -135,7 +128,7 @@ def is_vehicle_detail(url, source, markup):
     structured Car/Vehicle object or an explicitly labeled registration plate.
     Search-result grids and model directories do not satisfy this gate.
     """
-    if source in ("Marktplaats","AutoTrack","AutoScout24","wijkopenautos","AutoWereld","Bedrijfsauto","TrucksNL","Local dealers"):
+    if source in ("Marktplaats","AutoTrack","AutoScout24","AutoWereld","Bedrijfsauto","Local dealers"):
         # These strict vehicle-specific URLs identify an individual advert.
         return valid_url(url,source)
     types={"vehicle","car","product"}
@@ -231,7 +224,7 @@ def discover(fetcher=fetch,max_per_source=50):
                 for label, href in parser.links:
                     url = urldefrag(urljoin(seed, href))[0]
                     if valid_url(url,source) and relevant_link(label,url,source): direct_urls.setdefault(url,label)
-                if source in ("AutoScout24","AutoTrack","AutoWereld","Bedrijfsauto","TrucksNL"):
+                if source in ("AutoScout24","AutoTrack","AutoWereld","Bedrijfsauto"):
                     # Public application state can include advert URLs absent from anchors.
                     # Only accept source-specific detail URL shapes, never search URLs.
                     for raw in re.findall(r"(?:https?://[^\"\s<>]+|/(?:aanbod|a)/[^\"\s<>]+)",page)[:2500]:
@@ -246,7 +239,7 @@ def discover(fetcher=fetch,max_per_source=50):
                     break
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
-                if source in ("Bedrijfsauto","TrucksNL") and ("429" in str(exc) or "403" in str(exc)):
+                if source=="Bedrijfsauto" and ("429" in str(exc) or "403" in str(exc)):
                     source_blocked=True
                     source_block_reason=str(exc)[:140]
         feed_diagnostics=[]
@@ -258,11 +251,16 @@ def discover(fetcher=fetch,max_per_source=50):
                 try:
                     rss_xml,feed_content_type=fetcher(feed_url)
                     xml_error=None
-                    try:
-                        feed_items=search_links(rss_xml) if "xml" in feed_content_type.lower() or "rss" in feed_content_type.lower() else []
-                    except ET.ParseError as exc:
-                        feed_items=[]
-                        xml_error=str(exc)[:120]
+                    html_recovery={"html_anchors":0,"verified_advert_links":0,"conversion_usable":False}
+                    if "html" in feed_content_type.lower():
+                        normalized_xml,html_recovery=html_to_xml(rss_xml,feed_url)
+                        feed_items=search_links(normalized_xml)
+                    else:
+                        try:
+                            feed_items=search_links(rss_xml)
+                        except ET.ParseError as exc:
+                            feed_items=[]
+                            xml_error=str(exc)[:120]
                     # A source may return a nominally valid document without
                     # conventional <item> elements. Recover literal advert URLs
                     # in BOTH cases, with first-party /details.html validation.
@@ -278,6 +276,7 @@ def discover(fetcher=fetch,max_per_source=50):
                         "xml_items":len(feed_items),"recovered_urls":len(recovered),
                         "accepted_new_urls":len(direct_urls)-before,
                         "xml_error":xml_error,
+                        "html_conversion":html_recovery,
                         "unexpected_html":("html" in feed_content_type.lower()),
                         "feed_usable":bool(feed_items or recovered)})
                 except Exception as exc:
@@ -316,7 +315,6 @@ def discover(fetcher=fetch,max_per_source=50):
                         rendered,_=browser_render(url)
                         item=extract(title,url,source,rendered)
                     if item:
-                        if source=="wijkopenautos": item["origin_marketplace"]="wijkopenautos";item["advertiser"]="Autohero"
                         candidates.append(item);found+=1
                     elif len(samples)<3: samples.append({"reason":"individual vehicle evidence missing or wrong model","url":url[:250]})
                 except Exception as exc:
@@ -324,7 +322,6 @@ def discover(fetcher=fetch,max_per_source=50):
                     if "429" in str(exc): rate_limited=True
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
             status=("individual_pages_found" if found else
-                    "not_a_vehicle_sales_marketplace" if source=="wijkopenautos" and seed_success>0 else
                     "source_unavailable" if source_blocked or seed_success==0 else
                     "inventory_only_unverified" if inventory_stats is not None else
                     "no_verified_individual_pages")
@@ -335,10 +332,8 @@ def discover(fetcher=fetch,max_per_source=50):
                               "inventory_diagnostics":inventory_stats["inventory_diagnostics"] if inventory_stats else [],
                               "inventory_links":anchor_count,"response_diagnostics":response_diagnostics,
                               "direct_eligible_urls":len(direct_urls),
-                              "referral_target":"Autohero" if source=="wijkopenautos" else None,
                               "inventory_errors":seed_errors,"source_block_reason":source_block_reason,
-                              "coverage_note":("wijkopenautos operates a vehicle purchasing service; its affiliated sales service is Autohero. No directly validated qualifying van sales inventory." if source=="wijkopenautos" else
-                                               "Source returned a 403/429 access restriction; no claim of zero inventory." if source_blocked else
+                              "coverage_note":("Source returned a 403/429 access restriction; no claim of zero inventory." if source_blocked else
                                                "AutoWereld inventory/RSS returned HTML without discoverable advert links; content could be fallback or access page." if source=="AutoWereld" and not found else None),
                               "feed_diagnostics":feed_diagnostics,
                               "index_error":index_error,

@@ -195,7 +195,7 @@ def report(data):
         for item in sorted(qualified, key=interest, reverse=True):
             render_item(item)
     else:
-        rows.append("None verified. This does not establish that none are for sale.")
+        rows.append("None verified. This is not proof that none are for sale.")
     rows.extend(["", "POTENTIAL MATCH — UNVERIFIED (up to 5):"])
     if potential:
         for item in potential:
@@ -214,6 +214,8 @@ def report(data):
                     " discovered | " + str(entry.get("status", "unknown")))
         if source == "AutoWereld":
             rows.append("  Direct GitHub-hosted page validation is separate from external Raspberry Pi RSS collection.")
+            if entry.get("coverage_note") and not entry.get("external_rss_urls_accepted"):
+                rows.append("  Coverage note: " + str(entry["coverage_note"]))
             rows.append("  External RSS status: " + str(entry.get("external_rss_snapshot_status", "unknown")) +
                         "; index URLs accepted: " + str(entry.get("external_rss_urls_accepted", 0)) +
                         "; these are NOT verified individual pages.")

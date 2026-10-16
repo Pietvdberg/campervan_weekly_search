@@ -24,6 +24,17 @@ class ExtractionTests(unittest.TestCase):
         from marketplace_links import diagnostics
         data='<script>{"url":"/aanbod/peugeot-boxer-diesel-wit-76517dc4-5b39-4637-af35-b89dca80173e"}</script>'
         self.assertIn("/aanbod/peugeot-boxer",diagnostics(data,"https://www.autoscout24.nl/lst/peugeot/boxer","AutoScout24")["offer_path_samples"][0])
+    def test_real_autoscout_category_token_from_live_inventory(self):
+        from discover_listings import valid_url
+        advert="https://www.autoscout24.nl/aanbod/peugeot-boxer-2-2-bluehdi-140pk-l2h2-airco-3-zits-parkeers-diesel-wit-cat_ma55mo14821-f3be56f9-77e9-4580-9feb-f73915a0af8a"
+        self.assertTrue(valid_url(advert,"AutoScout24"))
+        self.assertTrue(source_detail(advert,"AutoScout24"))
+        page='<script id="__NEXT_DATA__">{"listingUrl":"/aanbod/peugeot-boxer-2-2-bluehdi-140pk-l2h2-airco-3-zits-parkeers-diesel-wit-cat_ma55mo14821-f3be56f9-77e9-4580-9feb-f73915a0af8a#vehicle"}</script>'
+        found=extract(page,"https://www.autoscout24.nl/lst/peugeot/boxer","AutoScout24")
+        self.assertEqual([url for _,url in found],[advert])
+    def test_autoscout_category_token_does_not_allow_external_host(self):
+        advert="https://www.autoscout24.nl.attacker.example/aanbod/peugeot-boxer-cat_ma55mo14821-f3be56f9-77e9-4580-9feb-f73915a0af8a"
+        self.assertFalse(source_detail(advert,"AutoScout24"))
     def test_scout_anchor(self):
         markup='<a href="'+SCOUT+'">Peugeot Boxer L2H2</a>'
         self.assertEqual(len(extract(markup,"https://www.autoscout24.nl/lst/peugeot/boxer","AutoScout24")),1)

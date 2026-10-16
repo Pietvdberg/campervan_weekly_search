@@ -226,7 +226,7 @@ def discover(fetcher=fetch,max_per_source=50):
                         # AutoWereld can publish malformed item descriptions.
                         # Recover only exact, first-party advert links, not arbitrary HTML.
                         feed_items=[("",html.unescape(u)) for u in re.findall(
-                            r"https://(?:www\\.)?autowereld\\.nl/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\\d+/details\\.html",
+                            r"https://(?:www\.)?autowereld\.nl/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",
                             rss_xml,re.I)]
                     for title,url in feed_items:
                         if valid_url(url,source) and relevant_link(title,url,source):

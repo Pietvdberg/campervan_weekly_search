@@ -99,7 +99,7 @@ def valid_url(url,source):
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
     if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False
-        if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/") not in ("/auto-kopen","/auto-kopen/favorieten")
+    if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/") not in ("/auto-kopen","/auto-kopen/favorieten")
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Bedrijfsauto" and ("/lease/" in path or path.rstrip("/") in ("/aanbod","/aanbod/volkswagen","/aanbod/mercedes-benz")): return False
 

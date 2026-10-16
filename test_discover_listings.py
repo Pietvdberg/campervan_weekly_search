@@ -31,11 +31,9 @@ class DiscoveryTests(unittest.TestCase):
     def test_remaining_source_detail_url_shapes(self):
         self.assertTrue(valid_url("https://www.autowereld.nl/peugeot/boxer/333-2-2-hdi-l2h2-42732187/details.html","AutoWereld"))
         self.assertFalse(valid_url("https://www.autowereld.nl/peugeot/boxer/_energy","AutoWereld"))
-        self.assertTrue(valid_url("https://www.bedrijfsauto.nl/peugeot-boxer-111721152","Bedrijfsauto"))
-        self.assertFalse(valid_url("https://www.bedrijfsauto.nl/lease/calculator","Bedrijfsauto"))
     def test_remaining_sources_do_not_misidentify_inventory(self):
         from discover_listings import SEED_PAGES
-        for source in ("AutoWereld","Bedrijfsauto"):
+        for source in ("AutoWereld",):
             self.assertTrue(SEED_PAGES[source])
         self.assertNotIn("Gaspedaal",SEED_PAGES)
     def test_autowereld_inventory_yields_vehicle_detail(self):
@@ -51,15 +49,6 @@ class DiscoveryTests(unittest.TestCase):
         with patch.dict(SEED_PAGES, {"AutoWereld":[u for u in SEED_PAGES["AutoWereld"] if u != "https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise-43911117/details.html"]}):
             result=discover(fetcher=fake)
         self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
-    def test_bedrijfsauto_advert_seed_is_considered(self):
-        from discover_listings import discover,SEED_PAGES
-        url="https://www.bedrijfsauto.nl/peugeot-boxer-111721152"
-        def fake(target):
-            if "bing.com" in target:return "<rss><channel/></rss>","application/rss+xml"
-            if target==url:return '<title>Peugeot Boxer L2H2</title><p>Airco</p>',"text/html"
-            raise OSError("offline")
-        result=discover(fetcher=fake)
-        self.assertEqual(result["source_coverage"]["Bedrijfsauto"]["individual_pages_fetched"],1)
     def test_autowereld_rss_discovery_without_html_cards(self):
         from discover_listings import discover, AUTOWERELD_RSS
         url="https://www.autowereld.nl/peugeot/boxer/335-l2h2-airco-43861106/details.html"
@@ -144,33 +133,6 @@ class DiscoveryTests(unittest.TestCase):
         good="https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad/225359584-1-volkswagen-crafter-35-20-tdi-l3h2-comfortline-diesel-2020"
         self.assertTrue(valid_url(good,"Local dealers"))
         self.assertFalse(valid_url("https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad","Local dealers"))
-    def test_bedrijfsauto_model_inventory_discovers_individual_advert(self):
-        from discover_listings import SEED_PAGES
-        model="https://www.bedrijfsauto.nl/aanbod/peugeot/boxer"
-        ad="https://www.bedrijfsauto.nl/peugeot-boxer-503149760"
-        self.assertIn(model,SEED_PAGES["Bedrijfsauto"])
-        self.assertFalse(valid_url(model,"Bedrijfsauto"))
-        def fake(url):
-            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
-            if url==model:return '<a href="/peugeot-boxer-503149760">Peugeot Boxer L1H2 Airco</a>',"text/html"
-            if url==ad:return "<html><title>Peugeot Boxer L1H2 Airco</title></html>","text/html"
-            raise OSError("unavailable")
-        data=discover(fetcher=fake)
-        self.assertIn(ad,[v["listing_url"] for v in data["candidates"]])
-    def test_bedrijfsauto_inventory_429_stops_subsequent_inventory_requests(self):
-        from discover_listings import SEED_PAGES
-        from urllib.error import HTTPError
-        visits=[]
-        def fake(url):
-            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
-            if "bedrijfsauto.nl" in url:
-                visits.append(url)
-                raise HTTPError(url,429,"Too Many Requests",{},None)
-            raise OSError("offline")
-        data=discover(fetcher=fake)
-        self.assertEqual(visits,[SEED_PAGES["Bedrijfsauto"][0]])
-        self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["source_block_reason"][:14],"HTTP Error 429")
-        self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["attempts"],0)
     def test_autowereld_html_feed_is_not_misrepresented_as_rss(self):
         from discover_listings import AUTOWERELD_RSS,SEED_PAGES
         def fake(url):
@@ -181,26 +143,6 @@ class DiscoveryTests(unittest.TestCase):
         feed=data["source_coverage"]["AutoWereld"]["feed_diagnostics"][0]
         self.assertTrue(feed["unexpected_html"])
         self.assertFalse(feed["feed_usable"])
-    def test_bedrijfsauto_prefers_adverts_over_more_inventory(self):
-        from discover_listings import SEED_PAGES
-        seed=SEED_PAGES["Bedrijfsauto"][0]
-        ad="https://www.bedrijfsauto.nl/peugeot-boxer-503149760"
-        visited=[]
-        def fake(url):
-            visited.append(url)
-            if url==seed:
-                return '<html><a href="/peugeot-boxer-503149760">Peugeot Boxer L2H2 Airco</a></html>',"text/html"
-            if url==ad:
-                return "<html><title>Peugeot Boxer L2H2 Airco</title></html>","text/html"
-            if "bing.com" in url:return "<rss><channel/></rss>","application/rss+xml"
-            if "bedrijfsauto.nl" in url:
-                raise AssertionError("Must check discovered advert before more inventory seeds")
-            raise OSError("offline")
-        data=discover(fetcher=fake)
-        self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["individual_pages_fetched"],1)
-        self.assertEqual(data["source_coverage"]["Bedrijfsauto"]["attempts"],1)
-        from urllib.parse import urlparse
-        self.assertEqual([u for u in visited if urlparse(u).hostname=="www.bedrijfsauto.nl"],[seed,ad])
     def test_autowereld_html_feed_link_conversion(self):
         from discover_listings import AUTOWERELD_RSS,SEED_PAGES
         target="https://www.autowereld.nl/peugeot/boxer/l2h2-airco-43922209/details.html"
@@ -222,15 +164,15 @@ class DiscoveryTests(unittest.TestCase):
         result=discover(fetcher=fake)
         self.assertEqual(result["source_coverage"]["AutoWereld"]["feed_diagnostics"][0]["html_conversion"]["verified_advert_links"],0)
         self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],0)
-    def test_seven_sources(self):
-        self.assertEqual(len(SOURCES),7)
+    def test_six_sources(self):
+        self.assertEqual(len(SOURCES),6)
         self.assertNotIn("wijkopenautos",SOURCES)
         self.assertNotIn("TrucksNL",SOURCES)
+        self.assertNotIn("Bedrijfsauto",SOURCES)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))
     def test_all_sources_present(self):
         self.assertIn("AutoWereld",SOURCES)
-        self.assertIn("Bedrijfsauto",SOURCES)
     def test_wrong_host(self): self.assertFalse(valid_url("https://evil.test/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))
     def test_vat_and_distance_unknown(self):
         c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",
@@ -241,7 +183,7 @@ class DiscoveryTests(unittest.TestCase):
     def test_missing_sources_reported(self):
         def error(url): raise OSError("offline")
         d=discover(fetcher=error)
-        self.assertEqual(len(d["source_coverage"]),7)
+        self.assertEqual(len(d["source_coverage"]),6)
         self.assertTrue(all(v["status"] in ("unavailable","source_unavailable") for v in d["source_coverage"].values()))
     def test_missing_payload_cannot_be_claimed_suitable(self):
         c=extract("Peugeot Boxer L2H2 airco","https://www.marktplaats.nl/v/auto-s/bestelauto-s/m12345-test",
@@ -289,7 +231,6 @@ class DiscoveryTests(unittest.TestCase):
         self.assertNotIn("Gaspedaal",SOURCES)
         self.assertIn("https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion",SEED_PAGES["viaBOVAG"])
     def test_auxiliary_pages_rejected(self):
-        self.assertFalse(valid_url("https://www.bedrijfsauto.nl/lease/calculator","Bedrijfsauto"))
         self.assertFalse(valid_url("https://www.gaspedaal.nl/regio/occasions-almere","Local dealers"))
     def test_category_pages_not_candidate_listings(self):
         self.assertFalse(valid_url("https://www.autotrack.nl/aanbod/carrosserievorm/suv","AutoTrack"))

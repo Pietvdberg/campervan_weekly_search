@@ -1,0 +1,22 @@
+name: Marketplace pull request tests
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'discover_listings.py'
+      - 'marketplace_links.py'
+      - 'test_marketplace_links.py'
+      - 'test_discover_listings.py'
+      - '.github/workflows/marketplace-pr-tests.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify compilation and unit tests without live scraping
+        run: |
+          python3 -m compileall -q marketplace_links.py discover_listings.py inventory_discovery.py listing_evidence.py
+          python3 -m unittest -v test_marketplace_links.py test_discover_listings.py test_inventory_discovery.py

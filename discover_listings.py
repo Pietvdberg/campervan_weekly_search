@@ -13,6 +13,7 @@ import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from autowereld_html import html_to_xml, response_identity
+from autowereld_snapshot import read_snapshot
 from inventory_discovery import crawl as crawl_inventory, classify as classify_inventory
 from browser_render import render as browser_render
 from html.parser import HTMLParser
@@ -232,7 +233,14 @@ def discover(fetcher=fetch,max_per_source=50):
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
         feed_diagnostics=[]
+        snapshot_status="not_applicable"
+        snapshot_urls=0
         if source=="AutoWereld":
+            snapshot, snapshot_status=read_snapshot(os.environ.get("AUTOWERELD_RSS_SNAPSHOT","data/autowereld_rss_snapshot.json"))
+            for url,title in snapshot:
+                if valid_url(url,source) and relevant_link(title,url,source):
+                    direct_urls.setdefault(url,title)
+                    snapshot_urls+=1
             advert_pattern=re.compile(
                 r"https://(?:www\.)?autowereld\.nl/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",
                 re.I)
@@ -326,6 +334,9 @@ def discover(fetcher=fetch,max_per_source=50):
                               "coverage_note":("Source returned a 403/429 access restriction; no claim of zero inventory." if source_blocked else
                                                "AutoWereld inventory/RSS returned HTML without discoverable advert links; content could be fallback or access page." if source=="AutoWereld" and not found else None),
                               "feed_diagnostics":feed_diagnostics,
+                              "external_rss_snapshot_status":snapshot_status,
+                              "external_rss_urls_accepted":snapshot_urls,
+                              "external_rss_evidence":"index-only; individual listing page still must be independently fetched and validated" if snapshot_urls else None,
                               "index_error":index_error,
                               "index_hits":len(hits),"detail_urls_discovered":len(direct_urls),"eligible_urls":matched,
                               "attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,

@@ -31,8 +31,8 @@ SOURCES = {
 SEED_PAGES = {
     "Marktplaats": ["https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/boxer+l2h2/","https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/transit+l2h2/"],
     "wijkopenautos": ["https://www.wijkopenautos.nl/auto-kopen/"],
-    "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit"],
-    "AutoTrack": ["https://www.autotrack.nl/"],
+    "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer/ve_l2h2","https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit"],
+    "AutoTrack": ["https://www.autotrack.nl/aanbod/merk/peugeot/model/boxer","https://www.autotrack.nl/aanbod/merk/ford/model/transit","https://www.autotrack.nl/aanbod/merk/citroen/model/jumper","https://www.autotrack.nl/aanbod/merk/fiat/model/ducato","https://www.autotrack.nl/aanbod/merk/renault/model/master"],
     "viaBOVAG": ["https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","https://www.viabovag.nl/auto/merk-ford/model-transit/occasion","https://www.viabovag.nl/"],
     "AutoWereld": ["https://www.autowereld.nl/aanbieder/bedrijfswagencentrum-roosendaal-b-v-6035/auto.html","https://www.autowereld.nl/aanbieder/mana-bedrijfswagens-910447/auto.html"],
     "Bedrijfsauto": ["https://www.bedrijfsauto.nl/"],
@@ -89,17 +89,19 @@ def valid_url(url,source):
     host=(parsed.hostname or "").lower()
     domain=SOURCES[source]
     if parsed.scheme!="https": return False
+    if source=="wijkopenautos" and host=="www.autohero.com":
+        return bool(re.fullmatch(r"/nl/[^/]+/id/[0-9a-f-]{36}/?",parsed.path.lower()))
     if domain and not (host==domain or host.endswith("."+domain)): return False
     if source=="Local dealers" and not any(host == d or host.endswith("."+d) for d in ("autowereld.nl","vanmossel.nl")): return False
     path=parsed.path.lower()
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
-    if source=="AutoScout24": return path.startswith("/aanbod/") and path.count("/")>=2
-    if source=="AutoTrack": return "/aanbod/" in path and not any(x in path for x in ("/brandstofsoort/","/carrosserievorm/","/merk/","/prijs/","/bouwjaar/")) and path.count("/")>=3
+    if source=="AutoScout24": return bool(re.fullmatch(r"/aanbod/[a-z0-9-]+-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}/?",path))
+    if source=="AutoTrack": return bool(re.fullmatch(r"/a/[a-z0-9-]+-\d{6,}/?",path))
     if source=="viaBOVAG": return classify_inventory(url,source)=="detail"
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Local dealers" and ("/regio/" in path or "/blog/" in path): return False
     if source=="Local dealers" and host.endswith("vanmossel.nl") and "/vestigingen/" in path: return False
-    if source=="wijkopenautos": return "/auto-kopen/" in path and path.rstrip("/") not in ("/auto-kopen","/auto-kopen/favorieten")
+    if source=="wijkopenautos": return False  # Its individual sales cards are Autohero referrals.
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
     if source=="Bedrijfsauto" and ("/lease/" in path or path.rstrip("/") in ("/aanbod","/aanbod/volkswagen","/aanbod/mercedes-benz")): return False
 
@@ -117,8 +119,9 @@ def is_vehicle_detail(url, source, markup):
     structured Car/Vehicle object or an explicitly labeled registration plate.
     Search-result grids and model directories do not satisfy this gate.
     """
-    if source=="Marktplaats":
-        return True  # Marktplaats /v/.../m<ID> is a specific advert URL.
+    if source in ("Marktplaats","AutoTrack","AutoScout24","wijkopenautos"):
+        # These strict vehicle-specific URLs identify an individual advert.
+        return valid_url(url,source)
     types={"vehicle","car","product"}
     nodes=structured(markup)
     vehicles=[]
@@ -191,6 +194,14 @@ def discover(fetcher=fetch,max_per_source=50):
                 for label, href in parser.links:
                     url = urldefrag(urljoin(seed, href))[0]
                     if valid_url(url,source) and relevant_link(label,url,source): direct_urls.setdefault(url,label)
+                if source in ("AutoScout24","AutoTrack"):
+                    # Public application state can include advert URLs absent from anchors.
+                    # Only accept source-specific detail URL shapes, never search URLs.
+                    for raw in re.findall(r"(?:https?://[^\"\s<>]+|/(?:aanbod|a)/[^\"\s<>]+)",page)[:2500]:
+                        url=urldefrag(urljoin(seed,html.unescape(raw).replace("\\/","/")))[0]
+                        url=url.split("?")[0]
+                        if valid_url(url,source) and relevant_link("",url,source):
+                            direct_urls.setdefault(url,"")
             except Exception as exc:
                 if len(seed_errors)<4: seed_errors.append(str(exc)[:140])
         query=("site:"+domain+" " if domain else "")+'("L2H2" OR "L3H2") (boxer OR jumper OR ducato OR transit OR master) airco bestelbus'
@@ -225,7 +236,9 @@ def discover(fetcher=fetch,max_per_source=50):
                     if item is None and os.environ.get("ENABLE_BROWSER_RENDER")=="1" and "__NEXT_DATA__" in markup:
                         rendered,_=browser_render(url)
                         item=extract(title,url,source,rendered)
-                    if item: candidates.append(item);found+=1
+                    if item:
+                        if source=="wijkopenautos": item["origin_marketplace"]="wijkopenautos";item["advertiser"]="Autohero"
+                        candidates.append(item);found+=1
                     elif len(samples)<3: samples.append({"reason":"individual vehicle evidence missing or wrong model","url":url[:250]})
                 except Exception as exc:
                     failures+=1
@@ -241,6 +254,7 @@ def discover(fetcher=fetch,max_per_source=50):
                               "inventory_pages_pending":inventory_stats["inventory_pending"] if inventory_stats else None,
                               "inventory_diagnostics":inventory_stats["inventory_diagnostics"] if inventory_stats else [],
                               "inventory_links":anchor_count,"direct_eligible_urls":len(direct_urls),
+                              "referral_target":"Autohero" if source=="wijkopenautos" else None,
                               "inventory_errors":seed_errors,"index_error":index_error,
                               "index_hits":len(hits),"detail_urls_discovered":len(direct_urls),"eligible_urls":matched,
                               "attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,

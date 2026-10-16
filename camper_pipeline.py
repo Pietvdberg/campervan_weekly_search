@@ -44,7 +44,17 @@ def report(data):
           "Discovery: "+data.get("discovery_method","not performed"),
           "CAUTION: index results are incomplete; listing and location claims are unverified.",
           "", "Source coverage:"]
-    rows += ["- "+s+": "+str(data["source_coverage"].get(s,"not checked")) for s in SOURCES]
+    for source in SOURCES:
+        entry=data["source_coverage"].get(source,{})
+        if not isinstance(entry,dict):
+            rows.append("- "+source+": not checked")
+            continue
+        rows.append("- "+source+": "+str(entry.get("status","unknown"))+
+                    " | inventory pages checked: "+str(entry.get("inventory_pages_checked","unknown"))+
+                    " | individual URLs discovered: "+str(entry.get("detail_urls_discovered","unknown"))+
+                    " | actual vehicle pages validated: "+str(entry.get("individual_pages_fetched",0)))
+        if entry.get("status") != "individual_pages_found":
+            rows.append("  No verified individual adverts from this source is NOT proof of zero inventory.")
     rows.append("\nRanked candidates / watchlist / rejections:")
     for item in sorted(data["results"],key=lambda x:x["score"],reverse=True):
         c=item["candidate"]

@@ -15,6 +15,7 @@ from listing_evidence import structured
 MODELS=re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|nv400)\b",re.I)
 NEXT=re.compile(r"\b(volgende|next|volgende pagina|toon meer)\b",re.I)
 MAX_INVENTORY_PAGES=24
+CONFIGURATION=re.compile(r"^(?:l[1-5][-/]?h[1-4]|h[1-4]|l[1-5]|occasion|occasions|diesel|benzine|elektrisch|automaat|handgeschakeld|bedrijfswagen|nieuw|tweedehands)$",re.I)
 MAX_VEHICLE_URLS=500
 
 class Anchors(HTMLParser):
@@ -51,12 +52,15 @@ def classify(url,source):
         if path.startswith(("/blog","/regio","/autobedrijven","/over-ons","/contact")):
             return None
         # Gaspedaal category routes: /peugeot/boxer, /auto/peugeot/boxer.
+        # Roof-size and fuel filters are inventory, never individual adverts.
+        if parts and CONFIGURATION.fullmatch(parts[-1]):
+            return "inventory" if MODELS.search(path) else None
         # A deeper URL is only a detail *candidate*, requiring vehicle-level
         # evidence when fetched.
         if len(parts)>=3 and parts[0]=="auto" and MODELS.search(path):
-            return "detail" if len(parts)>=4 else "inventory"
+            return "detail" if len(parts)>=4 and not CONFIGURATION.fullmatch(parts[-1]) else "inventory"
         if len(parts)>=2 and MODELS.search(path):
-            return "detail" if len(parts)>=3 else "inventory"
+            return "detail" if len(parts)>=3 and not CONFIGURATION.fullmatch(parts[-1]) else "inventory"
         return None
     if source=="viaBOVAG":
         if re.fullmatch(r"/auto/aanbod/[a-z0-9-]+-[a-z0-9]{6,}",path):

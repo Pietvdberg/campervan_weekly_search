@@ -6,6 +6,10 @@ DETAIL="https://www.gaspedaal.nl/auto/peugeot/boxer/offer-12345"
 OTHER="https://www.gaspedaal.nl/auto/ford/transit/offer-54321"
 
 class InventoryTests(unittest.TestCase):
+    def test_configuration_filters_are_inventory(self):
+        for term in ("l1h1","l1h2","l2h2","l3h2","l4h3","diesel","occasion"):
+            self.assertEqual(classify("https://www.gaspedaal.nl/peugeot/boxer/"+term,"Gaspedaal"),"inventory")
+            self.assertEqual(classify("https://www.gaspedaal.nl/auto/peugeot/boxer/"+term,"Gaspedaal"),"inventory")
     def test_category_not_advert(self):
         self.assertEqual(classify(ROOT,"Gaspedaal"),"inventory")
         self.assertEqual(classify("https://www.gaspedaal.nl/auto/peugeot/boxer","Gaspedaal"),"inventory")

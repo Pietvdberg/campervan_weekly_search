@@ -31,7 +31,7 @@ SOURCES = {
 # Direct category/dealer entry points. A returned page is not proof of complete inventory.
 SEED_PAGES = {
     "Marktplaats": ["https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/boxer+l2h2/","https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/transit+l2h2/"],
-    "Gaspedaal": ["https://www.gaspedaal.nl/peugeot/boxer","https://www.gaspedaal.nl/ford/transit","https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod"],
+    "Gaspedaal": ["https://www.gaspedaal.nl/peugeot/boxer/l2h2","https://www.gaspedaal.nl/peugeot/boxer/l3h2","https://www.gaspedaal.nl/peugeot/boxer","https://www.gaspedaal.nl/ford/transit","https://www.gaspedaal.nl/autobedrijven/bedrijfswagencentrum-roosendaal-b-v/aanbod"],
     "wijkopenautos": ["https://www.wijkopenautos.nl/auto-kopen/"],
     "AutoScout24": ["https://www.autoscout24.nl/lst/peugeot/boxer","https://www.autoscout24.nl/lst/ford/transit"],
     "AutoTrack": ["https://www.autotrack.nl/"],

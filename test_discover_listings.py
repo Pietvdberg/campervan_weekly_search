@@ -46,6 +46,15 @@ class DiscoveryTests(unittest.TestCase):
         self.assertFalse(relevant_link("Audi A3","https://www.gaspedaal.nl/audi/a3","Gaspedaal"))
         self.assertFalse(relevant_link("Regional occasions","https://www.gaspedaal.nl/regio/occasions-alkmaar","Local dealers"))
         self.assertTrue(relevant_link("Peugeot Boxer L2H2","https://www.gaspedaal.nl/peugeot/boxer","Gaspedaal"))
+    def test_gaspedaal_model_page_is_not_individual_listing(self):
+        self.assertFalse(valid_url("https://www.gaspedaal.nl/peugeot/boxer","Gaspedaal"))
+        self.assertFalse(valid_url("https://www.gaspedaal.nl/ford/transit","Gaspedaal"))
+    def test_viabovag_model_search_not_individual_listing(self):
+        self.assertFalse(valid_url("https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion","viaBOVAG"))
+    def test_targeted_seed_pages_exist(self):
+        from discover_listings import SEED_PAGES
+        self.assertIn("https://www.gaspedaal.nl/peugeot/boxer",SEED_PAGES["Gaspedaal"])
+        self.assertIn("https://www.viabovag.nl/auto/merk-peugeot/model-boxer/occasion",SEED_PAGES["viaBOVAG"])
     def test_auxiliary_pages_rejected(self):
         self.assertFalse(valid_url("https://www.wijkopenautos.nl/auto-kopen/favorieten/","wijkopenautos"))
         self.assertFalse(valid_url("https://www.bedrijfsauto.nl/lease/calculator","Bedrijfsauto"))

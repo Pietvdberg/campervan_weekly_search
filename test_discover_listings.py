@@ -1,7 +1,14 @@
 import unittest
+from unittest.mock import patch
 from discover_listings import SOURCES,discover,extract,valid_url
 
 class DiscoveryTests(unittest.TestCase):
+    def setUp(self):
+        # Offline synthetic discovery tests must not depend on a snapshot
+        # checked into the repo by the Raspberry Pi collector.
+        self.snapshot_patch=patch('discover_listings.read_snapshot_records',return_value=([], 'not_supplied'))
+        self.snapshot_patch.start()
+        self.addCleanup(self.snapshot_patch.stop)
     def test_three_sources_have_individual_url_patterns(self):
         self.assertTrue(valid_url("https://www.autoscout24.nl/aanbod/peugeot-boxer-l2h2-diesel-wit-76517dc4-5b39-4637-af35-b89dca80173e","AutoScout24"))
         self.assertFalse(valid_url("https://www.autoscout24.nl/lst/peugeot/boxer","AutoScout24"))
@@ -257,5 +264,32 @@ class DiscoveryTests(unittest.TestCase):
             if "bing.com" in url:return rss,"application/rss+xml"
             raise OSError("blocked")
         self.assertEqual(discover(fetcher=f)["candidates"],[])
+
+class SnapshotIngestionTests(unittest.TestCase):
+    def test_fresh_snapshot_populates_only_unverified_rss_leads(self):
+        import json
+        import os
+        import tempfile
+        from datetime import datetime, timezone
+        from pathlib import Path
+        from autowereld_snapshot import collect
+        from discover_listings import discover
+        url="https://www.autowereld.nl/peugeot/boxer/l2h2-airco-43922209/details.html"
+        rss="<rss><channel><item><title>Peugeot Boxer L2H2 Airco</title><link>"+url+"</link></item></channel></rss>"
+        with tempfile.TemporaryDirectory() as temp:
+            location=Path(temp)/"snapshot.json"
+            location.write_text(json.dumps(collect(fetcher=lambda _:rss)),encoding="utf8")
+            def fake(target):
+                if "bing.com" in target:return "<rss><channel/></rss>","application/rss+xml"
+                if target==url:raise OSError("HTTP 403: Access Denied")
+                raise OSError("offline")
+            with patch.dict(os.environ,{"AUTOWERELD_RSS_SNAPSHOT":str(location)}):
+                result=discover(fetcher=fake)
+        self.assertEqual(len(result["unverified_rss_leads"]),1)
+        self.assertEqual(result["unverified_rss_leads"][0]["url"],url)
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["external_rss_snapshot_status"],"fresh_index_only")
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["external_rss_urls_accepted"],1)
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],0)
+        self.assertFalse(any(x["listing_url"]==url for x in result["candidates"]))
 
 if __name__=="__main__":unittest.main()

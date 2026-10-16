@@ -84,6 +84,10 @@ def report(data):
                     " | actual vehicle pages validated: "+str(entry.get("individual_pages_fetched",0)))
         if entry.get("status") != "individual_pages_found":
             rows.append("  No verified individual adverts from this source is NOT proof of zero inventory.")
+    audit=data.get("local_dealer_screening",{})
+    rows.append("\nLocal dealer evidence audit (unknown never qualifies):")
+    for key,counts in audit.get("checks",{}).items():
+        rows.append("  "+key+": "+str(counts))
     rows.append("\nRanked candidates / watchlist / rejections:")
     for item in sorted(data["results"],key=lambda x:x["score"],reverse=True):
         c=item["candidate"]
@@ -115,3 +119,4 @@ if __name__=="__main__":
     Path("screening_results.json").write_text(json.dumps(result,indent=2,ensure_ascii=False),encoding="utf8")
     Path("report.txt").write_text(report(result),encoding="utf8")
     print("Candidates:",len(result["results"]),"qualifiers:",result["qualifiers"])
+    print("Local dealer screening audit:",json.dumps(result["local_dealer_screening"],ensure_ascii=False))

@@ -144,6 +144,24 @@ class DiscoveryTests(unittest.TestCase):
         data=discover(fetcher=fake)
         self.assertEqual(data["source_coverage"]["AutoWereld"]["individual_pages_fetched"],0)
         self.assertEqual(data["source_coverage"]["AutoWereld"]["feed_diagnostics"][0]["accepted_new_urls"],0)
+    def test_autowereld_live_smoke_seed_and_feed_diagnostics(self):
+        from discover_listings import SEED_PAGES, AUTOWERELD_RSS, discover
+        url="https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise-43911117/details.html"
+        self.assertIn(url,SEED_PAGES["AutoWereld"])
+        self.assertTrue(valid_url(url,"AutoWereld"))
+        def fake(target):
+            if target in AUTOWERELD_RSS:
+                return "<!doctype html><html><title>Access unavailable</title></html>","text/html"
+            if "bing.com" in target:
+                return "<rss><channel/></rss>","application/rss+xml"
+            if target==url:
+                return "<title>Peugeot Boxer L2H2 Airco</title>","text/html"
+            raise OSError("offline")
+        result=discover(fetcher=fake)
+        feed=result["source_coverage"]["AutoWereld"]["feed_diagnostics"][0]
+        self.assertEqual(feed["content_type"],"text/html")
+        self.assertIn("Access unavailable",feed["response_prefix"])
+        self.assertEqual(result["source_coverage"]["AutoWereld"]["individual_pages_fetched"],1)
     def test_nine_sources(self): self.assertEqual(len(SOURCES),9)
     def test_not_listing(self): self.assertFalse(valid_url("https://www.marktplaats.nl/l/auto-s/bestelauto-s/","Marktplaats"))
     def test_listing(self): self.assertTrue(valid_url("https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456-test","Marktplaats"))

@@ -10,7 +10,7 @@ import re
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
-from listing_evidence import enrich, structured
+from listing_evidence import enrich, structured, PLATE
 from listing_identity import bind_evidence, require_same_listing
 from source_access import SourceFetch, host_key
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
@@ -121,7 +121,7 @@ def is_vehicle_detail(url, source, markup):
             return True
     # Explicit plate is useful when a site omits structured vehicle data.
     plain=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",markup)).split())
-    return bool(re.search(r"\\b(?:kenteken|nummerplaat)\\s*[:\\-]?\\s*[A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3}\\b",plain,re.I))
+    return bool(PLATE.search(plain))
 
 def advertised_feature(text, pattern):
     """Interpret explicit seller denials before positive feature mentions.

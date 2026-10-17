@@ -216,3 +216,9 @@ now requires identity-bound evidence and coverage records for all source groups,
 rather than merely any returned page. Six additional regressions bring the suite
 to 159 tests. Missing context, genuine measurements, stable coverage, production
 cadence and durable operational state remain explicitly outstanding.
+
+PR #52 merged after CI passed. Final cross-checks also propagate failed/partial
+RDW/APK aggregate status into qualification and repair the viaBOVAG plain-plate
+fallback regex. Two regressions bring the suite to 161 tests. The initial live
+integration run after PR #46 completed successfully without sending mail; this
+is separate from validation of the newer identity-bound acceptance gate.

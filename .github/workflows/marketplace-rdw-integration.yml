@@ -10,6 +10,7 @@ on:
       - 'source_access.py'
       - 'conversion_evidence.py'
       - 'verify_discovery.py'
+      - 'vehicle_risks.py'
       - 'autowereld_html.py'
       - 'autowereld_snapshot.py'
       - 'autowereld_upload.py'

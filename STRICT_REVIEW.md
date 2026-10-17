@@ -241,3 +241,10 @@ explicit low-roof titles (167 tests total). Full post-fix coverage must be measu
 from the subsequent live integration artifact; three sampled pages are not a
 source-wide validation. The latest pre-fix main integration run 39013660683 passed,
 but its lower evidence counts show why green CI alone is insufficient.
+
+PR #54 merged after PR CI passed. Context-driven follow-up rejects auction sales
+and excluded source domains before candidate RDW work, excludes RSS auction tips,
+and surfaces dated RDW concerns in text/HTML. Expired APK and Onlogisch odometer
+assessment block qualification; mass above 3,500 kg prompts licence/mass review
+without inferring actual conversion payload. Seven regressions bring the suite
+to 174 tests. No production schedule, mail dispatch or Pi configuration changed.

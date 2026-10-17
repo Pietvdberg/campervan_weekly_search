@@ -7,6 +7,7 @@ on:
       - '**.py'
       - 'dealer_registry.json'
       - 'variant_research.json'
+      - '.github/actions/**'
       - '.github/workflows/marketplace-rdw-integration.yml'
 permissions:
   contents: read
@@ -31,8 +32,10 @@ jobs:
         run: python3 state_store.py pull --repo "$GITHUB_REPOSITORY"
       - name: Attempt six-source direct marketplace discovery
         run: python3 discover_listings.py --output discovered_candidates.json
+      - name: Assess all unverified Pi RSS leads
+        run: python3 rss_evaluation.py --input discovered_candidates.json --output rss_evaluation.json
       - name: Screen discovered listings and check confirmed plates with RDW
-        run: python3 camper_pipeline.py --input discovered_candidates.json --history .search-state/search_state.json --run-id "${{ github.run_id }}"
+        run: python3 camper_pipeline.py --input discovered_candidates.json --rss-evaluation rss_evaluation.json --history .search-state/search_state.json --run-id "${{ github.run_id }}"
       - name: Validate screening invariants and stage outcomes
         id: validate
         run: python3 validate_search.py --discovery discovered_candidates.json --screening screening_results.json
@@ -57,6 +60,7 @@ jobs:
             discovered_candidates.json
             screening_results.json
             research_pack.json
+            rss_evaluation.json
             validation_summary.json
             reviewed_evidence_template.json
             rdw_probe.json
@@ -76,7 +80,7 @@ jobs:
           retention-days: 7
       - name: Restore mail submission state on rerun
         if: github.run_attempt > 1 && github.event_name == 'workflow_dispatch'
-        uses: actions/download-artifact@v8
+        uses: ./.github/actions/download-artifact
         with:
           name: mail-delivery-state-${{ github.run_id }}
           path: .
@@ -109,7 +113,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/download-artifact@v8
+      - uses: ./.github/actions/download-artifact
         with:
           name: search-state-${{ github.run_id }}
           path: .search-state

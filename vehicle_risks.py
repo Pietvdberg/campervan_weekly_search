@@ -16,7 +16,7 @@ def auction_evidence(text):
     return False
 
 
-CURRENT_FAILURE = re.compile(r"\b(?:(?:motor|injector(?:en)?|versnellingsbak|koppeling|airco)\s+(?:(?:is|zijn)\s+)?(?:defect|kapot|vast)|motor\s+(?:is\s+)?niet\s+(?:100\s*%|%\s*100)|motorproblemen|motor(?:storings)?lampje\s+(?:brandt(?!\s+niet\b)|is\s+aan)|(?:motor|airco)\s+(?:loopt|werkt)\s+niet|start\s+niet|(?:betreft|is)\s+(?:(?:een|deze)\s+)?schadeauto)(?!\w)", re.I)
+CURRENT_FAILURE = re.compile(r"\b(?:(?:motor|injector(?:en)?|versnellingsbak|koppeling|airco)\s+(?:(?:is|zijn)\s+)?(?:defect|kapot|vast)|motor\s+(?:is\s+)?niet\s+(?:100\s*%|%\s*100)|motor\s+(?:is\s+)?niet\s+goed|motorproblemen|motor(?:storings)?lampje\s+(?:brandt(?!\s+niet\b)|is\s+aan)|(?:motor|airco)\s+(?:loopt|werkt)\s+niet|start\s+niet|(?:betreft|is)\s+(?:(?:een|deze)\s+)?schadeauto)(?!\w)", re.I)
 
 
 def mechanical_failure(text):

@@ -98,6 +98,20 @@ def summarize(discovery, screening, baseline=None):
     qualified = sum(item.get("qualified") is True for item in results)
     if screening.get("qualifiers") != qualified:
         errors.append("Qualified total disagrees with result records")
+    rss = screening.get("rss_evaluation")
+    if rss is not None:
+        rss_rows = rss.get("results", [])
+        expected = discovery.get("unverified_rss_leads", [])
+        if (rss.get("evaluated_records") != len(expected) or len(rss_rows) != len(expected)
+                or Counter(row.get("url") for row in rss_rows) != Counter(row.get("url") for row in expected)):
+            errors.append("RSS evaluation must preserve every supplied feed record")
+        if Counter(row.get("status") for row in rss_rows) != Counter({key:value for key,value in rss.get("counts", {}).items() if value}):
+            errors.append("RSS evaluation outcome counts disagree with records")
+        if any(row.get("distance_km") is not None for row in rss_rows):
+            errors.append("RSS town hints must not create verified road distances")
+        eligible = {row.get("url") for row in rss_rows if row.get("status") in ("INTERESTING", "NEEDS_INFO")}
+        if any(row.get("url") not in eligible for row in rss.get("shortlist", [])):
+            errors.append("RSS shortlist contains an excluded or unevaluated record")
     missing_sources = [source for source, row in source_metrics.items() if row["identity_bound"] == 0]
     pending_review = sum(bool(item.get("reasons")) and candidate_state(item) != "REJECTED" for item in results)
     output = {"generated_at": datetime.now(timezone.utc).isoformat(), "code_fingerprint": discovery.get("run_metadata", {}).get("code_fingerprint"),

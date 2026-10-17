@@ -105,29 +105,9 @@ def rss_price(description):
 
 
 def rss_shortlist(leads, verified_urls=(), limit=5):
-    """RSS is first-party index evidence only; never treat it as a verified advert."""
-    seen = set(normalized_url(u) for u in verified_urls)
-    eligible = []
-    for lead in leads:
-        url = str(lead.get("url") or "")
-        identity = normalized_url(url)
-        title = unescape(str(lead.get("title") or ""))
-        text = title.lower()
-        if not url.startswith("https://www.autowereld.nl/") or identity in seen or auction_evidence(title):
-            continue
-        seen.add(identity)
-        if not re.search(r"\bl[23]\s*[- ]?h2\b", text, re.I):
-            continue
-        if re.search(r"\b(open laadbak|pick[ -]?up|pr[iy]tsche|chassis cabine|bakwagen|laadklep|kipper|schade|motor niet|defect|hoogwerker)\b", text, re.I):
-            continue
-        price = rss_price(lead.get("description"))
-        # Any stated advertised price above the absolute VAT-inclusive limit
-        # is already disqualifying, regardless of whether VAT is included.
-        if price is not None and price > 8000:
-            continue
-        eligible.append((price is None, -(price or 0), lead))
-    eligible.sort(key=lambda x: (x[0], x[1]))
-    return [entry[2] for entry in eligible[:limit]]
+    """Compatibility entry point for the dedicated RSS assessment process."""
+    from rss_evaluation import evaluate_leads
+    return evaluate_leads(leads, verified_urls)['shortlist'][:limit]
 
 
 def clearly_over_budget_title(candidate):
@@ -192,6 +172,10 @@ def validate_input(data):
     """Reject malformed batches before any external lookup is attempted."""
     if not isinstance(data, dict) or not isinstance(data.get("candidates", []), list):
         raise ValueError("Input must be an object containing a candidates list")
+    rss = data.get("unverified_rss_leads", [])
+    if not isinstance(rss, list) or any(not isinstance(lead, dict) or any(
+            key in lead and not isinstance(lead[key], str) for key in ("url", "title", "description", "pub_date")) for lead in rss):
+        raise ValueError("RSS leads must be objects with text fields")
     for index, candidate in enumerate(data.get("candidates", [])):
         if not isinstance(candidate, dict):
             raise ValueError(f"Candidate {index} must be an object")
@@ -252,12 +236,15 @@ def evaluate(data, rdw_lookup=lookup):
     for item in results:
         item["search_assessment"] = assess_search(item)
         item["suitability"] = rank(item)
-    return {"run_metadata": data.get("run_metadata", {}), "search_matches": sum(item["search_assessment"]["matched"] for item in results),
+    output = {"run_metadata": data.get("run_metadata", {}), "search_matches": sum(item["search_assessment"]["matched"] for item in results),
             "purchase_ready": sum(item["qualified"] for item in results),
             "specification_version": SPEC_VERSION, "generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
             "source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
             "unverified_rss_leads":data.get("unverified_rss_leads",[]),
             "results":results,"qualifiers":sum(x["qualified"] for x in results)}
+    from rss_evaluation import assess_data
+    output['rss_evaluation'] = data.get('rss_evaluation') or assess_data(output)
+    return output
 
 
 def dealer_audit_rows(data):
@@ -369,18 +356,22 @@ def report(data):
                     str(stats["verified_prices"]) + " prices and " +
                     str(stats["verified_distances"]) + " routes verified; " +
                     str(stats["confirmed_plates"]) + " confirmed plates")
-    rows.extend(["", "AutoWereld public RSS — UNVERIFIED leads (up to 5; not scored or recommended):"])
-    rss_leads = data.get("unverified_rss_leads", [])
-    selected = rss_shortlist(rss_leads, (x["candidate"].get("listing_url") for x in results))
-    if not selected:
-        rows.append("No RSS lead with a stated L2H2/L3H2 body and no obvious budget/body exclusion.")
-    for lead in selected:
-        title = unescape(" ".join(str(lead.get("title", ""))[:220].split()))
-        rows.extend(["- " + title,
-                     "  Seller's advertised price (VAT basis unknown): " +
-                     (("€" + str(rss_price(lead.get("description")))) if rss_price(lead.get("description")) is not None else "unknown"),
-                     "  Listing: " + str(lead.get("url", "")),
-                     "  Status: RSS-only; VAT, distance, registration, availability and conversion suitability unverified."])
+    from rss_evaluation import assess_data
+    rss = assess_data(data)
+    rows.extend(["", "AutoWereld public RSS — separately assessed, UNVERIFIED leads:",
+                 "RSS records evaluated: " + str(rss['evaluated_records']) + "; outcomes: " + str(rss['counts'])])
+    if not rss['shortlist']:
+        rows.append("No RSS lead worth further investigation in the supplied feed.")
+    for lead in rss['shortlist']:
+        rows.extend(["- " + lead['title'],
+                     "  RSS assessment: " + lead['status'] + " (RSS-only)",
+                     "  Source-reported year/mileage km: " + str(lead.get("source_reported_year")) + " / " + str(lead.get("source_reported_mileage_km")),
+                     "  Advertised price (VAT basis unknown unless explicitly labeled): " + str(lead['advertised_price']),
+                     "  Source-reported gross price (not independently verified): " + str(lead['source_reported_gross_price']),
+                     "  Why investigate: " + "; ".join(lead['reasons']),
+                     "  Next checks: " + " | ".join(lead['questions']),
+                     "  Follow-up: " + lead['followup_status'] + "; " + str(lead['access_restriction'] or "individual advert review pending"),
+                     "  Listing: " + lead['url']])
     rows.extend(["RSS leads are excluded from the verified >=90% qualification count.",
                  "", "Rejected listings and full RDW / APK evidence are retained in screening_results.json (GitHub Actions audit artifact).",
                  "APK approval is not a mechanical inspection; seller claims are not verified facts."])
@@ -389,11 +380,14 @@ def report(data):
 if __name__=="__main__":
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",default="candidates.json")
+    ap.add_argument("--rss-evaluation", help="Prepared assessment of all unverified feed items")
     ap.add_argument("--history", help="Durable state file restored before this run")
     ap.add_argument("--run-id", help="Stable identity for idempotent reruns")
     ap.add_argument("--conversion-evidence", "--reviewed-evidence", dest="conversion_evidence", help="JSON containing explicit conversion requirements and reviewed assessments")
     args=ap.parse_args()
     data = json.loads(Path(args.input).read_text(encoding="utf8"))
+    if args.rss_evaluation:
+        data["rss_evaluation"] = json.loads(Path(args.rss_evaluation).read_text(encoding="utf-8"))
     if args.conversion_evidence:
         data["conversion_evidence"] = json.loads(Path(args.conversion_evidence).read_text(encoding="utf8"))
     result=evaluate(data)
@@ -407,6 +401,7 @@ if __name__=="__main__":
         Path("coverage_health.json").write_text(json.dumps(result["coverage_health"], indent=2, ensure_ascii=False) + "\n")
     Path("screening_results.json").write_text(json.dumps(result,indent=2,ensure_ascii=False),encoding="utf8")
     Path("report.txt").write_text(report(result),encoding="utf8")
+    Path("rss_evaluation.json").write_text(json.dumps(result["rss_evaluation"], indent=2, ensure_ascii=False) + "\n", encoding="utf8")
     from research_pack import build as build_research
     research = build_research(result, data.get("conversion_evidence", {}).get("requirements"))
     Path("research_pack.json").write_text(json.dumps(research, indent=2, ensure_ascii=False), encoding="utf8")

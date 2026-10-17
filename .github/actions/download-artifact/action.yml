@@ -1,0 +1,50 @@
+name: Download verified ZIP artifact
+description: Keep GitHub digest verification and extract ZIPs without the deprecated Node Buffer dependency.
+inputs:
+  name:
+    description: Exact name of one archived artifact from the current workflow run.
+    required: true
+  path:
+    description: Destination directory for extracted files.
+    default: '.'
+outputs:
+  download-path:
+    description: Absolute extraction directory.
+    value: ${{ steps.extract.outputs.download-path }}
+runs:
+  using: composite
+  steps:
+    - name: Prepare temporary archive directory
+      id: staging
+      shell: bash
+      run: |
+        python3 - <<'PY'
+        import os, tempfile
+        directory = tempfile.mkdtemp(prefix='camper-artifact-', dir=os.environ['RUNNER_TEMP'])
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+            output.write('path=' + directory + '\n')
+        PY
+    - name: Download archive with strict digest verification
+      uses: actions/download-artifact@v8
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ steps.staging.outputs.path }}
+        skip-decompress: true
+        digest-mismatch: error
+    - name: Extract verified archive with Python
+      id: extract
+      shell: bash
+      env:
+        ARTIFACT_ARCHIVE_DIRECTORY: ${{ steps.staging.outputs.path }}
+        ARTIFACT_DESTINATION: ${{ inputs.path }}
+      run: python3 "$GITHUB_ACTION_PATH/extract.py"
+    - name: Remove temporary archive
+      if: always() && steps.staging.outputs.path != ''
+      shell: bash
+      env:
+        ARTIFACT_ARCHIVE_DIRECTORY: ${{ steps.staging.outputs.path }}
+      run: |
+        python3 - <<'PY'
+        import os, shutil
+        shutil.rmtree(os.environ['ARTIFACT_ARCHIVE_DIRECTORY'])
+        PY

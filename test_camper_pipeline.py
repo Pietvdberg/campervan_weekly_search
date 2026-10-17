@@ -116,7 +116,7 @@ class ScreeningTests(unittest.TestCase):
         from camper_pipeline import rss_shortlist
         def lead(title,price):
             return {"url":"https://www.autowereld.nl/renault/master/" +
-                    str(len(title)) + "-" + str(price) + "/details.html",
+                    str(len(title)) + "-" + str(price).replace(".", "") + "/details.html",
                     "title":title,"description":"Vraagprijs : € "+price}
         sample=[
             lead("Renault Master L2H2 Airco","7.250"),
@@ -126,8 +126,9 @@ class ScreeningTests(unittest.TestCase):
             lead("Renault Master L2H2 motor niet goed","2.000"),
         ]
         chosen=rss_shortlist(sample)
-        self.assertEqual(len(chosen),1)
+        self.assertEqual(len(chosen),2)
         self.assertIn("Airco",chosen[0]["title"])
+        self.assertTrue(chosen[1]["low_roof_mentioned"])
 
     def test_no_vat_inference_for_rss(self):
         from camper_pipeline import rss_shortlist

@@ -31,6 +31,10 @@ SEED_PAGES = {
 VAN_MODEL = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|hi[ -]?ace|nv400)\b",re.I)
 
 SOURCE_NAMES = tuple(SOURCE_DOMAINS)
+# AutoWereld remains a separately assessed, unverified discovery channel.
+# Core CI health requires primary advert evidence only from the other sources.
+OPTIONAL_RSS_SOURCES = ("AutoWereld",)
+CORE_SOURCE_NAMES = tuple(source for source in SOURCE_NAMES if source not in OPTIONAL_RSS_SOURCES)
 REQUIRED_CHECKS = ("high_roof", "cab_ac", "conversion_suitable", "distance_within_100km", "price_incl_vat_within_8000")
 
 # All configured seeds except the explicit historical advert are inventory

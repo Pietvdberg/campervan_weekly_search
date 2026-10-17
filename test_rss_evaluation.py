@@ -88,7 +88,7 @@ class RssEvaluationTests(unittest.TestCase):
         data['rss_evaluation']['results'] = []
         self.assertIn('RSS evaluation must preserve every supplied feed record', summarize(discovery,data)['errors'])
 
-    def test_healthy_rss_does_not_clear_critical_detail_access_failure(self):
+    def test_healthy_optional_rss_keeps_blocked_advert_access_informational(self):
         reason = 'autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated'
         coverage = {'AutoWereld':{'source_block_reason':reason,'status':'source_unavailable',
                     'external_rss_snapshot_status':'fresh_index_only',
@@ -97,10 +97,13 @@ class RssEvaluationTests(unittest.TestCase):
         previous = [{'sources':{'AutoWereld':{'zero_bound_streak':7}}}]
         health = coverage_health(data,previous,'new-run','2026-10-17T14:00:00+00:00')
         row = health['sources']['AutoWereld']
-        self.assertEqual(row['severity'], 'critical')
+        self.assertEqual(row['severity'], 'ok')
+        self.assertEqual(row['role'], 'optional_rss')
+        self.assertEqual(row['detail_status'], 'blocked')
+        self.assertFalse(any(a['source']=='AutoWereld' for a in health['alerts']))
         self.assertEqual(row['failure_kind'], 'external_redirect')
         self.assertEqual(row['rss_evaluated'],1)
         self.assertEqual(row['rss_interesting'],1)
         self.assertEqual(data['rss_evaluation']['shortlist'][0]['followup_status'], 'source_access_blocked')
-        self.assertIn('consent/origin redirect', render(health))
+        self.assertIn('Optional RSS tips', render(health))
         self.assertIn('myprivacy.dpgmedia.nl', render(health))

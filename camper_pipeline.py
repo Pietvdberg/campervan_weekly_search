@@ -358,7 +358,8 @@ def report(data):
                     str(stats["confirmed_plates"]) + " confirmed plates")
     from rss_evaluation import assess_data
     rss = assess_data(data)
-    rows.extend(["", "AutoWereld public RSS — separately assessed, UNVERIFIED leads:",
+    rows.extend(["", "AutoWereld public RSS — optional, separately assessed, UNVERIFIED leads:",
+                 "Optional feed status: " + str(data.get("source_coverage", {}).get("AutoWereld", {}).get("external_rss_snapshot_status", "not supplied")),
                  "RSS records evaluated: " + str(rss['evaluated_records']) + "; outcomes: " + str(rss['counts'])])
     if not rss['shortlist']:
         rows.append("No RSS lead worth further investigation in the supplied feed.")

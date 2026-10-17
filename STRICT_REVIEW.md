@@ -182,3 +182,8 @@ redirect/canonical identity checks, URL-linked structured primary-vehicle or
 canonical-main evidence scope, exclusion of unrelated cards, and explicit unbound
 lead/provenance handling. Ten additional regressions bring the suite to 130 tests.
 Availability and independent condition verification remain outstanding.
+
+PR #47 merged after CI passed. Finding #5 now has a shared typed-HTTP access guard
+and a 100-request per-host run budget across inventory, feeds, details and dealer
+source groups. Other hosts continue independently; coverage records stop reasons
+and host counts. Five regressions bring the suite to 135 passing offline tests.

@@ -163,7 +163,8 @@ class WeeklyDeliveryTests(unittest.TestCase):
                 self.assertRaises(OSError),
             ):
                 send_pending(self.store, self.sender, "synthetic")
-            smtp.return_value.__enter__.return_value.send_message.assert_not_called()
+            connection = smtp.return_value.__enter__.return_value
+            connection.send_message.assert_not_called()
 
     def test_definite_pre_submission_failure_can_retry(self):
         self.prepare()

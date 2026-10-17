@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 2
       - name: Resolve input
@@ -54,7 +54,7 @@ jobs:
           python3 rdw_lookup.py --input plates.txt --output rdw_results.json
       - name: Upload JSON artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: rdw-results-${{ github.run_id }}
           path: rdw_results.json

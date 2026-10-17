@@ -20,7 +20,7 @@ jobs:
     outputs:
       state_ready: ${{ steps.stage_state.outcome }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check syntax and regression tests
         run: |
           python3 -m compileall -q .
@@ -49,7 +49,7 @@ jobs:
           python3 rdw_probe_report.py rdw_probe.json
       - name: Store audit artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: marketplace-rdw-verification-${{ github.run_id }}
           overwrite: true
@@ -67,7 +67,7 @@ jobs:
       - name: Stage durable state for isolated persistence job
         id: stage_state
         if: always() && steps.validate.outcome == 'success'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: search-state-${{ github.run_id }}
           overwrite: true
@@ -76,7 +76,7 @@ jobs:
           retention-days: 7
       - name: Restore mail submission state on rerun
         if: github.run_attempt > 1 && github.event_name == 'workflow_dispatch'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: mail-delivery-state-${{ github.run_id }}
           path: .
@@ -89,7 +89,7 @@ jobs:
         run: python3 send_report.py report.txt
       - name: Preserve mail submission state
         if: always() && github.event_name == 'workflow_dispatch'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mail-delivery-state-${{ github.run_id }}
           path: mail_delivery_state.json
@@ -106,10 +106,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: search-state-${{ github.run_id }}
           path: .search-state

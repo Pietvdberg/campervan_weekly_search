@@ -15,8 +15,28 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Verify compilation and unit tests without live scraping
         run: |
           python3 -m compileall -q .
           python3 -m unittest discover -v
+      - name: Prepare artifact round-trip fixture
+        run: |
+          mkdir -p "$RUNNER_TEMP/camper-action-smoke/.search-state"
+          printf '%s\n' '{"probe":"node24-artifact-roundtrip"}' > "$RUNNER_TEMP/camper-action-smoke/.search-state/history.json"
+      - name: Upload hidden history fixture
+        uses: actions/upload-artifact@v7
+        with:
+          name: action-runtime-smoke-${{ github.run_id }}
+          path: ${{ runner.temp }}/camper-action-smoke/
+          include-hidden-files: true
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 1
+      - name: Download and verify artifact integrity
+        uses: actions/download-artifact@v8
+        with:
+          name: action-runtime-smoke-${{ github.run_id }}
+          path: ${{ runner.temp }}/camper-action-smoke-downloaded
+      - name: Compare restored history fixture
+        run: cmp "$RUNNER_TEMP/camper-action-smoke/.search-state/history.json" "$RUNNER_TEMP/camper-action-smoke-downloaded/.search-state/history.json"

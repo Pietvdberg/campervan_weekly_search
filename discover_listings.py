@@ -161,6 +161,10 @@ def extract(title,url,source,markup):
         r"<script\b[^>]*>.*?</script>", " ", scoped_markup, flags=re.I|re.S))).split())
     checks={key:None for key in ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")}
     checks["high_roof"] = advertised_feature(scoped_text, ROOF)
+    page_title = re.search(r"<title[^>]*>(.*?)</title>", markup, re.I|re.S)
+    primary_title = html.unescape(page_title.group(1)) if page_title else ""
+    if re.search(r"\bL[1-4]\s*H1\b", primary_title, re.I):
+        checks["high_roof"] = False
     checks["cab_ac"] = advertised_feature(scoped_text, AC)
     # Conversion suitability requires independently checked payload and dimensions.
     city=next((x for x in CITIES if re.search(r"\b"+re.escape(x)+r"\b",header,re.I)),None)
@@ -330,6 +334,7 @@ def discover(fetcher=fetch,max_per_source=50):
                 except Exception as exc:
                     failures+=1
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
+            bound_count = sum(c.get("source") == source and c.get("individual_listing_confirmed") is True for c in candidates)
             restrictions = fetcher.restrictions(SEED_PAGES[source])
             source_hosts = {host_key(seed) for seed in SEED_PAGES[source]}
             source_blocked = bool(source_hosts) and source_hosts.issubset(restrictions)
@@ -358,7 +363,7 @@ def discover(fetcher=fetch,max_per_source=50):
                               "index_error":index_error,
                               "index_hits":len(hits),"detail_urls_discovered":len(direct_urls),"eligible_urls":matched,
                               "attempts":attempts,"rate_limited":rate_limited,"rejected_index_urls":rejected,
-                              "individual_pages_fetched":found,"fetch_errors":failures,"diagnostic_samples":samples,
+                              "individual_pages_fetched":found,"identity_bound_candidates":bound_count,"fetch_errors":failures,"diagnostic_samples":samples,
                               "method":"bounded inventory traversal, individual-detail validation, untrusted Bing fallback"}
         except Exception as exc:
             coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0,

@@ -222,3 +222,22 @@ RDW/APK aggregate status into qualification and repair the viaBOVAG plain-plate
 fallback regex. Two regressions bring the suite to 161 tests. The initial live
 integration run after PR #46 completed successfully without sending mail; this
 is separate from validation of the newer identity-bound acceptance gate.
+
+## Context supplied and reconciliation
+
+The user supplied the historical `context.md` after the initial review. Public
+requirements and approval boundaries are now captured in `docs/requirements.md`;
+the private handover itself is not committed. It confirms the Pi collector/upload
+was already approved and enabled, while production GitHub mail remains disabled.
+Numeric conversion minima are still unspecified; independent measurements, working
+A/C, actual availability and mechanical condition must not be inferred.
+
+Actual artifact comparison is in `docs/audit-comparison-2026-10-17.md`. It found a
+regression from the new identity gate: Marktplaats/AutoScout24 identify their
+primary vehicle through `offers.url`, not a root `url` property. The fix restores
+that explicit binding without allowing arbitrary page-wide evidence. Six added
+regressions cover offer-linked identities, excluded sources, house letters and
+explicit low-roof titles (167 tests total). Full post-fix coverage must be measured
+from the subsequent live integration artifact; three sampled pages are not a
+source-wide validation. The latest pre-fix main integration run 39013660683 passed,
+but its lower evidence counts show why green CI alone is insufficient.

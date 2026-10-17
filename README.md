@@ -17,8 +17,8 @@ python3 verify_discovery.py discovered_candidates.json
 The outputs are `screening_results.json` and `report.txt`; no mail is sent by these
 commands. Optional reviewed conversion evidence has a separate documented
 [contract](docs/conversion-evidence.md). Source groups, inventory seeds and model
-patterns are centralized in `source_catalog.py`. The missing `context.md` and
-actual project measurement requirements remain outstanding.
+patterns are centralized in `source_catalog.py`. The supplied handover is reconciled in [requirements](docs/requirements.md);
+actual numeric conversion minima and vehicle measurements remain outstanding.
 
 ## RDW request handoff
 

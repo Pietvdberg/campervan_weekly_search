@@ -66,3 +66,13 @@ class EvidenceTests(unittest.TestCase):
         d=enrich(markup,lambda _:self.fail("Should not calculate a route"))
         self.assertIsNone(d["distance_km"])
 if __name__=="__main__":unittest.main()
+
+class AddressSuffixTests(unittest.TestCase):
+    def test_house_letter_preserved_and_matched_exactly(self):
+        from listing_evidence import address_from_structured
+        address = address_from_structured([{"address": {"postalCode": "4611AA", "streetAddress": "Voorbeeldstraat 12b"}}])
+        self.assertEqual(address, ("4611AA", "12B"))
+        wrong = {"postcode": "4611AA", "huisnummer": 12, "huisletter": "A", "centroide_ll": "POINT(4.31 51.51)"}
+        right = {**wrong, "huisletter": "B"}
+        self.assertIsNone(pdok_coordinates(address, lambda _: {"response": {"docs": [wrong]}}))
+        self.assertEqual(pdok_coordinates(address, lambda _: {"response": {"docs": [wrong, right]}}), (4.31, 51.51))

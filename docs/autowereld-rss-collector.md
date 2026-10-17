@@ -65,3 +65,12 @@ as >=90% verified matches. VAT basis, route distance, actual vehicle condition
 and listing availability remain unverified.
 
 The daily/weekly production search remains disabled.
+
+## Confirmed operational handover
+
+The user-supplied session handover records that the Pi collector/upload timer was
+already enabled for Thursday 13:30 Europe/Amsterdam, with linger enabled and a
+successful 75-entry upload on 16 October 2026. Installation instructions above
+remain instructions for a new host; they do not imply the existing Pi is disabled.
+This review has not remotely inspected or changed that Pi. Production GitHub
+weekly emailing remains a separate, unapproved activation.

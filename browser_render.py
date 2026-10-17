@@ -8,7 +8,7 @@ from listing_identity import require_same_listing
 
 ALLOWED_DOMAINS=(
  "marktplaats.nl","autoscout24.nl",
- "autotrack.nl","viabovag.nl","autowereld.nl","bedrijfsauto.nl",
+ "autotrack.nl","viabovag.nl","autowereld.nl",
 "vanmossel.nl"
 )
 

@@ -17,10 +17,10 @@ class VehicleRiskTests(unittest.TestCase):
         self.assertTrue(all(risk["blocks_qualification"] for risk in risks))
         self.assertEqual(rdw_risks({"vervaldatum_apk": "20261017"}, date(2026, 10, 17)), [])
 
-    def test_mass_warning_does_not_establish_payload_or_licence_eligibility(self):
+    def test_category_b_mass_limit_blocks_qualification_without_inventing_payload(self):
         risks = rdw_risks({"toegestane_maximum_massa_voertuig": "5000", "massa_ledig_voertuig": "2000"})
         self.assertEqual(risks[0]["code"], "licence_mass_review")
-        self.assertFalse(risks[0]["blocks_qualification"])
+        self.assertTrue(risks[0]["blocks_qualification"])
         self.assertNotIn("payload", risks[0])
 
     def test_unknown_malformed_or_missing_data_is_not_a_clean_inspection(self):

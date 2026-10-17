@@ -9,6 +9,7 @@ from urllib.parse import urlparse, urlunparse
 import re
 from html import unescape
 from rdw_lookup import lookup, normalize_plate
+from search_requirements import SPEC_VERSION
 from conversion_evidence import assess as assess_conversion
 from vehicle_review import assess as assess_vehicle, matching_review
 from vehicle_risks import sale_exclusion, auction_evidence, rdw_risks
@@ -28,6 +29,9 @@ def normalized_url(url):
 def candidate_state(item):
     """Hard failures take precedence over evidence-based ranking."""
     if item.get("independent_review_assessment", {}).get("failed"):
+        return "REJECTED"
+    if any(risk.get("code") == "licence_mass_review" and risk.get("blocks_qualification")
+           for risk in item.get("rdw_risks", [])):
         return "REJECTED"
     if sale_exclusion(item["candidate"]):
         return "REJECTED"
@@ -128,7 +132,13 @@ def clearly_over_budget_title(candidate):
 
 
 def screen(candidate):
-    checks = candidate.get("checks", {})
+    checks = dict(candidate.get("checks", {}))
+    if checks.get("conversion_suitable") is True:
+        prior = candidate.get("conversion_assessment", {})
+        prior = prior if isinstance(prior, dict) else {}
+        review = assess_conversion(candidate, prior.get("requirements"), [prior.get("assessment")])
+        checks["conversion_suitable"] = review["suitable"]
+        candidate = {**candidate, "checks": checks, "conversion_assessment": review}
     score = 20 * sum(checks.get(key) is True for key in REQUIRED)
     reasons = [key+": "+("failed" if checks.get(key) is False else "unverified") for key in REQUIRED if checks.get(key) is not True]
     u = urlparse(candidate.get("listing_url",""))
@@ -143,12 +153,6 @@ def screen(candidate):
     exclusion = sale_exclusion(candidate)
     if exclusion:
         reasons.append(exclusion)
-    if checks.get("conversion_suitable") is True:
-        prior = candidate.get("conversion_assessment", {})
-        prior = prior if isinstance(prior, dict) else {}
-        conversion_review = assess_conversion(candidate, prior.get("requirements"), [prior.get("assessment")])
-        if conversion_review["suitable"] is not True:
-            reasons.append("independent conversion measurements: unverified or failed")
     independent_review = assess_vehicle(candidate)
     reasons.extend(independent_review["reasons"])
     return {"candidate":candidate, "score":score, "plate":plate, "reasons":reasons, "qualified":score >= 90 and not reasons, "rdw":None, "independent_review_assessment":independent_review}
@@ -203,7 +207,8 @@ def evaluate(data, rdw_lookup=lookup):
         for candidate in candidates:
             assessment = assess_conversion(candidate, contract.get("requirements"), contract.get("assessments"))
             candidate = {**candidate, "checks": {**candidate.get("checks", {}),
-                         "conversion_suitable": assessment["suitable"]}, "conversion_assessment": assessment}
+                         "conversion_suitable": assessment["suitable"],
+                         "high_roof": True if assessment["suitable"] is True else candidate.get("checks", {}).get("high_roof")}, "conversion_assessment": assessment}
             vehicle_review = matching_review(candidate, contract.get("assessments"))
             if vehicle_review and "checks" in vehicle_review:
                 candidate["independent_review"] = vehicle_review
@@ -231,7 +236,7 @@ def evaluate(data, rdw_lookup=lookup):
                 if concern["blocks_qualification"]:
                     item["qualified"] = False
                     item["reasons"].append(concern["message"])
-    return {"generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
+    return {"specification_version": SPEC_VERSION, "generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
             "source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
             "unverified_rss_leads":data.get("unverified_rss_leads",[]),
             "results":results,"qualifiers":sum(x["qualified"] for x in results)}

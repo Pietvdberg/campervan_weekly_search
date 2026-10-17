@@ -21,7 +21,9 @@ See the [dated live validation](docs/live-validation-2026-10-17.md). No mail is 
 commands. Optional reviewed conversion evidence has a separate documented
 [contract](docs/conversion-evidence.md). Source groups, inventory seeds and model
 patterns are centralized in `source_catalog.py`. The supplied handover is reconciled in [requirements](docs/requirements.md);
-actual numeric conversion minima and vehicle measurements remain outstanding.
+the [v2 specification](docs/camper_van_search_specification_v2.md) now supplies
+conversion criteria. Actual reviewed vehicle evidence remains outstanding. See
+[v2 adoption and acceptance gaps](docs/specification-v2-adoption.md).
 
 ## RDW request handoff
 

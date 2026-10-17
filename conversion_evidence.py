@@ -1,10 +1,10 @@
 """Explicit reviewed measurements; no suitability inferred from a van model."""
 from datetime import datetime, timezone
 from math import isfinite
-from urllib.parse import urlparse
 
 from listing_identity import identity
 from rdw_lookup import normalize_plate
+from search_requirements import evaluate_review, evidence_reference
 
 MEASUREMENTS = ("available_payload_kg", "internal_height_cm", "internal_length_cm")
 
@@ -21,7 +21,8 @@ def assess(candidate, requirements, assessments, now=None):
     contract, not whether an external measurement is true.
     """
     unavailable = lambda reason: {"status": "unverified", "suitable": None, "reason": reason}
-    if not isinstance(requirements, dict) or not all(positive_number(requirements.get(key)) for key in MEASUREMENTS):
+    requirements = {} if requirements is None else requirements
+    if not isinstance(requirements, dict) or (requirements and not all(positive_number(requirements.get(key)) for key in MEASUREMENTS)):
         return unavailable("Explicit positive payload, height and length minima are required")
     if not isinstance(assessments, list):
         return unavailable("Assessments must be a list")
@@ -59,16 +60,15 @@ def assess(candidate, requirements, assessments, now=None):
     if not isinstance(measurements, dict):
         return unavailable("Measurements must be an object")
     checks = {}
-    for key in MEASUREMENTS:
+    for key in MEASUREMENTS if requirements else ():
         measurement = measurements.get(key, {})
-        if not isinstance(measurement, dict) or not positive_number(measurement.get("value")):
-            return unavailable("Missing reviewed measurement: " + key)
-        source = measurement.get("source_url", "")
-        if not isinstance(source, str) or urlparse(source).scheme != "https" or not urlparse(source).hostname:
-            return unavailable("HTTPS evidence reference required for " + key)
-        if measurement.get("independently_checked") is not True:
-            return unavailable("Independent measurement review required for " + key)
-        checks[key] = measurement["value"] >= requirements[key]
-    return {"status": "reviewed", "suitable": all(checks.values()), "checks": checks,
+        checks["custom_minimum_" + key] = None
+        if isinstance(measurement, dict) and positive_number(measurement.get("value")) and evidence_reference(measurement):
+            checks["custom_minimum_" + key] = measurement["value"] >= requirements[key]
+    spec = evaluate_review(row)
+    checks.update(spec["checks"])
+    suitable = False if False in checks.values() else None if None in checks.values() else True
+    return {"status": "reviewed" if suitable is not None else "unverified", "suitable": suitable, "checks": checks,
+            "specification_version": spec["specification_version"], "preferences_met": spec["preferences_met"],
             "requirements": requirements, "assessment": row,
-            "reason": "All reviewed minima met" if all(checks.values()) else "Reviewed conversion minimum failed"}
+            "reason": "All reviewed hard requirements met" if suitable is True else "Reviewed hard requirement failed" if suitable is False else "Missing v2 evidence: " + ", ".join(key for key, value in checks.items() if value is None)}

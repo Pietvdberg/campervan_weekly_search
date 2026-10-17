@@ -1,0 +1,175 @@
+{
+  "generated_at": "2026-10-17T10:21:19.750961+00:00",
+  "code_fingerprint": "c3a79e302464e589f587f1ca377db22e9d4a76d19d7cb1a13c5bcf9c6c586003",
+  "run_metadata": {
+    "started_at": "2026-10-17T10:19:28.189140+00:00",
+    "max_per_source": 8,
+    "code_fingerprint": "c3a79e302464e589f587f1ca377db22e9d4a76d19d7cb1a13c5bcf9c6c586003",
+    "completed_at": "2026-10-17T10:20:39.980154+00:00"
+  },
+  "validation_passed": true,
+  "errors": [],
+  "stages": {
+    "discovery": "partial",
+    "screening": "completed",
+    "independent_review": "pending",
+    "email": "not_requested_by_this_validation"
+  },
+  "records": 31,
+  "qualified": 0,
+  "sources": {
+    "Marktplaats": {
+      "records": 8,
+      "identity_bound": 8,
+      "verified_gross_prices": 0,
+      "road_routes": 0,
+      "confirmed_plates": 0,
+      "rejected": 3,
+      "research_leads": 5,
+      "index_exclusions": 50,
+      "budget_filter_confirmed": false,
+      "access_status": "individual_pages_found",
+      "access_restriction": null,
+      "direct_dealers": []
+    },
+    "AutoScout24": {
+      "records": 8,
+      "identity_bound": 8,
+      "verified_gross_prices": 3,
+      "road_routes": 6,
+      "confirmed_plates": 8,
+      "rejected": 2,
+      "research_leads": 6,
+      "index_exclusions": 22,
+      "budget_filter_confirmed": true,
+      "access_status": "individual_pages_found",
+      "access_restriction": null,
+      "direct_dealers": []
+    },
+    "AutoTrack": {
+      "records": 8,
+      "identity_bound": 8,
+      "verified_gross_prices": 4,
+      "road_routes": 8,
+      "confirmed_plates": 7,
+      "rejected": 4,
+      "research_leads": 4,
+      "index_exclusions": 10,
+      "budget_filter_confirmed": true,
+      "access_status": "individual_pages_found",
+      "access_restriction": null,
+      "direct_dealers": []
+    },
+    "viaBOVAG": {
+      "records": 4,
+      "identity_bound": 4,
+      "verified_gross_prices": 1,
+      "road_routes": 4,
+      "confirmed_plates": 4,
+      "rejected": 4,
+      "research_leads": 0,
+      "index_exclusions": 43,
+      "budget_filter_confirmed": false,
+      "access_status": "individual_pages_found",
+      "access_restriction": null,
+      "direct_dealers": []
+    },
+    "AutoWereld": {
+      "records": 0,
+      "identity_bound": 0,
+      "verified_gross_prices": 0,
+      "road_routes": 0,
+      "confirmed_plates": 0,
+      "rejected": 0,
+      "research_leads": 0,
+      "index_exclusions": 0,
+      "budget_filter_confirmed": false,
+      "access_status": "source_unavailable",
+      "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+      "direct_dealers": []
+    },
+    "Local dealers": {
+      "records": 3,
+      "identity_bound": 3,
+      "verified_gross_prices": 0,
+      "road_routes": 0,
+      "confirmed_plates": 3,
+      "rejected": 0,
+      "research_leads": 3,
+      "index_exclusions": 120,
+      "budget_filter_confirmed": false,
+      "access_status": "individual_pages_found",
+      "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+      "direct_dealers": [
+        {
+          "dealer_id": "bwcr-roosendaal",
+          "name": "Bedrijfswagencentrum Roosendaal",
+          "domain": "bwcr.nl",
+          "inventory_pages_checked": 1,
+          "inventory_pages_fetched": 1,
+          "detail_urls_discovered": 99,
+          "errors": [],
+          "status": "inventory_accessible",
+          "inventory_url": "https://www.bwcr.nl/aanbod",
+          "contact_url": "https://www.bwcr.nl/contact",
+          "registry_checked_on": "2026-10-17",
+          "inventory_pages_pending": 0,
+          "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+          "identity_bound_candidates": 3,
+          "index_exclusions": 96
+        },
+        {
+          "dealer_id": "mana",
+          "name": "MANA Bedrijfswagens",
+          "domain": "mana-bedrijfswagens.nl",
+          "inventory_pages_checked": 1,
+          "inventory_pages_fetched": 1,
+          "detail_urls_discovered": 12,
+          "errors": [],
+          "status": "inventory_accessible",
+          "inventory_url": "https://mana-bedrijfswagens.nl/occasions/",
+          "contact_url": "https://mana-bedrijfswagens.nl/contact/",
+          "registry_checked_on": "2026-10-17",
+          "inventory_pages_pending": 0,
+          "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+          "identity_bound_candidates": 0,
+          "index_exclusions": 12
+        },
+        {
+          "dealer_id": "van-mossel",
+          "name": "Van Mossel Bedrijfswagens",
+          "domain": "vanmossel.nl",
+          "inventory_pages_checked": 1,
+          "inventory_pages_fetched": 1,
+          "detail_urls_discovered": 23,
+          "errors": [],
+          "status": "inventory_accessible",
+          "inventory_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad?category=van&country=nl&type=used",
+          "contact_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/contact/contact",
+          "registry_checked_on": "2026-10-17",
+          "inventory_pages_pending": 0,
+          "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+          "identity_bound_candidates": 0,
+          "index_exclusions": 12
+        }
+      ]
+    }
+  },
+  "source_groups_without_bound_records": [
+    "AutoWereld"
+  ],
+  "unrejected_records_needing_review": 18,
+  "production_ready": false,
+  "readiness_note": "Functional validation and zero matches do not establish exhaustive coverage, independent physical evidence or approval to activate production.",
+  "baseline_comparison": {
+    "common_source_listing_records": 18,
+    "only_before": 9,
+    "only_after": 13,
+    "matched_record_evidence_gains": {
+      "price_incl_vat_unknown_to_known": 0,
+      "distance_km_unknown_to_known": 0,
+      "plate_unknown_to_confirmed": 0
+    },
+    "note": "Changing live samples are not controlled accuracy experiments; gains are paired only on identical source/listing URLs."
+  }
+}

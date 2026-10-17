@@ -7,8 +7,7 @@ from listing_evidence import structured, parse_amount
 from source_catalog import VAN_MODEL, DISCOVERY_TOWNS
 from vehicle_risks import auction_evidence, mechanical_failure
 
-LOW_ROOF = re.compile(r"\bL[1-4]\s*H1\b", re.I)
-HIGH_ROOF = re.compile(r"\bL[234][ .-]*H[23]\b|\bhoog\s*dak\b", re.I)
+HIGH_ROOF = re.compile(r"\bL[1-4][ .-]*H[23]\b|\bhoog\s*dak\b|\b(?:hef[ -]?dak|pop[ -]?top|lift[ -]?roof)\b", re.I)
 UNSUITABLE = re.compile(r"\b(?:transit\s+(?:connect|courier)|motor\s+vast|motor\s+defect|motor\s+loopt\s+niet|(?:injectoren?|injector(?:en)?|versnellingsbak|koppeling)\s+(?:defect|kapot)|schade|chassis\s*cabine|open\s+laadbak|pick[ -]?up|kipper|hoogwerker|bakwagen|laadkraan)\b", re.I)
 
 
@@ -90,8 +89,6 @@ def select(pairs, evidence, eligible):
             reason = "explicit current mechanical failure"
         elif not VAN_MODEL.search(title + " " + urlparse(url).path.replace("-", " ")):
             reason = "not a target van model"
-        elif LOW_ROOF.search(title):
-            reason = "explicit low-roof configuration"
         elif auction_evidence(title):
             reason = "auction sale"
         elif any(not re.search(r"\b(?:geen|zonder|no)\s+$", title[max(0, hit.start()-15):hit.start()], re.I)

@@ -28,7 +28,7 @@ SEED_PAGES = {
         "https://www.vanmossel.nl/vestigingen/van-mossel-renault-dacia-roosendaal"],
 }
 
-VAN_MODEL = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|nv400)\b",re.I)
+VAN_MODEL = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|hi[ -]?ace|nv400)\b",re.I)
 
 SOURCE_NAMES = tuple(SOURCE_DOMAINS)
 REQUIRED_CHECKS = ("high_roof", "cab_ac", "conversion_suitable", "distance_within_100km", "price_incl_vat_within_8000")
@@ -52,3 +52,13 @@ INVENTORY_SEEDS = INVENTORY_SEEDS | frozenset(url for urls in BUDGET_PAGES.value
 DISCOVERY_TOWNS = ("bergen op zoom", "roosendaal", "zevenbergen", "breda", "etten-leur",
                    "halsteren", "steenbergen", "tholen", "goes", "tilburg", "dordrecht",
                    "rotterdam", "oosterhout", "hoogerheide", "rucphen")
+
+# V2 includes compact Transporter/HiAce conversions with a viable roof solution.
+# These remain bounded public inventory requests, not claims of full coverage.
+for source, root in (("AutoScout24", "https://www.autoscout24.nl/lst/"),
+                     ("AutoTrack", "https://www.autotrack.nl/aanbod/")):
+    BUDGET_PAGES[source] += [root + model + "?priceto=8000&sort=price&desc=0"
+                             for model in ("volkswagen/transporter", "toyota/hiace")]
+SEED_PAGES["Marktplaats"] += ["https://www.marktplaats.nl/l/auto-s/bestelauto-s/q/" + model + "/"
+                             for model in ("transporter+hefdak", "hiace")]
+INVENTORY_SEEDS = INVENTORY_SEEDS | frozenset(url for urls in BUDGET_PAGES.values() for url in urls) | frozenset(SEED_PAGES["Marktplaats"])

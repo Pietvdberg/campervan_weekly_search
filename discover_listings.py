@@ -28,7 +28,7 @@ from urllib.parse import urljoin,urldefrag
 
 from source_catalog import SOURCE_DOMAINS as SOURCES, SEED_PAGES, VAN_MODEL as MODEL, INVENTORY_SEEDS, BUDGET_PAGES
 
-ROOF = re.compile(r"\bL[234][ .-]*H[23]\b|\bhoog ?dak\b",re.I)
+ROOF = re.compile(r"\bL[1-4][ .-]*H[23]\b|\bhoog ?dak\b|\b(?:hef[ -]?dak|hefdak|pop[ -]?top|lift[ -]?roof)\b",re.I)
 AC = re.compile(r"\b(airco|airconditioning|climate control)\b",re.I)
 CITIES = ("bergen op zoom","roosendaal","zevenbergen","breda","etten-leur","halsteren","steenbergen","tholen","goes","tilburg","dordrecht","rotterdam","oosterhout","hoogerheide","rucphen")
 MAX_BYTES=2600000
@@ -169,8 +169,9 @@ def extract(title,url,source,markup):
     checks["high_roof"] = advertised_feature(scoped_text, ROOF)
     page_title = re.search(r"<title[^>]*>(.*?)</title>", markup, re.I|re.S)
     primary_title = html.unescape(page_title.group(1)) if page_title else ""
-    if re.search(r"\bL[1-4]\s*H1\b", primary_title, re.I):
-        checks["high_roof"] = False
+    if re.search(r"\bL[1-4][ .-]*H1\b", primary_title, re.I) and not ROOF.search(primary_title):
+        # H1 alone does not disprove a viable pop-top conversion (§5, §40).
+        checks["high_roof"] = None
     checks["cab_ac"] = advertised_feature(scoped_text, AC)
     # Conversion suitability requires independently checked payload and dimensions.
     city=next((x for x in CITIES if re.search(r"\b"+re.escape(x)+r"\b",header,re.I)),None)

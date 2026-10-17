@@ -1,11 +1,11 @@
 # Pipeline verification scope
 
 This repository remains a development search system, without a production weekly
-schedule. The user has now supplied `context.md`; public requirements and operational
+schedule. The user has supplied `context.md` and specification v2; public requirements and operational
 boundaries are reconciled in [requirements](requirements.md).
 
 - PR CI runs syntax compilation and all offline unittest modules. The strict
-  review follow-ups currently have 182 tests, including vehicle identity,
+  review follow-ups now have 232 tests, including vehicle identity,
   conversion review, source access stops, report consistency and mail retry state.
 - The marketplace integration workflow performs bounded live discovery across
   six source groups. It records coverage gaps and requires identity-bound evidence
@@ -14,14 +14,16 @@ boundaries are reconciled in [requirements](requirements.md).
   candidate input. It does not run discovery and must not be interpreted as a
   production search.
 - Controlled fixtures demonstrate passing and failing conversion review. No real
-  vehicle measurements or user-approved minima were available in this review.
+  vehicle measurements are supplied. Specification v2 now defines the criteria;
+  the [adoption record](specification-v2-adoption.md) lists remaining acceptance gaps.
 - Manual mail workflows address only the development recipient. SMTP acceptance
   and Gmail Sent confirmation do not prove recipient delivery. Retry state blocks
   blind resubmission after ambiguous or accepted SMTP submission.
 - The external Pi timer collects RSS locally. Upload is separate; data-only pushes
   do not trigger marketplace discovery. This is not end-to-end weekly automation.
 
-Remaining production work: numeric conversion minima, real reviewed candidates,
+Remaining production work: real reviewed candidates and variant research,
+weighted suitability scoring, persistent weekly change tracking,
 stable source access and maintained dealer coverage, an operational cadence,
 durable mail/audit state, appropriate retention and independently demonstrated
 live end-to-end outcomes. PR CI passing alone does not satisfy those conditions.

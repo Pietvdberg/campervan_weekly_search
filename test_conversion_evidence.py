@@ -17,6 +17,8 @@ class ConversionTests(unittest.TestCase):
                     "reviewer": "Synthetic test reviewer", "observed_at": "2026-10-16T00:00:00+00:00",
                     "expires_at": "2026-10-18T00:00:00+00:00",
                     "measurements": {key: {"value": value, "source_url": "https://example.test/measurement", "independently_checked": True} for key, value in self.requirements.items()}}
+        from specification_test_fixtures import add_conversion_fields
+        add_conversion_fields(self.row)
         self.now = datetime(2026, 10, 17, tzinfo=timezone.utc)
 
     def result(self, row=None, requirements=None):
@@ -26,8 +28,8 @@ class ConversionTests(unittest.TestCase):
     def test_exact_minima_pass(self):
         self.assertTrue(self.result()["suitable"])
 
-    def test_missing_minima_remain_unknown(self):
-        self.assertIsNone(self.result(requirements={})["suitable"])
+    def test_specification_supplies_hard_rules_without_custom_minima(self):
+        self.assertTrue(self.result(requirements={})["suitable"])
 
     def test_failed_payload_rejects(self):
         row = deepcopy(self.row)

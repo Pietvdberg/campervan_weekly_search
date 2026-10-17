@@ -3,6 +3,8 @@ from copy import deepcopy
 from datetime import datetime
 import json
 import os
+from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
 from urllib.error import HTTPError
@@ -177,3 +179,30 @@ class ScheduleTests(unittest.TestCase):
             scheduled_period("unreviewed cron", datetime.fromisoformat("2026-10-22T13:00:00+00:00"))
         with self.assertRaises(ValueError):
             scheduled_period(CRONS[0], datetime(2026, 10, 22))
+
+    def plan(self, kind, event):
+        import weekly_schedule
+        class Clock(datetime):
+            @classmethod
+            def now(cls, tz=None):
+                return cls.fromisoformat("2026-10-29T15:02:00+00:00").astimezone(tz)
+        with tempfile.TemporaryDirectory() as folder:
+            event_file, output_file = Path(folder, "event.json"), Path(folder, "output")
+            event_file.write_text(json.dumps(event))
+            with patch.dict(os.environ, {"GITHUB_EVENT_NAME": kind,
+                    "GITHUB_EVENT_PATH": str(event_file), "GITHUB_OUTPUT": str(output_file),
+                    "GITHUB_RUN_ID": "123", "GITHUB_REPOSITORY": "owner/repo"}), patch.object(weekly_schedule, "datetime", Clock), patch.object(
+                    weekly_schedule, "api", return_value={"created_at": "2026-10-22T13:00:00Z"}):
+                weekly_schedule.main()
+            return dict(line.split("=", 1) for line in output_file.read_text().splitlines())
+
+    def test_scheduled_rerun_after_dst_preserves_original_production_period(self):
+        self.assertEqual(self.plan("schedule", {"schedule": CRONS[0]}),
+            {"enabled": "true", "mode": "production", "period": "2026-10-22"})
+
+    def test_other_dst_trigger_disables_delivery(self):
+        self.assertEqual(self.plan("schedule", {"schedule": CRONS[1]})["enabled"], "false")
+
+    def test_manual_event_cannot_select_production_audience(self):
+        self.assertEqual(self.plan("workflow_dispatch", {"inputs": {"mode": "production"}}),
+            {"enabled": "true", "mode": "development", "period": "development-123"})

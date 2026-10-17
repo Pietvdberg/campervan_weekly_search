@@ -1,5 +1,11 @@
 # Production search work: priorities 1–4
 
+> **17 October release update:** Production activation and live delivery/recovery
+> acceptance are recorded in [weekly production delivery](weekly-production-delivery.md).
+> The earlier review checkpoints below describe implementation history. Physical
+> inspections remain purchase checks, not a blocker for the weekly digest.
+
+
 ## Discovery relevance
 
 AutoScout24 and AutoTrack are queried using their verified public `priceto=8000`

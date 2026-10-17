@@ -1,10 +1,11 @@
 name: Weekly camper search and delivery
 on:
   workflow_dispatch:
-  # One release acceptance run, removed when the production schedule is enabled.
-  pull_request:
-    types: [closed]
-    branches: [main]
+  schedule:
+    # Amsterdam 15:00 is 13:00 UTC in summer and 14:00 UTC in winter.
+    # weekly_schedule.py selects exactly one trigger for the local date.
+    - cron: '0 13 * * 4'
+    - cron: '0 14 * * 4'
 permissions:
   contents: read
 concurrency:
@@ -12,9 +13,11 @@ concurrency:
   cancel-in-progress: false
 jobs:
   plan:
-    if: github.event_name != 'pull_request' || (github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'fix/production-delivery' && github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
     outputs:
       enabled: ${{ steps.plan.outputs.enabled }}
       mode: ${{ steps.plan.outputs.mode }}
@@ -23,6 +26,8 @@ jobs:
       - uses: actions/checkout@v7
       - id: plan
         name: Resolve audience and reporting period
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: python3 weekly_schedule.py
 
   search:
@@ -74,26 +79,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 state_store.py push --repo "$GITHUB_REPOSITORY" --branch "search-observations-$MAIL_MODE"
       - name: Deliver the digest with durable checkpoints
-        if: steps.recovery.outputs.already-delivered != 'true' && github.event_name != 'pull_request'
+        if: steps.recovery.outputs.already-delivered != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python3 weekly_delivery.py send --repo "$GITHUB_REPOSITORY" --period "$DELIVERY_PERIOD"
-      - name: Release acceptance — interrupt after SMTP and recover without resending
-        if: steps.recovery.outputs.already-delivered != 'true' && github.event_name == 'pull_request'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python3 scripts/delivery_acceptance.py
-      - name: Release acceptance — verify owner notification path
-        if: github.event_name == 'pull_request' && steps.recovery.outputs.already-delivered != 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python3 failure_alert.py --test
       - name: Preserve search and delivery audit
         if: always()
         uses: actions/upload-artifact@v7

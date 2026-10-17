@@ -1,5 +1,11 @@
 # Weekly search priorities 1–4
 
+> **17 October release update:** Production activation and live delivery/recovery
+> acceptance are recorded in [weekly production delivery](weekly-production-delivery.md).
+> The earlier review checkpoints below describe implementation history. Physical
+> inspections remain purchase checks, not a blocker for the weekly digest.
+
+
 ## 1. Search fit and purchase readiness are different
 
 `search_assessment` checks only bound individual-advert evidence: advertised roof

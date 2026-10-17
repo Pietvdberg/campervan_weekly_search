@@ -29,3 +29,15 @@ run only after inspecting whether a submission occurred. Cross-run/concurrent
 exactly-once delivery is not guaranteed: there is no transactional SMTP/Sent
 service. Sent presence confirms storage in the sender account, not delivery to
 every recipient. No real email was sent during these regression tests.
+
+
+## Weekly production delivery
+
+The weekly search and marketplace manual-search delivery now use separate
+`delivery-production` / `delivery-development` branch journals rather than the
+legacy per-run mail artifact. They freeze both original report bodies, checkpoint
+before SMTP DATA, and acknowledge displayed listings only after Sent confirmation.
+Recovery works across workflow runs; the reporting-period receipt prevents a
+second report for the same period. The standalone legacy smoke/manual-fixture
+workflows still use the artifact mechanism described above. See
+[weekly delivery and recovery operations](weekly-production-delivery.md).

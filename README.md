@@ -1,8 +1,12 @@
-# Camper van weekly search — development pipeline
+# Camper van weekly search
 
 The repository combines bounded six-source listing discovery, conservative
-vehicle screening, RDW lookups, text/HTML reports and development email delivery.
-It is not yet an automated production weekly search. See
+vehicle screening, RDW lookups and text/HTML email reports. The production workflow
+starts each Thursday at 15:00 Europe/Amsterdam (including DST), with delivery to
+the two configured production recipients. Manual searches email Hotmail only;
+push CI sends no email. Delivery-aware history and a durable outbox preserve
+unreported leads and recover the original email without blind resubmission. See
+[production delivery and release evidence](docs/weekly-production-delivery.md),
 [verification status](docs/verification-status.md) and the
 [strict review](STRICT_REVIEW.md) for scope and outstanding gaps.
 The [weekly search design](docs/useful-weekly-search.md) distinguishes advertised
@@ -39,7 +43,7 @@ conversion criteria. Actual reviewed vehicle evidence remains outstanding. See
 3. A push-triggered GitHub Action runs `rdw_lookup.py`, uploads a JSON artifact, and, **only when the entire lookup succeeds**, commits `results/YYYY-MM-DD.json` (or matching suffixed filename) to the repository.
 4. Read that exact results file through the GitHub connector and match records to the corresponding listing plates. Incorporate verified fields into the camper report and email.
 
-If the results file is missing, failed, or late, never imply RDW verification succeeded. Use direct RDW queries as fallback where possible. **The GitHub workflow has not yet been verified end-to-end.**
+If the results file is missing, failed, or late, never imply RDW verification succeeded. Use direct RDW queries as fallback where possible. This RDW request handoff is separate from the weekly search service; inspect its specific Actions run before claiming success.
 
 ## Local invocation
 

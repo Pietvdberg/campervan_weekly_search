@@ -1,3 +1,4 @@
+import io
 import unittest
 from unittest.mock import Mock, patch
 
@@ -6,6 +7,12 @@ from send_report import DEV_RECIPIENTS
 
 
 class AlertTests(unittest.TestCase):
+    def setUp(self):
+        # Synthetic failures must not emit real GitHub warning annotations in CI.
+        output = patch("sys.stdout", new_callable=io.StringIO)
+        output.start()
+        self.addCleanup(output.stop)
+
     def test_alert_uses_only_owner_and_contains_run_link(self):
         with patch("failure_alert.deliver") as send:
             self.assertEqual(notify("owner/repo", "123", "sender@example.test", "synthetic"), "email")

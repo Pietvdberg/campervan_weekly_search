@@ -11,6 +11,7 @@ on:
       - '.github/workflows/**'
 permissions:
   contents: read
+  actions: read
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -21,6 +22,23 @@ jobs:
         run: |
           python3 -m compileall -q .
           python3 -m unittest discover -v
+      - name: Check production planner with real workflow metadata and no email
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import os, subprocess, sys, tempfile
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as folder:
+              event, output = Path(folder, 'schedule.json'), Path(folder, 'outputs')
+              event.write_text('{"schedule":"0 13 * * 4"}')
+              probe_env = dict(os.environ, GITHUB_EVENT_NAME='schedule',
+                  GITHUB_EVENT_PATH=str(event), GITHUB_OUTPUT=str(output))
+              subprocess.run([sys.executable, 'weekly_schedule.py'], env=probe_env, check=True)
+              plan = dict(line.split('=', 1) for line in output.read_text().splitlines())
+              assert plan['mode'] == 'production'
+              assert plan['enabled'] in ('true', 'false')
+          PY
       - name: Prepare artifact round-trip fixture
         run: |
           mkdir -p "$RUNNER_TEMP/camper-action-smoke/.search-state"

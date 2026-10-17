@@ -37,7 +37,7 @@ def sent_folder_from_list(folders):
     raise RuntimeError("No IMAP folder with Sent special-use flag was found")
 
 def verify_sent(sender, password, message_id, subject, recipients):
-    with imaplib.IMAP4_SSL("imap.gmail.com", 993) as imap:
+    with imaplib.IMAP4_SSL("imap.gmail.com", 993, timeout=30) as imap:
         imap.login(sender, password)
         status, folders = imap.list()
         if status != "OK":

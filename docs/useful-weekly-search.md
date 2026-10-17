@@ -85,8 +85,12 @@ alerts. Different sample caps are not treated as comparable count regressions.
 Failed zero-inventory observations are still persisted when invariant validation
 completed, so the next run can see the failure streak.
 
-AutoWereld remains RSS-only under current access restrictions and is reported as
-missing bound coverage; fresh RSS never makes the direct-page monitor healthy.
+AutoWereld is an optional RSS discovery channel under the user's 17 October
+decision. Its separately displayed health checks snapshot freshness and complete
+item assessment. Blocked direct-page access and zero bound counts stay in the
+audit but do not cause a critical core-source alert. Optional feed problems emit
+notices; failures of core sources retain their normal alerts and acceptance gates.
+RSS-only leads never become verified matches through this policy change.
 Direct dealer inventory is checked independently. Public Louwman pages were
 reviewed during this work, but absent reliable bound detail identity meant no new
 validated adapter was claimed or added. Existing access controls are preserved.

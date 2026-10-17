@@ -5,12 +5,22 @@ from pathlib import Path
 
 
 def render(data):
-    lines = ["## Search source health: " + data["status"], "", "Bounded samples; RSS-only stock is not validated inventory.", "",
-             "| Source | Bound adverts | Gross prices | Routes | RSS screened / interesting | Consecutive zero runs | Health |", "|---|---:|---:|---:|---:|---:|---|"]
+    lines = ["## Core search source health: " + data["status"], "", "Bounded primary-advert samples; optional RSS tips are assessed separately.", "",
+             "| Source | Bound adverts | Gross prices | Routes | Consecutive zero runs | Health |", "|---|---:|---:|---:|---:|---|"]
+    optional = []
     for source, row in data["sources"].items():
-        rss = str(row.get("rss_evaluated", 0)) + ' / ' + str(row.get("rss_interesting", 0)) if source == "AutoWereld" else '—'
-        lines.append(f'| {source} | {row["bound"]} | {row["verified_prices"]} | {row["verified_routes"]} | {rss} | {row["zero_bound_streak"]} | {row["severity"]} |')
-    lines += ["", "Alerts:"] + ["- " + alert["source"] + ": " + alert["message"] + (" Next: " + alert["next_action"] if alert.get("next_action") else "") for alert in data["alerts"]]
+        if row.get("role") == "optional_rss":
+            optional.append((source, row))
+            continue
+        lines.append(f'| {source} | {row["bound"]} | {row["verified_prices"]} | {row["verified_routes"]} | {row["zero_bound_streak"]} | {row["severity"]} |')
+    lines += ["", "Core alerts:"] + ["- " + alert["source"] + ": " + alert["message"] + (" Next: " + alert["next_action"] if alert.get("next_action") else "") for alert in data["alerts"]]
+    if optional:
+        lines += ["", "### Optional RSS tips", "", "Feed health measures freshness and complete screening, not verified inventory. Blocked primary-advert access is informational for this optional channel.", "",
+                  "| Source | Snapshot | RSS screened | Interesting | Feed health | Advert follow-up |", "|---|---|---:|---:|---|---|"]
+        for source, row in optional:
+            lines.append(f'| {source} | {row.get("rss_status") or "not supplied"} | {row.get("rss_evaluated", 0)} | {row.get("rss_interesting", 0)} | {row["severity"]} | {row.get("detail_status", "unverified")} |')
+        lines += [""]
+        lines += ["- " + alert["source"] + ": " + alert["message"] for alert in data.get("optional_alerts", [])]
     for source, row in data["sources"].items():
         if row.get("access_restriction"):
             reason = str(row["access_restriction"]).replace("\n", " ").replace("\r", " ").replace("`", "'")
@@ -25,10 +35,11 @@ def main():
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as stream:
             stream.write(text)
-    for alert in health["alerts"]:
-        # Only controlled source names/messages enter annotations; strip protocol delimiters.
-        message = (alert["source"] + ": " + alert["message"]).replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
-        print("::warning::" + message)
+    for level, alerts in (("warning", health["alerts"]), ("notice", health.get("optional_alerts", []))):
+        for alert in alerts:
+            # Only controlled source names/messages enter annotations; strip protocol delimiters.
+            message = (alert["source"] + ": " + alert["message"]).replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+            print("::" + level + "::" + message)
     return 1 if health["status"] == "failed" else 0
 
 

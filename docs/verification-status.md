@@ -5,7 +5,7 @@ schedule. The user has supplied `context.md` and specification v2; public requir
 boundaries are reconciled in [requirements](requirements.md).
 
 - PR CI runs syntax compilation and all offline unittest modules. The strict
-  review follow-ups now have 283 tests, including vehicle identity,
+  review follow-ups now have 289 tests, including vehicle identity,
   conversion review, source access stops, report consistency and mail retry state.
 - The marketplace integration workflow performs bounded live discovery across
   six source groups. It records coverage gaps and requires identity-bound evidence
@@ -48,3 +48,8 @@ adds a dedicated all-item Pi feed screening stage and keeps its research leads
 separate from verified adverts. AutoWereld's external-consent access gap remains
 visible alongside successful RSS screening. Artifact restores retain official
 checksum validation and use Python ZIP extraction to avoid upstream DEP0005.
+
+AutoWereld now has the explicit `optional_rss` role requested by the user. Healthy
+RSS assessment and blocked advert follow-up are reported separately. Missing or
+stale optional feeds generate notices rather than critical core-source alerts;
+core outages and data-integrity failures still fail the relevant checks.

@@ -8,7 +8,7 @@ from math import isfinite
 from pathlib import Path
 from urllib.parse import urlparse
 
-from source_catalog import SOURCE_NAMES, REQUIRED_CHECKS
+from source_catalog import SOURCE_NAMES, CORE_SOURCE_NAMES, OPTIONAL_RSS_SOURCES, REQUIRED_CHECKS
 
 
 def code_fingerprint():
@@ -55,7 +55,8 @@ def summarize(discovery, screening, baseline=None):
         rows = [item for item in results if item["candidate"].get("source") == source]
         entry = coverage.get(source)
         if not isinstance(entry, dict):
-            errors.append("Missing source coverage: " + source)
+            if source in CORE_SOURCE_NAMES:
+                errors.append("Missing source coverage: " + source)
             entry = {}
         source_metrics[source] = {"records": len(rows), "identity_bound": sum(item["candidate"].get("individual_listing_confirmed") is True for item in rows),
             "verified_gross_prices": sum(item["candidate"].get("price_incl_vat") is not None for item in rows),
@@ -113,16 +114,19 @@ def summarize(discovery, screening, baseline=None):
         if any(row.get("url") not in eligible for row in rss.get("shortlist", [])):
             errors.append("RSS shortlist contains an excluded or unevaluated record")
     missing_sources = [source for source, row in source_metrics.items() if row["identity_bound"] == 0]
+    core_missing = [source for source in missing_sources if source in CORE_SOURCE_NAMES]
     pending_review = sum(bool(item.get("reasons")) and candidate_state(item) != "REJECTED" for item in results)
     output = {"generated_at": datetime.now(timezone.utc).isoformat(), "code_fingerprint": discovery.get("run_metadata", {}).get("code_fingerprint"),
               "run_metadata": discovery.get("run_metadata", {}), "validation_passed": not errors, "errors": errors,
-              "stages": {"discovery": "partial" if missing_sources else "bounded_samples_available",
+              "stages": {"discovery": "partial" if core_missing else "bounded_samples_available",
                          "screening": "invalid" if errors else "completed", "independent_review": "pending" if pending_review else "no_unrejected_pending_records",
                          "email": "not_requested_by_this_validation"},
               "search_matches": sum(item.get("search_assessment", {}).get("matched", False) for item in results),
               "coverage_health": screening.get("coverage_health"),
               "records": len(results), "qualified": qualified, "sources": source_metrics,
               "source_groups_without_bound_records": missing_sources, "unrejected_records_needing_review": pending_review,
+              "core_source_groups_without_bound_records": core_missing,
+              "optional_rss_sources": list(OPTIONAL_RSS_SOURCES),
               "production_ready": False,
               "readiness_note": "Functional validation and zero matches do not establish exhaustive coverage, independent physical evidence or approval to activate production."}
     if baseline is not None:

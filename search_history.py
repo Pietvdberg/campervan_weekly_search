@@ -6,7 +6,7 @@ import json
 from urllib.parse import urlsplit, urlunsplit
 
 from rdw_lookup import normalize_plate
-from source_catalog import SOURCE_NAMES
+from source_catalog import SOURCE_NAMES, OPTIONAL_RSS_SOURCES
 
 
 def canonical(url):
@@ -182,6 +182,7 @@ def update(data, state, run_id, observed_at=None):
 def coverage_health(data, previous, run_id, now):
     sources = {}
     alerts = []
+    optional_alerts = []
     coverage = data.get("source_coverage", {})
     for source in SOURCE_NAMES:
         row = coverage.get(source, {})
@@ -212,6 +213,19 @@ def coverage_health(data, previous, run_id, now):
                             "rate_limited" if "HTTP 429" in reason else
                             "request_budget" if "budget exhausted" in reason else "source_access")
         rss = data.get("rss_evaluation", {}) if source == "AutoWereld" else {}
+        optional = source in OPTIONAL_RSS_SOURCES
+        rss_reason = None
+        if optional:
+            expected = len(data.get("unverified_rss_leads", []))
+            fresh = row.get("external_rss_snapshot_status") == "fresh_index_only"
+            complete = (rss.get("version") == 1 and expected > 0
+                        and rss.get("evaluated_records") == expected
+                        and len(rss.get("results", [])) == expected)
+            severity = "ok" if fresh and complete else "warning"
+            rss_reason = ("Fresh RSS snapshot; every supplied item was assessed."
+                          if fresh and complete else
+                          "Optional RSS snapshot is missing, stale or invalid."
+                          if not fresh else "Optional RSS assessment is missing, incomplete or has no supplied items.")
         remediation = ("Restore permitted access to public advert pages or inspect independent dealer adverts; do not bypass the access stop."
                        if failure_kind in ("external_redirect", "access_denied", "source_access") else
                        "Wait for the source's rate limit to clear before a later bounded run."
@@ -226,25 +240,29 @@ def coverage_health(data, previous, run_id, now):
             "access_restriction": row.get("source_block_reason"), "rss_status": row.get("external_rss_snapshot_status"),
             "pending_inventory_pages": row.get("inventory_pages_pending"), "dealers": dealers,
             "failure_kind": failure_kind, "remediation": remediation,
+            "role": "optional_rss" if optional else "core",
+            "rss_health_reason": rss_reason,
+            "detail_status": "blocked" if failure_kind else "validated_adverts_available" if bound else "unverified",
             "rss_evaluated": rss.get("evaluated_records", 0),
             "rss_interesting": rss.get("counts", {}).get("INTERESTING", 0),
             "rss_needs_info": rss.get("counts", {}).get("NEEDS_INFO", 0)}
-        if severity != "ok":
+        if optional:
+            if severity != "ok":
+                optional_alerts.append({"source": source, "severity": "warning", "code": "optional_rss_unavailable",
+                    "message": rss_reason, "next_action": "Refresh the Pi RSS snapshot and rerun its separate assessment."})
+        elif severity != "ok":
             cause = {"external_redirect": "Public advert access stopped at an external consent/origin redirect.",
                      "access_denied": "Public advert access denied (HTTP 403).",
                      "rate_limited": "Source rate-limited requests (HTTP 429).",
                      "request_budget": "The bounded host request budget was exhausted."}.get(failure_kind, "Missing/degraded validated inventory or extracted evidence.")
-            if source == "AutoWereld":
-                cause += (f" RSS snapshot: {row.get('external_rss_snapshot_status', 'not_recorded')}; "
-                          f"{rss.get('evaluated_records', 0)} feed items screened separately, "
-                          f"{rss.get('counts', {}).get('INTERESTING', 0)} interesting leads. RSS is index-only; no validated adverts are created by feed screening.")
             alerts.append({"source": source, "severity": severity, "code": failure_kind or "evidence_gap",
                            "message": cause, "next_action": remediation})
         for dealer in dealers:
             if dealer.get("errors") or dealer.get("inventory_pages_fetched", 0) == 0:
                 alerts.append({"source": dealer.get("name"), "severity": "warning", "message": "Direct dealer inventory fetch failed; inspect maintained registry."})
-    total = sum(row["bound"] for row in sources.values())
+    total = sum(row["bound"] for row in sources.values() if row["role"] == "core")
     return {"run_id": run_id, "observed_at": now, "sources": sources, "alerts": alerts,
+            "optional_alerts": optional_alerts,
             "status": "failed" if total == 0 else "degraded" if alerts else "bounded_coverage_available",
             "exhaustive": False, "observations": len(previous) + 1,
             "note": "Per-run history; repeated runs on one day do not establish weeks of unattended reliability."}

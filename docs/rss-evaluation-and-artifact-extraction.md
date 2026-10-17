@@ -40,8 +40,12 @@ not proof of zero stock and not repaired by successful RSS collection.
 Health output now distinguishes external redirects, HTTP 403, HTTP 429 and
 request-budget stops. It shows separately how many RSS items were assessed and
 found interesting, the exact access diagnostic, and the next action. The
-zero-validated-advert streak and critical status remain until permitted primary
-advert access is restored. Independently fetched dealer adverts remain useful
+zero-validated-advert history and access restrictions remain in the audit.
+Following the user's decision on 17 October, AutoWereld is an optional RSS channel: its
+feed health depends on a fresh snapshot and complete item assessment. Blocked
+individual advert access is informational, not a critical core-source failure.
+A missing/stale feed or incomplete assessment produces an optional notice without
+degrading core search health. Independently fetched dealer adverts remain useful
 alternatives; they do not count as validated AutoWereld stock.
 
 ## Remove the deprecated ZIP extraction path

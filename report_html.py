@@ -95,8 +95,9 @@ li {{margin:12px 0}}.note {{background:#fff5e3;padding:12px;border-radius:7px}}
 <h2>🔎 Zoekshortlist — aankoopkeuring volgt</h2>
 <p class="muted">Zoekmatches voldoen aan de advertentie-, btw-prijs- en rijroutechecks. Voorwaardelijke leads missen nog advertentiebewijs. Geen van beide is een technische aankoopkeuring.</p>
 {leads or "<p>Geen bruikbare individueel onderzochte advertenties in deze ronde.</p>"}
-<h2>📰 AutoWereld · extra tips (RSS)</h2>
+<h2>📰 AutoWereld · optionele extra tips (RSS)</h2>
 <p class="muted">Deze advertenties komen uitsluitend uit de externe RSS-index. Alle aangeleverde feeditems zijn apart beoordeeld op zoekinteresse; de individuele advertentie, rijroute en actuele staat blijven onbevestigd. Tellen nooit mee als bevestigde match.</p>
+<p class="muted">Optionele bron · feedstatus: {e(coverage.get("AutoWereld", {}).get("external_rss_snapshot_status", "niet aangeleverd"))}. Beperkte advertentietoegang is geen kritieke storing van de kernzoekopdracht.</p>
 <p>{rss["evaluated_records"]} feeditems beoordeeld · {rss["counts"]["INTERESTING"]} interessant om te onderzoeken · {rss["counts"]["NEEDS_INFO"]} missen informatie · {rss["counts"]["EXCLUDED"]} uitgesloten.</p>
 <ul>{rss_cards or "<li>Geen relevante RSS-tips binnen de voorlopige selectie.</li>"}</ul>
 <h2>Waar ontbreekt bewijs?</h2>

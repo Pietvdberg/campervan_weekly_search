@@ -27,8 +27,11 @@ project requirements and distinguishes historical observations from current proo
 - Keep service invoices, odometer assessment, APK status/history, rust/drivetrain,
   actual mass/payload, realistic conversion costs and independent inspection visible
   as evidence or outstanding risks. APK approval is not an inspection substitute.
-- Sources: Marktplaats, AutoScout24, AutoTrack, viaBOVAG, AutoWereld and local dealers.
-  Auctions, Gaspedaal, TrucksNL, wijkopenautos and Bedrijfsauto.nl are excluded.
+- Core sources: Marktplaats, AutoScout24, AutoTrack, viaBOVAG and local dealers.
+- AutoWereld supplies separately reported, optional RSS research tips. Under the
+  user's 17 October decision, its blocked detail access is informational; feed
+  freshness and complete assessment are monitored separately from core CI health.
+- Auctions, Gaspedaal, TrucksNL, wijkopenautos and Bedrijfsauto.nl are excluded.
 - Keep the digest short: confirmed matches, up to five unverified individual leads
   and up to five separate RSS tips. Retain full audit records and source limits.
   Zero verified matches never means exhaustive proof of no stock.

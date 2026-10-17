@@ -189,10 +189,28 @@ def extract(title,url,source,markup):
     price_hit=re.search(r"(?:€|EUR)\s*([\d.]+(?:,\d{2})?)",scoped_text,re.I)
     title_match=re.search(r"<title[^>]*>(.*?)</title>",markup,re.I|re.S)
     name=(" ".join(html.unescape(title_match.group(1)).split()) if title_match else title)[:180]
+    identities = [node["seller_vehicle_identity"] for node in scoped_objects
+                  if node.get("@type") == "VehicleEvidence" and node.get("seller_vehicle_identity")]
+    if len(identities) == 1 and identities[0].get("make") and identities[0].get("model"):
+        identity = identities[0]
+        version = str(identity.get("modelVersionInput") or "").split("|")[0].strip()
+        if version.casefold().startswith(str(identity["model"]).casefold() + " "):
+            version = version[len(identity["model"]):].strip()
+        name = " ".join((identity["make"], identity["model"], version)).strip()[:180]
+    cautions = []
+    for pattern, note in (
+        (r"oude lekkage\s*sporen|lekkagesporen", "Verkoper noemt oude lekkagesporen; laat oorzaak en herstel controleren."),
+        (r"zonder enige vorm van garantie|geen garantie", "Verkoper adverteert zonder garantie; bevestig aankoopvoorwaarden."),
+        (r"gespecialiseerd in verkoop voor handel of export", "Verkoper richt zich op handel/export; bevestig Nederlandse consumentenverkoop en totale afleverprijs."),
+        (r"\bdubbele?\s*cabine\b|\bdubbelcabine\b", "Dubbele cabine geadverteerd; meet de resterende woonruimte."),
+    ):
+        if re.search(pattern, scoped_text, re.I):
+            cautions.append(note)
     evidence=enrich(scoped_markup)
     checks.update(evidence["checks"])
     return {"name":name,"source":source,"listing_url":url,"individual_listing_confirmed":provenance["status"] == "bound",
             "evidence_provenance":provenance,
+            "advertised_cautions":cautions,
             "sale_method":"auction" if auction_evidence(primary_title + " " + scoped_text) else "unverified",
             "reported_mechanical_failure":mechanical_failure(primary_title + " " + scoped_text),
             "checks":checks,"plate":plate,"plate_confirmed_from_listing":bool(plate),

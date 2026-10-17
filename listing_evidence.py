@@ -62,6 +62,10 @@ def price_evidence(markup,objs):
     Price and VAT context from arbitrary other cards or scripts must not be
     combined. A bare JSON-LD offer price is not evidence of tax treatment.
     """
+    conflicts = [node["seller_price_conflict"] for node in objs
+                 if node.get("@type") == "VehicleEvidence" and node.get("seller_price_conflict")]
+    if conflicts:
+        return {"amount_incl_vat": None, "basis": "unknown", "source": "conflicting_same_listing_seller_price", "conflicts": conflicts}
     visible = re.sub(r"<(?:script|style)\b[^>]*>.*?</(?:script|style)>", " ", markup, flags=re.I|re.S)
     text=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",visible)).split())
     offer=next((d for d in objs if "price" in d and ("priceCurrency" in d or "priceSpecification" in d)),None)

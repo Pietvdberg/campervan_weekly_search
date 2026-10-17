@@ -13,9 +13,19 @@ def details(item):
         why.append("ophaaladres binnen 100 km rijden")
     research = item.get("suitability", {}).get("research", {})
     notes = research.get("notes", [])
-    questions = [question for entry in notes for question in entry.get("seller_questions", [])]
+    questions = []
+    for risk in item.get("rdw_risks", []):
+        if risk.get("code") == "odometer_inconsistent":
+            questions.append("RDW meldt Onlogisch: welke facturen en kilometerhistorie verklaren de afwijking?")
+        elif risk.get("code") == "apk_expired":
+            questions.append("APK is verlopen: wordt de bus geleverd met een nieuwe APK en welke herstelkosten zijn bekend?")
+    if c.get("checks", {}).get("high_roof") is not True:
+        questions.append("Geen bruikbare stahoogte bevestigd: meet de laadruimte en controleer haalbaarheid, kosten en toelating van een hefdak vóór aankoop.")
+    if c.get("field_evidence", {}).get("price", {}).get("conflicts"):
+        questions.insert(0, "Btw-prijsinformatie spreekt zichzelf tegen; bevestig schriftelijk de totale consumentenprijs inclusief btw en verplichte kosten.")
+    questions.extend(question for entry in notes for question in entry.get("seller_questions", []))
     if not research.get("exact_variant_identified"):
-        questions.insert(0, "Bevestig bouwjaar/generatie, motorcode, versnellingsbak en carrosseriemaat; de exacte aandrijflijn is nog niet vastgesteld.")
+        questions.append("Bevestig bouwjaar/generatie, motorcode, versnellingsbak en carrosseriemaat; de exacte aandrijflijn is nog niet vastgesteld.")
     if c.get("price_incl_vat") is None:
         questions.append("Wat is de totale consumentenprijs inclusief btw en verplichte kosten?")
     if c.get("distance_km") is None:
@@ -34,7 +44,7 @@ def details(item):
     if conflicts:
         questions.insert(0, "Eerder waargenomen bronprijzen verschillen (EUR " + ", ".join(str(value) for value in conflicts) + "); bevestig de actuele totale prijs.")
     return {"why": "; ".join(why) or "Nog onvoldoende advertentiegegevens voor een overtuigende zoekmatch",
-            "questions": list(dict.fromkeys(questions))[:4], "research_notes": notes, "ranking": ranking,
+            "questions": list(dict.fromkeys(questions))[:5], "research_notes": notes, "ranking": ranking,
             "category": suitability.get("category", "C"), "history": changes.get(history.get("status"), "Geen eerdere zoekhistorie beschikbaar"),
             "conflicts": history.get("conflicting_source_prices", []),
             "purchase_actions": "Voor aankoop: beschikbaarheid bevestigen, onafhankelijke technische keuring, airco testen en inrichting/gewichten controleren."}

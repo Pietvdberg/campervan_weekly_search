@@ -5,7 +5,7 @@ schedule. The user has supplied `context.md` and specification v2; public requir
 boundaries are reconciled in [requirements](requirements.md).
 
 - PR CI runs syntax compilation and all offline unittest modules. The strict
-  review follow-ups now have 256 tests, including vehicle identity,
+  review follow-ups now have 268 tests, including vehicle identity,
   conversion review, source access stops, report consistency and mail retry state.
 - The marketplace integration workflow performs bounded live discovery across
   six source groups. It records coverage gaps and requires identity-bound evidence
@@ -30,3 +30,10 @@ Remaining production work: real reviewed candidates, expansion of cited variant 
 stable source access and maintained dealer coverage, an operational cadence,
 durable mail/audit state, appropriate retention and independently demonstrated
 live end-to-end outcomes. PR CI passing alone does not satisfy those conditions.
+
+The [17 October live-shortlist audit](shortlist-review-2026-10-17.md) reviews the
+124-record successful Actions run, re-extracts 17 exact public pages, and records
+current fault/VAT corrections and matching research for the final five leads.
+One development HTML/plain-text message was sent and read back from Gmail Sent;
+local desktop/mobile rendering passed. Received Hotmail appearance remains
+unconfirmed; these checks do not activate production.

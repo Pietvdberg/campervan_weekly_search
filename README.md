@@ -22,3 +22,16 @@ python3 rdw_lookup.py VL-034-B --output rdw_results.json
 Go to **Actions → RDW vehicle and APK checks → Run workflow**, enter plates separated by commas or spaces, and download the resulting workflow artifact. Manual runs do not commit a result file.
 
 **Limitations:** The script returns raw RDW records; the report must interpret the correct fields carefully. No defect records does not prove a fault-free vehicle, and APK approval does not establish service history. The repository is public, so requests and results are publicly visible; only submit public vehicle registration numbers and never secrets.
+
+## Request parsing and success criteria
+
+`python3 rdw_lookup.py --input requests/YYYY-MM-DD.txt --output rdw_results.json`
+reads every comma/whitespace-separated plate, validates the full batch before
+network access, and deduplicates registrations. A lookup succeeds only with one
+matching registration, successful defect retrieval, and official descriptions
+for every returned defect code. Empty defect history is valid but is not proof
+of a fault-free vehicle. A capped response fails rather than claiming complete
+history. Failed batches still write audit JSON and exit nonzero, preventing
+publication as successful workflow results.
+
+Run offline regressions with `python3 -m unittest discover -v`.

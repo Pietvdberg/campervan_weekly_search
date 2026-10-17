@@ -144,6 +144,26 @@ def is_vehicle_detail(url, source, markup):
     plain=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",markup)).split())
     return bool(re.search(r"\\b(?:kenteken|nummerplaat)\\s*[:\\-]?\\s*[A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3}\\b",plain,re.I))
 
+def advertised_feature(text, pattern):
+    """Interpret explicit seller denials before positive feature mentions.
+
+    Conflicting mentions stay unknown. This describes the advert, not a
+    functional inspection of the equipment.
+    """
+    states = []
+    for match in pattern.finditer(text):
+        before = text[max(0, match.start() - 45):match.start()]
+        after = text[match.end():match.end() + 45]
+        negative = (
+            re.search(r"\b(?:geen|zonder|niet|no|without)\s+(?:(?:werkende|functionerende|een|a|working)\s+){0,2}$", before, re.I)
+            or re.match(r"\s*(?:[:=—–-]\s*)?(?:nee|no|niet\s+(?:aanwezig|werkend|functionerend)|werkt\s+niet|defect|kapot|ontbreekt)\b", after, re.I)
+        )
+        states.append(not bool(negative))
+    if not states or len(set(states)) > 1:
+        return None
+    return states[0]
+
+
 def extract(title,url,source,markup):
     if re.search(r"<title[^>]*>\s*(?:access denied|forbidden|just a moment|captcha|verify you are human|toegang geweigerd)[^<]*</title>",markup[:10000],re.I):
         return None
@@ -155,8 +175,8 @@ def extract(title,url,source,markup):
         return None
     if not is_vehicle_detail(url,source,markup): return None
     checks={key:None for key in ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")}
-    if ROOF.search(header): checks["high_roof"]=True
-    if AC.search(header): checks["cab_ac"]=True
+    checks["high_roof"] = advertised_feature(text[:5000], ROOF)
+    checks["cab_ac"] = advertised_feature(text[:5000], AC)
     # Conversion suitability requires independently checked payload and dimensions.
     city=next((x for x in CITIES if re.search(r"\b"+re.escape(x)+r"\b",header,re.I)),None)
     # Mention of a nearby town is NOT independent verification of driving distance.

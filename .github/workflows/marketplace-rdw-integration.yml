@@ -52,6 +52,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: marketplace-rdw-verification-${{ github.run_id }}
+          overwrite: true
           path: |
             discovered_candidates.json
             screening_results.json
@@ -69,6 +70,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: search-state-${{ github.run_id }}
+          overwrite: true
           path: .search-state/
           include-hidden-files: true
           retention-days: 7

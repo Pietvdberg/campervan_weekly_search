@@ -13,6 +13,7 @@ import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured, PLATE
 from listing_identity import bind_evidence, require_same_listing
 from source_access import SourceFetch, host_key
+from vehicle_risks import auction_evidence
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from autowereld_html import html_to_xml, response_identity
 from autowereld_snapshot import read_snapshot_records
@@ -178,6 +179,7 @@ def extract(title,url,source,markup):
     checks.update(evidence["checks"])
     return {"name":name,"source":source,"listing_url":url,"individual_listing_confirmed":provenance["status"] == "bound",
             "evidence_provenance":provenance,
+            "sale_method":"auction" if auction_evidence(primary_title + " " + scoped_text) else "unverified",
             "checks":checks,"plate":plate,"plate_confirmed_from_listing":bool(plate),
             "city_mentioned":city,"price_advertised":price_hit.group(1) if price_hit else None,
             "price_incl_vat":evidence["vat"]["amount_incl_vat"],"vat_basis":evidence["vat"]["basis"],

@@ -17,10 +17,12 @@ def item_card(item):
     advertised=e(c.get("price_advertised") or "onbekend")
     distance=(f'{e(c["distance_km"])} km' if c.get("distance_km") is not None else "Niet geverifieerd")
     blockers = "; ".join(item.get("reasons", [])) or "Geen inhoudelijke controles open"
+    risks = "; ".join(risk["message"] for risk in item.get("rdw_risks", [])) or "Geen gemelde RDW-signalen; technische staat blijft ongeverifieerd"
     return (f'<div class="vehicle"><h3>{title}</h3><p class="meta">Bron: {e(c.get("source","?"))} · Bewijs: {e(item["score"])}% · '
             f'{e(candidate_state(item))}</p><p><strong>Prijs incl. btw:</strong> {price} '
             f'<span class="muted">(geadverteerd: {advertised}; btw-status: {e(c.get("vat_basis","unknown"))})</span></p>'
             f'<p><strong>Rijafstand:</strong> {distance} vanaf Bergen op Zoom</p>'
+            f'<p class="muted"><strong>RDW-aandachtspunten:</strong> {e(risks)}</p>'
             f'<p class="muted"><strong>Nog controleren:</strong> {e(blockers)}</p><p>{link}</p></div>')
 
 def render_html(data):

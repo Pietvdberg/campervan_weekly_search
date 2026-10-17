@@ -10,6 +10,7 @@ import re
 from html import unescape
 from rdw_lookup import lookup, normalize_plate
 from conversion_evidence import assess as assess_conversion
+from vehicle_risks import sale_exclusion, auction_evidence, rdw_risks
 
 from source_catalog import SOURCE_NAMES as SOURCES, REQUIRED_CHECKS as REQUIRED
 
@@ -25,6 +26,8 @@ def normalized_url(url):
 
 def candidate_state(item):
     """Hard failures take precedence over evidence-based ranking."""
+    if sale_exclusion(item["candidate"]):
+        return "REJECTED"
     if any(item["candidate"].get("checks", {}).get(k) is False for k in REQUIRED):
         return "REJECTED"
     if item["qualified"]:
@@ -92,7 +95,7 @@ def rss_shortlist(leads, verified_urls=(), limit=5):
         identity = normalized_url(url)
         title = unescape(str(lead.get("title") or ""))
         text = title.lower()
-        if not url.startswith("https://www.autowereld.nl/") or identity in seen:
+        if not url.startswith("https://www.autowereld.nl/") or identity in seen or auction_evidence(title):
             continue
         seen.add(identity)
         if not re.search(r"\bl[23]\s*[- ]?h2\b", text, re.I):
@@ -134,6 +137,9 @@ def screen(candidate):
         except ValueError: plate = None
     else: plate = None
     if not plate: reasons.append("plate not confirmed from individual listing")
+    exclusion = sale_exclusion(candidate)
+    if exclusion:
+        reasons.append(exclusion)
     return {"candidate":candidate, "score":score, "plate":plate, "reasons":reasons, "qualified":score >= 90 and not reasons, "rdw":None}
 
 def evidence_summary(results):
@@ -205,6 +211,12 @@ def evaluate(data, rdw_lookup=lookup):
                 or item["rdw"].get("defect_catalogue_errors")):
             item["qualified"] = False
             item["reasons"].append("RDW/APK lookup incomplete")
+        if vehicle.get("status") == "ok" and len(records) == 1 and records[0].get("kenteken") == item["plate"]:
+            item["rdw_risks"] = rdw_risks(records[0])
+            for concern in item["rdw_risks"]:
+                if concern["blocks_qualification"]:
+                    item["qualified"] = False
+                    item["reasons"].append(concern["message"])
     return {"generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
             "source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
             "unverified_rss_leads":data.get("unverified_rss_leads",[]),
@@ -254,7 +266,8 @@ def report(data):
                      "  VAT-inclusive price: " + str(c.get("price_incl_vat") if c.get("price_incl_vat") is not None else "unverified"),
                      "  Driving route from Bergen op Zoom: " + str(c.get("distance_km") if c.get("distance_km") is not None else "unverified") + " km",
                      "  Listing: " + str(c.get("listing_url", "unavailable")),
-                     "  Outstanding checks: " + ("; ".join(item["reasons"]) or "none")])
+                     "  Outstanding checks: " + ("; ".join(item["reasons"]) or "none"),
+                     "  RDW concerns: " + ("; ".join(risk["message"] for risk in item.get("rdw_risks", [])) or "none reported; condition still unverified")])
     if qualified:
         for item in qualified:
             render_item(item)

@@ -39,3 +39,16 @@ The historical handover's code SHA, 110-test count and run statistics describe
 pre-review code. Consult current GitHub CI and dated audit comparisons for newer
 observations. Do not copy credentials, private correspondence or machine access
 information into this public repository.
+
+## Explicit adverse evidence
+
+An expired RDW APK date (assessed on the Netherlands local calendar date) or an
+`Onlogisch` odometer assessment prevents a qualified recommendation until resolved.
+A registered maximum mass above 3,500 kg produces a licence/mass review warning;
+it does not infer the user's licence or prove actual conversion payload. Missing
+or malformed RDW facts do not establish a clean inspection. These concerns appear
+in both report formats and remain in the audit. Historical APK defects remain
+historical; they are not automatically labelled current unrepaired faults.
+
+Auction sale evidence and the explicitly excluded marketplace domains are rejected
+before candidate RDW work. RSS auction tips are excluded from the digest as well.

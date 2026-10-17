@@ -4,6 +4,8 @@ import json
 import os
 from zoneinfo import ZoneInfo
 
+from state_store import api
+
 CRONS = ("0 13 * * 4", "0 14 * * 4")
 
 
@@ -26,7 +28,11 @@ def main():
         event = json.load(stream)
     kind = os.environ["GITHUB_EVENT_NAME"]
     if kind == "schedule":
-        period = scheduled_period(event["schedule"], datetime.now(timezone.utc))
+        # created_at belongs to the original run, even if rerun on another day
+        # or after a DST transition. Today's date would silently skip recovery.
+        run = api(os.environ["GITHUB_REPOSITORY"], "actions/runs/" + os.environ["GITHUB_RUN_ID"])
+        created = datetime.fromisoformat(run["created_at"].replace("Z", "+00:00"))
+        period = scheduled_period(event["schedule"], created)
         mode = "production"
     else:
         period = "development-" + os.environ["GITHUB_RUN_ID"]

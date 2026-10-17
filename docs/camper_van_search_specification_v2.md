@@ -19,6 +19,14 @@ target_completion_date: 2028-03-01
 
 > **Version 2.0 amendment and precedence (17 October 2026):** This file preserves the original 54-section specification and adds the later operational requirements in Sections 55–68. Where an original rule differs, the explicit October 2026 amendment takes precedence. In particular, **100 km actual driving distance** is the hard routine inspection limit (not the earlier 125 km allowance); **€8,000 including VAT** is the purchase-price ceiling; and a verified/recommendable listing requires **≥90% supported evidence** with no overriding hard rejection. Do not infer that a 90% score proves a van is mechanically safe. The original preferences and weighted criteria remain useful after hard filters.
 
+> **Operational release amendment (17 October 2026):** The user explicitly requested
+> priorities 1–3, including production activation after live delivery acceptance.
+> The release record in [weekly production delivery](weekly-production-delivery.md)
+> supersedes the earlier “not yet approved” activation status in Sections 55–68.
+> Production cadence is Thursday 15:00 Europe/Amsterdam with DST, using the two
+> existing production recipients. Manual/development mail remains Hotmail-only;
+> push CI sends no email. Advertised A/C remains sufficient for search screening.
+
 # Camper Van Search Specification
 
 ## 1. Purpose

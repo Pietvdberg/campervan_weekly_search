@@ -37,10 +37,11 @@ project requirements and distinguishes historical observations from current proo
   Zero verified matches never means exhaustive proof of no stock.
 - Development/manual mail goes only to the agreed Hotmail development address.
   Push CI sends no email. The recipient confirmed readable HTML on phone and PC.
-- Production weekly search/email remains disabled pending explicit activation
-  acceptance of the new delivery path. On 17 October the user explicitly requested
-  priorities 1–3, including activation after that acceptance passes. The cadence
-  is Thursday 15:00 Europe/Amsterdam with DST. See [the release contract](weekly-production-delivery.md).
+- The user explicitly authorized priorities 1–3 on 17 October, including weekly
+  production activation after live delivery acceptance. The production workflow
+  is scheduled for Thursday 15:00 Europe/Amsterdam with DST, to both existing
+  production recipients. Manual search reports remain Hotmail-only. See
+  [the release contract and acceptance evidence](weekly-production-delivery.md).
 - The separate Pi RSS collector/upload timer was already enabled and user-approved:
   Thursday 13:30 Europe/Amsterdam, linger enabled, last verified in the handover on
   16 October. That is a historical user-reported operational observation, not a

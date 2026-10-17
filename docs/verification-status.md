@@ -1,11 +1,12 @@
 # Pipeline verification scope
 
-This repository remains a development search system, without a production weekly
-schedule. The user has supplied `context.md` and specification v2; public requirements and operational
+The production weekly search is scheduled for Thursday 15:00 Europe/Amsterdam,
+including DST, following the user's explicit 17 October activation request and
+live delivery acceptance. The user supplied `context.md` and specification v2; public requirements and operational
 boundaries are reconciled in [requirements](requirements.md).
 
 - PR CI runs syntax compilation and all offline unittest modules. The strict
-  review follow-ups now have 305 tests, including vehicle identity,
+  review follow-ups now have 308 tests, including vehicle identity,
   conversion review, source access stops, report consistency and mail retry state.
 - The marketplace integration workflow performs bounded live discovery across
   six source groups. It records coverage gaps and requires identity-bound evidence
@@ -27,8 +28,8 @@ research registry and persistent weekly change tracking are implemented; see the
 [weekly search design](useful-weekly-search.md).
 
 The weekly digest does not require physical vehicle inspections or a qualifying
-vehicle before launch. Those remain purchase decisions. The final release work
-is delivery-aware history, timezone-aware scheduling and a complete live
+vehicle before launch. Those remain purchase decisions. The release includes
+delivery-aware history, timezone-aware scheduling and a complete live
 SMTP/recovery acceptance check, recorded in [weekly production delivery](weekly-production-delivery.md).
 Coverage, dealer maintenance and additional variant research remain ongoing
 quality improvements rather than blanket release blockers.
@@ -43,7 +44,8 @@ receipt and readable appearance on both phone and PC, with screenshots. The
 also succeeded on the merged commit, including discovery, RDW screening, invariant
 validation, artifact upload and durable history restoration/persistence. Its mail
 step was skipped as intended for a push-triggered run. This closes the remaining
-recipient-side check for priorities 1–3; production activation remains separate.
+recipient-side appearance check. The later production delivery acceptance is
+recorded in the weekly release contract linked above.
 
 The [RSS assessment and artifact extraction follow-up](rss-evaluation-and-artifact-extraction.md)
 adds a dedicated all-item Pi feed screening stage and keeps its research leads

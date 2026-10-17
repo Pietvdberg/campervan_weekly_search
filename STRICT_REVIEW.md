@@ -194,3 +194,9 @@ assessment, a named reviewer, evidence URLs and dated validity. No requirements
 or measurements are fabricated. Passing and failing end-to-end fixtures prove
 that qualification is reachable with reviewed evidence and blocked by failures.
 The broader live-discovery acceptance and production operation gaps remain open.
+
+PR #49 merged after CI passed. Finding #8 now uses one presentation selection
+model for text and HTML, prefers stronger duplicate evidence, and reports unique
+qualified counts consistently. HTML now shows RDW/listing blockers and no longer
+claims zero qualifying vehicles unconditionally. Three additional regressions
+bring the offline suite to 146 tests.

@@ -8,6 +8,7 @@ from urllib.parse import urlparse, urlunparse
 import re
 from html import unescape
 from rdw_lookup import lookup, normalize_plate
+from conversion_evidence import assess as assess_conversion
 
 SOURCES = ("Marktplaats","AutoScout24","AutoTrack","viaBOVAG","AutoWereld","Local dealers")
 REQUIRED = ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")
@@ -130,7 +131,19 @@ def evidence_summary(results):
     return summary
 
 def evaluate(data, rdw_lookup=lookup):
-    results=[screen(c) for c in data.get("candidates",[])]
+    candidates = data.get("candidates", [])
+    if "conversion_evidence" in data:
+        contract = data["conversion_evidence"]
+        if not isinstance(contract, dict):
+            raise ValueError("conversion_evidence must be an object")
+        reviewed = []
+        for candidate in candidates:
+            assessment = assess_conversion(candidate, contract.get("requirements"), contract.get("assessments"))
+            candidate = {**candidate, "checks": {**candidate.get("checks", {}),
+                         "conversion_suitable": assessment["suitable"]}, "conversion_assessment": assessment}
+            reviewed.append(candidate)
+        candidates = reviewed
+    results=[screen(c) for c in candidates]
     for item in results:
         if not item["plate"] or candidate_state(item) == "REJECTED": continue
         try: item["rdw"]=rdw_lookup(item["plate"])
@@ -264,8 +277,12 @@ def report(data):
 if __name__=="__main__":
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",default="candidates.json")
+    ap.add_argument("--conversion-evidence", help="JSON containing explicit conversion requirements and reviewed assessments")
     args=ap.parse_args()
-    result=evaluate(json.loads(Path(args.input).read_text(encoding="utf8")))
+    data = json.loads(Path(args.input).read_text(encoding="utf8"))
+    if args.conversion_evidence:
+        data["conversion_evidence"] = json.loads(Path(args.conversion_evidence).read_text(encoding="utf8"))
+    result=evaluate(data)
     Path("screening_results.json").write_text(json.dumps(result,indent=2,ensure_ascii=False),encoding="utf8")
     Path("report.txt").write_text(report(result),encoding="utf8")
     print("Candidates:",len(result["results"]),"qualifiers:",result["qualifiers"])

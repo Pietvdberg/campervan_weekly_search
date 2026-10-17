@@ -187,3 +187,10 @@ PR #47 merged after CI passed. Finding #5 now has a shared typed-HTTP access gua
 and a 100-request per-host run budget across inventory, feeds, details and dealer
 source groups. Other hosts continue independently; coverage records stop reasons
 and host counts. Five regressions bring the suite to 135 passing offline tests.
+
+PR #48 merged after CI passed. Finding #6 now has an explicit conversion evidence
+input: caller-specified payload/dimension minima, one matching listing/plate
+assessment, a named reviewer, evidence URLs and dated validity. No requirements
+or measurements are fabricated. Passing and failing end-to-end fixtures prove
+that qualification is reachable with reviewed evidence and blocked by failures.
+The broader live-discovery acceptance and production operation gaps remain open.

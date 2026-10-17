@@ -1,0 +1,199 @@
+{
+  "run_metadata": {},
+  "search_matches": 1,
+  "purchase_ready": 0,
+  "specification_version": "2.0",
+  "generated_on": "2026-10-17",
+  "source_screening": {
+    "AutoScout24": {
+      "total": 1,
+      "qualified": 0,
+      "checks": {
+        "high_roof": {
+          "passed": 1,
+          "failed": 0,
+          "unknown": 0
+        },
+        "cab_ac": {
+          "passed": 1,
+          "failed": 0,
+          "unknown": 0
+        },
+        "conversion_suitable": {
+          "passed": 0,
+          "failed": 0,
+          "unknown": 1
+        },
+        "distance_within_100km": {
+          "passed": 1,
+          "failed": 0,
+          "unknown": 0
+        },
+        "price_incl_vat_within_8000": {
+          "passed": 1,
+          "failed": 0,
+          "unknown": 0
+        }
+      },
+      "verified_prices": 1,
+      "verified_distances": 1,
+      "confirmed_plates": 1
+    }
+  },
+  "source_coverage": {
+    "Marktplaats": {},
+    "AutoScout24": {},
+    "AutoTrack": {},
+    "viaBOVAG": {},
+    "AutoWereld": {},
+    "Local dealers": {}
+  },
+  "discovery_method": "no live discovery performed",
+  "unverified_rss_leads": [],
+  "results": [
+    {
+      "candidate": {
+        "name": "Synthetic van",
+        "source": "AutoScout24",
+        "listing_url": "https://example.test/van",
+        "individual_listing_confirmed": true,
+        "plate": "AB123C",
+        "plate_confirmed_from_listing": true,
+        "price_incl_vat": 6000,
+        "distance_km": 20,
+        "checks": {
+          "high_roof": true,
+          "cab_ac": true,
+          "distance_within_100km": true,
+          "price_incl_vat_within_8000": true,
+          "conversion_suitable": null
+        }
+      },
+      "score": 80,
+      "plate": "AB123C",
+      "reasons": [
+        "conversion_suitable: unverified",
+        "independent available_for_sale: unverified",
+        "independent condition_acceptable: unverified"
+      ],
+      "qualified": false,
+      "rdw": {
+        "vehicle": {
+          "status": "ok",
+          "records": [
+            {
+              "kenteken": "AB123C"
+            }
+          ]
+        }
+      },
+      "independent_review_assessment": {
+        "status": "unverified",
+        "checks": {
+          "cab_ac_working": null,
+          "available_for_sale": null,
+          "condition_acceptable": null
+        },
+        "failed": false,
+        "reasons": [
+          "independent available_for_sale: unverified",
+          "independent condition_acceptable: unverified"
+        ]
+      },
+      "rdw_risks": [],
+      "search_assessment": {
+        "status": "SEARCH_MATCH",
+        "matched": true,
+        "checklist_coverage_percent": 100.0,
+        "checks": {
+          "high_roof": true,
+          "cab_ac": true,
+          "distance_within_100km": true,
+          "price_incl_vat_within_8000": true
+        },
+        "missing": [],
+        "purchase_ready": false,
+        "note": "Advertised search fit; not a mechanical-safety score. Inspection, layout, mass and availability remain pre-purchase checks."
+      },
+      "suitability": {
+        "category": "C",
+        "weighted_score_known_criteria": 80.0,
+        "weighted_coverage_percent": 3.5,
+        "critical_research_supported": false,
+        "criteria": {
+          "purchase_price": {
+            "score": 8.0,
+            "confidence": "high",
+            "source_url": "https://example.test/van",
+            "reason": "User target EUR 5,000; ceiling EUR 8,000 (linear preference mapping)."
+          }
+        },
+        "unknown_criteria": [
+          "reliability",
+          "european_repairability",
+          "performance",
+          "parts_availability",
+          "low_running_costs",
+          "kitchen_suitability",
+          "storage",
+          "maintenance_cost",
+          "vehicle_availability",
+          "interior_space",
+          "payload",
+          "driving_comfort",
+          "off_grid_capability",
+          "conversion_ease",
+          "water_capability",
+          "winter_capability",
+          "rough_road_capability",
+          "fuel_economy",
+          "electrical_capability",
+          "emissions",
+          "toilet_integration",
+          "exterior_compactness",
+          "safety",
+          "camper_aftermarket",
+          "stealth",
+          "road_tax",
+          "insurance",
+          "modern_technology",
+          "resale_value",
+          "appearance",
+          "automatic_transmission"
+        ],
+        "research": {
+          "variant": {},
+          "inferred_identity_fields": [],
+          "exact_variant_identified": false,
+          "missing_identity": [
+            "make",
+            "model",
+            "generation",
+            "engine",
+            "gearbox",
+            "body"
+          ],
+          "notes": [],
+          "status": "not_researched",
+          "note": "Sources describe variant risks, not current faults or population failure rates. Unmatched variants remain unresearched."
+        },
+        "note": "Weighted suitability over supported criteria only; coverage is separate from the search checklist and purchase readiness."
+      }
+    }
+  ],
+  "qualifiers": 0,
+  "rss_evaluation": {
+    "version": 1,
+    "evaluated_records": 0,
+    "counts": {
+      "INTERESTING": 0,
+      "NEEDS_INFO": 0,
+      "EXCLUDED": 0,
+      "ALREADY_EVALUATED": 0,
+      "DUPLICATE": 0
+    },
+    "shortlist": [],
+    "results": [],
+    "note": "All supplied RSS records are screened separately; no bound-advert, gross-price or road-route verification is created by this process."
+  }
+}

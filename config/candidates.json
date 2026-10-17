@@ -1,0 +1,29 @@
+{
+  "source_coverage": {
+    "Marktplaats": {
+      "status": "not_checked",
+      "reason": "not checked by this verification"
+    },
+    "AutoScout24": {
+      "status": "not_checked",
+      "reason": "not checked by this verification"
+    },
+    "AutoTrack": {
+      "status": "not_checked",
+      "reason": "not checked by this verification"
+    },
+    "viaBOVAG": {
+      "status": "not_checked",
+      "reason": "not checked by this verification"
+    },
+    "AutoWereld": {
+      "status": "not_checked",
+      "reason": "not checked by this verification"
+    },
+    "Local dealers": {
+      "status": "not_checked",
+      "reason": "not checked by this verification"
+    }
+  },
+  "candidates": []
+}

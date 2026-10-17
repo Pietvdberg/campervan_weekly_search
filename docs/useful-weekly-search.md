@@ -110,11 +110,11 @@ is part of this release.
 ## Local run with history
 
 ```bash
-python3 state_store.py pull --repo Pietvdberg/campervan_weekly_search
-python3 discover_listings.py --max-per-source 8 --output discovered_candidates.json
-python3 camper_pipeline.py --input discovered_candidates.json --history .search-state/search_state.json --run-id UNIQUE_RUN_ID
-python3 validate_search.py --discovery discovered_candidates.json --screening screening_results.json
-python3 coverage_report.py
+python3 -m campervan_search.state_store pull --repo Pietvdberg/campervan_weekly_search
+python3 -m campervan_search.discover_listings --max-per-source 8 --output discovered_candidates.json
+python3 -m campervan_search.camper_pipeline --input discovered_candidates.json --history .search-state/search_state.json --run-id UNIQUE_RUN_ID
+python3 -m campervan_search.validate_search --discovery discovered_candidates.json --screening screening_results.json
+python3 -m campervan_search.coverage_report
 ```
 
 State-store commands use `GH_TOKEN`; keep it in the environment/secret storage.

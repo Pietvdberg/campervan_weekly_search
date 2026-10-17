@@ -17,7 +17,7 @@ To enable in an isolated verification runner:
 ```bash
 python3 -m pip install playwright
 python3 -m playwright install chromium
-ENABLE_BROWSER_RENDER=1 python3 discover_listings.py
+ENABLE_BROWSER_RENDER=1 python3 -m campervan_search.discover_listings
 ```
 
 Avoid turning this on indiscriminately; check each site's access policies and rate limits. Browser rendering may still be blocked.

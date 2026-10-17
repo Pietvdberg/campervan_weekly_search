@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "campervan-weekly-search"
+version = "0.1.0"
+description = "Evidence-based weekly campervan search and email reports"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["black==26.1.0", "ruff==0.14.14", "build==1.4.0"]
+browser = ["playwright>=1.48,<2"]
+
+[project.scripts]
+campervan-discover = "campervan_search.discover_listings:main"
+campervan-screen = "campervan_search.camper_pipeline:main"
+campervan-validate = "campervan_search.validate_search:main"
+campervan-verify-discovery = "campervan_search.verify_discovery:main"
+campervan-rss-assess = "campervan_search.rss_evaluation:main"
+campervan-rss-collect = "campervan_search.autowereld_snapshot:main"
+campervan-rss-upload = "campervan_search.autowereld_upload:main"
+campervan-rdw = "campervan_search.rdw_lookup:main"
+campervan-rdw-report = "campervan_search.rdw_probe_report:main"
+campervan-coverage = "campervan_search.coverage_report:main"
+campervan-state = "campervan_search.state_store:main"
+campervan-deliver = "campervan_search.weekly_delivery:main"
+campervan-send = "campervan_search.send_report:main"
+campervan-schedule = "campervan_search.weekly_schedule:main"
+campervan-alert = "campervan_search.failure_alert:main"
+campervan-cleanup = "campervan_search.cleanup_results:main"
+campervan-rss-probe = "campervan_search.autowereld_container_probe:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+campervan_search = ["resources/*.json", "resources/*.html"]
+
+[tool.ruff]
+line-length = 79
+target-version = "py311"
+extend-exclude = ["build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I"]
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 72
+
+[tool.black]
+line-length = 79
+target-version = ["py311"]

@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 2
+      - uses: ./.github/actions/setup-project
       - name: Resolve input
         id: request
         env:
@@ -51,7 +52,7 @@ jobs:
       - name: Query RDW
         shell: bash
         run: |
-          python3 rdw_lookup.py --input plates.txt --output rdw_results.json
+          python3 -m campervan_search.rdw_lookup --input plates.txt --output rdw_results.json
       - name: Upload JSON artifact
         if: always()
         uses: actions/upload-artifact@v7

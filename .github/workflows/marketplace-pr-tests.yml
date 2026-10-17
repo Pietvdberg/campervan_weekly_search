@@ -4,8 +4,9 @@ on:
     branches: [main]
     paths:
       - '**.py'
-      - 'dealer_registry.json'
-      - 'variant_research.json'
+      - 'src/**'
+      - 'config/**'
+      - 'pyproject.toml'
       - 'scripts/**'
       - '.github/actions/**'
       - '.github/workflows/**'
@@ -18,27 +19,19 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-project
+        with:
+          development: 'true'
       - name: Verify compilation and unit tests without live scraping
         run: |
-          python3 -m compileall -q .
-          python3 -m unittest discover -v
+          python3 -m black --check .
+          python3 -m ruff check .
+          python3 -m compileall -q src tests scripts
+          python3 -m unittest discover -s tests -t . -v
       - name: Check production planner with real workflow metadata and no email
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          python3 - <<'PY'
-          import os, subprocess, sys, tempfile
-          from pathlib import Path
-          with tempfile.TemporaryDirectory() as folder:
-              event, output = Path(folder, 'schedule.json'), Path(folder, 'outputs')
-              event.write_text('{"schedule":"0 13 * * 4"}')
-              probe_env = dict(os.environ, GITHUB_EVENT_NAME='schedule',
-                  GITHUB_EVENT_PATH=str(event), GITHUB_OUTPUT=str(output))
-              subprocess.run([sys.executable, 'weekly_schedule.py'], env=probe_env, check=True)
-              plan = dict(line.split('=', 1) for line in output.read_text().splitlines())
-              assert plan['mode'] == 'production'
-              assert plan['enabled'] in ('true', 'false')
-          PY
+        run: python3 scripts/ci_checks.py planner
       - name: Prepare artifact round-trip fixture
         run: |
           mkdir -p "$RUNNER_TEMP/camper-action-smoke/.search-state"
@@ -68,6 +61,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-project
       - name: Restore hidden history in a different job
         uses: ./.github/actions/download-artifact
         env:
@@ -76,10 +70,33 @@ jobs:
           name: action-runtime-smoke-${{ github.run_id }}
           path: ${{ runner.temp }}/camper-history-restore
       - name: Verify restored history payload
+        run: python3 scripts/ci_checks.py artifact
+
+  wheel-install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - name: Test the minimum supported Python version
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - uses: ./.github/actions/setup-project
+        with:
+          development: 'true'
+      - name: Run regressions on Python 3.11
+        run: python3 -m unittest discover -s tests -t . -v
+      - name: Build source distribution and wheel
+        run: python3 -m build
+      - name: Install wheel into an isolated environment
         run: |
-          python3 - <<'PY'
-          import json, os
-          from pathlib import Path
-          path = Path(os.environ['RUNNER_TEMP']) / 'camper-history-restore/.search-state/history.json'
-          assert json.loads(path.read_text()) == {'probe': 'node24-artifact-roundtrip'}
-          PY
+          python3 -m venv "$RUNNER_TEMP/camper-wheel"
+          "$RUNNER_TEMP/camper-wheel/bin/python" -m pip install --no-deps dist/*.whl
+      - name: Check installed resources and commands outside the checkout
+        working-directory: ${{ runner.temp }}
+        env:
+          PYTHONPATH: ''
+        run: |
+          "$RUNNER_TEMP/camper-wheel/bin/python" "$GITHUB_WORKSPACE/scripts/check_installed_package.py"
+          "$RUNNER_TEMP/camper-wheel/bin/campervan-discover" --help
+          "$RUNNER_TEMP/camper-wheel/bin/campervan-rdw" --help

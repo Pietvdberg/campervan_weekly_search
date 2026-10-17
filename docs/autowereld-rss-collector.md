@@ -45,7 +45,7 @@ unprivileged service). The uploader reads `GH_RSS_TOKEN` and uses the GitHub
 Contents API:
 
 ```bash
-python3 autowereld_upload.py data/autowereld_rss_snapshot.json
+python3 -m campervan_search.autowereld_upload data/autowereld_rss_snapshot.json
 ```
 
 This replaces only `data/autowereld_rss_snapshot.json` in `main`. It does

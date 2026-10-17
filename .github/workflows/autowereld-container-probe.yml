@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - 'autowereld_container_probe.py'
+      - 'src/campervan_search/autowereld_container_probe.py'
+      - 'pyproject.toml'
       - '.github/workflows/autowereld-container-probe.yml'
 
 permissions:
@@ -16,8 +17,9 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-project
       - name: Fetch one public RSS feed from native runner
-        run: python3 autowereld_container_probe.py
+        run: python3 -m campervan_search.autowereld_container_probe
 
   ephemeral-container:
     runs-on: ubuntu-latest
@@ -26,5 +28,6 @@ jobs:
       image: python:3.12-slim
     steps:
       - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-project
       - name: Fetch same public RSS feed from short-lived container
-        run: python3 autowereld_container_probe.py
+        run: python3 -m campervan_search.autowereld_container_probe

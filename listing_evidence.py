@@ -176,6 +176,13 @@ def enrich(markup,route_fetcher=None,geocode_fetcher=None):
     checks={}
     if price["amount_incl_vat"] is not None:
         checks["price_incl_vat_within_8000"]=price["amount_incl_vat"]<=8000
+    elif price.get("advertised_amount") is not None and price["advertised_amount"] > 8000:
+        # A URL-bound EUR purchase offer already above the absolute ceiling
+        # cannot become affordable by clarifying VAT. Keep the gross price
+        # unknown: this is a budget failure, not invented tax evidence.
+        if any(obj.get("priceCurrency") == "EUR" and
+               parse_amount(obj.get("price")) == Decimal(str(price["advertised_amount"])) for obj in objs):
+            checks["price_incl_vat_within_8000"] = False
     distance=None
     if location is not None:
         try:

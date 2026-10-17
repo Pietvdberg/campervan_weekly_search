@@ -55,7 +55,7 @@ Every `conversion_checks` entry needs boolean `confirmed`, HTTPS `source_url` an
 - `fuel_eligible`: not LPG-only; any electric candidate has corroborated touring
   range/charging suitability.
 
-The existing independent `checks` are also required:
+Availability and condition checks remain required. The A/C physical check is optional:
 
 | Check | Accepted methods |
 |---|---|
@@ -63,9 +63,14 @@ The existing independent `checks` are also required:
 | `available_for_sale` | `seller_confirmation`, `independent_inspection` |
 | `condition_acceptable` | `independent_inspection` |
 
+Advertised cab A/C on the bound individual listing satisfies the search A/C rule.
+A physical test is a pre-purchase action, not a search qualification gate. Explicit
+evidence of absent or broken A/C still rejects. A blank optional `cab_ac_working`
+field does not assert that operation has been tested.
+
 These use boolean `confirmed`, accepted `method` and HTTPS `source_url` under the
 same reviewer/identity/date header. Include rust, structural condition, drivetrain
-and service records in the inspection. Seller equipment lists are not physical tests.
+and service records in the inspection. Seller equipment lists establish advertised equipment, not physically tested operation.
 
 Missing, stale, malformed or wrong-vehicle evidence is unknown. A supported failed
 hard requirement rejects, even when other fields are missing. Legacy reviews with

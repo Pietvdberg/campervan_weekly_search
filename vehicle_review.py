@@ -56,7 +56,7 @@ def assess(candidate, now=None):
                 continue
             checks[key] = fact["confirmed"]
     for key, value in checks.items():
-        if value is not True:
+        if value is False or (key != "cab_ac_working" and value is not True):
             reasons.append("independent " + key + ": " + ("failed" if value is False else "unverified"))
-    return {"status": "reviewed" if all(value is not None for value in checks.values()) else "unverified",
+    return {"status": "reviewed" if all(value is not None for key, value in checks.items() if key != "cab_ac_working") else "unverified",
             "checks": checks, "failed": any(value is False for value in checks.values()), "reasons": reasons}

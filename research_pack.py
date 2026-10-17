@@ -20,7 +20,7 @@ def build(data, requirements=None, limit=10):
             tasks.append("Confirm the total purchase price including VAT and obligatory charges.")
         if candidate.get("distance_km") is None:
             tasks.append("Confirm the vehicle's full pickup address and calculate the road-driving route from Bergen op Zoom.")
-        tasks += ["Physically test cab A/C; an advertised equipment list does not confirm operation.",
+        tasks += ["Before purchase, physically test cab A/C; listing-specific advertised cab A/C is sufficient for search qualification.",
                   "Confirm the vehicle is still for sale and where it can be inspected.",
                   "Obtain an independent inspection of rust, drivetrain, brakes and service invoices.",
                   "Measure finished standing height, mattress, exterior length and legal completed travel mass; review the two-person layout and exact drivetrain against specification v2."]

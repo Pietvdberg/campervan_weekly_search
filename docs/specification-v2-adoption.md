@@ -62,3 +62,11 @@ invariant errors. The discovery fingerprint matches the final Python/registry
 snapshot. AutoWereld remains an access-limited RSS index; no real physical reviews
 were provided. Changing live samples do not establish extraction accuracy.
 See the [minimal live manifest](validation/2026-10-17-spec-v2-summary.json).
+
+## Later user amendment: advertised cab A/C
+
+Listing-specific advertised cab A/C is sufficient for search qualification. A
+physical A/C test is optional evidence and a pre-purchase action. Explicit missing
+or broken A/C still rejects. This instruction supersedes earlier statements that
+all three independent checks, including A/C operation, are mandatory. Availability,
+condition and conversion evidence requirements are otherwise unchanged.

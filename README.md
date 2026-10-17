@@ -8,18 +8,68 @@ push CI sends no email. Delivery-aware history and a durable outbox preserve
 unreported leads and recover the original email without blind resubmission. See
 [production delivery and release evidence](docs/weekly-production-delivery.md),
 [verification status](docs/verification-status.md) and the
-[strict review](STRICT_REVIEW.md) for scope and outstanding gaps.
+[strict review](docs/strict-review.md) for scope and outstanding gaps.
 The [weekly search design](docs/useful-weekly-search.md) distinguishes advertised
 search fit from purchase readiness and documents ranking, durable history and
 coverage monitoring.
 
+## Installation and layout
+
+Python 3.11 or newer is required. Install the package before running commands:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -e '.[dev]'
+```
+
+```text
+src/campervan_search/       Application modules
+  resources/               Bundled registries and HTML report template
+tests/                     Offline regression tests and fixtures
+config/candidates.json     Empty manual-screening input
+docs/                      Requirements, operations and review records
+scripts/                   Development, CI and Pi installation helpers
+.github/                   Workflows and local composite actions
+data/                      External unverified RSS snapshot
+requests/, results/        Existing RDW request/result handoff
+archive/                   Retained older results
+pyproject.toml             Packaging, CLI entry points and style settings
+```
+
+Two small root launchers, `autowereld_snapshot.py` and
+`autowereld_upload.py`, preserve command paths already used by installed Pi
+timers. Application code lives in `src/`; new installations use the declared
+`campervan-rss-collect` and `campervan-rss-upload` commands. The installer creates
+a virtual environment, without enabling or changing the timer's cadence.
+
+Dealer and variant registries are bundled under
+`src/campervan_search/resources/`. Runtime snapshots and generated reports
+remain separate from the installed package.
+
+## Development checks
+
+```bash
+python -m black --check .
+python -m ruff check .
+python -m unittest discover -s tests -t . -v
+python -m build
+```
+
+Black and Ruff enforce 79-column code, 72-column comments/docstrings, import
+ordering and the enabled
+PEP 8/error checks in `pyproject.toml`. CI checks formatting, lint, regressions,
+wheel installation outside the checkout and hidden-state artifact restoration.
+See [the layout migration](docs/package-layout.md) for operational details.
+
 ## Local discovery and screening
 
 ```bash
-python3 discover_listings.py --output discovered_candidates.json
-python3 camper_pipeline.py --input discovered_candidates.json
-python3 verify_discovery.py discovered_candidates.json
-python3 validate_search.py --discovery discovered_candidates.json --screening screening_results.json
+campervan-discover --output discovered_candidates.json
+campervan-screen --input discovered_candidates.json
+campervan-verify-discovery discovered_candidates.json
+campervan-validate --discovery discovered_candidates.json \
+  --screening screening_results.json
 ```
 
 The outputs include `screening_results.json`, `report.txt`, `research_pack.json` and
@@ -48,7 +98,7 @@ If the results file is missing, failed, or late, never imply RDW verification su
 ## Local invocation
 
 ```bash
-python3 rdw_lookup.py VL-034-B --output rdw_results.json
+python3 -m campervan_search.rdw_lookup VL-034-B --output rdw_results.json
 ```
 
 ## Manual invocation
@@ -59,7 +109,7 @@ Go to **Actions → RDW vehicle and APK checks → Run workflow**, enter plates 
 
 ## Request parsing and success criteria
 
-`python3 rdw_lookup.py --input requests/YYYY-MM-DD.txt --output rdw_results.json`
+`python3 -m campervan_search.rdw_lookup --input requests/YYYY-MM-DD.txt --output rdw_results.json`
 reads every comma/whitespace-separated plate, validates the full batch before
 network access, and deduplicates registrations. A lookup succeeds only with one
 matching registration, successful defect retrieval, and official descriptions
@@ -68,4 +118,4 @@ of a fault-free vehicle. A capped response fails rather than claiming complete
 history. Failed batches still write audit JSON and exit nonzero, preventing
 publication as successful workflow results.
 
-Run offline regressions with `python3 -m unittest discover -v`.
+Run offline regressions with `python3 -m unittest discover -s tests -t . -v`.

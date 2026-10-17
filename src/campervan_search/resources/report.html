@@ -1,0 +1,39 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font:15px/1.55 Arial,Helvetica,sans-serif;color:#253345;background:#f3f6f9;margin:0;padding:20px}
+main {max-width:720px;margin:auto;background:white;padding:28px;border-radius:12px;overflow-wrap:anywhere}
+h1 {font-size:25px;line-height:1.3;margin:0 0 8px;color:#173451}
+h2 {font-size:19px;margin:30px 0 12px;color:#173451;border-bottom:1px solid #dce3e9;padding-bottom:8px}
+h3 {font-size:16px;margin:0 0 5px}
+p {margin:8px 0}.muted,.meta {color:#566675;font-size:13px}
+.vehicle {border:1px solid #dce3e9;border-radius:9px;padding:16px;margin:12px 0}
+.stats {background:#eaf1f6;padding:14px;border-radius:9px}
+a {color:#165ba5} table {width:100%;border-collapse:collapse;font-size:12px}
+td,th {border-bottom:1px solid #e5eaf0;padding:8px 5px;text-align:left;vertical-align:top}
+li {margin:12px 0}.note {background:#fff5e3;padding:12px;border-radius:7px}
+@media(max-width:520px) {body {padding:8px} main {padding:14px} .vehicle {padding:12px} td,th {padding:6px 2px;font-size:11px} h1 {font-size:22px}}
+</style></head><body style="margin:0;background:#f3f6f9;font-family:Arial,Helvetica,sans-serif;color:#253345"><main style="max-width:720px;margin:auto;background:white;overflow-wrap:anywhere">
+<h1>Camperzoektocht · ${generated_on}</h1>
+<p>${introduction}</p>
+<div class="stats"><strong>${search_count} zoekmatches</strong> · ${qualified_count} bevestigde matches voor aankoop · ${screened_count} advertenties bekeken · ${rejected_count} afgewezen</div>
+<p class="note">${match_note}</p>
+<h2>✓ Volledig beoordeeld voor aankoop</h2>
+${qualified_cards}
+<h2>🔎 Zoekshortlist — aankoopkeuring volgt</h2>
+<p class="muted">Zoekmatches voldoen aan de advertentie-, btw-prijs- en rijroutechecks. Voorwaardelijke leads missen nog advertentiebewijs. Geen van beide is een technische aankoopkeuring.</p>
+${potential_cards}
+<h2>📰 AutoWereld · optionele extra tips (RSS)</h2>
+<p class="muted">Deze advertenties komen uitsluitend uit de externe RSS-index. Alle aangeleverde feeditems zijn apart beoordeeld op zoekinteresse; de individuele advertentie, rijroute en actuele staat blijven onbevestigd. Tellen nooit mee als bevestigde match.</p>
+<p class="muted">Optionele bron · feedstatus: ${rss_status}. Beperkte advertentietoegang is geen kritieke storing van de kernzoekopdracht.</p>
+<p>${rss_evaluated} feeditems beoordeeld · ${rss_interesting} interessant om te onderzoeken · ${rss_needs_info} missen informatie · ${rss_excluded} uitgesloten.</p>
+<ul>${rss_cards}</ul>
+<h2>Waar ontbreekt bewijs?</h2>
+<p>${health_status} · ${unchanged_count} ongewijzigde/herplaatste records niet opnieuw getoond.</p>
+<ul>${alerts}</ul>
+<table><thead><tr><th>Bron</th><th>Bekeken</th><th>Prijs incl. btw</th><th>Rijroute</th><th>Toegang</th></tr></thead>
+<tbody>${source_rows}</tbody></table>
+<p class="muted">Tellers geven gevonden bewijs weer, geen garantie dat alle advertenties of voorraad zijn onderzocht.</p>
+<h2>Mijn advies voor de volgende stap</h2>
+<p>Bekijk eerst de interessante advertenties. Vraag de verkoper om de totale consumentenprijs inclusief btw, het kenteken, de exacte ophaallocatie, afmetingen, laadvermogen en onderhoudshistorie. Controleer de technische staat via een onafhankelijke aankoopkeuring.</p>
+<p class="muted">APK ≠ technische aankoopkeuring. Afgewezen advertenties en RDW/APK-details staan in het GitHub Actions-auditbestand. Dit bericht bevat geen onbevestigde aanbevelingen.</p>
+</main></body></html>

@@ -17,9 +17,10 @@ journalctl --user -u autowereld-rss.service -n 40 --no-pager
 python3 - <<'PY'
 import json
 from pathlib import Path
-d=json.loads(Path("data/autowereld_rss_snapshot.json").read_text())
-print("RSS entries:",len(d["entries"]),"feeds:",len(d["feeds_checked"]))
-print("Example title:",d["entries"][0]["title"])
+
+d = json.loads(Path("data/autowereld_rss_snapshot.json").read_text())
+print("RSS entries:", len(d["entries"]), "feeds:", len(d["feeds_checked"]))
+print("Example title:", d["entries"][0]["title"])
 PY
 ```
 
@@ -45,7 +46,7 @@ unprivileged service). The uploader reads `GH_RSS_TOKEN` and uses the GitHub
 Contents API:
 
 ```bash
-python3 autowereld_upload.py data/autowereld_rss_snapshot.json
+python3 -m campervan_search.autowereld_upload data/autowereld_rss_snapshot.json
 ```
 
 This replaces only `data/autowereld_rss_snapshot.json` in `main`. It does

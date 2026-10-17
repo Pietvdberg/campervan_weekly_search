@@ -1,0 +1,19 @@
+name: Install campervan search package
+description: Install the src-layout package and optional pinned development tools.
+inputs:
+  development:
+    description: Include the project's development tools.
+    default: 'false'
+runs:
+  using: composite
+  steps:
+    - name: Install project
+      shell: bash
+      env:
+        INSTALL_DEVELOPMENT_TOOLS: ${{ inputs.development }}
+      run: |
+        if [[ "$INSTALL_DEVELOPMENT_TOOLS" == 'true' ]]; then
+          python3 -m pip install --disable-pip-version-check '.[dev]'
+        else
+          python3 -m pip install --disable-pip-version-check .
+        fi

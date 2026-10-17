@@ -5,8 +5,10 @@ on:
     branches: [main]
     paths:
       - '**.py'
-      - 'dealer_registry.json'
-      - 'variant_research.json'
+      - 'src/**'
+      - 'config/**'
+      - 'pyproject.toml'
+      - 'MANIFEST.in'
       - '.github/actions/**'
       - '.github/workflows/marketplace-rdw-integration.yml'
 permissions:
@@ -22,34 +24,35 @@ jobs:
       state_ready: ${{ steps.stage_state.outcome }}
     steps:
       - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-project
       - name: Check syntax and regression tests
         run: |
           python3 -m compileall -q .
-          python3 -m unittest discover -v
+          python3 -m unittest discover -s tests -t . -v
       - name: Restore durable listing and coverage history
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 state_store.py pull --repo "$GITHUB_REPOSITORY"
+        run: python3 -m campervan_search.state_store pull --repo "$GITHUB_REPOSITORY"
       - name: Attempt six-source direct marketplace discovery
-        run: python3 discover_listings.py --output discovered_candidates.json
+        run: python3 -m campervan_search.discover_listings --output discovered_candidates.json
       - name: Assess all unverified Pi RSS leads
-        run: python3 rss_evaluation.py --input discovered_candidates.json --output rss_evaluation.json
+        run: python3 -m campervan_search.rss_evaluation --input discovered_candidates.json --output rss_evaluation.json
       - name: Screen discovered listings and check confirmed plates with RDW
-        run: python3 camper_pipeline.py --input discovered_candidates.json --rss-evaluation rss_evaluation.json --history .search-state/search_state.json --run-id "${{ github.run_id }}"
+        run: python3 -m campervan_search.camper_pipeline --input discovered_candidates.json --rss-evaluation rss_evaluation.json --history .search-state/search_state.json --run-id "${{ github.run_id }}"
       - name: Validate screening invariants and stage outcomes
         id: validate
-        run: python3 validate_search.py --discovery discovered_candidates.json --screening screening_results.json
+        run: python3 -m campervan_search.validate_search --discovery discovered_candidates.json --screening screening_results.json
       - name: Summarize durable coverage and shortlist changes
-        run: python3 coverage_report.py
+        run: python3 -m campervan_search.coverage_report
       - name: Live RDW API connectivity probe on historical test plate
         shell: bash
         run: |
           set +e
-          python3 rdw_lookup.py V-706-SG --output rdw_probe.json
+          python3 -m campervan_search.rdw_lookup V-706-SG --output rdw_probe.json
           code=$?
           set -e
           echo "RDW lookup exit code: $code"
-          python3 rdw_probe_report.py rdw_probe.json
+          python3 -m campervan_search.rdw_probe_report rdw_probe.json
       - name: Store audit artifacts
         if: always()
         uses: actions/upload-artifact@v7
@@ -79,7 +82,7 @@ jobs:
           include-hidden-files: true
           retention-days: 7
       - name: Require identity-bound discovery evidence and report coverage gaps
-        run: python3 verify_discovery.py discovered_candidates.json
+        run: python3 -m campervan_search.verify_discovery discovered_candidates.json
 
   deliver-development:
     if: github.event_name == 'workflow_dispatch'
@@ -95,6 +98,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      - uses: ./.github/actions/setup-project
       - name: Restore validated search audit
         uses: ./.github/actions/download-artifact
         with:
@@ -106,7 +110,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python3 weekly_delivery.py send --repo "$GITHUB_REPOSITORY" --period "development-$GITHUB_RUN_ID"
+        run: python3 -m campervan_search.weekly_delivery send --repo "$GITHUB_REPOSITORY" --period "development-$GITHUB_RUN_ID"
 
   persist-history:
     if: always() && needs.verify.outputs.state_ready == 'success'
@@ -118,6 +122,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      - uses: ./.github/actions/setup-project
       - uses: ./.github/actions/download-artifact
         with:
           name: search-state-${{ github.run_id }}
@@ -125,4 +130,4 @@ jobs:
       - name: Persist history without touching main or dispatching workflows
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 state_store.py push --repo "$GITHUB_REPOSITORY"
+        run: python3 -m campervan_search.state_store push --repo "$GITHUB_REPOSITORY"

@@ -6,14 +6,21 @@ mail_delivery_state.tmp
 # Generated search/review artifacts
 discovered_candidates.json
 screening_results.json
-report.txt
+/report.txt
 research_pack.json
 reviewed_evidence_template.json
 validation_summary.json
 
 .search-state/
 coverage_health.json
-report.html
+/report.html
 delivery_report.txt
 delivery_report.html
 delivery_receipt.json
+
+# Packaging, development environments and tool caches
+.venv/
+build/
+dist/
+*.egg-info/
+.ruff_cache/

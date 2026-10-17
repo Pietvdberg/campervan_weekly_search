@@ -9,7 +9,7 @@ The [user specification](camper_van_search_specification_v2.md) supplies the pro
 criteria. No additional arbitrary interior-length minimum is needed. A van's model,
 H2 label or nominal payload cannot prove conversion suitability.
 
-Run `python3 camper_pipeline.py --input discovered_candidates.json
+Run `python3 -m campervan_search.camper_pipeline --input discovered_candidates.json
 --reviewed-evidence reviewed_evidence.json` on one shell command line. The pipeline
 exports an unfilled `reviewed_evidence_template.json` and a bounded
 `research_pack.json`. Template generation never verifies or contacts a vehicle.

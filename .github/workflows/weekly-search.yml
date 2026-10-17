@@ -24,11 +24,12 @@ jobs:
       period: ${{ steps.plan.outputs.period }}
     steps:
       - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-project
       - id: plan
         name: Resolve audience and reporting period
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 weekly_schedule.py
+        run: python3 -m campervan_search.weekly_schedule
 
   search:
     needs: plan
@@ -45,46 +46,47 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+      - uses: ./.github/actions/setup-project
       - name: Check syntax and regression tests
         run: |
           python3 -m compileall -q .
-          python3 -m unittest discover -v
+          python3 -m unittest discover -s tests -t . -v
       - name: Recover the original pending email before any fresh search
         id: recovery
         env:
           GH_TOKEN: ${{ github.token }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python3 weekly_delivery.py recover --repo "$GITHUB_REPOSITORY" --period "$DELIVERY_PERIOD"
+        run: python3 -m campervan_search.weekly_delivery recover --repo "$GITHUB_REPOSITORY" --period "$DELIVERY_PERIOD"
       - name: Restore observation history
         if: steps.recovery.outputs.already-delivered != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 state_store.py pull --repo "$GITHUB_REPOSITORY" --branch "search-observations-$MAIL_MODE"
+        run: python3 -m campervan_search.state_store pull --repo "$GITHUB_REPOSITORY" --branch "search-observations-$MAIL_MODE"
       - name: Discover current adverts and assess every RSS item
         if: steps.recovery.outputs.already-delivered != 'true'
         run: |
-          python3 discover_listings.py --output discovered_candidates.json
-          python3 rss_evaluation.py --input discovered_candidates.json --output rss_evaluation.json
-          python3 camper_pipeline.py --input discovered_candidates.json --rss-evaluation rss_evaluation.json --history .search-state/search_state.json --run-id "$GITHUB_RUN_ID"
+          python3 -m campervan_search.discover_listings --output discovered_candidates.json
+          python3 -m campervan_search.rss_evaluation --input discovered_candidates.json --output rss_evaluation.json
+          python3 -m campervan_search.camper_pipeline --input discovered_candidates.json --rss-evaluation rss_evaluation.json --history .search-state/search_state.json --run-id "$GITHUB_RUN_ID"
       - name: Require valid evidence and core discovery before delivery
         if: steps.recovery.outputs.already-delivered != 'true'
         run: |
-          python3 validate_search.py --discovery discovered_candidates.json --screening screening_results.json
-          python3 verify_discovery.py discovered_candidates.json
-          python3 coverage_report.py
+          python3 -m campervan_search.validate_search --discovery discovered_candidates.json --screening screening_results.json
+          python3 -m campervan_search.verify_discovery discovered_candidates.json
+          python3 -m campervan_search.coverage_report
       - name: Persist observations independently of email acknowledgement
         if: steps.recovery.outputs.already-delivered != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 state_store.py push --repo "$GITHUB_REPOSITORY" --branch "search-observations-$MAIL_MODE"
+        run: python3 -m campervan_search.state_store push --repo "$GITHUB_REPOSITORY" --branch "search-observations-$MAIL_MODE"
       - name: Deliver the digest with durable checkpoints
         if: steps.recovery.outputs.already-delivered != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python3 weekly_delivery.py send --repo "$GITHUB_REPOSITORY" --period "$DELIVERY_PERIOD"
+        run: python3 -m campervan_search.weekly_delivery send --repo "$GITHUB_REPOSITORY" --period "$DELIVERY_PERIOD"
       - name: Preserve search and delivery audit
         if: always()
         uses: actions/upload-artifact@v7
@@ -115,9 +117,10 @@ jobs:
       issues: write
     steps:
       - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-project
       - name: Notify owner by email, with a GitHub issue fallback
         env:
           GH_TOKEN: ${{ github.token }}
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python3 failure_alert.py
+        run: python3 -m campervan_search.failure_alert

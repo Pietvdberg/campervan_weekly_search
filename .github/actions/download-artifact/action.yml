@@ -17,13 +17,7 @@ runs:
     - name: Prepare temporary archive directory
       id: staging
       shell: bash
-      run: |
-        python3 - <<'PY'
-        import os, tempfile
-        directory = tempfile.mkdtemp(prefix='camper-artifact-', dir=os.environ['RUNNER_TEMP'])
-        with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
-            output.write('path=' + directory + '\n')
-        PY
+      run: python3 "$GITHUB_ACTION_PATH/staging.py" prepare
     - name: Download archive with strict digest verification
       uses: actions/download-artifact@v8
       with:
@@ -43,8 +37,4 @@ runs:
       shell: bash
       env:
         ARTIFACT_ARCHIVE_DIRECTORY: ${{ steps.staging.outputs.path }}
-      run: |
-        python3 - <<'PY'
-        import os, shutil
-        shutil.rmtree(os.environ['ARTIFACT_ARCHIVE_DIRECTORY'])
-        PY
+      run: python3 "$GITHUB_ACTION_PATH/staging.py" clean

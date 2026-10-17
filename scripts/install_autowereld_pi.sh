@@ -2,12 +2,14 @@
 # Idempotent Pi installer. Does not enable timer or configure credentials.
 set -euo pipefail
 ROOT="$HOME/campervan_weekly_search"
-if [[ ! -f "$ROOT/autowereld_snapshot.py" ]]; then
+if [[ ! -f "$ROOT/pyproject.toml" ]]; then
   echo "Clone the repository into $ROOT first" >&2
   exit 1
 fi
 command -v curl >/dev/null || { echo "curl is required" >&2; exit 1; }
 command -v python3 >/dev/null || { echo "Python 3 is required" >&2; exit 1; }
+python3 -m venv "$ROOT/.venv"
+"$ROOT/.venv/bin/python" -m pip install "$ROOT"
 mkdir -p "$ROOT/data" "$HOME/.config/systemd/user"
 SERVICE="$HOME/.config/systemd/user/autowereld-rss.service"
 TIMER="$HOME/.config/systemd/user/autowereld-rss.timer"
@@ -18,7 +20,7 @@ Description=Collect five public AutoWereld RSS feeds
 Type=oneshot
 WorkingDirectory=$ROOT
 Environment=PYTHONDONTWRITEBYTECODE=1
-ExecStart=/usr/bin/python3 $ROOT/autowereld_snapshot.py --output $ROOT/data/autowereld_rss_snapshot.json
+ExecStart=$ROOT/.venv/bin/campervan-rss-collect --output $ROOT/data/autowereld_rss_snapshot.json
 EOF
 cat > "$TIMER" <<'EOF'
 [Unit]

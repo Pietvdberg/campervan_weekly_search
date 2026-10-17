@@ -2,3 +2,10 @@ __pycache__/
 *.py[cod]
 mail_delivery_state.json
 mail_delivery_state.tmp
+
+# Generated search/review artifacts
+discovered_candidates.json
+screening_results.json
+report.txt
+research_pack.json
+reviewed_evidence_template.json

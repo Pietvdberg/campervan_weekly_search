@@ -5,6 +5,7 @@ from html.parser import HTMLParser
 from urllib.parse import urljoin, urlparse
 
 from listing_evidence import structured
+from scoped_state import detail_facts
 
 
 def identity(url):
@@ -137,6 +138,10 @@ def bind_evidence(markup, url):
         scoped += "<p>" + escape(description) + "</p>"
     else:
         scoped = ""
+    facts = detail_facts(markup, url)
+    if facts is not None:
+        scoped += '<script type="application/ld+json">' + json.dumps(facts).replace("<", "\\u003c") + '</script>'
+        scoped += '<p>' + escape(facts.get("description", "")) + '</p>'
     scoped += "<main>" + escape(visible) + "</main>"
     return scoped, {"status": "bound", "listing_url": url,
                     "basis": "url_linked_vehicle" if primary is not None else "registered_dealer_form_gallery" if dealer_bound else "canonical_main",

@@ -14,7 +14,7 @@ from urllib.parse import quote
 ORIGIN=(4.2930,51.4945)  # Bergen op Zoom approximate city centre (lon, lat)
 TARGET_TYPES={"Vehicle","Car","Product","Offer"}
 SCRIPT=re.compile(r'<script\b([^>]*)>(.*?)</script\s*>',re.I|re.S)
-PLATE=re.compile(r'\b(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3})\b',re.I)
+PLATE=re.compile(r'\b(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3}|[A-Z0-9]{6})\b',re.I)
 PRICE=re.compile(r'(?:€|EUR)\s*(\d{1,3}(?:\.\d{3})+(?:,\d{2})?|\d{4,6}(?:[.,]\d{2})?|\d{1,3}(?:,\d{2})?)(?!\d)',re.I)
 LOCATION=re.compile(r'\b(?:plaats|vestiging|locatie|standplaats)\s*:\s*([A-ZÀ-ÿ][A-Za-zÀ-ÿ -]{2,45})',re.I)
 
@@ -66,6 +66,25 @@ def price_evidence(markup,objs):
     text=" ".join(html.unescape(re.sub(r"<[^>]+>"," ",visible)).split())
     offer=next((d for d in objs if "price" in d and ("priceCurrency" in d or "priceSpecification" in d)),None)
     offer_amount=parse_amount(offer.get("price")) if offer else None
+    if offer and offer.get("priceCurrency") not in (None, "EUR"):
+        return {"amount_incl_vat": None, "basis": "unknown", "source": "unsupported_currency"}
+    specifications = []
+    for node in objs:
+        specification = node.get("priceSpecification")
+        if not isinstance(specification, dict) or specification.get("priceCurrency") != "EUR":
+            continue
+        amount = parse_amount(specification.get("price"))
+        if amount is None or (offer_amount is not None and amount != offer_amount):
+            continue
+        flag = specification.get("valueAddedTaxIncluded")
+        if isinstance(flag, bool):
+            specifications.append((amount, flag))
+    if {flag for _, flag in specifications} == {True, False}:
+        return {"amount_incl_vat": None, "basis": "unknown", "source": "conflicting_price_specifications"}
+    if specifications and specifications[0][1] is True:
+        amount = specifications[0][0]
+        return {"amount_incl_vat": float(amount), "advertised_amount": float(amount),
+                "basis": "explicit_structured_inclusive", "source": "same_listing_price_specification"}
     matches=list(PRICE.finditer(text))
     # Prefer a first-party structured offer price, but do not use the VAT
     # label next to a different price elsewhere on the page.
@@ -80,7 +99,7 @@ def price_evidence(markup,objs):
         after=text[match.end():match.end()+48].lower()
         context=before+" PRICE "+after
         # Explicit seller labels immediately adjacent to this specific amount.
-        excl=bool(re.search(r"(?:excl\.?|exclusief)\s*(?:21%\s*)?(?:btw|vat)",context,re.I))
+        excl=bool(re.search(r"(?:excl\.?|ex\.?|exclusief)\s*(?:21%\s*)?(?:btw|vat)",context,re.I))
         incl=bool(re.search(r"(?:incl\.?|inclusief)\s*(?:21%\s*)?(?:btw|vat)",context,re.I))
         margin=bool(re.search(r"\bmarge(?:auto|regeling)?\b",context,re.I))
         if (excl and incl) or (excl and margin):
@@ -165,9 +184,11 @@ def route_km(destination,fetcher=None):
 def enrich(markup,route_fetcher=None,geocode_fetcher=None):
     objs=structured(markup)
     price=price_evidence(markup,objs)
-    location=coords(objs)
+    vehicle_locations = [node for node in objs if node.get("@type") == "VehicleLocation"]
+    explicit_address = address_from_structured(vehicle_locations)
+    location = None if explicit_address is not None else coords(objs)
     location_source="structured_coordinates" if location is not None else None
-    address=address_from_structured(objs) if location is None else None
+    address = explicit_address or (address_from_structured(objs) if location is None else None)
     if address is not None:
         try:
             location=pdok_coordinates(address,geocode_fetcher)

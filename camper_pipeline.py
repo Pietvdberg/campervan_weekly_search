@@ -10,6 +10,7 @@ import re
 from html import unescape
 from rdw_lookup import lookup, normalize_plate
 from conversion_evidence import assess as assess_conversion
+from vehicle_review import assess as assess_vehicle, matching_review
 from vehicle_risks import sale_exclusion, auction_evidence, rdw_risks
 
 from source_catalog import SOURCE_NAMES as SOURCES, REQUIRED_CHECKS as REQUIRED
@@ -26,6 +27,8 @@ def normalized_url(url):
 
 def candidate_state(item):
     """Hard failures take precedence over evidence-based ranking."""
+    if item.get("independent_review_assessment", {}).get("failed"):
+        return "REJECTED"
     if sale_exclusion(item["candidate"]):
         return "REJECTED"
     if any(item["candidate"].get("checks", {}).get(k) is False for k in REQUIRED):
@@ -140,7 +143,9 @@ def screen(candidate):
     exclusion = sale_exclusion(candidate)
     if exclusion:
         reasons.append(exclusion)
-    return {"candidate":candidate, "score":score, "plate":plate, "reasons":reasons, "qualified":score >= 90 and not reasons, "rdw":None}
+    independent_review = assess_vehicle(candidate)
+    reasons.extend(independent_review["reasons"])
+    return {"candidate":candidate, "score":score, "plate":plate, "reasons":reasons, "qualified":score >= 90 and not reasons, "rdw":None, "independent_review_assessment":independent_review}
 
 def evidence_summary(results):
     """Per-source assessment: explicit failures differ from missing evidence."""
@@ -193,6 +198,9 @@ def evaluate(data, rdw_lookup=lookup):
             assessment = assess_conversion(candidate, contract.get("requirements"), contract.get("assessments"))
             candidate = {**candidate, "checks": {**candidate.get("checks", {}),
                          "conversion_suitable": assessment["suitable"]}, "conversion_assessment": assessment}
+            vehicle_review = matching_review(candidate, contract.get("assessments"))
+            if vehicle_review and "checks" in vehicle_review:
+                candidate["independent_review"] = vehicle_review
             reviewed.append(candidate)
         candidates = reviewed
     results=[screen(c) for c in candidates]
@@ -334,7 +342,7 @@ def report(data):
 if __name__=="__main__":
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",default="candidates.json")
-    ap.add_argument("--conversion-evidence", help="JSON containing explicit conversion requirements and reviewed assessments")
+    ap.add_argument("--conversion-evidence", "--reviewed-evidence", dest="conversion_evidence", help="JSON containing explicit conversion requirements and reviewed assessments")
     args=ap.parse_args()
     data = json.loads(Path(args.input).read_text(encoding="utf8"))
     if args.conversion_evidence:
@@ -342,5 +350,9 @@ if __name__=="__main__":
     result=evaluate(data)
     Path("screening_results.json").write_text(json.dumps(result,indent=2,ensure_ascii=False),encoding="utf8")
     Path("report.txt").write_text(report(result),encoding="utf8")
+    from research_pack import build as build_research
+    research = build_research(result, data.get("conversion_evidence", {}).get("requirements"))
+    Path("research_pack.json").write_text(json.dumps(research, indent=2, ensure_ascii=False), encoding="utf8")
+    Path("reviewed_evidence_template.json").write_text(json.dumps(research["review_template"], indent=2, ensure_ascii=False), encoding="utf8")
     print("Candidates:",len(result["results"]),"qualifiers:",result["qualifiers"])
     print("Local dealer vehicle screening:",json.dumps(dealer_audit_rows(result),ensure_ascii=False))

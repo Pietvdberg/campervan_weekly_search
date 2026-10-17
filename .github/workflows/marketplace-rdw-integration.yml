@@ -43,6 +43,8 @@ jobs:
           path: |
             discovered_candidates.json
             screening_results.json
+            research_pack.json
+            reviewed_evidence_template.json
             rdw_probe.json
             report.txt
           if-no-files-found: warn

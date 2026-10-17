@@ -12,6 +12,7 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
 from listing_identity import bind_evidence, require_same_listing
+from source_access import SourceFetch, host_key
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from autowereld_html import html_to_xml, response_identity
 from autowereld_snapshot import read_snapshot_records
@@ -208,6 +209,7 @@ def extract(title,url,source,markup):
             "observed_at":datetime.now(timezone.utc).isoformat()}
 
 def discover(fetcher=fetch,max_per_source=50):
+    fetcher = SourceFetch(fetcher)
     coverage={};candidates=[];seen=set();rss_leads=[]
     for source,domain in SOURCES.items():
         direct_urls = {}
@@ -225,7 +227,8 @@ def discover(fetcher=fetch,max_per_source=50):
             seed_errors=[x["error"] for x in inventory_stats["inventory_errors"]]
             anchor_count=inventory_stats["inventory_links_examined"]
         for seed in ([] if inventory_stats is not None else SEED_PAGES[source]):
-            if source_blocked: break
+            if host_key(seed) in fetcher.stops:
+                continue
             if valid_url(seed,source) and relevant_link("",seed,source):
                 direct_urls.setdefault(seed,"")
             try:
@@ -278,6 +281,8 @@ def discover(fetcher=fetch,max_per_source=50):
                 r"https://(?:www\.)?autowereld\.nl/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",
                 re.I)
             for feed_url in AUTOWERELD_RSS:
+                if host_key(feed_url) in fetcher.stops:
+                    continue
                 try:
                     rss_xml,feed_content_type=fetcher(feed_url)
                     xml_error=None
@@ -327,7 +332,7 @@ def discover(fetcher=fetch,max_per_source=50):
             found=0;failures=0;rejected=0;matched=0;samples=[];attempts=0;rate_limited=source_blocked
             for title,url in [(title,url) for url,title in direct_urls.items()] + hits[:25]:
                 if found>=max_per_source or attempts>=MAX_FETCH_ATTEMPTS or rate_limited: break
-                if url in seen: continue
+                if url in seen or host_key(url) in fetcher.stops: continue
                 if not valid_url(url,source) or not relevant_link(title,url,source):
                     rejected+=1
                     if len(samples)<3: samples.append({"reason":"not an eligible individual listing URL","url":url[:250]})
@@ -350,8 +355,12 @@ def discover(fetcher=fetch,max_per_source=50):
                     elif len(samples)<3: samples.append({"reason":"individual vehicle evidence missing or wrong model","url":url[:250]})
                 except Exception as exc:
                     failures+=1
-                    if "429" in str(exc): rate_limited=True
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
+            restrictions = fetcher.restrictions(SEED_PAGES[source])
+            source_hosts = {host_key(seed) for seed in SEED_PAGES[source]}
+            source_blocked = bool(source_hosts) and source_hosts.issubset(restrictions)
+            source_block_reason = "; ".join(host + ": " + state["reason"] for host, state in restrictions.items()) or None
+            rate_limited = any(state["http_status"] == 429 for state in restrictions.values())
             status=("individual_pages_found" if found else
                     "source_unavailable" if source_blocked or seed_success==0 else
                     "inventory_only_unverified" if inventory_stats is not None else
@@ -364,7 +373,9 @@ def discover(fetcher=fetch,max_per_source=50):
                               "inventory_links":anchor_count,"response_diagnostics":response_diagnostics,
                               "direct_eligible_urls":len(direct_urls),
                               "inventory_errors":seed_errors,"source_block_reason":source_block_reason,
-                              "coverage_note":("Source returned a 403/429 access restriction; no claim of zero inventory." if source_blocked else
+                              "host_restrictions":restrictions,
+                              "host_request_counts":{host:fetcher.counts.get(host,0) for host in sorted(source_hosts)},
+                              "coverage_note":("Source access or request budget stopped; no claim of zero inventory." if restrictions else
                                                "AutoWereld inventory/RSS returned HTML without discoverable advert links; content could be fallback or access page." if source=="AutoWereld" and not found else None),
                               "feed_diagnostics":feed_diagnostics,
                               "external_rss_snapshot_status":snapshot_status,

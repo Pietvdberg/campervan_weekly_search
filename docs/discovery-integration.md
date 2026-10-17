@@ -30,3 +30,9 @@ Push runs do not send mail. Manual development dispatch sends only to the Hotmai
 test recipient. Mail retry state is preserved as a separate artifact. No production
 weekly schedule is enabled. Passing PR tests establishes offline regression
 behavior; development discovery acceptance and actual delivery are separate.
+
+External-origin redirects, including consent gates, now stop further requests to
+that source host and are reported as unvalidated access restrictions. A configured
+inventory seed may move to another path on its own HTTPS host; this only yields
+discovery links. Individual advert URLs still require strict response identity.
+No consent/access gate is treated as a source of vehicle evidence or bypassed.

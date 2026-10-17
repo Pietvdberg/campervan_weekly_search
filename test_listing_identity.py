@@ -91,3 +91,25 @@ class IdentityTests(unittest.TestCase):
         self.assertEqual(provenance["status"], "bound")
         self.assertIn("postalCode", scoped)
         self.assertIn("Teststraat 7b", scoped)
+
+    def test_configured_inventory_redirect_may_change_path_but_not_host(self):
+        require_same_listing("https://www.example.test/inventory", "https://example.test/new-inventory", inventory=True)
+        for target in ("https://other.test/inventory", "http://www.example.test/inventory"):
+            with self.subTest(target=target), self.assertRaises(ValueError):
+                require_same_listing("https://www.example.test/inventory", target, inventory=True)
+
+    def test_detail_seed_keeps_strict_identity(self):
+        from source_catalog import INVENTORY_SEEDS, SEED_PAGES
+        self.assertNotIn(SEED_PAGES["AutoWereld"][0], INVENTORY_SEEDS)
+        self.assertIn(SEED_PAGES["Local dealers"][0], INVENTORY_SEEDS)
+
+    def test_fetch_allows_same_host_inventory_redirect(self):
+        from source_catalog import SEED_PAGES
+        requested = SEED_PAGES["Local dealers"][0]
+        response = io.BytesIO(b"<main>Inventory</main>")
+        response.geturl = lambda: "https://www.autowereld.nl/aanbieder/current-inventory/auto.html"
+        response.headers = {"Content-Type": "text/html"}
+        with patch("discover_listings.urlopen", return_value=response):
+            markup, kind = fetch(requested)
+        self.assertIn("Inventory", markup)
+        self.assertEqual(kind, "text/html")

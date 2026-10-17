@@ -32,3 +32,11 @@ mechanical condition, complete inventory or current availability.
 
 HTML generation is unit-tested. Its rendering in a received Hotmail message remains
 unverified; no manual mail workflow was dispatched for this comparison.
+
+The local-dealer decline is not evidence of zero stock: a bounded current request
+to an AutoWereld dealer inventory redirected to an external DPG consent host.
+That content is not a validated dealer inventory and must not be bypassed. The
+follow-up classifies external-origin redirects as source stops and records the
+reason. Configured inventory seeds may follow HTTPS path changes on the same
+host; advert responses retain strict URL identity. This does not establish that
+all historically reported dealer records were false; the two runs differ.

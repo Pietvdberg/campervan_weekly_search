@@ -15,9 +15,24 @@ jobs:
         run: python3 -m py_compile send_report.py
       - name: Verify development recipient guard
         run: python3 -m unittest -v test_mail_routing.py
+      - name: Restore mail submission state on rerun
+        if: github.run_attempt > 1
+        uses: actions/download-artifact@v4
+        with:
+          name: mail-delivery-state-${{ github.run_id }}
+          path: .
       - name: Send and verify Gmail
         env:
           MAIL_MODE: development
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python3 send_report.py report.txt
+      - name: Preserve mail submission state
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mail-delivery-state-${{ github.run_id }}
+          path: mail_delivery_state.json
+          if-no-files-found: ignore
+          overwrite: true
+          retention-days: 30

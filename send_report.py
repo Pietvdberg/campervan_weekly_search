@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Send report using Gmail SMTP and verify the exact message in Gmail Sent via IMAP."""
 import email
+import hashlib
 import json
 from pathlib import Path
 from report_html import render_html
 from email.message import EmailMessage
-from email.utils import make_msgid, getaddresses
+from email.utils import getaddresses
 from datetime import datetime
 import imaplib
 import os
@@ -64,6 +65,12 @@ def verify_sent(sender, password, message_id, subject, recipients):
                 return True
     return False
 
+def save_delivery_state(path, message_id, status):
+    temporary = path.with_suffix(".tmp")
+    temporary.write_text(json.dumps({"message_id": message_id, "status": status}) + "\n", encoding="utf-8")
+    temporary.replace(path)
+
+
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else "report.txt"
     date = os.environ.get("REPORT_DATE", datetime.now().strftime("%Y-%m-%d"))
@@ -77,28 +84,50 @@ def main():
     message["From"] = sender
     message["To"] = ", ".join(recipients)
     message["Subject"] = subject
-    message["Message-ID"] = make_msgid(domain=sender.split("@")[-1])
     with open(path, encoding="utf-8") as f:
         message.set_content(f.read())
     audit = Path(path).with_name("screening_results.json")
     if audit.is_file():
         message.add_alternative(render_html(json.loads(audit.read_text(encoding="utf-8"))), subtype="html")
+    content_identity = json.dumps([sender.lower(), recipients, subject,
+        [(part.get_content_type(), part.get_content()) for part in message.walk()
+         if part.get_content_maintype() != "multipart"]], ensure_ascii=False)
+    fingerprint = hashlib.sha256(content_identity.encode("utf-8")).hexdigest()
+    message["Message-ID"] = "<camper-" + fingerprint + "@" + sender.split("@")[-1] + ">"
+    state_path = Path(os.environ.get("MAIL_DELIVERY_STATE", str(Path(path).with_name("mail_delivery_state.json"))))
+    state = None
+    if state_path.exists():
+        state = json.loads(state_path.read_text(encoding="utf-8"))
+        if state.get("message_id") != message["Message-ID"]:
+            raise RuntimeError("Restored delivery state belongs to different report content; refusing an ambiguous retry")
     print("Mail mode:", mode, "Recipients:", ", ".join(recipients), flush=True)
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context(), timeout=30) as smtp:
-        smtp.login(sender, password)
-        refused = smtp.send_message(message)
-        if refused:
-            raise RuntimeError(f"SMTP refused recipients: {list(refused)}")
-    print("SMTP accepted message; Message-ID:", message["Message-ID"], flush=True)
+    # IMAP failure must not be treated as proof that no earlier delivery exists.
+    if verify_sent(sender, password, message["Message-ID"], subject, recipients):
+        save_delivery_state(state_path, message["Message-ID"], "sent_confirmed")
+        print("Existing exact message verified in Gmail Sent; no resend", flush=True)
+        return 0
+    if state is None:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context(), timeout=30) as smtp:
+            smtp.login(sender, password)
+            # Persist before DATA: an interrupted/ambiguous submission is never blindly retried.
+            save_delivery_state(state_path, message["Message-ID"], "submitting")
+            refused = smtp.send_message(message)
+            if refused:
+                raise RuntimeError(f"SMTP refused recipients: {list(refused)}; no automatic resend")
+            save_delivery_state(state_path, message["Message-ID"], "smtp_accepted")
+        print("SMTP accepted message; Message-ID:", message["Message-ID"], flush=True)
+    else:
+        print("Prior submission state restored; retrying Sent verification only", flush=True)
     for attempt in range(6):
         try:
             if verify_sent(sender, password, message["Message-ID"], subject, recipients):
+                save_delivery_state(state_path, message["Message-ID"], "sent_confirmed")
                 print("Verified exact subject and intended recipients in Gmail Sent; Message-ID:", message["Message-ID"])
                 return 0
         except (imaplib.IMAP4.error, OSError, RuntimeError) as exc:
             print("IMAP verification attempt failed:", str(exc), flush=True)
         time.sleep(5)
-    raise RuntimeError("SMTP accepted mail but Gmail Sent verification failed for " + message["Message-ID"])
+    raise RuntimeError("Submission not confirmed in Gmail Sent; automatic resend is blocked for " + message["Message-ID"])
 
 if __name__ == "__main__":
     sys.exit(main())

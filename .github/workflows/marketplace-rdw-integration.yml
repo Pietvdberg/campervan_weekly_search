@@ -68,6 +68,12 @@ jobs:
             report.txt
           if-no-files-found: warn
           retention-days: 30
+      - name: Restore mail submission state on rerun
+        if: github.run_attempt > 1 && github.event_name == 'workflow_dispatch'
+        uses: actions/download-artifact@v4
+        with:
+          name: mail-delivery-state-${{ github.run_id }}
+          path: .
       - name: Email development report ONLY to Hotmail
         if: github.event_name == 'workflow_dispatch'
         env:
@@ -75,6 +81,15 @@ jobs:
           GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python3 send_report.py report.txt
+      - name: Preserve mail submission state
+        if: always() && github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mail-delivery-state-${{ github.run_id }}
+          path: mail_delivery_state.json
+          if-no-files-found: ignore
+          overwrite: true
+          retention-days: 30
       - name: Enforce discovery acceptance criteria after report delivery
         run: |
           python3 - <<'PY'

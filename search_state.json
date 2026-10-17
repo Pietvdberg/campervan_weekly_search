@@ -1,0 +1,3002 @@
+{
+  "schema_version": 1,
+  "listings": {
+    "url:ba8df6406c83a75503e1b8683174c9e1f5ef0fedecc3eea42a3f294c8e186858": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2439132752-peugeot-boxer-330-2-2-hdi-100-l2h2-2006"
+      ],
+      "observations": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2439132752-peugeot-boxer-330-2-2-hdi-100-l2h2-2006": {
+          "price_incl_vat": null,
+          "advertised_price": "179.",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Marktplaats",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:06a3364c0645c8d141bd6d9677137d31118594194799f15541ba598de02fbe37": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453696085-peugeot-boxer-330-2-0-bluehdi-l2h2-premium-3-zitplaatsen"
+      ],
+      "observations": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453696085-peugeot-boxer-330-2-0-bluehdi-l2h2-premium-3-zitplaatsen": {
+          "price_incl_vat": null,
+          "advertised_price": "87",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Marktplaats",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:e3b081e8fc5cfe9ad0b6c4187652c93f102ea27bc8d2873781c41752968b2d31": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454390687-peugeot-boxer-2-0-bluehdi-l2h2-premium-131pk-gesloten-bestel"
+      ],
+      "observations": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454390687-peugeot-boxer-2-0-bluehdi-l2h2-premium-131pk-gesloten-bestel": {
+          "price_incl_vat": null,
+          "advertised_price": "183",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": null,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Marktplaats",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:e8ea8bb39361b4878beb4d9261696a3c68d4d34e6ae67e7fd77e3aa81775ded1": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2450895355-ford-transit-gb-350-l2h2-tdci-automaat"
+      ],
+      "observations": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2450895355-ford-transit-gb-350-l2h2-tdci-automaat": {
+          "price_incl_vat": null,
+          "advertised_price": "179.",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": false
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Marktplaats",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:14THF5": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/renault-master-master-2-l2h2-diesel-wit-cat_ma60mo14717-678368e8-6c08-4400-a1d9-25402361c7ca"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/renault-master-master-2-l2h2-diesel-wit-cat_ma60mo14717-678368e8-6c08-4400-a1d9-25402361c7ca": {
+          "price_incl_vat": null,
+          "advertised_price": "5.499",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": null,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Renault",
+              "model": "Master",
+              "modelVersionInput": "Master 2 L2H2",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2001-03-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": 5,
+              "motorTypeName": null,
+              "bodyType": "Overig"
+            }
+          ],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:7VJL82": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659",
+        "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "price_incl_vat": null,
+          "advertised_price": "1.950",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": true,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": "Betreft een schadeauto",
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Ford",
+              "model": "Transit",
+              "modelVersionInput": "260S 2.2 TDCI SHD - Motorlamp brandt, Rechtsachter",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2010-08-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": null,
+              "motorTypeName": "2.2 TDCi",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        },
+        "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "price_incl_vat": null,
+          "advertised_price": "1.950",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": true,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": "Betreft een schadeauto",
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Ford",
+              "model": "Transit",
+              "modelVersionInput": "260S 2.2 TDCI SHD - Motorlamp brandt, Rechtsachter",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2010-08-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": null,
+              "motorTypeName": "2.2 TDCi",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:J479RR": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/ford-transit-transit-undefined-diesel-wit-cat_ma29mo2160-c8038dbd-089b-4c54-b0f5-59f5de678e4c"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/ford-transit-transit-undefined-diesel-wit-cat_ma29mo2160-c8038dbd-089b-4c54-b0f5-59f5de678e4c": {
+          "price_incl_vat": null,
+          "advertised_price": "2.500",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Ford",
+              "model": "Transit",
+              "modelVersionInput": "Transit undefined",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2002-01-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": 5,
+              "motorTypeName": "2.3",
+              "bodyType": "Overig"
+            }
+          ],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:02VGK6": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390",
+        "https://autotrack.nl/a/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "price_incl_vat": 5748.0,
+          "advertised_price": "5.748",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Peugeot",
+              "model": "Boxer",
+              "modelVersionInput": "335 3.0 HDI L2H2,Apk,Airco,Nap",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2007-05-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": 6,
+              "motorTypeName": "3.0 HDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        },
+        "https://autotrack.nl/a/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "price_incl_vat": 5748.0,
+          "advertised_price": "5.748",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Peugeot",
+              "model": "Boxer",
+              "modelVersionInput": "335 3.0 HDI L2H2,Apk,Airco,Nap",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2007-05-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": 6,
+              "motorTypeName": "3.0 HDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:bb6e692652139cada52ad6bfe769f8dd109637a48dd3da1b8e20fd039e8a8a23": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "price_incl_vat": null,
+          "advertised_price": "6.450",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "b006d5b08ef59dce43856c5844679edd6de3b67ef28b70c66726956ea7553c60"
+        }
+      },
+      "last_seen": "2026-10-17T10:08:56.662669+00:00",
+      "last_status": "newly_observed"
+    },
+    "url:3e018392b1353b0bac05f93f4b84d6a3ccf0c90401bdefe116866b2ba9740895": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/renault-master-marge-l2h2-nl-trekhaak-airco-diesel-cat_ma60mo14717-e5740f97-a0d4-4cdd-9ca6-13158ff63ef1"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/renault-master-marge-l2h2-nl-trekhaak-airco-diesel-cat_ma60mo14717-e5740f97-a0d4-4cdd-9ca6-13158ff63ef1": {
+          "price_incl_vat": 5950.0,
+          "advertised_price": "5.950",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "b006d5b08ef59dce43856c5844679edd6de3b67ef28b70c66726956ea7553c60"
+        }
+      },
+      "last_seen": "2026-10-17T10:08:56.662669+00:00",
+      "last_status": "newly_observed"
+    },
+    "plate:VN699N": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2",
+        "https://autotrack.nl/a/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2": {
+          "price_incl_vat": 5627.0,
+          "advertised_price": "5.627",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "b006d5b08ef59dce43856c5844679edd6de3b67ef28b70c66726956ea7553c60"
+        },
+        "https://autotrack.nl/a/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2": {
+          "price_incl_vat": 5627.0,
+          "advertised_price": "5.627",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "b006d5b08ef59dce43856c5844679edd6de3b67ef28b70c66726956ea7553c60"
+        }
+      },
+      "last_seen": "2026-10-17T10:08:56.662669+00:00",
+      "last_status": "newly_observed"
+    },
+    "url:61d1c97c868012bba13d299b1fc0f1b073aea363cffbfa9663e4b855cb0b9cf7": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/citroen-jumper-3-0-hdi-l3-h2-180-pk-lbw-airco-cruise-control-diesel-wit-cat_ma21mo14710-90df4254-578c-47b5-a9b2-4db8d01e40bb"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/citroen-jumper-3-0-hdi-l3-h2-180-pk-lbw-airco-cruise-control-diesel-wit-cat_ma21mo14710-90df4254-578c-47b5-a9b2-4db8d01e40bb": {
+          "price_incl_vat": null,
+          "advertised_price": "7.950",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "b006d5b08ef59dce43856c5844679edd6de3b67ef28b70c66726956ea7553c60"
+        }
+      },
+      "last_seen": "2026-10-17T10:08:56.662669+00:00",
+      "last_status": "newly_observed"
+    },
+    "url:f4a3826e12a894bc46d8612f86ed3ba0e889c8c3470186abc9a8baa416c9784b": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autotrack.nl/a/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae"
+      ],
+      "observations": {
+        "https://autotrack.nl/a/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "price_incl_vat": null,
+          "advertised_price": "6.450",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Peugeot",
+              "model": "Boxer",
+              "modelVersionInput": "3.0 HDI L2 H2 Airco 3.0 180PK!!!",
+              "productionYear": "2012",
+              "firstRegistrationDateRaw": "2012-01-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": 6,
+              "motorTypeName": "3.0 HDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:7VRK05": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autotrack.nl/a/renault-master-2-3dci-125-pk-l2h2-airco-trekhaak-diesel-zwart-cat_ma60mo14717-0b81cff6-546b-44dc-ac5c-3551d20e45dd"
+      ],
+      "observations": {
+        "https://autotrack.nl/a/renault-master-2-3dci-125-pk-l2h2-airco-trekhaak-diesel-zwart-cat_ma60mo14717-0b81cff6-546b-44dc-ac5c-3551d20e45dd": {
+          "price_incl_vat": 3933.0,
+          "advertised_price": "3.933",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Renault",
+              "model": "Master",
+              "modelVersionInput": "2.3DCI | 125 PK L2H2 | Airco | Trekhaak",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2011-09-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": 6,
+              "motorTypeName": "2.3 dCi 125",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:848b301926a00723fba848f7e9d47c708c513e7855e326876f5d6a54bc1de09f": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autotrack.nl/a/renault-master-2-3-dci-110kw-150-l2h2-airco-klima-euro6-diesel-geel-cat_ma60mo14717-b9b8981f-ff44-41db-b358-a799118bec6c"
+      ],
+      "observations": {
+        "https://autotrack.nl/a/renault-master-2-3-dci-110kw-150-l2h2-airco-klima-euro6-diesel-geel-cat_ma60mo14717-b9b8981f-ff44-41db-b358-a799118bec6c": {
+          "price_incl_vat": 5990.0,
+          "advertised_price": "5.990",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "b006d5b08ef59dce43856c5844679edd6de3b67ef28b70c66726956ea7553c60"
+        }
+      },
+      "last_seen": "2026-10-17T10:08:56.662669+00:00",
+      "last_status": "newly_observed"
+    },
+    "plate:VBD15G": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autotrack.nl/a/renault-master-2-3dci-l3h2-maxi-egr-cooler-not-ok-airco-cam-diesel-cat_ma60mo14717-836abf39-a36d-4959-95ba-1a70cadaaf68"
+      ],
+      "observations": {
+        "https://autotrack.nl/a/renault-master-2-3dci-l3h2-maxi-egr-cooler-not-ok-airco-cam-diesel-cat_ma60mo14717-836abf39-a36d-4959-95ba-1a70cadaaf68": {
+          "price_incl_vat": 7139.0,
+          "advertised_price": "7.139",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "b006d5b08ef59dce43856c5844679edd6de3b67ef28b70c66726956ea7553c60"
+        }
+      },
+      "last_seen": "2026-10-17T10:08:56.662669+00:00",
+      "last_status": "newly_observed"
+    },
+    "url:4e84cde27608e26ec69159e36bdd4fffa0b99c2619dd454ccae6edcc381dbc0f": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://autotrack.nl/a/citroen-jumper-3-0-hdi-l3-h2-180-pk-lbw-airco-cruise-control-diesel-wit-cat_ma21mo14710-90df4254-578c-47b5-a9b2-4db8d01e40bb"
+      ],
+      "observations": {
+        "https://autotrack.nl/a/citroen-jumper-3-0-hdi-l3-h2-180-pk-lbw-airco-cruise-control-diesel-wit-cat_ma21mo14710-90df4254-578c-47b5-a9b2-4db8d01e40bb": {
+          "price_incl_vat": null,
+          "advertised_price": "7.950",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "b006d5b08ef59dce43856c5844679edd6de3b67ef28b70c66726956ea7553c60"
+        }
+      },
+      "last_seen": "2026-10-17T10:08:56.662669+00:00",
+      "last_status": "newly_observed"
+    },
+    "plate:VK287G": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://viabovag.nl/auto/aanbod/ford-transit-350-22-tdci-l3h2-trend-rwd-exclusief-btw-88bs18a"
+      ],
+      "observations": {
+        "https://viabovag.nl/auto/aanbod/ford-transit-350-22-tdci-l3h2-trend-rwd-exclusief-btw-88bs18a": {
+          "price_incl_vat": 9619.5,
+          "advertised_price": "7.950",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": false
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "viaBOVAG",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:VL431P": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-direct-leverbaar-rolstoelbus-g2st2zc"
+      ],
+      "observations": {
+        "https://viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-direct-leverbaar-rolstoelbus-g2st2zc": {
+          "price_incl_vat": null,
+          "advertised_price": "14.950",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": false
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "viaBOVAG",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:VR850F": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://viabovag.nl/auto/aanbod/ford-transit-22-tdci-l2h2-direct-leverbaar-rolstoelbus-5nh1eh0"
+      ],
+      "observations": {
+        "https://viabovag.nl/auto/aanbod/ford-transit-22-tdci-l2h2-direct-leverbaar-rolstoelbus-5nh1eh0": {
+          "price_incl_vat": null,
+          "advertised_price": "24.950",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": null,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": false
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "viaBOVAG",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:V570TP": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-l1h2-rolstoelbus-94as1k9"
+      ],
+      "observations": {
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-l1h2-rolstoelbus-94as1k9": {
+          "price_incl_vat": null,
+          "advertised_price": "34.950",
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": false,
+            "price_incl_vat_within_8000": false
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "viaBOVAG",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:V458HB": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://bwcr.nl/occasions-kopen/51586631-volkswagen-crafter-35-2-0-tdi-l2h2-koelauto-dag-nacht-werkt-100-2-zits-dub-lucht-opstap-airco-euro-5-export"
+      ],
+      "observations": {
+        "https://bwcr.nl/occasions-kopen/51586631-volkswagen-crafter-35-2-0-tdi-l2h2-koelauto-dag-nacht-werkt-100-2-zits-dub-lucht-opstap-airco-euro-5-export": {
+          "price_incl_vat": null,
+          "advertised_price": null,
+          "checks": {
+            "high_roof": true,
+            "cab_ac": true,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Local dealers",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:V09RJG": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://bwcr.nl/occasions-kopen/56710118-mercedes-benz-sprinter-310-2-2-cdi-366-l2-h2-cruise-3-zits-opstap-euro-5b-export"
+      ],
+      "observations": {
+        "https://bwcr.nl/occasions-kopen/56710118-mercedes-benz-sprinter-310-2-2-cdi-366-l2-h2-cruise-3-zits-opstap-euro-5b-export": {
+          "price_incl_vat": null,
+          "advertised_price": null,
+          "checks": {
+            "high_roof": true,
+            "cab_ac": null,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Local dealers",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:VB501K": {
+      "first_seen": "2026-10-17T10:08:56.662669+00:00",
+      "urls": [
+        "https://bwcr.nl/occasions-kopen/56575589-ford-transit-300m-2-2-tdci-ambiente-shd-3-zits-trekhaak-2800-kg-opstap-euro-5-export"
+      ],
+      "observations": {
+        "https://bwcr.nl/occasions-kopen/56575589-ford-transit-300m-2-2-tdci-ambiente-shd-3-zits-trekhaak-2800-kg-opstap-euro-5-export": {
+          "price_incl_vat": null,
+          "advertised_price": null,
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Local dealers",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:946a7a12f236a60684093499b8eeb0b414964f16350c9b758fdff13c311669a3": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2443757742-toyota-hi-ace-2-5-d4-d-100-4wd"
+      ],
+      "observations": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2443757742-toyota-hi-ace-2-5-d4-d-100-4wd": {
+          "price_incl_vat": null,
+          "advertised_price": "179.",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Marktplaats",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:0371def985739447f10d1c5e2e2d024a6cfab4636acd9388905621841b663acd": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2449980210-toyota-hi-ace-2-5-d4-d-90-spacer-dc-2003"
+      ],
+      "observations": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2449980210-toyota-hi-ace-2-5-d4-d-90-spacer-dc-2003": {
+          "price_incl_vat": null,
+          "advertised_price": "179.",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Marktplaats",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:7e3c0494de82b70d0df3923ebd7e68dee9e16c067e66e7ebe00ba4dd646315ae": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453196296-peugeot-boxer-gb-330-l2h1-bluehdi-110pk-2018"
+      ],
+      "observations": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453196296-peugeot-boxer-gb-330-l2h1-bluehdi-110pk-2018": {
+          "price_incl_vat": null,
+          "advertised_price": "179.",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Marktplaats",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "url:7f8d9f7edd4c445f147992ddfa0abd04235a251db1f6b542dc1eba6b066a6b5d": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2412027537-toyota-hi-ace-2-5-d-4d-95-2008"
+      ],
+      "observations": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2412027537-toyota-hi-ace-2-5-d-4d-95-2008": {
+          "price_incl_vat": null,
+          "advertised_price": "179.",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": false,
+            "distance_within_100km": null,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "Marktplaats",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:62VVL9": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41",
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "price_incl_vat": null,
+          "advertised_price": "2.900",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": true,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Volkswagen",
+              "model": "Transporter",
+              "modelVersionInput": "1.9 TDI 300 Budgetline DC - EXPORT! - NAP - Airco",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2008-09-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": null,
+              "motorTypeName": "1.9 TDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "price_incl_vat": null,
+          "advertised_price": "2.900",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": true,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Volkswagen",
+              "model": "Transporter",
+              "modelVersionInput": "1.9 TDI 300 Budgetline DC - EXPORT! - NAP - Airco",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2008-09-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": null,
+              "motorTypeName": "1.9 TDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:VK273J": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f",
+        "https://autotrack.nl/a/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f": {
+          "price_incl_vat": 4235.0,
+          "advertised_price": "4.235",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": true,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Peugeot",
+              "model": "Boxer",
+              "modelVersionInput": "333 2.2 HDI L1H1 MOTOR NIET %100 GOED LEZEN",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2013-06-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": null,
+              "motorTypeName": "2.2 HDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        },
+        "https://autotrack.nl/a/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f": {
+          "price_incl_vat": 4235.0,
+          "advertised_price": "4.235",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": true,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Peugeot",
+              "model": "Boxer",
+              "modelVersionInput": "333 2.2 HDI L1H1 MOTOR NIET %100 GOED LEZEN",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2013-06-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": null,
+              "motorTypeName": "2.2 HDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:V744ZT": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e",
+        "https://autotrack.nl/a/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "price_incl_vat": 5560.0,
+          "advertised_price": "5.560",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Fiat",
+              "model": "Ducato",
+              "modelVersionInput": "28 Full Electrisch L1H1 Actual ACCUPAKKET MOET NAG",
+              "productionYear": "2015",
+              "firstRegistrationDateRaw": "2015-04-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": 5,
+              "motorTypeName": "2.0 MultiJet",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        },
+        "https://autotrack.nl/a/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "price_incl_vat": 5560.0,
+          "advertised_price": "5.560",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": true
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Fiat",
+              "model": "Ducato",
+              "modelVersionInput": "28 Full Electrisch L1H1 Actual ACCUPAKKET MOET NAG",
+              "productionYear": "2015",
+              "firstRegistrationDateRaw": "2015-04-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": 5,
+              "motorTypeName": "2.0 MultiJet",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:26BTKZ": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac",
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac"
+      ],
+      "observations": {
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "price_incl_vat": null,
+          "advertised_price": "1.840",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Volkswagen",
+              "model": "Transporter",
+              "modelVersionInput": "1.9 TDI 300 Bud.DC",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2005-06-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": null,
+              "motorTypeName": "1.9 TDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoScout24",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "price_incl_vat": null,
+          "advertised_price": "1.840",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": null,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": null
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [
+            {
+              "make": "Volkswagen",
+              "model": "Transporter",
+              "modelVersionInput": "1.9 TDI 300 Bud.DC",
+              "productionYear": null,
+              "firstRegistrationDateRaw": "2005-06-01",
+              "transmissionType": "Handgeschakeld",
+              "gears": null,
+              "motorTypeName": "1.9 TDI",
+              "bodyType": "Bedrijfswagen"
+            }
+          ],
+          "source": "AutoTrack",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    },
+    "plate:P171JN": {
+      "first_seen": "2026-10-17T10:20:39.980154+00:00",
+      "urls": [
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-330-22-hdi-l1h1-9-persoons-14950-excl-btw-2by2qs5"
+      ],
+      "observations": {
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-330-22-hdi-l1h1-9-persoons-14950-excl-btw-2by2qs5": {
+          "price_incl_vat": null,
+          "advertised_price": "18.895",
+          "checks": {
+            "high_roof": null,
+            "cab_ac": true,
+            "distance_within_100km": true,
+            "price_incl_vat_within_8000": false
+          },
+          "reported_mechanical_failure": null,
+          "variant": {},
+          "variant_clues": [],
+          "source": "viaBOVAG",
+          "extractor_fingerprint": "1b84f3de5f419922b07c8b692550c2f94000351c6f644ce66b52cbd1f45daddb"
+        }
+      },
+      "last_seen": "2026-10-17T13:07:24.661838+00:00",
+      "last_status": "unchanged"
+    }
+  },
+  "runs": [
+    {
+      "run_id": "local-baseline-4",
+      "observed_at": "2026-10-17T10:08:56.662669+00:00",
+      "changes": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2439132752-peugeot-boxer-330-2-2-hdi-100-l2h2-2006": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453696085-peugeot-boxer-330-2-0-bluehdi-l2h2-premium-3-zitplaatsen": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454390687-peugeot-boxer-2-0-bluehdi-l2h2-premium-131pk-gesloten-bestel": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2450895355-ford-transit-gb-350-l2h2-tdci-automaat": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-2-l2h2-diesel-wit-cat_ma60mo14717-678368e8-6c08-4400-a1d9-25402361c7ca": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-transit-undefined-diesel-wit-cat_ma29mo2160-c8038dbd-089b-4c54-b0f5-59f5de678e4c": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-marge-l2h2-nl-trekhaak-airco-diesel-cat_ma60mo14717-e5740f97-a0d4-4cdd-9ca6-13158ff63ef1": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-3-0-hdi-l3-h2-180-pk-lbw-airco-cruise-control-diesel-wit-cat_ma21mo14710-90df4254-578c-47b5-a9b2-4db8d01e40bb": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3dci-125-pk-l2h2-airco-trekhaak-diesel-zwart-cat_ma60mo14717-0b81cff6-546b-44dc-ac5c-3551d20e45dd": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3-dci-110kw-150-l2h2-airco-klima-euro6-diesel-geel-cat_ma60mo14717-b9b8981f-ff44-41db-b358-a799118bec6c": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3dci-l3h2-maxi-egr-cooler-not-ok-airco-cam-diesel-cat_ma60mo14717-836abf39-a36d-4959-95ba-1a70cadaaf68": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/citroen-jumper-3-0-hdi-l3-h2-180-pk-lbw-airco-cruise-control-diesel-wit-cat_ma21mo14710-90df4254-578c-47b5-a9b2-4db8d01e40bb": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-350-22-tdci-l3h2-trend-rwd-exclusief-btw-88bs18a": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-direct-leverbaar-rolstoelbus-g2st2zc": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-22-tdci-l2h2-direct-leverbaar-rolstoelbus-5nh1eh0": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-l1h2-rolstoelbus-94as1k9": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/51586631-volkswagen-crafter-35-2-0-tdi-l2h2-koelauto-dag-nacht-werkt-100-2-zits-dub-lucht-opstap-airco-euro-5-export": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56710118-mercedes-benz-sprinter-310-2-2-cdi-366-l2-h2-cruise-3-zits-opstap-euro-5b-export": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56575589-ford-transit-300m-2-2-tdci-ambiente-shd-3-zits-trekhaak-2800-kg-opstap-euro-5-export": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:08:56.662669+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        }
+      }
+    },
+    {
+      "run_id": "local-specification-v2",
+      "observed_at": "2026-10-17T10:20:39.980154+00:00",
+      "changes": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2439132752-peugeot-boxer-330-2-2-hdi-100-l2h2-2006": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2443757742-toyota-hi-ace-2-5-d4-d-100-4wd": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2449980210-toyota-hi-ace-2-5-d4-d-90-spacer-dc-2003": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453696085-peugeot-boxer-330-2-0-bluehdi-l2h2-premium-3-zitplaatsen": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454390687-peugeot-boxer-2-0-bluehdi-l2h2-premium-131pk-gesloten-bestel": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2450895355-ford-transit-gb-350-l2h2-tdci-automaat": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453196296-peugeot-boxer-gb-330-l2h1-bluehdi-110pk-2018": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2412027537-toyota-hi-ace-2-5-d-4d-95-2008": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-2-l2h2-diesel-wit-cat_ma60mo14717-678368e8-6c08-4400-a1d9-25402361c7ca": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-transit-undefined-diesel-wit-cat_ma29mo2160-c8038dbd-089b-4c54-b0f5-59f5de678e4c": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3dci-125-pk-l2h2-airco-trekhaak-diesel-zwart-cat_ma60mo14717-0b81cff6-546b-44dc-ac5c-3551d20e45dd": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-350-22-tdci-l3h2-trend-rwd-exclusief-btw-88bs18a": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-l1h2-rolstoelbus-94as1k9": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-direct-leverbaar-rolstoelbus-g2st2zc": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-330-22-hdi-l1h1-9-persoons-14950-excl-btw-2by2qs5": {
+          "status": "newly_observed",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": true,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/51586631-volkswagen-crafter-35-2-0-tdi-l2h2-koelauto-dag-nacht-werkt-100-2-zits-dub-lucht-opstap-airco-euro-5-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56710118-mercedes-benz-sprinter-310-2-2-cdi-366-l2-h2-cruise-3-zits-opstap-euro-5b-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56575589-ford-transit-300m-2-2-tdci-ambiente-shd-3-zits-trekhaak-2800-kg-opstap-euro-5-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T10:20:39.980154+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        }
+      }
+    },
+    {
+      "run_id": "local-priorities-2026-10-17-a",
+      "observed_at": "2026-10-17T13:04:30.904662+00:00",
+      "changes": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2439132752-peugeot-boxer-330-2-2-hdi-100-l2h2-2006": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2443757742-toyota-hi-ace-2-5-d4-d-100-4wd": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2449980210-toyota-hi-ace-2-5-d4-d-90-spacer-dc-2003": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453696085-peugeot-boxer-330-2-0-bluehdi-l2h2-premium-3-zitplaatsen": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454390687-peugeot-boxer-2-0-bluehdi-l2h2-premium-131pk-gesloten-bestel": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2450895355-ford-transit-gb-350-l2h2-tdci-automaat": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453196296-peugeot-boxer-gb-330-l2h1-bluehdi-110pk-2018": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2412027537-toyota-hi-ace-2-5-d-4d-95-2008": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-2-l2h2-diesel-wit-cat_ma60mo14717-678368e8-6c08-4400-a1d9-25402361c7ca": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-transit-undefined-diesel-wit-cat_ma29mo2160-c8038dbd-089b-4c54-b0f5-59f5de678e4c": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3dci-125-pk-l2h2-airco-trekhaak-diesel-zwart-cat_ma60mo14717-0b81cff6-546b-44dc-ac5c-3551d20e45dd": {
+          "status": "evidence_updated",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": true,
+          "reasons": [
+            "Extracted evidence changed across code versions; seller-side change not established."
+          ],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-350-22-tdci-l3h2-trend-rwd-exclusief-btw-88bs18a": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-l1h2-rolstoelbus-94as1k9": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-direct-leverbaar-rolstoelbus-g2st2zc": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-22-tdci-l2h2-direct-leverbaar-rolstoelbus-5nh1eh0": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-330-22-hdi-l1h1-9-persoons-14950-excl-btw-2by2qs5": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/51586631-volkswagen-crafter-35-2-0-tdi-l2h2-koelauto-dag-nacht-werkt-100-2-zits-dub-lucht-opstap-airco-euro-5-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56710118-mercedes-benz-sprinter-310-2-2-cdi-366-l2-h2-cruise-3-zits-opstap-euro-5b-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56575589-ford-transit-300m-2-2-tdci-ambiente-shd-3-zits-trekhaak-2800-kg-opstap-euro-5-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:04:30.904662+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        }
+      }
+    },
+    {
+      "run_id": "local-priorities-2026-10-17-b",
+      "observed_at": "2026-10-17T13:07:24.661838+00:00",
+      "changes": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2439132752-peugeot-boxer-330-2-2-hdi-100-l2h2-2006": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2443757742-toyota-hi-ace-2-5-d4-d-100-4wd": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2449980210-toyota-hi-ace-2-5-d4-d-90-spacer-dc-2003": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453696085-peugeot-boxer-330-2-0-bluehdi-l2h2-premium-3-zitplaatsen": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454390687-peugeot-boxer-2-0-bluehdi-l2h2-premium-131pk-gesloten-bestel": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2450895355-ford-transit-gb-350-l2h2-tdci-automaat": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453196296-peugeot-boxer-gb-330-l2h1-bluehdi-110pk-2018": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2412027537-toyota-hi-ace-2-5-d-4d-95-2008": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-2-l2h2-diesel-wit-cat_ma60mo14717-678368e8-6c08-4400-a1d9-25402361c7ca": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-333-2-2-hdi-l1h1-motor-niet-100-goed-lezen-diesel-cat_ma55mo14821-e64ba5aa-8f29-463b-bb60-d6bbce88bc4f": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-transit-undefined-diesel-wit-cat_ma29mo2160-c8038dbd-089b-4c54-b0f5-59f5de678e4c": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3dci-125-pk-l2h2-airco-trekhaak-diesel-zwart-cat_ma60mo14717-0b81cff6-546b-44dc-ac5c-3551d20e45dd": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-350-22-tdci-l3h2-trend-rwd-exclusief-btw-88bs18a": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-l1h2-rolstoelbus-94as1k9": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-direct-leverbaar-rolstoelbus-g2st2zc": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-22-tdci-l2h2-direct-leverbaar-rolstoelbus-5nh1eh0": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-330-22-hdi-l1h1-9-persoons-14950-excl-btw-2by2qs5": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/51586631-volkswagen-crafter-35-2-0-tdi-l2h2-koelauto-dag-nacht-werkt-100-2-zits-dub-lucht-opstap-airco-euro-5-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56710118-mercedes-benz-sprinter-310-2-2-cdi-366-l2-h2-cruise-3-zits-opstap-euro-5b-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56575589-ford-transit-300m-2-2-tdci-ambiente-shd-3-zits-trekhaak-2800-kg-opstap-euro-5-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T13:07:24.661838+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        }
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "run_id": "local-baseline-4",
+      "observed_at": "2026-10-17T10:08:56.662669+00:00",
+      "sources": {
+        "Marktplaats": {
+          "sample_limit": 8,
+          "bound": 4,
+          "discovered": 52,
+          "attempts": 4,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 0,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "AutoScout24": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 93,
+          "attempts": 8,
+          "verified_prices": 3,
+          "verified_routes": 5,
+          "price_rate": 0.375,
+          "route_rate": 0.625,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 0,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "AutoTrack": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 87,
+          "attempts": 8,
+          "verified_prices": 5,
+          "verified_routes": 8,
+          "price_rate": 0.625,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 0,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "viaBOVAG": {
+          "sample_limit": 8,
+          "bound": 4,
+          "discovered": 48,
+          "attempts": 4,
+          "verified_prices": 1,
+          "verified_routes": 4,
+          "price_rate": 0.25,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 0,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": 0,
+          "dealers": []
+        },
+        "AutoWereld": {
+          "sample_limit": 8,
+          "bound": 0,
+          "discovered": 1,
+          "attempts": 0,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0,
+          "route_rate": 0,
+          "zero_bound_streak": 1,
+          "recent_max_bound": 0,
+          "severity": "warning",
+          "source_status": "source_unavailable",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_supplied",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "Local dealers": {
+          "sample_limit": 8,
+          "bound": 3,
+          "discovered": 134,
+          "attempts": 9,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 0,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": [
+            {
+              "dealer_id": "bwcr-roosendaal",
+              "name": "Bedrijfswagencentrum Roosendaal",
+              "domain": "bwcr.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 99,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.bwcr.nl/aanbod",
+              "contact_url": "https://www.bwcr.nl/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 3,
+              "index_exclusions": 96
+            },
+            {
+              "dealer_id": "mana",
+              "name": "MANA Bedrijfswagens",
+              "domain": "mana-bedrijfswagens.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 12,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://mana-bedrijfswagens.nl/occasions/",
+              "contact_url": "https://mana-bedrijfswagens.nl/contact/",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 12
+            },
+            {
+              "dealer_id": "van-mossel",
+              "name": "Van Mossel Bedrijfswagens",
+              "domain": "vanmossel.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 23,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad?category=van&country=nl&type=used",
+              "contact_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/contact/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 17
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "source": "AutoWereld",
+          "severity": "warning",
+          "message": "Missing/degraded bound inventory or evidence extraction; inspect source diagnostics. RSS is index-only."
+        }
+      ],
+      "status": "degraded",
+      "exhaustive": false,
+      "observations": 1,
+      "note": "Per-run history; repeated runs on one day do not establish weeks of unattended reliability."
+    },
+    {
+      "run_id": "local-specification-v2",
+      "observed_at": "2026-10-17T10:20:39.980154+00:00",
+      "sources": {
+        "Marktplaats": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 66,
+          "attempts": 8,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 4,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "AutoScout24": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 125,
+          "attempts": 8,
+          "verified_prices": 3,
+          "verified_routes": 6,
+          "price_rate": 0.375,
+          "route_rate": 0.75,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 8,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "AutoTrack": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 106,
+          "attempts": 8,
+          "verified_prices": 4,
+          "verified_routes": 8,
+          "price_rate": 0.5,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 8,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "viaBOVAG": {
+          "sample_limit": 8,
+          "bound": 4,
+          "discovered": 48,
+          "attempts": 5,
+          "verified_prices": 1,
+          "verified_routes": 4,
+          "price_rate": 0.25,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 4,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": 0,
+          "dealers": []
+        },
+        "AutoWereld": {
+          "sample_limit": 8,
+          "bound": 0,
+          "discovered": 1,
+          "attempts": 0,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0,
+          "route_rate": 0,
+          "zero_bound_streak": 2,
+          "recent_max_bound": 0,
+          "severity": "warning",
+          "source_status": "source_unavailable",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_supplied",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "Local dealers": {
+          "sample_limit": 8,
+          "bound": 3,
+          "discovered": 134,
+          "attempts": 14,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 3,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": [
+            {
+              "dealer_id": "bwcr-roosendaal",
+              "name": "Bedrijfswagencentrum Roosendaal",
+              "domain": "bwcr.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 99,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.bwcr.nl/aanbod",
+              "contact_url": "https://www.bwcr.nl/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 3,
+              "index_exclusions": 96
+            },
+            {
+              "dealer_id": "mana",
+              "name": "MANA Bedrijfswagens",
+              "domain": "mana-bedrijfswagens.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 12,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://mana-bedrijfswagens.nl/occasions/",
+              "contact_url": "https://mana-bedrijfswagens.nl/contact/",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 12
+            },
+            {
+              "dealer_id": "van-mossel",
+              "name": "Van Mossel Bedrijfswagens",
+              "domain": "vanmossel.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 23,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad?category=van&country=nl&type=used",
+              "contact_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/contact/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 12
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "source": "AutoWereld",
+          "severity": "warning",
+          "message": "Missing/degraded bound inventory or evidence extraction; inspect source diagnostics. RSS is index-only."
+        }
+      ],
+      "status": "degraded",
+      "exhaustive": false,
+      "observations": 2,
+      "note": "Per-run history; repeated runs on one day do not establish weeks of unattended reliability."
+    },
+    {
+      "run_id": "local-priorities-2026-10-17-a",
+      "observed_at": "2026-10-17T13:04:30.904662+00:00",
+      "sources": {
+        "Marktplaats": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 66,
+          "attempts": 8,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 8,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "AutoScout24": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 124,
+          "attempts": 8,
+          "verified_prices": 3,
+          "verified_routes": 6,
+          "price_rate": 0.375,
+          "route_rate": 0.75,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 8,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "AutoTrack": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 106,
+          "attempts": 8,
+          "verified_prices": 4,
+          "verified_routes": 8,
+          "price_rate": 0.5,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 8,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "viaBOVAG": {
+          "sample_limit": 8,
+          "bound": 5,
+          "discovered": 48,
+          "attempts": 5,
+          "verified_prices": 1,
+          "verified_routes": 5,
+          "price_rate": 0.2,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 4,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": 0,
+          "dealers": []
+        },
+        "AutoWereld": {
+          "sample_limit": 8,
+          "bound": 0,
+          "discovered": 1,
+          "attempts": 0,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0,
+          "route_rate": 0,
+          "zero_bound_streak": 3,
+          "recent_max_bound": 0,
+          "severity": "critical",
+          "source_status": "source_unavailable",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_supplied",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "Local dealers": {
+          "sample_limit": 8,
+          "bound": 3,
+          "discovered": 134,
+          "attempts": 12,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 3,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": [
+            {
+              "dealer_id": "bwcr-roosendaal",
+              "name": "Bedrijfswagencentrum Roosendaal",
+              "domain": "bwcr.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 99,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.bwcr.nl/aanbod",
+              "contact_url": "https://www.bwcr.nl/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 3,
+              "index_exclusions": 96
+            },
+            {
+              "dealer_id": "mana",
+              "name": "MANA Bedrijfswagens",
+              "domain": "mana-bedrijfswagens.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 12,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://mana-bedrijfswagens.nl/occasions/",
+              "contact_url": "https://mana-bedrijfswagens.nl/contact/",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 12
+            },
+            {
+              "dealer_id": "van-mossel",
+              "name": "Van Mossel Bedrijfswagens",
+              "domain": "vanmossel.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 23,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad?category=van&country=nl&type=used",
+              "contact_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/contact/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 14
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "source": "AutoWereld",
+          "severity": "critical",
+          "message": "Missing/degraded bound inventory or evidence extraction; inspect source diagnostics. RSS is index-only."
+        }
+      ],
+      "status": "degraded",
+      "exhaustive": false,
+      "observations": 3,
+      "note": "Per-run history; repeated runs on one day do not establish weeks of unattended reliability."
+    },
+    {
+      "run_id": "local-priorities-2026-10-17-b",
+      "observed_at": "2026-10-17T13:07:24.661838+00:00",
+      "sources": {
+        "Marktplaats": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 66,
+          "attempts": 8,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 8,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "AutoScout24": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 124,
+          "attempts": 8,
+          "verified_prices": 3,
+          "verified_routes": 6,
+          "price_rate": 0.375,
+          "route_rate": 0.75,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 8,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "AutoTrack": {
+          "sample_limit": 8,
+          "bound": 8,
+          "discovered": 106,
+          "attempts": 8,
+          "verified_prices": 4,
+          "verified_routes": 8,
+          "price_rate": 0.5,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 8,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "viaBOVAG": {
+          "sample_limit": 8,
+          "bound": 5,
+          "discovered": 48,
+          "attempts": 5,
+          "verified_prices": 1,
+          "verified_routes": 5,
+          "price_rate": 0.2,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 5,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": 0,
+          "dealers": []
+        },
+        "AutoWereld": {
+          "sample_limit": 8,
+          "bound": 0,
+          "discovered": 1,
+          "attempts": 0,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0,
+          "route_rate": 0,
+          "zero_bound_streak": 4,
+          "recent_max_bound": 0,
+          "severity": "critical",
+          "source_status": "source_unavailable",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_supplied",
+          "pending_inventory_pages": null,
+          "dealers": []
+        },
+        "Local dealers": {
+          "sample_limit": 8,
+          "bound": 3,
+          "discovered": 134,
+          "attempts": 12,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 3,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": [
+            {
+              "dealer_id": "bwcr-roosendaal",
+              "name": "Bedrijfswagencentrum Roosendaal",
+              "domain": "bwcr.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 99,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.bwcr.nl/aanbod",
+              "contact_url": "https://www.bwcr.nl/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 3,
+              "index_exclusions": 96
+            },
+            {
+              "dealer_id": "mana",
+              "name": "MANA Bedrijfswagens",
+              "domain": "mana-bedrijfswagens.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 12,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://mana-bedrijfswagens.nl/occasions/",
+              "contact_url": "https://mana-bedrijfswagens.nl/contact/",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 12
+            },
+            {
+              "dealer_id": "van-mossel",
+              "name": "Van Mossel Bedrijfswagens",
+              "domain": "vanmossel.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 23,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad?category=van&country=nl&type=used",
+              "contact_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/contact/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 14
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "source": "AutoWereld",
+          "severity": "critical",
+          "message": "Missing/degraded bound inventory or evidence extraction; inspect source diagnostics. RSS is index-only."
+        }
+      ],
+      "status": "degraded",
+      "exhaustive": false,
+      "observations": 4,
+      "note": "Per-run history; repeated runs on one day do not establish weeks of unattended reliability."
+    }
+  ]
+}

@@ -21,7 +21,7 @@ class ScreeningTests(unittest.TestCase):
         r=evaluate({"candidates":[self.example()]},lambda p:{"vehicle":{"status":"error"}})
         self.assertEqual(r["qualifiers"],0)
     def test_rdws_success_fixture(self):
-        r=evaluate({"candidates":[self.example()]},lambda p:{"vehicle":{"status":"ok","records":[{"tellerstandoordeel":"Logisch"}]}})
+        r=evaluate({"candidates":[self.example()]},lambda p:{"vehicle":{"status":"ok","records":[{"kenteken":"AB123C","tellerstandoordeel":"Logisch"}]}})
         self.assertEqual(r["qualifiers"],1)
     def test_dealer_evidence_counts_do_not_infer_missing_checks(self):
         van={"source":"Local dealers","name":"Van Mossel Crafter","listing_url":"https://www.vanmossel.nl/stock/example",

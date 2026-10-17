@@ -136,7 +136,9 @@ def evaluate(data, rdw_lookup=lookup):
         try: item["rdw"]=rdw_lookup(item["plate"])
         except Exception as exc: item["rdw"]={"error":str(exc)}
         vehicle=item["rdw"].get("vehicle",{})
-        if vehicle.get("status") != "ok" or not vehicle.get("records"):
+        records = vehicle.get("records", [])
+        if (vehicle.get("status") != "ok" or len(records) != 1
+                or records[0].get("kenteken") != item["plate"]):
             item["qualified"]=False
             item["reasons"].append("RDW registration not verified")
     return {"generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),

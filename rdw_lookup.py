@@ -36,8 +36,12 @@ def fetch(dataset, plate, attempts=3):
         try:
             with urlopen(Request(url, headers=headers), timeout=20) as response:
                 records = json.load(response)
-            if not isinstance(records, list):
+            if not isinstance(records, list) or any(not isinstance(row, dict) for row in records):
                 raise ValueError("Unexpected RDW response")
+            if len(records) >= 1000:
+                raise ValueError("RDW response reached the 1000-record limit; completeness cannot be established")
+            if dataset in ("vehicle", "defects") and any(row.get("kenteken") != plate for row in records):
+                raise ValueError("RDW returned records for a different or missing registration")
             return {"status": "ok", "records": records, "source": url}
         except HTTPError as exc:
             if exc.code not in (429, 500, 502, 503, 504) or attempt == attempts - 1:
@@ -63,7 +67,7 @@ def summarize_defects(response, catalogue_by_code=None):
         raw_date = record.get("meld_datum_door_keuringsinstantie", "")
         try:
             inspection_date = datetime.strptime(raw_date, "%Y%m%d").date().isoformat()
-        except ValueError:
+        except (ValueError, TypeError):
             inspection_date = None
         raw_quantity = record.get("aantal_gebreken_geconstateerd")
         try:
@@ -99,6 +103,9 @@ def summarize_defects(response, catalogue_by_code=None):
 def lookup(plate):
     plate = normalize_plate(plate)
     data = {name: fetch(name, plate) for name in ("vehicle", "defects")}
+    if data["vehicle"]["status"] == "ok" and len(data["vehicle"]["records"]) != 1:
+        data["vehicle"] = {**data["vehicle"], "status": "error",
+                           "error": "Expected exactly one RDW registration record"}
     catalogue_by_code = {}
     catalogue_errors = []
     if data["defects"]["status"] == "ok":
@@ -108,11 +115,15 @@ def lookup(plate):
             if catalogue["status"] != "ok":
                 catalogue_errors.append({"code": code, "error": catalogue["error"]})
                 continue
-            descriptions = [item for item in catalogue["records"] if item.get("gebrek_omschrijving")]
+            descriptions = [item for item in catalogue["records"]
+                            if item.get("gebrek_identificatie") == code and item.get("gebrek_omschrijving")]
             if descriptions:
                 selected = descriptions[0]
                 catalogue_by_code[code] = {**selected, "_source": catalogue["source"]}
+            else:
+                catalogue_errors.append({"code": code, "error": "No matching official defect description returned"})
     return {
+        "status": "ok" if all(value["status"] == "ok" for value in data.values()) and not catalogue_errors else "error",
         "kenteken": plate,
         **data,
         "defect_catalogue_errors": catalogue_errors,
@@ -122,11 +133,22 @@ def lookup(plate):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("plates", nargs="+")
+    parser.add_argument("plates", nargs="*")
+    parser.add_argument("--input", help="UTF-8 file of plates separated by commas or whitespace")
     parser.add_argument("--output")
     args = parser.parse_args()
     try:
-        results = [lookup(plate) for plate in args.plates]
+        if args.input and args.plates:
+            parser.error("Use positional plates or --input, not both")
+        if args.input:
+            with open(args.input, encoding="utf-8") as source:
+                raw_plates = re.split(r"[,\s]+", source.read().strip())
+        else:
+            raw_plates = args.plates
+        plates = list(dict.fromkeys(normalize_plate(plate) for plate in raw_plates if plate))
+        if not plates:
+            parser.error("No plates supplied")
+        results = [lookup(plate) for plate in plates]
     except ValueError as exc:
         parser.error(str(exc))
     data = json.dumps({"results": results}, indent=2, ensure_ascii=False)
@@ -135,7 +157,7 @@ def main():
             f.write(data + "\n")
     else:
         print(data)
-    return int(any(entry[name]["status"] != "ok" for entry in results for name in ("vehicle", "defects")))
+    return int(any(entry["status"] != "ok" for entry in results))
 
 
 if __name__ == "__main__":

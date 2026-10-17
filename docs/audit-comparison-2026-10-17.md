@@ -80,3 +80,8 @@ A further budget correction rejects a bound EUR offer explicitly above EUR 8,000
 without inventing its VAT-inclusive price. An amount at or below the ceiling
 remains unknown until VAT treatment is supported. That correction is validated
 by offline regressions; it is not included in the three run counts above.
+
+The latest live job log reports 115 tests: its fixed unittest list did not include
+all newer modules. PR CI had already run the complete suite. The follow-up changes
+live integration and the manual candidate-verification workflow to unittest
+discovery, so the same full regressions run before live work (182 tests now).

@@ -1,0 +1,115 @@
+[
+  {
+    "id": "boxer-ii-puma-manual",
+    "applies_to": {
+      "make": "Peugeot",
+      "model": "Boxer",
+      "generation": "II 2006-2014",
+      "engine": "2.2 HDi",
+      "gearbox": "6-speed manual"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://www.transitcenter.uk/peugeot-boxer-common-faults-t-96.html",
+        "kind": "specialist_parts_supplier",
+        "independence": "Commercial supplier summarising mechanic/owner reports; no quantified failure rate."
+      }
+    ],
+    "findings": [
+      "Check scuttle-water entry and ECU connectors, EGR/DPF history, cold-start chain noise and higher-gear bearing whine. The supplier identifies these as reported generation/engine issues; they do not prove this advert has a fault."
+    ],
+    "seller_questions": [
+      "Any cold-start chain rattle or fifth/sixth-gear whine?",
+      "Invoices for EGR/DPF work and any scuttle-water or ECU repairs?"
+    ],
+    "inspection_priorities": [
+      "Cold start, loaded road test and gearbox noise; inspect scuttle seals and ECU connections."
+    ],
+    "automatic_reliability_score": null
+  },
+  {
+    "id": "transporter-cfca-risk",
+    "applies_to": {
+      "make": "Volkswagen",
+      "model": "Transporter",
+      "generation": "T5 facelift",
+      "engine": "2.0 BiTDI CFCA"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://www.deutsche-parts.co.uk/blog/post/vw-transporter-t5-1-t6-bitdi-180-cfca-oil-consumption-problems.html",
+        "kind": "specialist_parts_supplier",
+        "independence": "Supplier reports a specific CFCA failure mechanism and sells replacement components; not fleet incidence data."
+      }
+    ],
+    "findings": [
+      "Specialist reports early EGR-cooler corrosion associated with severe engine wear and oil consumption on CFCA. Confirm engine code and documented engine/cooler history; do not generalise this to all 2.0 TDI engines."
+    ],
+    "seller_questions": [
+      "Confirmed engine code, measured oil consumption and invoices for engine/EGR-cooler replacement?"
+    ],
+    "inspection_priorities": [
+      "Independent VW specialist review of oil consumption, engine condition and EGR-cooler revision before pursuing."
+    ],
+    "automatic_reliability_score": null
+  },
+  {
+    "id": "boxer-3-hdi-timing",
+    "applies_to": {
+      "make": "Peugeot",
+      "model": "Boxer",
+      "engine": "3.0 HDi"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://www.allemerkengarage.nl/distributieriem-fiat-ducato-boxer-jumper",
+        "kind": "independent_workshop",
+        "independence": "Workshop maintenance guidance, not failure-frequency research."
+      }
+    ],
+    "findings": [
+      "Workshop distinguishes 3.0 HDi chain-driven timing from belt-driven variants; chain condition still requires inspection. Confirm exact engine and gearbox before applying generation-specific reliability conclusions."
+    ],
+    "seller_questions": [
+      "Any documented cold-start chain noise or timing-system work? Confirm engine code and gearbox."
+    ],
+    "inspection_priorities": [
+      "Cold start and service-invoice review; do not assume a chain makes the drivetrain maintenance-free."
+    ],
+    "automatic_reliability_score": null
+  },
+  {
+    "id": "transit-mk7-2-2-115",
+    "applies_to": {
+      "make": "Ford",
+      "model": "Transit",
+      "generation": "Mk7 2006-2013",
+      "engine": "2.2 TDCi 115"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://uk.haynes.com/blogs/tips-tutorials/ford-transit-diesel-2006-2013-buyer-s-guide",
+        "kind": "workshop_manual_publisher",
+        "independence": "Buyer guide with variant-specific faults, not a population reliability estimate."
+      }
+    ],
+    "findings": [
+      "Haynes identifies injector-related fluctuating idle on 2006–2011 2.2 TDCi 115 variants. Confirm build year and power before applying this issue."
+    ],
+    "seller_questions": [
+      "Confirmed power/build year; injector diagnosis or replacement invoices and stable cold/hot idle?"
+    ],
+    "inspection_priorities": [
+      "Cold/hot idle and injection-system diagnosis if symptoms are present."
+    ],
+    "automatic_reliability_score": null
+  }
+]

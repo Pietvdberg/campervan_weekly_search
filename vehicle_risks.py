@@ -33,6 +33,11 @@ def mechanical_failure(text):
 
 
 def sale_exclusion(candidate):
+    claims = candidate.get("field_evidence", {}).get("seller_reported", [])
+    for claim in claims if isinstance(claims, list) else []:
+        value = claim.get("seller_reported_availability") if isinstance(claim, dict) else None
+        if isinstance(value, str) and value.casefold().strip() in ("sold", "closed", "deleted", "inactive", "verkocht", "niet meer beschikbaar"):
+            return "Individual advert explicitly reports the vehicle as unavailable"
     if candidate.get("reported_mechanical_failure"):
         return "Explicitly reported current mechanical failure: " + str(candidate["reported_mechanical_failure"])
     host = (urlparse(candidate.get("listing_url") or "").hostname or "").lower()

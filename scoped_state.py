@@ -38,6 +38,7 @@ def detail_facts(markup, url):
     vehicle = record.get("vehicle", {})
     vehicle = vehicle if isinstance(vehicle, dict) else {}
     fields = {"@type": "VehicleEvidence", "listing_url": url,
+              "seller_vehicle_identity": {key: vehicle.get(key) for key in ("make", "model", "modelVersionInput", "productionYear", "firstRegistrationDateRaw", "transmissionType", "gears", "motorTypeName", "bodyType")},
               "source_record_id": record.get("id"), "licensePlate": vehicle.get("licensePlate"),
               "seller_reported_availability": record.get("status"),
               "seller_reported_dimensions": {key: vehicle.get(key) for key in ("loadHeight", "loadLength", "payload")},

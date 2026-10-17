@@ -5,6 +5,7 @@ on:
     paths:
       - '**.py'
       - 'dealer_registry.json'
+      - 'variant_research.json'
       - 'scripts/**'
       - '.github/workflows/**'
 permissions:

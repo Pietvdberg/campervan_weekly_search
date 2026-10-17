@@ -70,3 +70,12 @@ physical A/C test is optional evidence and a pre-purchase action. Explicit missi
 or broken A/C still rejects. This instruction supersedes earlier statements that
 all three independent checks, including A/C operation, are mandatory. Availability,
 condition and conversion evidence requirements are otherwise unchanged.
+
+## Later priorities 1–4 follow-up
+
+Advertised search matches are separate from purchase readiness; the v2 physical
+review requirements apply to purchase readiness. The 32-criterion weighting,
+current scoped research notes, persistent weekly state and source-health monitoring
+are now implemented. See [weekly search design](useful-weekly-search.md) for scoring
+confidence limits, initial research coverage, state persistence and operational
+acceptance still needed.

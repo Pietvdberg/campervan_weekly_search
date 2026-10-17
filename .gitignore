@@ -10,3 +10,7 @@ report.txt
 research_pack.json
 reviewed_evidence_template.json
 validation_summary.json
+
+.search-state/
+coverage_health.json
+report.html

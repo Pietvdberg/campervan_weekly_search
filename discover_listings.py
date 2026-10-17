@@ -11,6 +11,7 @@ from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured
+from listing_identity import bind_evidence, require_same_listing
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from autowereld_html import html_to_xml, response_identity
 from autowereld_snapshot import read_snapshot_records
@@ -81,6 +82,7 @@ class LinkCollector(HTMLParser):
 def fetch(url):
     req=Request(url,headers={"User-Agent":"Mozilla/5.0 CamperVanResearch/1.0","Accept":"text/html,application/rss+xml,application/xml"})
     with urlopen(req,timeout=12) as response:
+        require_same_listing(url, response.geturl())
         raw=response.read(MAX_BYTES+1)
         if len(raw)>MAX_BYTES: raise ValueError("oversized response")
         return raw.decode("utf-8",errors="replace"),response.headers.get("Content-Type","")
@@ -125,6 +127,8 @@ def is_vehicle_detail(url, source, markup):
     structured Car/Vehicle object or an explicitly labeled registration plate.
     Search-result grids and model directories do not satisfy this gate.
     """
+    if not valid_url(url, source):
+        return False
     if source in ("Marktplaats","AutoTrack","AutoScout24","AutoWereld","Local dealers"):
         # These strict vehicle-specific URLs identify an individual advert.
         return valid_url(url,source)
@@ -174,26 +178,33 @@ def extract(title,url,source,markup):
     if not MODEL.search(text[:5000]):
         return None
     if not is_vehicle_detail(url,source,markup): return None
+    try:
+        scoped_markup, provenance = bind_evidence(markup, url)
+    except ValueError:
+        return None
+    scoped_text = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", re.sub(
+        r"<script\b[^>]*>.*?</script>", " ", scoped_markup, flags=re.I|re.S))).split())
     checks={key:None for key in ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")}
-    checks["high_roof"] = advertised_feature(text[:5000], ROOF)
-    checks["cab_ac"] = advertised_feature(text[:5000], AC)
+    checks["high_roof"] = advertised_feature(scoped_text, ROOF)
+    checks["cab_ac"] = advertised_feature(scoped_text, AC)
     # Conversion suitability requires independently checked payload and dimensions.
     city=next((x for x in CITIES if re.search(r"\b"+re.escape(x)+r"\b",header,re.I)),None)
     # Mention of a nearby town is NOT independent verification of driving distance.
-    plate_hit=re.search(r"(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3})\b",text,re.I)
+    plate_hit=re.search(r"(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3})\b",scoped_text,re.I)
     plate=plate_hit.group(1) if plate_hit else None
-    price_hit=re.search(r"(?:€|EUR)\s*([\d.]+(?:,\d{2})?)",header,re.I)
+    price_hit=re.search(r"(?:€|EUR)\s*([\d.]+(?:,\d{2})?)",scoped_text,re.I)
     title_match=re.search(r"<title[^>]*>(.*?)</title>",markup,re.I|re.S)
     name=(" ".join(html.unescape(title_match.group(1)).split()) if title_match else title)[:180]
-    evidence=enrich(markup)
+    evidence=enrich(scoped_markup)
     checks.update(evidence["checks"])
-    return {"name":name,"source":source,"listing_url":url,"individual_listing_confirmed":True,
+    return {"name":name,"source":source,"listing_url":url,"individual_listing_confirmed":provenance["status"] == "bound",
+            "evidence_provenance":provenance,
             "checks":checks,"plate":plate,"plate_confirmed_from_listing":bool(plate),
             "city_mentioned":city,"price_advertised":price_hit.group(1) if price_hit else None,
             "price_incl_vat":evidence["vat"]["amount_incl_vat"],"vat_basis":evidence["vat"]["basis"],
             "distance_km":evidence["distance_km"],"location_coordinates":evidence["location_coordinates"],
             "mechanical_concerns":"Service history, rust, driveline, cab A/C operation and payload unverified.",
-            "evidence_note":"Individual page returned HTML; structured price and GPS evidence can be checked, but seller claims and actual condition remain unverified.",
+            "evidence_note":"Fields require URL-linked primary vehicle or canonical main evidence; unbound HTML remains an unverified lead. Seller claims and actual condition remain unverified.",
             "observed_at":datetime.now(timezone.utc).isoformat()}
 
 def discover(fetcher=fetch,max_per_source=50):

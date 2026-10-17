@@ -174,3 +174,11 @@ trigger discovery. No end-to-end weekly automation exists today.
 The implemented changes address immediate false evidence, false RDW success and
 silent batch loss. They do not close the larger source identity, conversion
 verification or production operation gaps above.
+
+## Autonomous follow-up
+
+PR #46 merged after GitHub PR CI passed. The next change addresses finding #4:
+redirect/canonical identity checks, URL-linked structured primary-vehicle or
+canonical-main evidence scope, exclusion of unrelated cards, and explicit unbound
+lead/provenance handling. Ten additional regressions bring the suite to 130 tests.
+Availability and independent condition verification remain outstanding.

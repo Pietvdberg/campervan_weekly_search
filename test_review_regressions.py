@@ -17,7 +17,7 @@ class ReviewRegressions(unittest.TestCase):
             ("Peugeot Boxer L2H2 airco", "cab_ac", True),
         ]:
             with self.subTest(text=text), patch("discover_listings.enrich", return_value={"checks": {}, "vat": {"amount_incl_vat": None, "basis": "unknown"}, "distance_km": None, "location_coordinates": None}):
-                item = extract("Boxer L2H2 airco", "https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456", "Marktplaats", "<p>" + text + "</p>")
+                item = extract("Boxer L2H2 airco", "https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456", "Marktplaats", '<link rel="canonical" href="https://www.marktplaats.nl/v/auto-s/bestelauto-s/m123456"><main>' + text + "</main>")
             self.assertIs(item["checks"][key], expected)
 
     def test_wrong_rdw_registration_cannot_qualify(self):

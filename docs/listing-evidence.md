@@ -30,3 +30,16 @@ Direct marketplace/dealer seed URLs are not complete marketplace inventories; so
 
 ## Production gate
 The development verification workflow still runs after code merges without emailing both recipients. Production sending and scheduling remain intentionally disabled until live listings, reliable source coverage and RDW-linked candidates are demonstrated.
+
+## Vehicle identity gate (strict-review follow-up)
+
+HTTP and browser responses must retain the requested host/path identity; redirects
+into inventories or other adverts are rejected. Canonical URL conflicts are also
+rejected. Evidence is read only from one structured primary vehicle explicitly
+linked to the listing URL, or from a single `<main>` region with a matching
+canonical URL. Related/recommended/navigation/footer regions are excluded.
+Unbound HTML may remain an unverified discovery lead, but cannot confirm a plate,
+price, route or equipment. Audit candidates include `evidence_provenance` and an
+observation timestamp. This intentionally reduces apparent verification when a
+marketplace omits usable identity markup. It does not establish availability or
+working equipment; those remain separate requirements.

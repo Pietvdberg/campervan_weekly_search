@@ -36,9 +36,19 @@ class PageScope(HTMLParser):
         self.stack = []
         self.parts = []
         self.main_count = 0
+        self.detail_forms = []
+        self.gallery_ids = set()
 
     def handle_starttag(self, tag, attrs):
         attributes = dict(attrs)
+        in_main = self.stack and self.stack[-1][1] and not self.stack[-1][2]
+        if in_main and tag == "form" and attributes.get("id", "").startswith("car_details_form"):
+            self.detail_forms.append(attributes.get("action", ""))
+        if in_main and tag == "img":
+            import re
+            match = re.search(r"/webservices/feed_images/([0-9]+)/", attributes.get("src", ""))
+            if match:
+                self.gallery_ids.add(match.group(1))
         if tag == "link" and "canonical" in attributes.get("rel", "").lower().split():
             self.canonicals.append(attributes.get("href", ""))
         if tag in ("area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"):
@@ -105,7 +115,11 @@ def bind_evidence(markup, url):
     primary = matching[0] if matching else None
     if vehicles and primary is None:
         return "", {"status": "unbound", "reason": "No unique URL-linked primary vehicle"}
-    visible = " ".join(page.parts) if canonical and page.main_count == 1 else ""
+    dealer_bound = False
+    if primary is None and not canonical:
+        from dealer_sources import matches_registered_detail
+        dealer_bound = matches_registered_detail(page, url)
+    visible = " ".join(page.parts) if (canonical or dealer_bound) and page.main_count == 1 else ""
     if primary is None and not visible:
         return "", {"status": "unbound", "reason": "No URL-linked vehicle or canonical main content"}
     if primary is not None:
@@ -125,5 +139,5 @@ def bind_evidence(markup, url):
         scoped = ""
     scoped += "<main>" + escape(visible) + "</main>"
     return scoped, {"status": "bound", "listing_url": url,
-                    "basis": "url_linked_vehicle" if primary is not None else "canonical_main",
+                    "basis": "url_linked_vehicle" if primary is not None else "registered_dealer_form_gallery" if dealer_bound else "canonical_main",
                     "canonical_url": canonical[0] if canonical else None}

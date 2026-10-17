@@ -15,6 +15,7 @@ from listing_identity import bind_evidence, require_same_listing
 from source_access import SourceFetch, host_key
 from vehicle_risks import auction_evidence
 from discovery_queue import cards as inventory_cards, select as select_queue, budget_applied
+from dealer_sources import dealer_for_url, crawl_dealers, load_registry
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from autowereld_html import html_to_xml, response_identity
 from autowereld_snapshot import read_snapshot_records
@@ -25,7 +26,7 @@ from urllib.parse import urljoin,urldefrag
 
 from source_catalog import SOURCE_DOMAINS as SOURCES, SEED_PAGES, VAN_MODEL as MODEL, INVENTORY_SEEDS, BUDGET_PAGES
 
-ROOF = re.compile(r"\bL[234]\s*[- ]?H[23]\b|\bhoog ?dak\b",re.I)
+ROOF = re.compile(r"\bL[234][ .-]*H[23]\b|\bhoog ?dak\b",re.I)
 AC = re.compile(r"\b(airco|airconditioning|climate control)\b",re.I)
 CITIES = ("bergen op zoom","roosendaal","zevenbergen","breda","etten-leur","halsteren","steenbergen","tholen","goes","tilburg","dordrecht","rotterdam","oosterhout","hoogerheide","rucphen")
 MAX_BYTES=2600000
@@ -59,7 +60,7 @@ class LinkCollector(HTMLParser):
 def fetch(url):
     req=Request(url,headers={"User-Agent":"Mozilla/5.0 CamperVanResearch/1.0","Accept":"text/html,application/rss+xml,application/xml"})
     with urlopen(req,timeout=12) as response:
-        require_same_listing(url, response.geturl(), inventory=url in INVENTORY_SEEDS)
+        require_same_listing(url, response.geturl(), inventory=url in INVENTORY_SEEDS or any(url == dealer["inventory_url"] for dealer in load_registry()))
         raw=response.read(MAX_BYTES+1)
         if len(raw)>MAX_BYTES: raise ValueError("oversized response")
         return raw.decode("utf-8",errors="replace"),response.headers.get("Content-Type","")
@@ -74,6 +75,7 @@ def valid_url(url,source):
     domain=SOURCES[source]
     if parsed.scheme!="https": return False
     if domain and not (host==domain or host.endswith("."+domain)): return False
+    if source=="Local dealers" and dealer_for_url(url, detail=True): return True
     if source=="Local dealers" and not any(host == d or host.endswith("."+d) for d in ("autowereld.nl","vanmossel.nl")): return False
     path=parsed.path.lower()
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
@@ -197,7 +199,12 @@ def discover(fetcher=fetch,max_per_source=50):
         card_evidence = {}
         filter_confirmed = False
         inventory_stats = None
-        seed_success = 0
+        dealer_stats = None
+        if source == "Local dealers":
+            dealer_stats = crawl_dealers(fetcher)
+            direct_urls.update(dealer_stats["details"])
+            card_evidence.update(dealer_stats["cards"])
+        seed_success = sum(row["inventory_pages_fetched"] for row in dealer_stats["coverage"]) if dealer_stats else 0
         seed_errors = []
         anchor_count = 0
         response_diagnostics=[]
@@ -210,6 +217,8 @@ def discover(fetcher=fetch,max_per_source=50):
             seed_errors=[x["error"] for x in inventory_stats["inventory_errors"]]
             anchor_count=inventory_stats["inventory_links_examined"]
         for seed in ([] if inventory_stats is not None else BUDGET_PAGES.get(source, []) + SEED_PAGES[source]):
+            if source == "Local dealers" and dealer_for_url(seed):
+                continue
             if filter_confirmed and seed not in BUDGET_PAGES.get(source, []):
                 continue
             if host_key(seed) in fetcher.stops:
@@ -344,14 +353,19 @@ def discover(fetcher=fetch,max_per_source=50):
                         rendered,_=browser_render(url)
                         item=extract(title,url,source,rendered)
                     if item:
+                        if source == "Local dealers":
+                            dealer = dealer_for_url(url)
+                            if dealer:
+                                item["dealer_id"] = dealer["id"]
                         candidates.append(item);found+=1
                     elif len(samples)<3: samples.append({"reason":"individual vehicle evidence missing or wrong model","url":url[:250]})
                 except Exception as exc:
                     failures+=1
                     if len(samples)<3: samples.append({"reason":str(exc)[:90],"url":url[:250]})
             bound_count = sum(c.get("source") == source and c.get("individual_listing_confirmed") is True for c in candidates)
-            restrictions = fetcher.restrictions(SEED_PAGES[source])
-            source_hosts = {host_key(seed) for seed in SEED_PAGES[source]}
+            dealer_seed_urls = [row["inventory_url"] for row in dealer_stats["coverage"]] if dealer_stats else []
+            restrictions = fetcher.restrictions(SEED_PAGES[source] + dealer_seed_urls)
+            source_hosts = {host_key(seed) for seed in SEED_PAGES[source] + dealer_seed_urls}
             source_blocked = bool(source_hosts) and source_hosts.issubset(restrictions)
             source_block_reason = "; ".join(host + ": " + state["reason"] for host, state in restrictions.items()) or None
             rate_limited = any(state["http_status"] == 429 for state in restrictions.values())
@@ -359,7 +373,12 @@ def discover(fetcher=fetch,max_per_source=50):
                     "source_unavailable" if source_blocked or seed_success==0 else
                     "inventory_only_unverified" if inventory_stats is not None else
                     "no_verified_individual_pages")
+            if dealer_stats:
+                for row in dealer_stats["coverage"]:
+                    row["identity_bound_candidates"] = sum(c.get("dealer_id") == row["dealer_id"] and c.get("individual_listing_confirmed") is True for c in candidates)
+                    row["index_exclusions"] = sum(dealer_for_url(rejected["url"], detail=True) is not None and host_key(rejected["url"]) == row["domain"] for rejected in inventory_rejections)
             coverage[source]={"status":status,
+                              "direct_dealers":dealer_stats["coverage"] if dealer_stats else [],
                               "inventory_pages":len(SEED_PAGES[source]),"inventory_pages_fetched":seed_success,
                               "inventory_pages_checked":inventory_stats["inventory_pages_checked"] if inventory_stats else seed_success,
                               "inventory_pages_pending":inventory_stats["inventory_pending"] if inventory_stats else None,

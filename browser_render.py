@@ -6,12 +6,13 @@ No captcha-solving, login, stealth behavior or anti-bot circumvention.
 from urllib.parse import urlparse
 from listing_identity import require_same_listing
 from source_catalog import INVENTORY_SEEDS
+from dealer_sources import load_registry
 
 ALLOWED_DOMAINS=(
  "marktplaats.nl","autoscout24.nl",
  "autotrack.nl","viabovag.nl","autowereld.nl",
 "vanmossel.nl"
-)
+) + tuple(row["domain"] for row in load_registry())
 
 def render(url,timeout_ms=12000):
     p=urlparse(url)
@@ -29,7 +30,7 @@ def render(url,timeout_ms=12000):
             response=page.goto(url,wait_until="domcontentloaded",timeout=timeout_ms)
             if response is None or response.status>=400:
                 raise RuntimeError("Browser listing unavailable or blocked")
-            require_same_listing(url, page.url, inventory=url in INVENTORY_SEEDS)
+            require_same_listing(url, page.url, inventory=url in INVENTORY_SEEDS or any(url == row["inventory_url"] for row in load_registry()))
             page.wait_for_timeout(900)
             content=page.content()
             # Do not treat anti-bot or consent blocks as a listing.

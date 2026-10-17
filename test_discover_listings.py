@@ -205,7 +205,7 @@ class DiscoveryTests(unittest.TestCase):
         def fetcher(url):
             if "bing.com" in url: raise OSError("index offline")
             if url == target:
-                return "<html><title>Peugeot Boxer L2H2 airco</title><body>Kenteken: V-360-SJ</body></html>","text/html"
+                return f'<html><head><title>Peugeot Boxer L2H2 airco</title><link rel="canonical" href="{target}"></head><main>Peugeot Boxer L2H2 airco Kenteken: V-360-SJ</main></html>',"text/html"
             if url in SEED_PAGES["Marktplaats"]:
                 return '<html><a href="'+target+'">Boxer L2H2 airco</a></html>',"text/html"
             raise OSError("unavailable")

@@ -2,7 +2,8 @@
 
 Application modules live under `src/campervan_search/`; tests and shared
 fixtures live under `tests/`. Packaging metadata, command entry points and style
-configuration are centralized in `pyproject.toml`. The strict review has moved
+configuration are centralized in `pyproject.toml`. `MANIFEST.in` includes
+the test fixtures and operational helpers in source distributions. The strict review has moved
 from the repository root to [strict-review.md](strict-review.md).
 
 The distribution is named `campervan-weekly-search`, and its import package is

@@ -23,11 +23,11 @@ def api(repo, path, method="GET", data=None):
         return json.load(response)
 
 
-def pull(repo, directory, request=api):
+def pull(repo, directory, request=api, branch=BRANCH):
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
     try:
-        ref = request(repo, "git/ref/heads/" + BRANCH)
+        ref = request(repo, "git/ref/heads/" + branch)
     except HTTPError as exc:
         if exc.code != 404:
             raise
@@ -47,12 +47,12 @@ def pull(repo, directory, request=api):
     return {"initialized": head is None, "head": head}
 
 
-def push(repo, directory, request=api):
+def push(repo, directory, request=api, branch=BRANCH):
     directory = Path(directory)
     state = validate(json.loads((directory / "search_state.json").read_text()))
     head = json.loads((directory / "base.json").read_text())["head"]
     try:
-        current = request(repo, "git/ref/heads/" + BRANCH)["object"]["sha"]
+        current = request(repo, "git/ref/heads/" + branch)["object"]["sha"]
     except HTTPError as exc:
         if exc.code != 404:
             raise
@@ -62,10 +62,10 @@ def push(repo, directory, request=api):
     tree = request(repo, "git/trees", "POST", {"tree": [{"path": "search_state.json", "mode": "100644", "type": "blob", "content": json.dumps(state, indent=2) + "\n"}]})
     commit = request(repo, "git/commits", "POST", {"message": "Record bounded camper search history", "tree": tree["sha"], "parents": [head] if head else []})
     if head:
-        request(repo, "git/refs/heads/" + BRANCH, "PATCH", {"sha": commit["sha"], "force": False})
+        request(repo, "git/refs/heads/" + branch, "PATCH", {"sha": commit["sha"], "force": False})
     else:
-        request(repo, "git/refs", "POST", {"ref": "refs/heads/" + BRANCH, "sha": commit["sha"]})
-    return {"branch": BRANCH, "sha": commit["sha"]}
+        request(repo, "git/refs", "POST", {"ref": "refs/heads/" + branch, "sha": commit["sha"]})
+    return {"branch": branch, "sha": commit["sha"]}
 
 
 def main():
@@ -73,8 +73,9 @@ def main():
     p.add_argument("action", choices=("pull", "push"))
     p.add_argument("--repo", required=True)
     p.add_argument("--directory", default=".search-state")
+    p.add_argument("--branch", default=BRANCH)
     args = p.parse_args()
-    print(json.dumps((pull if args.action == "pull" else push)(args.repo, args.directory)))
+    print(json.dumps((pull if args.action == "pull" else push)(args.repo, args.directory, branch=args.branch)))
 
 
 if __name__ == "__main__":

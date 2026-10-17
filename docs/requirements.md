@@ -10,14 +10,15 @@ project requirements and distinguishes historical observations from current proo
   straight-line distance or assumed distance to a named city.
 - Purchase budget: EUR 8,000 including VAT. Unknown tax treatment stays unknown.
 - Target: conversion vans with a viable standing-height solution (fixed roof or
-  pop-top), working cab A/C, a real mattress at least 170 × 120 cm, usable two-person
+  pop-top), advertised cab A/C, a real mattress at least 170 × 120 cm, usable two-person
   layout and category B suitability at no more than 3,500 kg. The occupant is 176 cm;
   about 186 cm finished height and 250 kg remaining payload are preferences.
   Exterior length around 6.4 m or more is unsuitable. V2 supplies criteria; actual
   vehicle measurements and a corroborated build/weight plan remain required.
 - A qualified recommendation needs at least 90% of required evidence under strict
-  evaluation. Unknowns do not pass; seller claims do not establish working
-  equipment, availability or mechanical condition. The five equal-weight hard
+  evaluation. Unknowns do not pass. Per the latest user instruction, listing-specific advertised
+  cab A/C is sufficient for search qualification; physical operation is a pre-purchase
+  check. Seller claims do not establish independently inspected mechanical condition. The five equal-weight hard
   checks currently require all five passes to exceed 90%.
 - Keep service invoices, odometer assessment, APK status/history, rust/drivetrain,
   actual mass/payload, realistic conversion costs and independent inspection visible

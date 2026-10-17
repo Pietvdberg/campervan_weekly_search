@@ -49,9 +49,11 @@ class EndToEndEvidenceTests(unittest.TestCase):
         self.assertEqual(result["results"][0]["candidate"]["price_incl_vat"], 5748)
 
     def test_incomplete_stale_failed_and_advertised_only_proof_cannot_qualify(self):
-        changes = [lambda row: row["checks"]["cab_ac_working"].update(method="advertised_equipment"),
-                   lambda row: row["checks"]["available_for_sale"].update(confirmed=False),
+        changes = [lambda row: row["checks"]["available_for_sale"].update(confirmed=False),
                    lambda row: row.update(expires_at="2001-01-01T00:00:00+00:00"),
                    lambda row: row["measurements"].pop("available_payload_kg")]
         for change in changes:
             self.assertEqual(self.exercise(change)["qualifiers"], 0)
+
+    def test_advertised_ac_qualifies_without_a_physical_ac_test(self):
+        self.assertEqual(self.exercise(lambda row: row["checks"].pop("cab_ac_working"))["qualifiers"], 1)

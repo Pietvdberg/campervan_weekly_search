@@ -18,13 +18,14 @@ class VehicleReviewTests(unittest.TestCase):
         result = screen(candidate)
         self.assertEqual(result["score"], 100)
         self.assertFalse(result["qualified"])
-        self.assertIn("independent cab_ac_working: unverified", result["reasons"])
+        self.assertNotIn("independent cab_ac_working: unverified", result["reasons"])
         self.assertIn("independent available_for_sale: unverified", result["reasons"])
 
-    def test_physical_test_cannot_be_replaced_with_an_advertised_claim(self):
+    def test_advertised_ac_is_sufficient_without_claiming_physical_operation(self):
         candidate = self.candidate()
         candidate["independent_review"]["checks"]["cab_ac_working"]["method"] = "advertised_equipment"
         self.assertIsNone(assess(candidate)["checks"]["cab_ac_working"])
+        self.assertTrue(screen(candidate)["qualified"])
 
     def test_expired_future_wrong_vehicle_and_missing_references_remain_unknown(self):
         for change in ({"expires_at": "2001-01-01T00:00:00+00:00"},
@@ -34,7 +35,7 @@ class VehicleReviewTests(unittest.TestCase):
             candidate["independent_review"].update(change)
             self.assertFalse(screen(candidate)["qualified"])
         candidate = self.candidate()
-        candidate["independent_review"]["checks"]["cab_ac_working"].pop("source_url")
+        candidate["independent_review"]["checks"]["condition_acceptable"].pop("source_url")
         self.assertFalse(screen(candidate)["qualified"])
 
     def test_failed_independent_condition_is_rejected_without_rdw(self):
@@ -66,3 +67,18 @@ class VehicleReviewTests(unittest.TestCase):
         rejected["checks"]["price_incl_vat_within_8000"] = False
         result = evaluate({"candidates": [rejected, self.candidate()]}, lambda p: {"vehicle": {"status": "ok", "records": [{"kenteken": p}]}})
         self.assertEqual(build(result)["leads"], [])
+
+    def test_missing_optional_ac_test_does_not_block_advertised_ac(self):
+        candidate = self.candidate()
+        candidate["independent_review"]["checks"].pop("cab_ac_working")
+        self.assertTrue(screen(candidate)["qualified"])
+        candidate["checks"]["cab_ac"] = None
+        self.assertFalse(screen(candidate)["qualified"])
+
+    def test_explicit_broken_ac_overrides_equipment_claim(self):
+        candidate = self.candidate()
+        candidate["independent_review"]["checks"]["cab_ac_working"]["confirmed"] = False
+        self.assertEqual(candidate_state(screen(candidate)), "REJECTED")
+        candidate = self.candidate()
+        candidate["checks"]["cab_ac"] = False
+        self.assertEqual(candidate_state(screen(candidate)), "REJECTED")

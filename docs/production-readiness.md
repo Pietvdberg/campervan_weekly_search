@@ -91,3 +91,12 @@ the pre-v2 state. Actual physical evidence is still required. The implementation
 now separates hard mattress/standing/layout/mass rules from preferred 186 cm height
 and 250 kg payload; full [adoption and acceptance gaps](specification-v2-adoption.md)
 include variant research, weighted ranking and persistent weekly change tracking.
+
+## Weekly service follow-up
+
+Search matches are now separate from inspected purchase readiness. Weighted
+ranking, expiring sourced variant notes, durable cross-week identity/price tracking
+and rolling source-health alerts are implemented in the
+[weekly search design](useful-weekly-search.md). Earlier missing-feature statements
+above describe prior review checkpoints. These changes do not enable production
+mail or prove long-running scheduler reliability.

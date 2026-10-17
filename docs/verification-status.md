@@ -5,7 +5,7 @@ schedule. The user has supplied `context.md` and specification v2; public requir
 boundaries are reconciled in [requirements](requirements.md).
 
 - PR CI runs syntax compilation and all offline unittest modules. The strict
-  review follow-ups now have 232 tests, including vehicle identity,
+  review follow-ups now have 256 tests, including vehicle identity,
   conversion review, source access stops, report consistency and mail retry state.
 - The marketplace integration workflow performs bounded live discovery across
   six source groups. It records coverage gaps and requires identity-bound evidence
@@ -22,8 +22,11 @@ boundaries are reconciled in [requirements](requirements.md).
 - The external Pi timer collects RSS locally. Upload is separate; data-only pushes
   do not trigger marketplace discovery. This is not end-to-end weekly automation.
 
-Remaining production work: real reviewed candidates and variant research,
-weighted suitability scoring, persistent weekly change tracking,
+Search-versus-purchase separation, weighted scoring, a maintained initial variant
+research registry and persistent weekly change tracking are implemented; see the
+[weekly search design](useful-weekly-search.md).
+
+Remaining production work: real reviewed candidates, expansion of cited variant research,
 stable source access and maintained dealer coverage, an operational cadence,
 durable mail/audit state, appropriate retention and independently demonstrated
 live end-to-end outcomes. PR CI passing alone does not satisfy those conditions.

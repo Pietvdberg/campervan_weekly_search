@@ -15,7 +15,11 @@ project requirements and distinguishes historical observations from current proo
   about 186 cm finished height and 250 kg remaining payload are preferences.
   Exterior length around 6.4 m or more is unsuitable. V2 supplies criteria; actual
   vehicle measurements and a corroborated build/weight plan remain required.
-- A qualified recommendation needs at least 90% of required evidence under strict
+- Search matches use complete advertised roof/A/C, supported VAT-inclusive price
+  and actual road-route checks. Missing inspection, measured layout and seller
+  contact belong to purchase readiness, not a reason to hide a useful search lead.
+  Known hard failures still reject; partial advert evidence is labeled conditional.
+- A qualified purchase-ready recommendation needs at least 90% of required evidence under strict
   evaluation. Unknowns do not pass. Per the latest user instruction, listing-specific advertised
   cab A/C is sufficient for search qualification; physical operation is a pre-purchase
   check. Seller claims do not establish independently inspected mechanical condition. The five equal-weight hard

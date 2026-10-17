@@ -1,5 +1,10 @@
 # Reviewed conversion suitability — specification v2
 
+This contract establishes purchase readiness. Advertised search matches and
+conditional research leads can be shortlisted before these physical reviews; see
+[weekly search stages](useful-weekly-search.md). Known failed hard requirements
+still exclude a vehicle.
+
 The [user specification](camper_van_search_specification_v2.md) supplies the project
 criteria. No additional arbitrary interior-length minimum is needed. A van's model,
 H2 label or nominal payload cannot prove conversion suitability.

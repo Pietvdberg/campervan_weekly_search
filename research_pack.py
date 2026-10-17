@@ -24,7 +24,11 @@ def build(data, requirements=None, limit=10):
                   "Confirm the vehicle is still for sale and where it can be inspected.",
                   "Obtain an independent inspection of rust, drivetrain, brakes and service invoices.",
                   "Measure finished standing height, mattress, exterior length and legal completed travel mass; review the two-person layout and exact drivetrain against specification v2."]
-        records.append({"listing_url": candidate.get("listing_url"), "plate": item.get("plate"),
+        research = item.get("suitability", {}).get("research", {})
+        tasks += [question for entry in research.get("notes", []) for question in entry.get("seller_questions", [])]
+        if not research.get("exact_variant_identified"):
+            tasks.append("Confirm exact generation, engine code/family, gearbox and body; obtain cited reliability/support evidence before assigning suitability scores.")
+        records.append({"search_assessment": item.get("search_assessment"), "suitability": item.get("suitability"), "history": item.get("history"), "listing_url": candidate.get("listing_url"), "plate": item.get("plate"),
                         "name": candidate.get("name"), "source": candidate.get("source"),
                         "observed_at": candidate.get("observed_at"), "checks": candidate.get("checks"),
                         "verified_price_incl_vat": candidate.get("price_incl_vat"), "road_distance_km": candidate.get("distance_km"),

@@ -14,7 +14,7 @@ from source_catalog import SOURCE_NAMES, REQUIRED_CHECKS
 def code_fingerprint():
     root = Path(__file__).resolve().parent
     digest = hashlib.sha256()
-    for path in sorted(list(root.glob("*.py")) + [root / "dealer_registry.json"]):
+    for path in sorted(list(root.glob("*.py")) + [root / "dealer_registry.json", root / "variant_research.json"]):
         if path.is_file():
             digest.update(path.name.encode() + b"\0" + path.read_bytes() + b"\0")
     return digest.hexdigest()
@@ -80,6 +80,10 @@ def summarize(discovery, screening, baseline=None):
             distance = candidate.get("distance_km")
             if not valid_number(distance) or not 0 < distance <= 100:
                 errors.append(f"Record {index}: route pass lacks valid road distance")
+        if item.get("search_assessment", {}).get("matched"):
+            from search_assessment import assess as assess_search
+            if not assess_search(item)["matched"]:
+                errors.append(f"Record {index}: search match violates advertised evidence gates")
         if item.get("qualified"):
             if not screen(candidate)["qualified"] or any(checks.get(key) is not True for key in REQUIRED_CHECKS):
                 errors.append(f"Record {index}: qualification violates current evidence/review gates")
@@ -101,6 +105,8 @@ def summarize(discovery, screening, baseline=None):
               "stages": {"discovery": "partial" if missing_sources else "bounded_samples_available",
                          "screening": "invalid" if errors else "completed", "independent_review": "pending" if pending_review else "no_unrejected_pending_records",
                          "email": "not_requested_by_this_validation"},
+              "search_matches": sum(item.get("search_assessment", {}).get("matched", False) for item in results),
+              "coverage_health": screening.get("coverage_health"),
               "records": len(results), "qualified": qualified, "sources": source_metrics,
               "source_groups_without_bound_records": missing_sources, "unrejected_records_needing_review": pending_review,
               "production_ready": False,

@@ -10,20 +10,31 @@ def euro(value):
 
 def item_card(item):
     c=item["candidate"]
+    from digest_details import details
+    editorial = details(item)
     title=e(c.get("name","Onbekende bestelbus"))
     url=str(c.get("listing_url",""))
     link=(f'<a href="{e(url)}">Bekijk advertentie ↗</a>' if url.startswith("https://") else "Link niet beschikbaar")
     price=euro(c.get("price_incl_vat"))
     advertised=e(c.get("price_advertised") or "onbekend")
     distance=(f'{e(c["distance_km"])} km' if c.get("distance_km") is not None else "Niet geverifieerd")
-    blockers = "; ".join(item.get("reasons", [])) or "Geen inhoudelijke controles open"
-    risks = "; ".join(risk["message"] for risk in item.get("rdw_risks", [])) or "Geen gemelde RDW-signalen; technische staat blijft ongeverifieerd"
-    return (f'<div class="vehicle"><h3>{title}</h3><p class="meta">Bron: {e(c.get("source","?"))} · Bewijs: {e(item["score"])}% · '
-            f'{e(candidate_state(item))}</p><p><strong>Prijs incl. btw:</strong> {price} '
+    labels = {"high_roof":"bruikbare dakoplossing", "cab_ac":"geadverteerde cabine-airco", "distance_within_100km":"rijroute binnen 100 km", "price_incl_vat_within_8000":"totale prijs inclusief btw"}
+    blockers = "; ".join(labels[key] for key in item.get("search_assessment", {}).get("missing", [])) or "Advertentiechecks afgerond; aankoopcontroles blijven nodig"
+    status = {"SEARCH_MATCH":"Zoekmatch — keuring volgt", "CONDITIONAL":"Voorwaardelijke researchlead", "REJECTED":"Afgewezen"}.get(item.get("search_assessment", {}).get("status"), candidate_state(item))
+    research_html = "".join('<p class="muted"><strong>Aandrijflijnonderzoek:</strong> ' + e(' '.join(note.get('findings', []))) + ' ' + ' '.join('<a href="' + e(source['url']) + '">Bron</a>' for source in note.get('sources', [])) + '</p>' for note in editorial['research_notes'][:2])
+    if not research_html:
+        research_html = '<p class="muted">Exacte aandrijflijn nog onvoldoende onderzocht; geen algemene betrouwbaarheidsclaim.</p>'
+    risks = "; ".join([risk["message"] for risk in item.get("rdw_risks", [])] + [reason for reason in item.get("reasons", []) if "RDW" in reason]) or "Geen gemelde RDW-signalen; technische staat blijft ongeverifieerd"
+    return (f'<div class="vehicle"><h3>{title}</h3><p class="meta">Bron: {e(c.get("source","?"))} · Zoekbewijs: {e(item.get("search_assessment", {}).get("checklist_coverage_percent", 0))}% · '
+            f'{e(status)}</p><p><strong>Prijs incl. btw:</strong> {price} '
             f'<span class="muted">(geadverteerd: {advertised}; btw-status: {e(c.get("vat_basis","unknown"))})</span></p>'
             f'<p><strong>Rijafstand:</strong> {distance} vanaf Bergen op Zoom</p>'
             f'<p class="muted"><strong>RDW-aandachtspunten:</strong> {e(risks)}</p>'
-            f'<p class="muted"><strong>Nog controleren:</strong> {e(blockers)}</p><p>{link}</p></div>')
+            f'<p><strong>Waarom bekijken:</strong> {e(editorial["why"])}</p>'
+            f'<p class="muted">Categorie {e(editorial["category"])} · {e(editorial["ranking"])} · {e(editorial["history"])}</p>'
+            f'<p><strong>Vragen:</strong> {e("; ".join(editorial["questions"]))}</p>'
+            f'<p class="muted">{e(editorial["purchase_actions"])}</p>'
+            + research_html + f'<p class="muted"><strong>Nog bevestigen voor de zoekselectie:</strong> {e(blockers)}</p><p>{link}</p></div>')
 
 def render_html(data):
     results=data.get("results",[])
@@ -31,8 +42,9 @@ def render_html(data):
     qualified = selection["qualified"]
     potential = selection["potential"]
     rejected = selection["rejected_records"]
+    search_count = len(selection["search_matches"])
     match_note = ("Er zijn voertuigen die volgens het vastgelegde bewijs aan de zoekcriteria voldoen. Controleer beschikbaarheid en technische staat voor aankoop."
-                  if qualified else "Er is nog geen voertuig dat aantoonbaar aan alle eisen voldoet. Dit betekent niet dat er geen geschikte bus te koop staat.")
+                  if qualified or search_count else "Er is nog geen voertuig dat aantoonbaar aan alle eisen voldoet. Dit betekent niet dat er geen geschikte bus te koop staat.")
     cards="".join(item_card(x) for x in qualified)
     leads="".join(item_card(x) for x in potential)
     rss=rss_shortlist(data.get("unverified_rss_leads",[]),
@@ -65,17 +77,19 @@ li {{margin:12px 0}}.note {{background:#fff5e3;padding:12px;border-radius:7px}}
 </style></head><body><main>
 <h1>Camperzoektocht · {e(data.get("generated_on",""))}</h1>
 <p>Je wekelijkse overzicht, met alleen gecontroleerde feiten als harde conclusie.</p>
-<div class="stats"><strong>{len(qualified)} bevestigde matches</strong> · {len(results)} advertenties bekeken · {rejected} afgewezen</div>
+<div class="stats"><strong>{search_count} zoekmatches</strong> · {len(qualified)} bevestigde matches voor aankoop · {len(results)} advertenties bekeken · {rejected} afgewezen</div>
 <p class="note">{match_note}</p>
-<h2>✓ Bevestigde kandidaten</h2>
+<h2>✓ Volledig beoordeeld voor aankoop</h2>
 {cards or "<p>Momenteel geen voertuigen met voldoende bevestigd bewijs.</p>"}
-<h2>🔎 Interessant, maar nog niet geverifieerd</h2>
-<p class="muted">Voorselectie op dakhoogte en airco; de resterende controles zijn geen automatische goedkeuring.</p>
+<h2>🔎 Zoekshortlist — aankoopkeuring volgt</h2>
+<p class="muted">Zoekmatches voldoen aan de advertentie-, btw-prijs- en rijroutechecks. Voorwaardelijke leads missen nog advertentiebewijs. Geen van beide is een technische aankoopkeuring.</p>
 {leads or "<p>Geen bruikbare individueel onderzochte advertenties in deze ronde.</p>"}
 <h2>📰 AutoWereld · extra tips (RSS)</h2>
 <p class="muted">Deze advertenties komen uitsluitend uit de externe RSS-index. Niet geopend of onafhankelijk gecontroleerd; tellen nooit mee als bevestigde match.</p>
 <ul>{rss_cards or "<li>Geen relevante RSS-tips binnen de voorlopige selectie.</li>"}</ul>
 <h2>Waar ontbreekt bewijs?</h2>
+<p>{e(data.get("coverage_health", {}).get("status", "Nog geen bewaarde bronhistorie"))} · {selection["unchanged_suppressed"]} ongewijzigde/herplaatste records niet opnieuw getoond.</p>
+<ul>{"".join('<li>' + e(alert["source"] + ': ' + alert["severity"] + ' — ' + alert["message"]) + '</li>' for alert in data.get("coverage_health", {}).get("alerts", []))}</ul>
 <table><thead><tr><th>Bron</th><th>Bekeken</th><th>Prijs incl. btw</th><th>Rijroute</th><th>Toegang</th></tr></thead>
 <tbody>{source_rows}</tbody></table>
 <p class="muted">Tellers geven gevonden bewijs weer, geen garantie dat alle advertenties of voorraad zijn onderzocht.</p>

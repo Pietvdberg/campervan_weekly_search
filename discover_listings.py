@@ -196,6 +196,7 @@ def extract(title,url,source,markup):
             "sale_method":"auction" if auction_evidence(primary_title + " " + scoped_text) else "unverified",
             "reported_mechanical_failure":mechanical_failure(primary_title + " " + scoped_text),
             "checks":checks,"plate":plate,"plate_confirmed_from_listing":bool(plate),
+            "variant_clues": [node["seller_vehicle_identity"] for node in scoped_objects if node.get("@type") == "VehicleEvidence" and node.get("seller_vehicle_identity")],
             "plate_conflicts":list(normalized_plates) if len(normalized_plates) > 1 else [],
             "field_evidence":{ "price":evidence["vat"], "location_source":evidence.get("location_source"),
                 "plate_source":"same_listing_label_or_vehicle_record" if plate else None,

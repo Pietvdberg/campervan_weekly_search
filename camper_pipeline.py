@@ -54,7 +54,11 @@ def report_identity(item):
 def report_priority(item):
     c = item["candidate"]
     checks = c.get("checks", {})
-    return (int(checks.get("price_incl_vat_within_8000") is True),
+    suitability = item.get("suitability", {})
+    return (int(item.get("search_assessment", {}).get("matched", False)),
+            int(suitability.get("critical_research_supported", False)),
+            suitability.get("weighted_score_known_criteria") or 0 if suitability.get("critical_research_supported") else 0,
+            int(checks.get("price_incl_vat_within_8000") is True),
             int(checks.get("distance_within_100km") is True),
             int(checks.get("high_roof") is True and checks.get("cab_ac") is True),
             int(bool(item.get("plate"))), item["score"])
@@ -75,14 +79,15 @@ def report_selection(data):
     """One presentation model for text and HTML; the raw audit stays intact."""
     results = data.get("results", [])
     grouped = list(unique_report_items(results))
-    qualified = sorted((x for x in grouped if candidate_state(x) == "QUALIFIED"),
+    qualified = sorted((x for x in grouped if candidate_state(x) == "QUALIFIED" and x.get("history", {}).get("show_in_digest", True)),
                        key=report_priority, reverse=True)
     potential = [x for x in grouped if candidate_state(x) == "POTENTIAL MATCH — UNVERIFIED"
-                 and x["candidate"].get("checks", {}).get("high_roof") is True
-                 and x["candidate"].get("checks", {}).get("cab_ac") is True
-                 and not clearly_over_budget_title(x["candidate"])]
+                 and x.get("search_assessment", {}).get("status") in ("SEARCH_MATCH", "CONDITIONAL")
+                 and x.get("history", {}).get("show_in_digest", True)]
     potential.sort(key=report_priority, reverse=True)
-    return {"qualified": qualified, "potential": potential[:5],
+    search_matches = [x for x in grouped if x.get("search_assessment", {}).get("matched") and x.get("history", {}).get("show_in_digest", True)]
+    return {"qualified": qualified, "potential": potential[:5], "search_matches": search_matches,
+            "unchanged_suppressed": sum(not x.get("history", {}).get("show_in_digest", True) for x in grouped),
             "screened_records": len(results),
             "rejected_records": sum(candidate_state(x) == "REJECTED" for x in results)}
 
@@ -236,7 +241,14 @@ def evaluate(data, rdw_lookup=lookup):
                 if concern["blocks_qualification"]:
                     item["qualified"] = False
                     item["reasons"].append(concern["message"])
-    return {"specification_version": SPEC_VERSION, "generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
+    from search_assessment import assess as assess_search
+    from suitability import rank
+    for item in results:
+        item["search_assessment"] = assess_search(item)
+        item["suitability"] = rank(item)
+    return {"run_metadata": data.get("run_metadata", {}), "search_matches": sum(item["search_assessment"]["matched"] for item in results),
+            "purchase_ready": sum(item["qualified"] for item in results),
+            "specification_version": SPEC_VERSION, "generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
             "source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
             "unverified_rss_leads":data.get("unverified_rss_leads",[]),
             "results":results,"qualifiers":sum(x["qualified"] for x in results)}
@@ -273,14 +285,26 @@ def report(data):
     rejected = selection["rejected_records"]
     rows = ["Camper van search — concise development report",
             "Generated: " + str(data.get("generated_on", "unknown")),
-            "Verified >=90% qualifiers: " + str(len(qualified)),
+            "Advertised search matches: " + str(len(selection["search_matches"])),
+            "Verified >=90% qualifiers: " + str(len(qualified)) + " (purchase readiness; separate from search fit)",
+            "Unchanged/relisted records suppressed: " + str(selection["unchanged_suppressed"]),
             "Individual vehicle records screened: " + str(len(results)),
             "Explicitly rejected: " + str(rejected),
             "CAUTION: discovery is incomplete; unknown VAT, route, availability and mechanical condition are not confirmations.",
             "", "QUALIFIED vehicles:"]
     def render_item(item):
         c = item["candidate"]
+        from digest_details import details
+        editorial = details(item)
+        research_text = " | ".join(" ".join(note.get("findings", [])) + " Sources: " + ", ".join(source["url"] for source in note.get("sources", [])) for note in editorial["research_notes"][:2]) or "Exact drivetrain not sufficiently researched; no generic reliability claim."
         rows.extend(["- " + unescape(str(c.get("name", "Unknown"))),
+                     "  Search status: " + item.get("search_assessment", {}).get("status", "unverified") + "; category " + editorial["category"],
+                     "  Why investigate: " + editorial["why"],
+                     "  Drivetrain research: " + research_text,
+                     "  Weighted suitability: " + editorial["ranking"],
+                     "  History: " + editorial["history"],
+                     "  Seller questions: " + " | ".join(editorial["questions"]),
+                     "  Pre-purchase: " + editorial["purchase_actions"],
                      "  Evidence score: " + str(item["score"]) + "%; " + candidate_state(item),
                      "  VAT-inclusive price: " + str(c.get("price_incl_vat") if c.get("price_incl_vat") is not None else "unverified"),
                      "  Driving route from Bergen op Zoom: " + str(c.get("distance_km") if c.get("distance_km") is not None else "unverified") + " km",
@@ -292,12 +316,16 @@ def report(data):
             render_item(item)
     else:
         rows.append("None verified. This is not proof that none are for sale.")
-    rows.extend(["", "POTENTIAL MATCH — UNVERIFIED (up to 5):"])
+    rows.extend(["", "SEARCH SHORTLIST — inspection pending (up to 5; conditional leads labeled separately):"])
     if potential:
         for item in potential:
             render_item(item)
     else:
         rows.append("No individual listing had enough relevant evidence for this shortlist.")
+    health = data.get("coverage_health", {})
+    rows.extend(["", "Coverage health: " + str(health.get("status", "no persisted monitoring history"))])
+    for alert in health.get("alerts", []):
+        rows.append("- " + alert["source"] + ": " + alert["severity"] + " — " + alert["message"])
     rows.extend(["", "Source coverage (individual vehicle pages):"])
     coverage = data.get("source_coverage", {})
     for source in SOURCES:
@@ -353,12 +381,22 @@ def report(data):
 if __name__=="__main__":
     ap=argparse.ArgumentParser()
     ap.add_argument("--input",default="candidates.json")
+    ap.add_argument("--history", help="Durable state file restored before this run")
+    ap.add_argument("--run-id", help="Stable identity for idempotent reruns")
     ap.add_argument("--conversion-evidence", "--reviewed-evidence", dest="conversion_evidence", help="JSON containing explicit conversion requirements and reviewed assessments")
     args=ap.parse_args()
     data = json.loads(Path(args.input).read_text(encoding="utf8"))
     if args.conversion_evidence:
         data["conversion_evidence"] = json.loads(Path(args.conversion_evidence).read_text(encoding="utf8"))
     result=evaluate(data)
+    if args.history:
+        from search_history import update, validate
+        if not args.run_id:
+            ap.error("--history requires --run-id")
+        history_path = Path(args.history)
+        result, state = update(result, validate(json.loads(history_path.read_text())), args.run_id)
+        history_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n")
+        Path("coverage_health.json").write_text(json.dumps(result["coverage_health"], indent=2, ensure_ascii=False) + "\n")
     Path("screening_results.json").write_text(json.dumps(result,indent=2,ensure_ascii=False),encoding="utf8")
     Path("report.txt").write_text(report(result),encoding="utf8")
     from research_pack import build as build_research

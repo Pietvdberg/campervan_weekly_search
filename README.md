@@ -5,6 +5,9 @@ vehicle screening, RDW lookups, text/HTML reports and development email delivery
 It is not yet an automated production weekly search. See
 [verification status](docs/verification-status.md) and the
 [strict review](STRICT_REVIEW.md) for scope and outstanding gaps.
+The [weekly search design](docs/useful-weekly-search.md) distinguishes advertised
+search fit from purchase readiness and documents ranking, durable history and
+coverage monitoring.
 
 ## Local discovery and screening
 

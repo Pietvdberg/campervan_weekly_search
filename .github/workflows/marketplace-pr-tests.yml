@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '**.py'
+      - 'dealer_registry.json'
       - 'scripts/**'
       - '.github/workflows/**'
 permissions:

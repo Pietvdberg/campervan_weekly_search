@@ -8,8 +8,8 @@ from source_catalog import VAN_MODEL
 from vehicle_risks import auction_evidence
 
 LOW_ROOF = re.compile(r"\bL[1-4]\s*H1\b", re.I)
-HIGH_ROOF = re.compile(r"\bL[234]\s*H[23]\b|\bhoog\s*dak\b", re.I)
-UNSUITABLE = re.compile(r"\b(?:motor\s+vast|motor\s+defect|motor\s+loopt\s+niet|(?:injectoren?|injector(?:en)?|versnellingsbak|koppeling)\s+(?:defect|kapot)|schade|chassis\s*cabine|open\s+laadbak|pick[ -]?up|kipper|hoogwerker|bakwagen|laadkraan)\b", re.I)
+HIGH_ROOF = re.compile(r"\bL[234][ .-]*H[23]\b|\bhoog\s*dak\b", re.I)
+UNSUITABLE = re.compile(r"\b(?:transit\s+(?:connect|courier)|motor\s+vast|motor\s+defect|motor\s+loopt\s+niet|(?:injectoren?|injector(?:en)?|versnellingsbak|koppeling)\s+(?:defect|kapot)|schade|chassis\s*cabine|open\s+laadbak|pick[ -]?up|kipper|hoogwerker|bakwagen|laadkraan)\b", re.I)
 
 
 def key(url):
@@ -41,9 +41,12 @@ def cards(markup, base):
                 amount = float(parsed) if parsed is not None else None
         elif node.get("@type") in ("Vehicle", "Car", "Product"):
             offers = node.get("offers", {})
-            if isinstance(offers, dict) and offers.get("priceCurrency") == "EUR":
-                parsed = parse_amount(offers.get("price"))
-                amount = float(parsed) if parsed is not None else None
+            offers = [offers] if isinstance(offers, dict) else offers if isinstance(offers, list) else []
+            amounts = {parse_amount(offer.get("price")) for offer in offers
+                       if isinstance(offer, dict) and offer.get("priceCurrency") == "EUR"}
+            amounts.discard(None)
+            if len(amounts) == 1:
+                amount = float(next(iter(amounts)))
         else:
             continue
         url = urljoin(base, raw_url)
@@ -79,7 +82,7 @@ def select(pairs, evidence, eligible):
         identity = key(url)
         card = evidence.get(identity, {})
         title = card.get("title") or label or urlparse(url).path.replace("-", " ")
-        amount = card.get("advertised_eur")
+        amount = card.get("gross_lower_bound_eur", card.get("advertised_eur"))
         reason = None
         if not VAN_MODEL.search(title + " " + urlparse(url).path.replace("-", " ")):
             reason = "not a target van model"

@@ -20,3 +20,27 @@ limitations remain visible. `--max-per-source 1..50` supports bounded live check
 
 Direct dealer coverage, evidence enrichment and repeated end-to-end verification
 are being validated separately; this document is not production activation.
+
+## Direct dealer coverage
+
+`dealer_registry.json` independently lists BWCR Roosendaal, MANA and Van Mossel,
+with public inventory/contact URLs, reviewed domain/detail patterns and a check
+date. Public inventory/contact pages were checked on 17 October 2026. This is a
+maintained starting catalogue, not a claim to cover every regional dealer.
+
+Discovery samples each direct inventory independently of AutoWereld, records
+per-dealer page counts/errors/index exclusions and bounds pagination. An
+inaccessible dealer does not suppress another dealer. All three inventories
+were reachable in the bounded check; 134 advert links were exposed, most clearly
+expensive or incompatible. Branch towns are discovery hints only: a national or
+multi-branch catalogue does not establish a vehicle's actual test-drive location.
+
+BWCR detail pages have no JSON-LD/canonical URL. Its registered adapter requires
+one main region, vehicle-specific car-details form actions matching the exact
+requested advert, and matching gallery ID. Missing/conflicting identity stays
+unbound. This exception is restricted to the reviewed registry strategy, not a
+generic relaxation. Advertised facts remain seller claims; measurements,
+working equipment, current availability and route need their own evidence.
+
+AutoWereld consent/403 limits are preserved. Independent direct-dealer access is
+not a consent bypass, and no public RSS lead is promoted to a verified advert.

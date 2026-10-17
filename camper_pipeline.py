@@ -290,6 +290,13 @@ def report(data):
                     " fetched; " + str(entry.get("identity_bound_candidates", "unknown")) +
                     " identity-bound / " + str(entry.get("detail_urls_discovered", "?")) +
                     " discovered | " + str(entry.get("status", "unknown")))
+        if source == "Local dealers":
+            for dealer in entry.get("direct_dealers", []):
+                rows.append("  Direct dealer " + str(dealer.get("name")) + ": " +
+                            str(dealer.get("inventory_pages_fetched", 0)) + " inventory pages; " +
+                            str(dealer.get("identity_bound_candidates", 0)) + " bound adverts; " +
+                            str(dealer.get("index_exclusions", 0)) + " index exclusions; " +
+                            str(dealer.get("status", "unknown")))
         if source == "AutoWereld":
             rows.append("  Direct GitHub-hosted page validation is separate from external Raspberry Pi RSS collection.")
             if entry.get("coverage_note") and not entry.get("external_rss_urls_accepted"):

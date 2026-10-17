@@ -38,3 +38,10 @@ class ReviewRegressions(unittest.TestCase):
         from discover_listings import is_vehicle_detail
         url = "https://www.viabovag.nl/auto/aanbod/peugeot-boxer-123abc"
         self.assertTrue(is_vehicle_detail(url, "viaBOVAG", "<p>Kenteken: AB-123-C</p>"))
+
+    def test_primary_low_roof_title_overrides_unrelated_high_roof_mentions(self):
+        from discover_listings import extract
+        url = "https://www.autotrack.nl/a/peugeot-boxer-diesel-2019-58405822"
+        page = f'<title>Peugeot Boxer L1H1</title><link rel="canonical" href="{url}"><main>Peugeot Boxer L1H1 Airco. Other L2H2 vans also available.</main>'
+        candidate = extract("Peugeot Boxer L2H2", url, "AutoTrack", page)
+        self.assertIs(candidate["checks"]["high_roof"], False)

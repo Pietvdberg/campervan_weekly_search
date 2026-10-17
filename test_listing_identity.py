@@ -66,3 +66,28 @@ class IdentityTests(unittest.TestCase):
     def test_multiple_main_regions_do_not_bind_visible_fields(self):
         markup = f'<link rel="canonical" href="{URL}"><main>Boxer</main><main>airco</main>'
         self.assertEqual(bind_evidence(markup, URL)[1]["status"], "unbound")
+
+    def test_primary_offer_url_binds_vehicle_without_root_url(self):
+        for kind in ("Vehicle", "Product"):
+            node = {"@type": kind, "name": "Peugeot Boxer L2H2 airco", "offers": {
+                "@type": "Offer", "url": URL, "price": 7000, "priceCurrency": "EUR"}}
+            page = '<title>Peugeot Boxer</title><script type="application/ld+json">' + json.dumps(node) + '</script>'
+            candidate = self.candidate(page)
+            self.assertTrue(candidate["individual_listing_confirmed"])
+            self.assertTrue(candidate["checks"]["high_roof"])
+            self.assertTrue(candidate["checks"]["cab_ac"])
+            self.assertIsNone(candidate["price_incl_vat"])
+
+    def test_mismatched_offer_cannot_override_primary_identity(self):
+        node = {"@type": "Vehicle", "url": URL + "-other", "name": "Boxer", "offers": {"url": URL}}
+        page = '<title>Peugeot Boxer</title><script type="application/ld+json">' + json.dumps(node) + '</script>'
+        self.assertFalse(self.candidate(page)["individual_listing_confirmed"])
+
+    def test_offer_binding_keeps_nested_car_and_seller_address(self):
+        node = {"@type": "Product", "name": "Boxer", "offers": {"url": URL,
+                "itemOffered": {"@type": "Car", "name": "Peugeot Boxer"},
+                "offeredBy": {"@type": "AutoDealer", "address": {"postalCode": "1234 AB", "streetAddress": "Teststraat 7b"}}}}
+        scoped, provenance = bind_evidence('<script type="application/ld+json">' + json.dumps(node) + '</script>', URL)
+        self.assertEqual(provenance["status"], "bound")
+        self.assertIn("postalCode", scoped)
+        self.assertIn("Teststraat 7b", scoped)

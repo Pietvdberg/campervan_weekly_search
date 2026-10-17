@@ -107,12 +107,12 @@ def address_from_structured(objs):
         postcode=str(raw.get("postalCode") or "").upper().replace(" ","")
         number=str(raw.get("streetAddress") or "")
         match=POSTCODE.fullmatch(postcode)
-        house=re.search(r"\b([1-9]\d{0,4})\s*[A-Za-z]?\s*$",number)
+        house=re.search(r"\b([1-9]\d{0,4})\s*([A-Za-z]?)\s*$",number)
         country=str(raw.get("addressCountry") or "NL").upper()
         if isinstance(raw.get("addressCountry"),dict):
             country=str(raw["addressCountry"].get("name") or "").upper()
         if match and house and country in ("NL","NLD","NETHERLANDS","NEDERLAND"):
-            return (postcode,house.group(1))
+            return (postcode,house.group(1) + house.group(2).upper())
     return None
 
 
@@ -128,7 +128,8 @@ def pdok_coordinates(address,fetcher=None):
     docs=fetcher(url).get("response",{}).get("docs",[])
     for doc in docs:
         found_postcode=str(doc.get("postcode") or "").upper().replace(" ","")
-        found_house=str(doc.get("huisnummer") or "")
+        found_house=(str(doc.get("huisnummer") or "") + str(doc.get("huisletter") or "")
+                     + str(doc.get("huisnummertoevoeging") or "")).upper().replace(" ", "")
         match=re.fullmatch(r"POINT\s*\(\s*([\d.]+)\s+([\d.]+)\s*\)",str(doc.get("centroide_ll") or ""))
         if found_postcode==postcode and found_house==house and match:
             lon,lat=map(float,match.groups())

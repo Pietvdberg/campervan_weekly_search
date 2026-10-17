@@ -1,11 +1,11 @@
 # Pipeline verification scope
 
 This repository remains a development search system, without a production weekly
-schedule. `context.md` was not present during the strict review; full project
-requirements have not been recovered.
+schedule. The user has now supplied `context.md`; public requirements and operational
+boundaries are reconciled in [requirements](requirements.md).
 
 - PR CI runs syntax compilation and all offline unittest modules. The strict
-  review follow-ups currently have 161 tests, including vehicle identity,
+  review follow-ups currently have 167 tests, including vehicle identity,
   conversion review, source access stops, report consistency and mail retry state.
 - The marketplace integration workflow performs bounded live discovery across
   six source groups. It records coverage gaps and requires identity-bound evidence
@@ -21,7 +21,7 @@ requirements have not been recovered.
 - The external Pi timer collects RSS locally. Upload is separate; data-only pushes
   do not trigger marketplace discovery. This is not end-to-end weekly automation.
 
-Remaining production work: actual project requirements, real reviewed candidates,
+Remaining production work: numeric conversion minima, real reviewed candidates,
 stable source access and maintained dealer coverage, an operational cadence,
 durable mail/audit state, appropriate retention and independently demonstrated
 live end-to-end outcomes. PR CI passing alone does not satisfy those conditions.

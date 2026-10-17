@@ -274,7 +274,8 @@ def report(data):
             rows.append("- " + source + ": not checked")
             continue
         rows.append("- " + source + ": " + str(entry.get("individual_pages_fetched", 0)) +
-                    " validated / " + str(entry.get("detail_urls_discovered", "?")) +
+                    " fetched; " + str(entry.get("identity_bound_candidates", "unknown")) +
+                    " identity-bound / " + str(entry.get("detail_urls_discovered", "?")) +
                     " discovered | " + str(entry.get("status", "unknown")))
         if source == "AutoWereld":
             rows.append("  Direct GitHub-hosted page validation is separate from external Raspberry Pi RSS collection.")

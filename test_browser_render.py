@@ -13,3 +13,10 @@ class BrowserGuardTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             render("https://marktplaats.nl.attacker.example/van")
 if __name__=="__main__": unittest.main()
+
+class ExcludedSourceTests(unittest.TestCase):
+    def test_excluded_marketplaces_rejected_before_browser_import(self):
+        from browser_render import render
+        for host in ("bedrijfsauto.nl", "gaspedaal.nl", "trucksnl.nl", "wijkopenautos.nl"):
+            with self.subTest(host=host), self.assertRaises(ValueError):
+                render("https://www." + host + "/listing")

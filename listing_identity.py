@@ -77,8 +77,17 @@ def bind_evidence(markup, url):
         types = [types] if isinstance(types, str) else types
         if isinstance(types, list) and any(str(value).lower() in ("car", "vehicle", "product") for value in types):
             vehicles.append(node)
-    matching = [node for node in vehicles if isinstance(node.get("url"), str)
-                and identity(urljoin(url, node["url"])) == identity(url)]
+    def identifies_listing(node):
+        # Marktplaats and AutoScout24 identify the vehicle through its own
+        # Offer.url, rather than a url property on the Vehicle/Product itself.
+        direct = node.get("url")
+        offers = node.get("offers", [])
+        offers = [offers] if isinstance(offers, dict) else offers if isinstance(offers, list) else []
+        references = ([direct] if isinstance(direct, str) else []) + [
+            offer["url"] for offer in offers if isinstance(offer, dict) and isinstance(offer.get("url"), str)]
+        return bool(references) and all(identity(urljoin(url, reference)) == identity(url) for reference in references)
+
+    matching = [node for node in vehicles if identifies_listing(node)]
     # Repeated conflicting identities are ambiguous even when only one matches.
     if len(matching) > 1:
         raise ValueError("Multiple vehicle objects claim the requested listing")

@@ -24,3 +24,17 @@ class ReviewRegressions(unittest.TestCase):
         from test_camper_pipeline import ScreeningTests
         result = evaluate({"candidates": [ScreeningTests().example()]}, lambda p: {"vehicle": {"status": "ok", "records": [{"kenteken": "ZZ999Z"}]}})
         self.assertEqual(result["qualifiers"], 0)
+
+    def test_failed_apk_or_catalogue_prevents_qualification(self):
+        from test_camper_pipeline import ScreeningTests
+        for extra in ({"status": "error"}, {"defects": {"status": "error"}},
+                      {"defect_catalogue_errors": [{"code": "123", "error": "HTTP 503"}]}):
+            result = evaluate({"candidates": [ScreeningTests().example()]}, lambda plate: {
+                "vehicle": {"status": "ok", "records": [{"kenteken": plate}]}, **extra})
+            self.assertEqual(result["qualifiers"], 0)
+            self.assertIn("RDW/APK lookup incomplete", result["results"][0]["reasons"])
+
+    def test_viabovag_plain_plate_fallback(self):
+        from discover_listings import is_vehicle_detail
+        url = "https://www.viabovag.nl/auto/aanbod/peugeot-boxer-123abc"
+        self.assertTrue(is_vehicle_detail(url, "viaBOVAG", "<p>Kenteken: AB-123-C</p>"))

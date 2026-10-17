@@ -200,6 +200,11 @@ def evaluate(data, rdw_lookup=lookup):
                 or records[0].get("kenteken") != item["plate"]):
             item["qualified"]=False
             item["reasons"].append("RDW registration not verified")
+        if (item["rdw"].get("status") == "error"
+                or item["rdw"].get("defects", {}).get("status") == "error"
+                or item["rdw"].get("defect_catalogue_errors")):
+            item["qualified"] = False
+            item["reasons"].append("RDW/APK lookup incomplete")
     return {"generated_on":date.today().isoformat(),"source_screening":evidence_summary(results),
             "source_coverage":data.get("source_coverage",{}),"discovery_method":data.get("discovery_method","no live discovery performed"),
             "unverified_rss_leads":data.get("unverified_rss_leads",[]),

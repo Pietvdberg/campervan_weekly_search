@@ -5,7 +5,7 @@ schedule. `context.md` was not present during the strict review; full project
 requirements have not been recovered.
 
 - PR CI runs syntax compilation and all offline unittest modules. The strict
-  review follow-ups currently have 159 tests, including vehicle identity,
+  review follow-ups currently have 161 tests, including vehicle identity,
   conversion review, source access stops, report consistency and mail retry state.
 - The marketplace integration workflow performs bounded live discovery across
   six source groups. It records coverage gaps and requires identity-bound evidence

@@ -200,3 +200,10 @@ model for text and HTML, prefers stronger duplicate evidence, and reports unique
 qualified counts consistently. HTML now shows RDW/listing blockers and no longer
 claims zero qualifying vehicles unconditionally. Three additional regressions
 bring the offline suite to 146 tests.
+
+PR #50 merged after CI passed. Finding #9 now has a stable content-based Message-ID,
+pre-submission Sent lookup and persisted submitting/accepted/confirmed state.
+Workflow reruns restore state and verify rather than blindly resending. Seven
+mocked delivery regressions bring the suite to 153 tests. The state artifact lasts
+30 days; cross-run/concurrent exactly-once delivery and full audit retention still
+need a persistent operational service.

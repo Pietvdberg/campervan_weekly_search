@@ -1,2 +1,4 @@
 __pycache__/
 *.py[cod]
+mail_delivery_state.json
+mail_delivery_state.tmp

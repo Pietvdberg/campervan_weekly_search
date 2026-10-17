@@ -44,3 +44,23 @@ working equipment, current availability and route need their own evidence.
 
 AutoWereld consent/403 limits are preserved. Independent direct-dealer access is
 not a consent bypass, and no public RSS lead is promoted to a verified advert.
+
+## Candidate evidence and research
+
+AutoScout24/AutoTrack detail state is read only when a single `listingDetails`
+record's `webPage` matches the requested bound advert. Its explicit public gross
+and net prices resolve VAT evidence without borrowing unrelated labels or guessing
+rounding; conditional/incomplete prices stay unknown. Vehicle-specific exact
+pickup addresses take precedence over generic seller coordinates and are matched
+through PDOK before road routing. Hyphenated/unhyphenated labelled plates and
+explicit vehicle licensePlate fields are supported; conflicts stay unconfirmed.
+Only minimal selected facts are retained, not account/session/marketing data.
+
+A bounded real-page recheck recovered the advertised EUR 5,748 gross price,
+02-VGK-6 and a 136.1 km route, correctly outside the radius. Seller-reported
+payload/dimensions/service history remain attributed research clues.
+
+The pipeline exports research tasks and an unfilled review template, requires
+dated independent A/C/availability/condition checks for qualification, and never
+invents conversion minima or inspection outcomes. Read `conversion-evidence.md`
+for the human review contract. Unknown physical facts still block a recommendation.

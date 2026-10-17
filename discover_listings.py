@@ -14,6 +14,7 @@ from listing_evidence import enrich, structured, PLATE
 from listing_identity import bind_evidence, require_same_listing
 from source_access import SourceFetch, host_key
 from vehicle_risks import auction_evidence
+from rdw_lookup import normalize_plate
 from discovery_queue import cards as inventory_cards, select as select_queue, budget_applied
 from dealer_sources import dealer_for_url, crawl_dealers, load_registry
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
@@ -173,8 +174,16 @@ def extract(title,url,source,markup):
     # Conversion suitability requires independently checked payload and dimensions.
     city=next((x for x in CITIES if re.search(r"\b"+re.escape(x)+r"\b",header,re.I)),None)
     # Mention of a nearby town is NOT independent verification of driving distance.
-    plate_hit=re.search(r"(?:kenteken|nummerplaat|registratie)\s*[:\-]?\s*([A-Z0-9]{1,3}-[A-Z0-9]{1,3}-[A-Z0-9]{1,3})\b",scoped_text,re.I)
-    plate=plate_hit.group(1) if plate_hit else None
+    plate_values = PLATE.findall(scoped_text)
+    scoped_objects = structured(scoped_markup)
+    plate_values.extend(node["licensePlate"] for node in scoped_objects if isinstance(node.get("licensePlate"), str))
+    normalized_plates = {}
+    for value in plate_values:
+        try:
+            normalized_plates.setdefault(normalize_plate(value), value)
+        except ValueError:
+            continue
+    plate = next(iter(normalized_plates.values())) if len(normalized_plates) == 1 else None
     price_hit=re.search(r"(?:€|EUR)\s*([\d.]+(?:,\d{2})?)",scoped_text,re.I)
     title_match=re.search(r"<title[^>]*>(.*?)</title>",markup,re.I|re.S)
     name=(" ".join(html.unescape(title_match.group(1)).split()) if title_match else title)[:180]
@@ -184,6 +193,11 @@ def extract(title,url,source,markup):
             "evidence_provenance":provenance,
             "sale_method":"auction" if auction_evidence(primary_title + " " + scoped_text) else "unverified",
             "checks":checks,"plate":plate,"plate_confirmed_from_listing":bool(plate),
+            "plate_conflicts":list(normalized_plates) if len(normalized_plates) > 1 else [],
+            "field_evidence":{ "price":evidence["vat"], "location_source":evidence.get("location_source"),
+                "plate_source":"same_listing_label_or_vehicle_record" if plate else None,
+                "seller_reported": [{key: node.get(key) for key in ("source_record_id", "listing_url", "net_price_reported", "seller_reported_availability", "seller_reported_dimensions", "seller_reported_service_history")}
+                                     for node in scoped_objects if node.get("@type") == "VehicleEvidence"]},
             "city_mentioned":city,"price_advertised":price_hit.group(1) if price_hit else None,
             "price_incl_vat":evidence["vat"]["amount_incl_vat"],"vat_basis":evidence["vat"]["basis"],
             "distance_km":evidence["distance_km"],"location_coordinates":evidence["location_coordinates"],

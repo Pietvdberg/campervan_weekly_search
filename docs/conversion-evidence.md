@@ -32,3 +32,34 @@ No real measurements or project minima were available in this session. The test
 suite uses explicitly fictional measurements to prove that both passing and
 failing reviewed evidence reach the correct pipeline outcome. Production
 qualification remains blocked until actual requirements and evidence exist.
+
+## Complete vehicle review and research input
+
+`camper_pipeline.py` now also writes `research_pack.json` (up to ten promising,
+unrejected vehicles with remaining actions) and `reviewed_evidence_template.json`.
+The template is deliberately unfilled; generation is not verification. The same
+input can be supplied through `--reviewed-evidence FILE` (the older
+`--conversion-evidence` option remains an alias).
+
+Each matching assessment can contain `checks` alongside `measurements`:
+
+| Check | Accepted methods |
+|---|---|
+| `cab_ac_working` | `physical_test`, `independent_inspection` |
+| `available_for_sale` | `seller_confirmation`, `independent_inspection` |
+| `condition_acceptable` | `independent_inspection` |
+
+Each check needs boolean `confirmed`, accepted `method` and an HTTPS `source_url`.
+The named reviewer, exact listing/plate and valid observation/expiry timestamps
+apply to the entire assessment. Missing, stale, wrong-vehicle or unsupported
+claims remain unknown; an explicitly failed current independent check rejects
+the candidate. All three independent checks are required for qualification, in
+addition to the five scored criteria and matching successful RDW evidence.
+Seller equipment lists, an Active marketplace flag and service-history claims
+are kept as attributed statements and cannot satisfy physical review gates.
+
+Set actual minimum dimensions and available conversion payload before completing
+a real assessment. They remain unset in a generated template when no project
+requirements were supplied. No physical measurement/inspection or seller contact
+is performed automatically. Review input is a trusted human evidence contract,
+not authentication of a reviewer's identity or an inspection service.

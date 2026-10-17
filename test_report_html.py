@@ -36,3 +36,37 @@ class HtmlReportTests(unittest.TestCase):
 
 if __name__=="__main__":
     unittest.main()
+
+class ReportConsistencyTests(unittest.TestCase):
+    def fixture(self):
+        from test_camper_pipeline import ScreeningTests
+        return ScreeningTests().example()
+
+    def evaluate(self, candidates, success=True):
+        return evaluate({"candidates": candidates}, lambda plate: {"vehicle": {"status": "ok" if success else "error", "records": [{"kenteken": plate}] if success else []}})
+
+    def test_qualified_html_has_no_contradictory_zero_match_claim(self):
+        result = self.evaluate([self.fixture()])
+        html = render_html(result)
+        self.assertIn("1 bevestigde matches", html)
+        self.assertNotIn("Er is nog geen voertuig", html)
+
+    def test_rdws_blocker_is_visible_in_html(self):
+        result = self.evaluate([self.fixture()], success=False)
+        html = render_html(result)
+        self.assertIn("RDW registration not verified", html)
+        self.assertIn("0 bevestigde matches", html)
+
+    def test_duplicate_count_and_selection_agree_across_formats(self):
+        from camper_pipeline import report, report_selection
+        weak = self.fixture()
+        weak["checks"]["conversion_suitable"] = None
+        strong = self.fixture()
+        result = self.evaluate([weak, strong, strong])
+        selection = report_selection(result)
+        self.assertEqual(len(selection["qualified"]), 1)
+        self.assertEqual(len(selection["potential"]), 0)
+        self.assertEqual(len(result["results"]), 3)
+        self.assertIn("Verified >=90% qualifiers: 1", report(result))
+        self.assertIn("1 bevestigde matches", render_html(result))
+        self.assertEqual(report(result).count("  Listing: "), 1)

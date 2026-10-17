@@ -1,6 +1,6 @@
 """Human-readable HTML digest. All detailed evidence remains in audit JSON."""
 from html import escape
-from camper_pipeline import SOURCES, candidate_state, unique_report_items, rss_shortlist, rss_price, clearly_over_budget_title
+from camper_pipeline import SOURCES, candidate_state, report_selection, rss_shortlist, rss_price
 
 def e(value):
     return escape(str(value if value is not None else "Unknown"),quote=True)
@@ -16,8 +16,7 @@ def item_card(item):
     price=euro(c.get("price_incl_vat"))
     advertised=e(c.get("price_advertised") or "onbekend")
     distance=(f'{e(c["distance_km"])} km' if c.get("distance_km") is not None else "Niet geverifieerd")
-    missing=[k.replace("_"," ") for k,v in c.get("checks",{}).items() if v is not True]
-    blockers=", ".join(missing) if missing else "Geen inhoudelijke controles open"
+    blockers = "; ".join(item.get("reasons", [])) or "Geen inhoudelijke controles open"
     return (f'<div class="vehicle"><h3>{title}</h3><p class="meta">Bron: {e(c.get("source","?"))} · Bewijs: {e(item["score"])}% · '
             f'{e(candidate_state(item))}</p><p><strong>Prijs incl. btw:</strong> {price} '
             f'<span class="muted">(geadverteerd: {advertised}; btw-status: {e(c.get("vat_basis","unknown"))})</span></p>'
@@ -26,21 +25,12 @@ def item_card(item):
 
 def render_html(data):
     results=data.get("results",[])
-    unique=list(unique_report_items(results))
-    qualified=[x for x in unique if candidate_state(x)=="QUALIFIED"]
-    potential=[x for x in unique if candidate_state(x)=="POTENTIAL MATCH — UNVERIFIED"
-               and x["candidate"].get("checks",{}).get("high_roof") is True
-               and x["candidate"].get("checks",{}).get("cab_ac") is True
-               and not clearly_over_budget_title(x["candidate"])]
-    def priority(x):
-        c=x["candidate"]; checks=c.get("checks",{})
-        return (checks.get("price_incl_vat_within_8000") is True,
-                checks.get("distance_within_100km") is True,
-                checks.get("high_roof") is True and checks.get("cab_ac") is True,
-                bool(x.get("plate")),x["score"])
-    potential.sort(key=priority,reverse=True)
-    potential=potential[:5]
-    rejected=sum(candidate_state(x)=="REJECTED" for x in results)
+    selection = report_selection(data)
+    qualified = selection["qualified"]
+    potential = selection["potential"]
+    rejected = selection["rejected_records"]
+    match_note = ("Er zijn voertuigen die volgens het vastgelegde bewijs aan de zoekcriteria voldoen. Controleer beschikbaarheid en technische staat voor aankoop."
+                  if qualified else "Er is nog geen voertuig dat aantoonbaar aan alle eisen voldoet. Dit betekent niet dat er geen geschikte bus te koop staat.")
     cards="".join(item_card(x) for x in qualified)
     leads="".join(item_card(x) for x in potential)
     rss=rss_shortlist(data.get("unverified_rss_leads",[]),
@@ -74,7 +64,7 @@ li {{margin:12px 0}}.note {{background:#fff5e3;padding:12px;border-radius:7px}}
 <h1>Camperzoektocht · {e(data.get("generated_on",""))}</h1>
 <p>Je wekelijkse overzicht, met alleen gecontroleerde feiten als harde conclusie.</p>
 <div class="stats"><strong>{len(qualified)} bevestigde matches</strong> · {len(results)} advertenties bekeken · {rejected} afgewezen</div>
-<p class="note">Er is nog geen voertuig dat aantoonbaar aan alle eisen voldoet. Dit betekent niet dat er geen geschikte bus te koop staat.</p>
+<p class="note">{match_note}</p>
 <h2>✓ Bevestigde kandidaten</h2>
 {cards or "<p>Momenteel geen voertuigen met voldoende bevestigd bewijs.</p>"}
 <h2>🔎 Interessant, maar nog niet geverifieerd</h2>

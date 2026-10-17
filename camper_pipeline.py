@@ -41,14 +41,40 @@ def report_identity(item):
     return "url:" + normalized_url(c.get("listing_url", ""))
 
 
+def report_priority(item):
+    c = item["candidate"]
+    checks = c.get("checks", {})
+    return (int(checks.get("price_incl_vat_within_8000") is True),
+            int(checks.get("distance_within_100km") is True),
+            int(checks.get("high_roof") is True and checks.get("cab_ac") is True),
+            int(bool(item.get("plate"))), item["score"])
+
+
 def unique_report_items(items):
-    seen = set()
+    selected = {}
     for item in items:
-        identity = report_identity(item)
-        if identity in seen:
-            continue
-        seen.add(identity)
-        yield item
+        key = report_identity(item)
+        previous = selected.get(key)
+        rank = lambda value: (value["qualified"], report_priority(value))
+        if previous is None or rank(item) > rank(previous):
+            selected[key] = item
+    yield from selected.values()
+
+
+def report_selection(data):
+    """One presentation model for text and HTML; the raw audit stays intact."""
+    results = data.get("results", [])
+    grouped = list(unique_report_items(results))
+    qualified = sorted((x for x in grouped if candidate_state(x) == "QUALIFIED"),
+                       key=report_priority, reverse=True)
+    potential = [x for x in grouped if candidate_state(x) == "POTENTIAL MATCH — UNVERIFIED"
+                 and x["candidate"].get("checks", {}).get("high_roof") is True
+                 and x["candidate"].get("checks", {}).get("cab_ac") is True
+                 and not clearly_over_budget_title(x["candidate"])]
+    potential.sort(key=report_priority, reverse=True)
+    return {"qualified": qualified, "potential": potential[:5],
+            "screened_records": len(results),
+            "rejected_records": sum(candidate_state(x) == "REJECTED" for x in results)}
 
 
 def rss_price(description):
@@ -185,28 +211,13 @@ def dealer_audit_rows(data):
 def report(data):
     """Concise email. Full rejected candidates and RDW evidence stay in JSON audit."""
     results = data.get("results", [])
-    grouped = list(unique_report_items(results))
-    qualified = [x for x in grouped if candidate_state(x) == "QUALIFIED"]
-    potential = [x for x in grouped if candidate_state(x) == "POTENTIAL MATCH — UNVERIFIED"]
-    # Among potential leads, prefer verified affordable prices, established routes,
-    # explicit vehicle configuration and plate evidence. Unknown never means pass.
-    def interest(x):
-        c = x["candidate"]
-        checks = c.get("checks", {})
-        return (int(checks.get("price_incl_vat_within_8000") is True),
-                int(checks.get("distance_within_100km") is True),
-                int(checks.get("high_roof") is True and checks.get("cab_ac") is True),
-                int(bool(x.get("plate"))), x["score"])
-    potential.sort(key=interest, reverse=True)
-    # Do not fill the email with unpromising unknown-configuration entries.
-    potential = [x for x in potential
-                 if x["candidate"].get("checks", {}).get("high_roof") is True
-                 and x["candidate"].get("checks", {}).get("cab_ac") is True
-                 and not clearly_over_budget_title(x["candidate"])][:5]
-    rejected = sum(candidate_state(x) == "REJECTED" for x in results)
+    selection = report_selection(data)
+    qualified = selection["qualified"]
+    potential = selection["potential"]
+    rejected = selection["rejected_records"]
     rows = ["Camper van search — concise development report",
             "Generated: " + str(data.get("generated_on", "unknown")),
-            "Verified >=90% qualifiers: " + str(data.get("qualifiers", 0)),
+            "Verified >=90% qualifiers: " + str(len(qualified)),
             "Individual vehicle records screened: " + str(len(results)),
             "Explicitly rejected: " + str(rejected),
             "CAUTION: discovery is incomplete; unknown VAT, route, availability and mechanical condition are not confirmations.",
@@ -220,7 +231,7 @@ def report(data):
                      "  Listing: " + str(c.get("listing_url", "unavailable")),
                      "  Outstanding checks: " + ("; ".join(item["reasons"]) or "none")])
     if qualified:
-        for item in sorted(qualified, key=interest, reverse=True):
+        for item in qualified:
             render_item(item)
     else:
         rows.append("None verified. This is not proof that none are for sale.")

@@ -44,4 +44,4 @@ class ReviewRegressions(unittest.TestCase):
         url = "https://www.autotrack.nl/a/peugeot-boxer-diesel-2019-58405822"
         page = f'<title>Peugeot Boxer L1H1</title><link rel="canonical" href="{url}"><main>Peugeot Boxer L1H1 Airco. Other L2H2 vans also available.</main>'
         candidate = extract("Peugeot Boxer L2H2", url, "AutoTrack", page)
-        self.assertIs(candidate["checks"]["high_roof"], False)
+        self.assertIsNone(candidate["checks"]["high_roof"])

@@ -1,47 +1,61 @@
-# Reviewed conversion suitability
+# Reviewed conversion suitability — specification v2
 
-Discovery cannot infer conversion suitability from a model name. Use an explicit
-review file with `python3 camper_pipeline.py --input discovered_candidates.json
---conversion-evidence reviewed_conversion.json` (on one shell command line).
+The [user specification](camper_van_search_specification_v2.md) supplies the project
+criteria. No additional arbitrary interior-length minimum is needed. A van's model,
+H2 label or nominal payload cannot prove conversion suitability.
 
-The JSON object has two keys:
+Run `python3 camper_pipeline.py --input discovered_candidates.json
+--reviewed-evidence reviewed_evidence.json` on one shell command line. The pipeline
+exports an unfilled `reviewed_evidence_template.json` and a bounded
+`research_pack.json`. Template generation never verifies or contacts a vehicle.
 
-- `requirements`: positive numeric minima for `available_payload_kg`,
-  `internal_height_cm` and `internal_length_cm`. These are user/project criteria;
-  there are deliberately no default numbers.
-- `assessments`: a list of reviewed vehicle records. Each has `listing_url`,
-  `plate`, a nonempty `reviewer`, timezone-aware ISO `observed_at` and `expires_at`,
-  and a `measurements` object with the same three measurement keys. Every
-  measurement contains a positive numeric `value`, an HTTPS `source_url` for its
-  supporting evidence and `independently_checked: true`.
+## Review contract
 
-The assessment must identify the same confirmed listing URL and registration.
-Exactly one assessment must match; conflicting, expired, future-dated or
-incomplete reviews remain unknown. A reviewed measurement below its minimum is
-an explicit failure. The complete assessment and comparison are retained in the
-candidate's audit record. This is a contract for reviewed evidence, not an
-independent measurement service or authentication of the reviewer's identity.
+The JSON contains `assessments` and optional `requirements` (default `{}`). Each
+assessment needs the exact confirmed `listing_url` and `plate`, named `reviewer`,
+timezone-aware `observed_at` and `expires_at`. Exactly one current matching review
+is accepted. This is trusted human evidence input, not reviewer authentication or
+an independent inspection service.
 
-Available payload must account for the planned conversion and loading; nominal
-payload from a model brochure is insufficient. Reviewers choose expiry based on
-the evidence. New plate/listing evidence is still required and RDW registration
-must match before a candidate can qualify. Mechanical condition, actual A/C
-operation and current availability need their own verification.
+Every `measurements` entry needs numeric `value`, an HTTPS `source_url` and
+`independently_checked: true`:
 
-No real measurements or project minima were available in this session. The test
-suite uses explicitly fictional measurements to prove that both passing and
-failing reviewed evidence reach the correct pipeline outcome. Production
-qualification remains blocked until actual requirements and evidence exist.
+| Measurement | Hard rule |
+|---|---|
+| `finished_standing_height_cm` | At least 176 cm, plus a positive practical-standing review |
+| `bed_length_cm` / `bed_width_cm` | At least 170 / 120 cm for the planned real mattress |
+| `external_length_cm` | Below 640 cm |
+| `maximum_authorised_mass_kg` | At most 3,500 kg |
+| `completed_loaded_mass_kg` | Within the legal maximum, including the planned conversion and normal travel loading |
+| `available_payload_kg` | Nonnegative remaining legal margin after those loads |
+| `belted_seats` | At least two, integer count |
 
-## Complete vehicle review and research input
+Completed travel mass plus remaining payload must not exceed authorised mass.
+Establish actual base-vehicle mass and account for build components, people, water,
+fuel and normal equipment; a brochure payload is insufficient. A projected build
+requires a corroborated weight plan, not an assertion that a finished van was weighed.
+The 176 cm figure is the occupant-height floor, **not proof of practical clearance**:
+`practical_standing_room` is separately required. Approximately 186 cm finished
+height and 250 kg remaining payload are recorded preferences, not hard failures.
+Raw cargo height is not finished height. A reviewed viable pop-top is acceptable.
 
-`camper_pipeline.py` now also writes `research_pack.json` (up to ten promising,
-unrejected vehicles with remaining actions) and `reviewed_evidence_template.json`.
-The template is deliberately unfilled; generation is not verification. The same
-input can be supplied through `--reviewed-evidence FILE` (the older
-`--conversion-evidence` option remains an alias).
+Every `conversion_checks` entry needs boolean `confirmed`, HTTPS `source_url` and
+`independently_checked: true`. The generated research pack supplies descriptions:
 
-Each matching assessment can contain `checks` alongside `measurements`:
+- `practical_standing_room`: usable standing solution for the 176 cm occupant.
+- `two_person_layout`: indoor living, a real mattress without unloading luggage,
+  movement and accessible storage for two adults.
+- `indoor_kitchen_and_toilet`: sink, two burners, worktop, fridge and portable toilet.
+- `year_round_systems`: insulation, heating, freeze protection, ventilation, water
+  and initial off-grid systems are feasible.
+- `drivetrain_and_support`: review the exact generation, engine, gearbox and body
+  for major-failure risk, loaded mountain performance, parts and European garage support.
+- `netherlands_purchase`: purchase and inspection in the Netherlands without a
+  foreign-purchase import requirement.
+- `fuel_eligible`: not LPG-only; any electric candidate has corroborated touring
+  range/charging suitability.
+
+The existing independent `checks` are also required:
 
 | Check | Accepted methods |
 |---|---|
@@ -49,17 +63,13 @@ Each matching assessment can contain `checks` alongside `measurements`:
 | `available_for_sale` | `seller_confirmation`, `independent_inspection` |
 | `condition_acceptable` | `independent_inspection` |
 
-Each check needs boolean `confirmed`, accepted `method` and an HTTPS `source_url`.
-The named reviewer, exact listing/plate and valid observation/expiry timestamps
-apply to the entire assessment. Missing, stale, wrong-vehicle or unsupported
-claims remain unknown; an explicitly failed current independent check rejects
-the candidate. All three independent checks are required for qualification, in
-addition to the five scored criteria and matching successful RDW evidence.
-Seller equipment lists, an Active marketplace flag and service-history claims
-are kept as attributed statements and cannot satisfy physical review gates.
+These use boolean `confirmed`, accepted `method` and HTTPS `source_url` under the
+same reviewer/identity/date header. Include rust, structural condition, drivetrain
+and service records in the inspection. Seller equipment lists are not physical tests.
 
-Set actual minimum dimensions and available conversion payload before completing
-a real assessment. They remain unset in a generated template when no project
-requirements were supplied. No physical measurement/inspection or seller contact
-is performed automatically. Review input is a trusted human evidence contract,
-not authentication of a reviewer's identity or an inspection service.
+Missing, stale, malformed or wrong-vehicle evidence is unknown. A supported failed
+hard requirement rejects, even when other fields are missing. Legacy reviews with
+only payload, internal height and internal length cannot establish v2 compliance.
+Optional legacy `requirements` may still add all three positive numeric minima
+(`available_payload_kg`, `internal_height_cm`, `internal_length_cm`); they can only
+add constraints, never override v2. No actual inspection facts are supplied here.

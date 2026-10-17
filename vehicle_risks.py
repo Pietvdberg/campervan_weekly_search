@@ -65,5 +65,5 @@ def rdw_risks(vehicle, today=None):
     except (ValueError, TypeError):
         maximum = None
     if maximum is not None and maximum > 3500:
-        add("licence_mass_review", "Registered maximum mass exceeds 3,500 kg; verify driving-licence entitlement and intended use.")
+        add("licence_mass_review", "Registered maximum mass exceeds the specification’s category B / 3,500 kg limit; resolve legal registration before recommendation.", True)
     return concerns

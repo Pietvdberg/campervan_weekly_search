@@ -82,3 +82,12 @@ recorded in [the dated validation report](live-validation-2026-10-17.md). The fi
 run has 27 records, nine explicit gross prices, 17 routes, 17 plate confirmations
 and zero qualified vehicles. Actual conversion minima and physical reviews remain
 required; production scheduling and mail remain outside this release.
+
+## Specification v2 supersedes earlier missing-minima status
+
+The supplied [specification v2](camper_van_search_specification_v2.md) now provides
+the conversion criteria. Earlier sections describing absent user minima record
+the pre-v2 state. Actual physical evidence is still required. The implementation
+now separates hard mattress/standing/layout/mass rules from preferred 186 cm height
+and 250 kg payload; full [adoption and acceptance gaps](specification-v2-adoption.md)
+include variant research, weighted ranking and persistent weekly change tracking.

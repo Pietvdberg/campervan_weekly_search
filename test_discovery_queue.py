@@ -30,13 +30,13 @@ class DiscoveryQueueTests(unittest.TestCase):
         self.assertEqual(len(rejected), 2)
         self.assertEqual(evidence[key(queue[0][1])]["evidence"], "unverified inventory card only")
 
-    def test_affordable_card_precedes_unknown_price_and_low_roof_is_removed(self):
+    def test_high_roof_precedes_low_roof_without_rejecting_viable_conversion(self):
         data = markup([card(1, 6000, "L1H1"), card(2, 6000), card(3, None)])
         evidence = cards(data, BASE)
         queue, rejected = select([(row["title"], row["url"]) for row in evidence.values()], evidence, lambda _: True)
         self.assertTrue(queue[0][1].endswith("000000000002"))
-        self.assertEqual(len(queue), 2)
-        self.assertEqual(rejected[0]["reason"], "explicit low-roof configuration")
+        self.assertEqual(len(queue), 3)
+        self.assertEqual(rejected, [])
 
     def test_conflicting_prices_do_not_discard_a_possibly_affordable_advert(self):
         evidence = cards(markup([card(1, 20000), card(1, 6000)]), BASE)

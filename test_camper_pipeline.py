@@ -14,6 +14,8 @@ class ScreeningTests(unittest.TestCase):
         from conversion_evidence import assess
         requirements = {"available_payload_kg":500,"internal_height_cm":180,"internal_length_cm":300}
         row = {**candidate["independent_review"], "measurements":{key:{"value":value,"source_url":"https://example.test/fictional-measurement","independently_checked":True} for key,value in requirements.items()}}
+        from specification_test_fixtures import add_conversion_fields
+        add_conversion_fields(row)
         candidate["conversion_assessment"] = assess(candidate, requirements, [row])
         return candidate
     def test_perfect_fixture_screening(self):

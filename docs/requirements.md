@@ -1,16 +1,20 @@
 # Search requirements and operational boundaries
 
-Reconciled on 17 October 2026 with the user-supplied session handover `context.md`.
+Reconciled on 17 October 2026 with the user-supplied session handover `context.md`
+and the authoritative [specification v2](camper_van_search_specification_v2.md).
+See [v2 adoption and remaining acceptance](specification-v2-adoption.md).
 The full private handover is not committed here; this file records the public
 project requirements and distinguishes historical observations from current proof.
 
 - Origin: Bergen op Zoom. Maximum 100 km actual road-driving route, not a
   straight-line distance or assumed distance to a named city.
 - Purchase budget: EUR 8,000 including VAT. Unknown tax treatment stays unknown.
-- Target: high-roof conversion vans, especially L2H2/L3H2, with working cab A/C,
-  usable dimensions and legal payload for the planned conversion. The handover
-  does not specify numeric dimension/payload minima; these must be supplied for
-  an actual conversion review rather than invented.
+- Target: conversion vans with a viable standing-height solution (fixed roof or
+  pop-top), working cab A/C, a real mattress at least 170 × 120 cm, usable two-person
+  layout and category B suitability at no more than 3,500 kg. The occupant is 176 cm;
+  about 186 cm finished height and 250 kg remaining payload are preferences.
+  Exterior length around 6.4 m or more is unsuitable. V2 supplies criteria; actual
+  vehicle measurements and a corroborated build/weight plan remain required.
 - A qualified recommendation needs at least 90% of required evidence under strict
   evaluation. Unknowns do not pass; seller claims do not establish working
   equipment, availability or mechanical condition. The five equal-weight hard
@@ -44,8 +48,8 @@ information into this public repository.
 
 An expired RDW APK date (assessed on the Netherlands local calendar date) or an
 `Onlogisch` odometer assessment prevents a qualified recommendation until resolved.
-A registered maximum mass above 3,500 kg produces a licence/mass review warning;
-it does not infer the user's licence or prove actual conversion payload. Missing
+A registered maximum mass above 3,500 kg blocks qualification under the explicit
+v2 category B requirement; it does not prove actual conversion payload. Missing
 or malformed RDW facts do not establish a clean inspection. These concerns appear
 in both report formats and remain in the audit. Historical APK defects remain
 historical; they are not automatically labelled current unrepaired faults.

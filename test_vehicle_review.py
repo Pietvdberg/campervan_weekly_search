@@ -53,7 +53,9 @@ class VehicleReviewTests(unittest.TestCase):
         result = evaluate({"candidates": [candidate]}, lambda p: {"vehicle": {"status": "ok", "records": [{"kenteken": p}]}})
         pack = build(result)
         self.assertEqual(len(pack["leads"]), 1)
-        self.assertEqual(len(pack["unset_requirements"]), 3)
+        self.assertEqual(pack["specification_version"], "2.0")
+        self.assertIn("bed_width_cm", pack["required_review_measurements"])
+        self.assertEqual(pack["review_template"]["requirements"], {})
         assessment = pack["review_template"]["assessments"][0]
         self.assertIsNone(assessment["reviewer"])
         self.assertTrue(all(fact["confirmed"] is None for fact in assessment["checks"].values()))

@@ -32,6 +32,8 @@ class EndToEndEvidenceTests(unittest.TestCase):
                "observed_at": "2000-01-01T00:00:00+00:00", "expires_at": "2100-01-01T00:00:00+00:00",
                "measurements": {key: {"value": value, "source_url": "https://example.test/fixture-report", "independently_checked": True} for key, value in requirements.items()},
                "checks": {key: {"confirmed": True, "method": "independent_inspection", "source_url": "https://example.test/fixture-report"} for key in ("cab_ac_working", "available_for_sale", "condition_acceptable")}}
+        from specification_test_fixtures import add_conversion_fields
+        add_conversion_fields(row)
         if alteration:
             alteration(row)
         discovery = {"candidates": [candidate], "source_coverage": {source: {} for source in SOURCE_NAMES},

@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - 'discover_listings.py'
+      - 'source_catalog.py'
+      - 'listing_identity.py'
+      - 'source_access.py'
+      - 'conversion_evidence.py'
+      - 'verify_discovery.py'
       - 'autowereld_html.py'
       - 'autowereld_snapshot.py'
       - 'autowereld_upload.py'
@@ -90,14 +95,5 @@ jobs:
           if-no-files-found: ignore
           overwrite: true
           retention-days: 30
-      - name: Enforce discovery acceptance criteria after report delivery
-        run: |
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          data=json.loads(Path("discovered_candidates.json").read_text(encoding="utf-8"))
-          count=len(data.get("candidates",[]))
-          if count==0:
-              raise SystemExit("DISCOVERY NOT VERIFIED: no usable individual listings; development report delivered but end-to-end validation FAILED")
-          print("Individual candidate pages retrieved:",count)
-          PY
+      - name: Require identity-bound discovery evidence and report coverage gaps
+        run: python3 verify_discovery.py discovered_candidates.json

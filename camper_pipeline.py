@@ -4,14 +4,14 @@ import argparse
 from datetime import date
 import json
 from pathlib import Path
+from math import isfinite
 from urllib.parse import urlparse, urlunparse
 import re
 from html import unescape
 from rdw_lookup import lookup, normalize_plate
 from conversion_evidence import assess as assess_conversion
 
-SOURCES = ("Marktplaats","AutoScout24","AutoTrack","viaBOVAG","AutoWereld","Local dealers")
-REQUIRED = ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")
+from source_catalog import SOURCE_NAMES as SOURCES, REQUIRED_CHECKS as REQUIRED
 
 def normalized_url(url):
     """Strip tracking/query fragments without changing a listing's identity."""
@@ -156,7 +156,27 @@ def evidence_summary(results):
                                  "failed" if status is False else "unknown"]+=1
     return summary
 
+def validate_input(data):
+    """Reject malformed batches before any external lookup is attempted."""
+    if not isinstance(data, dict) or not isinstance(data.get("candidates", []), list):
+        raise ValueError("Input must be an object containing a candidates list")
+    for index, candidate in enumerate(data.get("candidates", [])):
+        if not isinstance(candidate, dict):
+            raise ValueError(f"Candidate {index} must be an object")
+        checks = candidate.get("checks", {})
+        if not isinstance(checks, dict) or any(value is not None and not isinstance(value, bool) for value in checks.values()):
+            raise ValueError(f"Candidate {index} checks must contain only true, false or null")
+        for field in ("listing_url", "name", "plate", "source"):
+            if candidate.get(field) is not None and not isinstance(candidate[field], str):
+                raise ValueError(f"Candidate {index} {field} must be text")
+        for field in ("price_incl_vat", "distance_km"):
+            value = candidate.get(field)
+            if value is not None and (not isinstance(value, (int, float)) or isinstance(value, bool) or not isfinite(value) or value < 0):
+                raise ValueError(f"Candidate {index} {field} must be a finite nonnegative number")
+
+
 def evaluate(data, rdw_lookup=lookup):
+    validate_input(data)
     candidates = data.get("candidates", [])
     if "conversion_evidence" in data:
         contract = data["conversion_evidence"]

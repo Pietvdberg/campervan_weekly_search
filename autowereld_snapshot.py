@@ -23,7 +23,7 @@ FEEDS=(
     "https://www.autowereld.nl/rss/renault/master/",
 )
 DETAIL=re.compile(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html$",re.I)
-MODEL=re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|nv400)\b",re.I)
+from source_catalog import VAN_MODEL as MODEL
 MAX_ITEMS=250
 MAX_AGE=timedelta(hours=48)
 

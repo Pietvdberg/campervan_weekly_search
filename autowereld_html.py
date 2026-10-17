@@ -11,7 +11,7 @@ from urllib.parse import urljoin, urlparse, urldefrag
 from xml.etree.ElementTree import Element, SubElement, tostring
 
 AD_PATH = re.compile(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html", re.I)
-VEHICLES = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|nv400)\b",re.I)
+from source_catalog import VAN_MODEL as VEHICLES
 
 class Anchors(HTMLParser):
     def __init__(self):

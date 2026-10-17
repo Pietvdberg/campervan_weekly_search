@@ -7,7 +7,7 @@ jobs:
   send:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Compose smoke-test report
         run: |
           printf 'Camper van pipeline smoke test. No vehicle search was performed.\n' > report.txt
@@ -17,7 +17,7 @@ jobs:
         run: python3 -m unittest -v test_mail_routing.py
       - name: Restore mail submission state on rerun
         if: github.run_attempt > 1
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: mail-delivery-state-${{ github.run_id }}
           path: .
@@ -29,7 +29,7 @@ jobs:
         run: python3 send_report.py report.txt
       - name: Preserve mail submission state
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mail-delivery-state-${{ github.run_id }}
           path: mail_delivery_state.json

@@ -1,6 +1,6 @@
 """Human-readable HTML digest. All detailed evidence remains in audit JSON."""
 from html import escape
-from camper_pipeline import SOURCES, candidate_state, report_selection, rss_shortlist, rss_price
+from camper_pipeline import SOURCES, candidate_state, report_selection
 
 def e(value):
     return escape(str(value if value is not None else "Unknown"),quote=True)
@@ -48,12 +48,18 @@ def render_html(data):
                   if qualified or search_count else "Er is nog geen voertuig dat aantoonbaar aan alle eisen voldoet. Dit betekent niet dat er geen geschikte bus te koop staat.")
     cards="".join(item_card(x) for x in qualified)
     leads="".join(item_card(x) for x in potential)
-    rss=rss_shortlist(data.get("unverified_rss_leads",[]),
-                      (x["candidate"].get("listing_url") for x in results))
-    rss_cards="".join(
-        f'<li><strong>{e(x.get("title",""))}</strong><br>'
-        f'Geadverteerd: {euro(rss_price(x.get("description")))} (btw onbekend) · '
-        f'<a href="{e(x["url"])}">Advertentie ↗</a></li>' for x in rss)
+    from rss_evaluation import assess_data
+    rss = assess_data(data)
+    rss_cards = ''.join(
+        f'<li><strong>{e(row["title"])}</strong><br>'
+        f'Vraagprijs volgens RSS: {euro(row["advertised_price"])} · btw: '
+        + ('onbekend' if row['source_reported_gross_price'] is None else 'expliciet vermeld in feed, niet onafhankelijk bevestigd')
+        + '<br>Volgens feed: bouwjaar ' + e(row.get('source_reported_year') or 'onbekend')
+        + ' · kilometerstand ' + e(row.get('source_reported_mileage_km') if row.get('source_reported_mileage_km') is not None else 'onbekend')
+        + '<br><strong>Waarom onderzoeken:</strong> ' + e('; '.join(row['reasons']))
+        + '<br><strong>Nog uitzoeken:</strong> ' + e('; '.join(row['questions']))
+        + ('<br>Advertentietoegang momenteel geblokkeerd; dit is een vervolgonderzoekstaak.' if row['access_restriction'] else '')
+        + f'<br><a href="{e(row["url"])}">Advertentie ↗</a></li>' for row in rss['shortlist'])
     coverage=data.get("source_coverage",{})
     screening=data.get("source_screening",{})
     source_rows="".join(
@@ -90,7 +96,8 @@ li {{margin:12px 0}}.note {{background:#fff5e3;padding:12px;border-radius:7px}}
 <p class="muted">Zoekmatches voldoen aan de advertentie-, btw-prijs- en rijroutechecks. Voorwaardelijke leads missen nog advertentiebewijs. Geen van beide is een technische aankoopkeuring.</p>
 {leads or "<p>Geen bruikbare individueel onderzochte advertenties in deze ronde.</p>"}
 <h2>📰 AutoWereld · extra tips (RSS)</h2>
-<p class="muted">Deze advertenties komen uitsluitend uit de externe RSS-index. Niet geopend of onafhankelijk gecontroleerd; tellen nooit mee als bevestigde match.</p>
+<p class="muted">Deze advertenties komen uitsluitend uit de externe RSS-index. Alle aangeleverde feeditems zijn apart beoordeeld op zoekinteresse; de individuele advertentie, rijroute en actuele staat blijven onbevestigd. Tellen nooit mee als bevestigde match.</p>
+<p>{rss["evaluated_records"]} feeditems beoordeeld · {rss["counts"]["INTERESTING"]} interessant om te onderzoeken · {rss["counts"]["NEEDS_INFO"]} missen informatie · {rss["counts"]["EXCLUDED"]} uitgesloten.</p>
 <ul>{rss_cards or "<li>Geen relevante RSS-tips binnen de voorlopige selectie.</li>"}</ul>
 <h2>Waar ontbreekt bewijs?</h2>
 <p>{e(data.get("coverage_health", {}).get("status", "Nog geen bewaarde bronhistorie"))} · {selection["unchanged_suppressed"]} ongewijzigde/herplaatste records niet opnieuw getoond.</p>

@@ -202,14 +202,44 @@ def coverage_health(data, previous, run_id, now):
         if bound and prior and any(prior[-1].get(k, 0) >= .5 and value < prior[-1][k] / 2 for k, value in (("price_rate", price_rate), ("route_rate", route_rate))):
             severity = "warning" if severity == "ok" else severity
         dealers = row.get("direct_dealers", [])
+        categories = {restriction.get("category") for restriction in row.get("host_restrictions", {}).values()}
+        failure_kind = next((kind for kind in ("external_redirect", "access_denied", "rate_limited", "request_budget") if kind in categories), None)
+        if failure_kind is None and row.get("source_block_reason"):
+            # Existing saved audits predate typed access-stop categories.
+            reason = row["source_block_reason"]
+            failure_kind = ("external_redirect" if "another origin" in reason else
+                            "access_denied" if "HTTP 403" in reason else
+                            "rate_limited" if "HTTP 429" in reason else
+                            "request_budget" if "budget exhausted" in reason else "source_access")
+        rss = data.get("rss_evaluation", {}) if source == "AutoWereld" else {}
+        remediation = ("Restore permitted access to public advert pages or inspect independent dealer adverts; do not bypass the access stop."
+                       if failure_kind in ("external_redirect", "access_denied", "source_access") else
+                       "Wait for the source's rate limit to clear before a later bounded run."
+                       if failure_kind == "rate_limited" else
+                       "Review the bounded crawl queue and sampling budget."
+                       if failure_kind == "request_budget" else
+                       "Inspect discovery/parser diagnostics and compare recent samples.")
         sources[source] = {"sample_limit": limit, "bound": bound, "discovered": row.get("detail_urls_discovered", 0),
             "attempts": row.get("attempts", 0), "verified_prices": prices, "verified_routes": routes,
             "price_rate": price_rate, "route_rate": route_rate, "zero_bound_streak": streak,
             "recent_max_bound": baseline, "severity": severity, "source_status": row.get("status", "not_recorded"),
             "access_restriction": row.get("source_block_reason"), "rss_status": row.get("external_rss_snapshot_status"),
-            "pending_inventory_pages": row.get("inventory_pages_pending"), "dealers": dealers}
+            "pending_inventory_pages": row.get("inventory_pages_pending"), "dealers": dealers,
+            "failure_kind": failure_kind, "remediation": remediation,
+            "rss_evaluated": rss.get("evaluated_records", 0),
+            "rss_interesting": rss.get("counts", {}).get("INTERESTING", 0),
+            "rss_needs_info": rss.get("counts", {}).get("NEEDS_INFO", 0)}
         if severity != "ok":
-            alerts.append({"source": source, "severity": severity, "message": "Missing/degraded bound inventory or evidence extraction; inspect source diagnostics. RSS is index-only."})
+            cause = {"external_redirect": "Public advert access stopped at an external consent/origin redirect.",
+                     "access_denied": "Public advert access denied (HTTP 403).",
+                     "rate_limited": "Source rate-limited requests (HTTP 429).",
+                     "request_budget": "The bounded host request budget was exhausted."}.get(failure_kind, "Missing/degraded validated inventory or extracted evidence.")
+            if source == "AutoWereld":
+                cause += (f" RSS snapshot: {row.get('external_rss_snapshot_status', 'not_recorded')}; "
+                          f"{rss.get('evaluated_records', 0)} feed items screened separately, "
+                          f"{rss.get('counts', {}).get('INTERESTING', 0)} interesting leads. RSS is index-only; no validated adverts are created by feed screening.")
+            alerts.append({"source": source, "severity": severity, "code": failure_kind or "evidence_gap",
+                           "message": cause, "next_action": remediation})
         for dealer in dealers:
             if dealer.get("errors") or dealer.get("inventory_pages_fetched", 0) == 0:
                 alerts.append({"source": dealer.get("name"), "severity": "warning", "message": "Direct dealer inventory fetch failed; inspect maintained registry."})

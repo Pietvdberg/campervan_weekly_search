@@ -7,6 +7,7 @@ on:
       - 'dealer_registry.json'
       - 'variant_research.json'
       - 'scripts/**'
+      - '.github/actions/**'
       - '.github/workflows/**'
 permissions:
   contents: read
@@ -34,9 +35,33 @@ jobs:
           overwrite: true
           retention-days: 1
       - name: Download and verify artifact integrity
-        uses: actions/download-artifact@v8
+        uses: ./.github/actions/download-artifact
+        env:
+          NODE_OPTIONS: --throw-deprecation
         with:
           name: action-runtime-smoke-${{ github.run_id }}
           path: ${{ runner.temp }}/camper-action-smoke-downloaded
       - name: Compare restored history fixture
         run: cmp "$RUNNER_TEMP/camper-action-smoke/.search-state/history.json" "$RUNNER_TEMP/camper-action-smoke-downloaded/.search-state/history.json"
+
+  restore-artifact-across-jobs:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: Restore hidden history in a different job
+        uses: ./.github/actions/download-artifact
+        env:
+          NODE_OPTIONS: --throw-deprecation
+        with:
+          name: action-runtime-smoke-${{ github.run_id }}
+          path: ${{ runner.temp }}/camper-history-restore
+      - name: Verify restored history payload
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path(os.environ['RUNNER_TEMP']) / 'camper-history-restore/.search-state/history.json'
+          assert json.loads(path.read_text()) == {'probe': 'node24-artifact-roundtrip'}
+          PY

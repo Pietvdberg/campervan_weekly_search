@@ -42,6 +42,7 @@ def build(data, requirements=None, limit=10):
     return {"generated_on": data.get("generated_on"), "requirements": requirements or {},
             "required_review_measurements": list(MEASUREMENT_RULES),
             "required_conversion_checks": REVIEW_RULES,
+            "rss_followups": data.get("rss_evaluation", {}).get("shortlist", []),
             "leads": records, "specification_version": SPEC_VERSION, "preferences": PREFERENCES,
             "review_template": {"requirements": requirements or {}, "specification_version": SPEC_VERSION, "assessments": assessments},
             "qualification_note": "This is a research queue. Blank fields are not verified and no seller is contacted automatically."}

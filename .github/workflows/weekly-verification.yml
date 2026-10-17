@@ -25,7 +25,7 @@ jobs:
           if-no-files-found: warn
       - name: Restore mail submission state on rerun
         if: github.run_attempt > 1
-        uses: actions/download-artifact@v8
+        uses: ./.github/actions/download-artifact
         with:
           name: mail-delivery-state-${{ github.run_id }}
           path: .

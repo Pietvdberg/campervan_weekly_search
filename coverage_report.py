@@ -6,10 +6,15 @@ from pathlib import Path
 
 def render(data):
     lines = ["## Search source health: " + data["status"], "", "Bounded samples; RSS-only stock is not validated inventory.", "",
-             "| Source | Bound adverts | Gross prices | Routes | Consecutive zero runs | Health |", "|---|---:|---:|---:|---:|---|"]
+             "| Source | Bound adverts | Gross prices | Routes | RSS screened / interesting | Consecutive zero runs | Health |", "|---|---:|---:|---:|---:|---:|---|"]
     for source, row in data["sources"].items():
-        lines.append(f'| {source} | {row["bound"]} | {row["verified_prices"]} | {row["verified_routes"]} | {row["zero_bound_streak"]} | {row["severity"]} |')
-    lines += ["", "Alerts:"] + ["- " + alert["source"] + ": " + alert["message"] for alert in data["alerts"]]
+        rss = str(row.get("rss_evaluated", 0)) + ' / ' + str(row.get("rss_interesting", 0)) if source == "AutoWereld" else '—'
+        lines.append(f'| {source} | {row["bound"]} | {row["verified_prices"]} | {row["verified_routes"]} | {rss} | {row["zero_bound_streak"]} | {row["severity"]} |')
+    lines += ["", "Alerts:"] + ["- " + alert["source"] + ": " + alert["message"] + (" Next: " + alert["next_action"] if alert.get("next_action") else "") for alert in data["alerts"]]
+    for source, row in data["sources"].items():
+        if row.get("access_restriction"):
+            reason = str(row["access_restriction"]).replace("\n", " ").replace("\r", " ").replace("`", "'")
+            lines.append("- " + source + " access diagnostic: `" + reason + "`")
     return "\n".join(lines) + "\n"
 
 

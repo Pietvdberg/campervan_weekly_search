@@ -32,3 +32,8 @@ VAN_MODEL = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|c
 
 SOURCE_NAMES = tuple(SOURCE_DOMAINS)
 REQUIRED_CHECKS = ("high_roof", "cab_ac", "conversion_suitable", "distance_within_100km", "price_incl_vat_within_8000")
+
+# All configured seeds except the explicit historical advert are inventory
+# entry points. Detail responses always retain strict path identity.
+INVENTORY_SEEDS = frozenset(url for urls in SEED_PAGES.values() for url in urls
+                            if not url.endswith("/details.html"))

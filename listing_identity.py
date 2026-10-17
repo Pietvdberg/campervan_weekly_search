@@ -13,7 +13,18 @@ def identity(url):
     return parsed.scheme.lower(), host, parsed.path.rstrip("/") or "/"
 
 
-def require_same_listing(requested, final):
+class ExternalRedirect(ValueError):
+    """Response left the configured source, e.g. for an external consent gate."""
+
+
+def require_same_listing(requested, final, inventory=False):
+    if identity(requested)[:2] != identity(final)[:2]:
+        raise ExternalRedirect("Source redirected to another origin (" + (urlparse(final).hostname or "unknown") + "); content not validated")
+    if inventory:
+        # A configured inventory entry point may move within its own HTTPS
+        # host. It still supplies discovery links, never candidate evidence.
+        if identity(requested)[:2] == identity(final)[:2] and identity(final)[0] == "https":
+            return
     if identity(requested) != identity(final):
         raise ValueError("Response redirected away from requested page")
 

@@ -248,3 +248,10 @@ and surfaces dated RDW concerns in text/HTML. Expired APK and Onlogisch odometer
 assessment block qualification; mass above 3,500 kg prompts licence/mass review
 without inferring actual conversion payload. Seven regressions bring the suite
 to 174 tests. No production schedule, mail dispatch or Pi configuration changed.
+
+PR #55 merged after CI passed. A bounded AutoWereld dealer check found an external
+consent redirect, which explains an access gap without proving zero stock. Shared
+access state now records/stops external-origin redirects. Same-host HTTPS path
+changes are allowed only for configured inventory seeds; detail identity remains
+strict. Four regressions bring the suite to 178 tests. These checks do not bypass
+consent and do not reclassify old sampled records without their original pages.

@@ -22,7 +22,7 @@ from browser_render import render as browser_render
 from html.parser import HTMLParser
 from urllib.parse import urljoin,urldefrag
 
-from source_catalog import SOURCE_DOMAINS as SOURCES, SEED_PAGES, VAN_MODEL as MODEL
+from source_catalog import SOURCE_DOMAINS as SOURCES, SEED_PAGES, VAN_MODEL as MODEL, INVENTORY_SEEDS
 
 ROOF = re.compile(r"\bL[234]H[23]\b|\bhoog ?dak\b",re.I)
 AC = re.compile(r"\b(airco|airconditioning|climate control)\b",re.I)
@@ -58,7 +58,7 @@ class LinkCollector(HTMLParser):
 def fetch(url):
     req=Request(url,headers={"User-Agent":"Mozilla/5.0 CamperVanResearch/1.0","Accept":"text/html,application/rss+xml,application/xml"})
     with urlopen(req,timeout=12) as response:
-        require_same_listing(url, response.geturl())
+        require_same_listing(url, response.geturl(), inventory=url in INVENTORY_SEEDS)
         raw=response.read(MAX_BYTES+1)
         if len(raw)>MAX_BYTES: raise ValueError("oversized response")
         return raw.decode("utf-8",errors="replace"),response.headers.get("Content-Type","")

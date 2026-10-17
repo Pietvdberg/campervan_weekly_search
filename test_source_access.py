@@ -76,3 +76,17 @@ class AccessTests(unittest.TestCase):
                 guarded("https://example.test/seed")
         self.assertEqual(guarded.stops, {})
         self.assertEqual(guarded.counts["example.test"], 2)
+
+    def test_external_consent_redirect_stops_further_source_requests(self):
+        from listing_identity import ExternalRedirect
+        calls = []
+        def redirected(url):
+            calls.append(url)
+            raise ExternalRedirect("Source redirected to another origin (consent.example.test); content not validated")
+        guarded = SourceFetch(redirected)
+        with self.assertRaises(ExternalRedirect):
+            guarded("https://www.example.test/inventory")
+        with self.assertRaises(SourceStopped):
+            guarded("https://www.example.test/detail")
+        self.assertEqual(len(calls), 1)
+        self.assertIn("consent", guarded.stops["example.test"]["reason"])

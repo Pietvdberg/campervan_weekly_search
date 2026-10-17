@@ -58,8 +58,9 @@ round-trip preserves both alternatives; a CSS-stripped view retains readable
 content. Mobile spacing and the viewport declaration were improved. These browser
 checks do not emulate every Outlook client.
 
-Actual Hotmail inbox receipt and desktop/mobile appearance await recipient
-confirmation because no Hotmail inbox connection is available. The sent email is
+On 17 October 2026 the recipient confirmed that the development email was
+received and looked good on both phone and PC, providing screenshots of both.
+This closes the recipient-side delivery/rendering check. The sent email is
 an earlier rendering-test snapshot (65 rejected source records), before the final
 VAT, engine-warning and margin-sale fixes. Its Renault/Boxer cards are replaced by
 the two Transit leads in the final audit. It must not be treated as an updated
@@ -67,3 +68,12 @@ purchase recommendation. A duplicated RDW warning was removed from subsequent
 HTML generation without sending another message.
 
 Production scheduling and dual-recipient mail were not enabled.
+
+## Post-merge live validation
+
+[Run 39037474619](https://github.com/Pietvdberg/campervan_weekly_search/actions/runs/39037474619)
+completed successfully on merged commit `fd0272635d8bade07defdede5aaa691043c7bedb`.
+GitHub reports successful discovery, RDW screening/probe, screening-invariant
+validation, audit upload and history restoration/persistence jobs. The email step
+was skipped because this was a push-triggered development validation run; the
+received email above was the separately submitted rendering-test snapshot.

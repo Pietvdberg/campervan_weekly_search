@@ -280,8 +280,30 @@
     "method": "Authenticated Gmail API connector; not a new SMTP workflow execution",
     "sent_readback": "Exact recipient, subject and both plain/HTML bodies verified; no CC/BCC",
     "render_checks": "Chromium at 800px and 390px, no horizontal overflow; 12 HTTPS links; CSS-stripped fallback readable; multipart/alternative round-trip passed",
-    "hotmail_received_rendering": "Pending recipient confirmation; Hotmail inbox connection unavailable",
+    "hotmail_received_rendering": "Confirmed by recipient on 2026-10-17: received and looks good on both phone and PC; screenshots supplied.",
     "scope": "One development email; no production schedule or dual-recipient mail enabled",
     "note": "One earlier rendering-test snapshot was sent; final VAT/fault/margin/ranking audit changed source rejection counts and shortlist. Exact submitted bodies were verified; no second email sent. See dated review for final results."
+  },
+  "post_merge_validation": {
+    "run_url": "https://github.com/Pietvdberg/campervan_weekly_search/actions/runs/39037474619",
+    "head_sha": "fd0272635d8bade07defdede5aaa691043c7bedb",
+    "status": "completed",
+    "conclusion": "success",
+    "verified_jobs": [
+      "verify",
+      "persist-history"
+    ],
+    "verified_stages": [
+      "regression_tests",
+      "history_restore",
+      "six_source_discovery",
+      "rdw_screening",
+      "screening_invariants",
+      "rdw_connectivity_probe",
+      "audit_upload",
+      "history_persistence"
+    ],
+    "email_step": "skipped as intended for push-triggered validation",
+    "verified_on": "2026-10-17"
   }
 }

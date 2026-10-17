@@ -78,30 +78,35 @@ jobs:
           path: .search-state/
           include-hidden-files: true
           retention-days: 7
-      - name: Restore mail submission state on rerun
-        if: github.run_attempt > 1 && github.event_name == 'workflow_dispatch'
-        uses: ./.github/actions/download-artifact
-        with:
-          name: mail-delivery-state-${{ github.run_id }}
-          path: .
-      - name: Email development report ONLY to Hotmail
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          MAIL_MODE: development
-          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python3 send_report.py report.txt
-      - name: Preserve mail submission state
-        if: always() && github.event_name == 'workflow_dispatch'
-        uses: actions/upload-artifact@v7
-        with:
-          name: mail-delivery-state-${{ github.run_id }}
-          path: mail_delivery_state.json
-          if-no-files-found: ignore
-          overwrite: true
-          retention-days: 30
       - name: Require identity-bound discovery evidence and report coverage gaps
         run: python3 verify_discovery.py discovered_candidates.json
+
+  deliver-development:
+    if: github.event_name == 'workflow_dispatch'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    concurrency:
+      group: weekly-delivery-development
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Restore validated search audit
+        uses: ./.github/actions/download-artifact
+        with:
+          name: marketplace-rdw-verification-${{ github.run_id }}
+          path: .
+      - name: Send development digest with durable recovery and acknowledgement
+        env:
+          MAIL_MODE: development
+          GH_TOKEN: ${{ github.token }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 weekly_delivery.py send --repo "$GITHUB_REPOSITORY" --period "development-$GITHUB_RUN_ID"
 
   persist-history:
     if: always() && needs.verify.outputs.state_ready == 'success'

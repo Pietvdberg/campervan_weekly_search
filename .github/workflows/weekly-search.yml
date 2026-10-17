@@ -1,0 +1,132 @@
+name: Weekly camper search and delivery
+on:
+  workflow_dispatch:
+  # One release acceptance run, removed when the production schedule is enabled.
+  pull_request:
+    types: [closed]
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: weekly-delivery-${{ github.event_name == 'schedule' && 'production' || 'development' }}
+  cancel-in-progress: false
+jobs:
+  plan:
+    if: github.event_name != 'pull_request' || (github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'fix/production-delivery' && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      enabled: ${{ steps.plan.outputs.enabled }}
+      mode: ${{ steps.plan.outputs.mode }}
+      period: ${{ steps.plan.outputs.period }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: plan
+        name: Resolve audience and reporting period
+        run: python3 weekly_schedule.py
+
+  search:
+    needs: plan
+    if: needs.plan.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+    env:
+      MAIL_MODE: ${{ needs.plan.outputs.mode }}
+      DELIVERY_PERIOD: ${{ needs.plan.outputs.period }}
+      TZ: Europe/Amsterdam
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check syntax and regression tests
+        run: |
+          python3 -m compileall -q .
+          python3 -m unittest discover -v
+      - name: Recover the original pending email before any fresh search
+        id: recovery
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 weekly_delivery.py recover --repo "$GITHUB_REPOSITORY" --period "$DELIVERY_PERIOD"
+      - name: Restore observation history
+        if: steps.recovery.outputs.already-delivered != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 state_store.py pull --repo "$GITHUB_REPOSITORY" --branch "search-observations-$MAIL_MODE"
+      - name: Discover current adverts and assess every RSS item
+        if: steps.recovery.outputs.already-delivered != 'true'
+        run: |
+          python3 discover_listings.py --output discovered_candidates.json
+          python3 rss_evaluation.py --input discovered_candidates.json --output rss_evaluation.json
+          python3 camper_pipeline.py --input discovered_candidates.json --rss-evaluation rss_evaluation.json --history .search-state/search_state.json --run-id "$GITHUB_RUN_ID"
+      - name: Require valid evidence and core discovery before delivery
+        if: steps.recovery.outputs.already-delivered != 'true'
+        run: |
+          python3 validate_search.py --discovery discovered_candidates.json --screening screening_results.json
+          python3 verify_discovery.py discovered_candidates.json
+          python3 coverage_report.py
+      - name: Persist observations independently of email acknowledgement
+        if: steps.recovery.outputs.already-delivered != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 state_store.py push --repo "$GITHUB_REPOSITORY" --branch "search-observations-$MAIL_MODE"
+      - name: Deliver the digest with durable checkpoints
+        if: steps.recovery.outputs.already-delivered != 'true' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 weekly_delivery.py send --repo "$GITHUB_REPOSITORY" --period "$DELIVERY_PERIOD"
+      - name: Release acceptance — interrupt after SMTP and recover without resending
+        if: steps.recovery.outputs.already-delivered != 'true' && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 scripts/delivery_acceptance.py
+      - name: Release acceptance — verify owner notification path
+        if: github.event_name == 'pull_request' && steps.recovery.outputs.already-delivered != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 failure_alert.py --test
+      - name: Preserve search and delivery audit
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: weekly-search-${{ github.run_id }}
+          overwrite: true
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            discovered_candidates.json
+            screening_results.json
+            rss_evaluation.json
+            research_pack.json
+            validation_summary.json
+            coverage_health.json
+            report.txt
+            delivery_report.txt
+            delivery_report.html
+            delivery_receipt.json
+
+  notify-failure:
+    needs: [plan, search]
+    if: always() && (needs.plan.result == 'failure' || needs.search.result == 'failure' || needs.search.result == 'cancelled')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Notify owner by email, with a GitHub issue fallback
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 failure_alert.py

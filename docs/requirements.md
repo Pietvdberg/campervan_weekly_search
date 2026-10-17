@@ -36,10 +36,11 @@ project requirements and distinguishes historical observations from current proo
   and up to five separate RSS tips. Retain full audit records and source limits.
   Zero verified matches never means exhaustive proof of no stock.
 - Development/manual mail goes only to the agreed Hotmail development address.
-  Push CI sends no email. Actual HTML inbox rendering is still unverified.
+  Push CI sends no email. The recipient confirmed readable HTML on phone and PC.
 - Production weekly search/email remains disabled pending explicit activation
-  authorization. The intended cadence is Thursday 15:00 Europe/Amsterdam with DST.
-  General authorization to improve and merge code does not activate production.
+  acceptance of the new delivery path. On 17 October the user explicitly requested
+  priorities 1–3, including activation after that acceptance passes. The cadence
+  is Thursday 15:00 Europe/Amsterdam with DST. See [the release contract](weekly-production-delivery.md).
 - The separate Pi RSS collector/upload timer was already enabled and user-approved:
   Thursday 13:30 Europe/Amsterdam, linger enabled, last verified in the handover on
   16 October. That is a historical user-reported operational observation, not a

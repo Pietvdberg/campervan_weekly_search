@@ -14,3 +14,6 @@ validation_summary.json
 .search-state/
 coverage_health.json
 report.html
+delivery_report.txt
+delivery_report.html
+delivery_receipt.json

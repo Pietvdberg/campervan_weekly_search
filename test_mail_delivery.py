@@ -79,3 +79,12 @@ class DeliveryTests(unittest.TestCase):
 
     def test_sent_folder_found_by_special_use_flag(self):
         self.assertEqual(send_report.sent_folder_from_list([b'(\\HasNoChildren \\Sent) "/" "[Gmail]/Verzonden"']), "[Gmail]/Verzonden")
+
+    def test_partial_recipient_refusal_cannot_be_acknowledged_on_retry(self):
+        self.smtp.return_value.__enter__.return_value.send_message.return_value = {"refused@example.test": (550, b"rejected")}
+        with patch("send_report.verify_sent", return_value=False), self.assertRaisesRegex(RuntimeError, "refused recipients"):
+            send_report.main()
+        self.assertEqual(json.loads(self.state.read_text())["status"], "recipients_refused")
+        with patch("send_report.verify_sent", return_value=True) as sent, self.assertRaisesRegex(RuntimeError, "partial delivery"):
+            send_report.main()
+        sent.assert_not_called()

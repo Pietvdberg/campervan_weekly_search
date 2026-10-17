@@ -48,7 +48,8 @@ not a consent bypass, and no public RSS lead is promoted to a verified advert.
 ## Candidate evidence and research
 
 AutoScout24/AutoTrack detail state is read only when a single `listingDetails`
-record's `webPage` matches the requested bound advert. Its explicit public gross
+record's `webPage` matches the requested bound advert. Syndicated AutoTrack records
+also require the exact UUID, native canonical controller and marketplace identity. Its explicit public gross
 and net prices resolve VAT evidence without borrowing unrelated labels or guessing
 rounding; conditional/incomplete prices stay unknown. Vehicle-specific exact
 pickup addresses take precedence over generic seller coordinates and are matched
@@ -64,3 +65,20 @@ The pipeline exports research tasks and an unfilled review template, requires
 dated independent A/C/availability/condition checks for qualification, and never
 invents conversion minima or inspection outcomes. Read `conversion-evidence.md`
 for the human review contract. Unknown physical facts still block a recommendation.
+
+## Repeated end-to-end validation
+
+`validate_search.py` checks identity preservation, gross-budget and routed-distance
+claims, qualification evidence and RDW outcomes. CI runs it before any downstream
+delivery. Zero qualified vehicles is a valid outcome; missing source coverage and
+independent reviews remain visible. Bare conversion flags cannot replace reviewed
+measurements. Explicit current mechanical failures exclude a listing; repaired or
+conditional descriptions are handled separately.
+
+Regional card hints rank discovery only and never establish road distance. Explicit
+business-buyer index prices can exclude clearly expensive inventory but never prove
+gross affordability. Four bounded live runs and paired-listing comparisons are
+recorded in [the dated validation report](live-validation-2026-10-17.md). The final
+run has 27 records, nine explicit gross prices, 17 routes, 17 plate confirmations
+and zero qualified vehicles. Actual conversion minima and physical reviews remain
+required; production scheduling and mail remain outside this release.

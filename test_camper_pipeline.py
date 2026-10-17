@@ -3,13 +3,19 @@ from camper_pipeline import evaluate, screen, report
 
 class ScreeningTests(unittest.TestCase):
     def example(self):
-        return {"name":"Synthetic fixture, not a real listing","listing_url":"https://example.com/van",
+        candidate = {"name":"Synthetic fixture, not a real listing","listing_url":"https://example.com/van",
                 "individual_listing_confirmed":True,"plate":"AB-123-C","plate_confirmed_from_listing":True,
                 "independent_review":{"listing_url":"https://example.com/van","plate":"AB123C","reviewer":"Synthetic fixture only",
                     "observed_at":"2000-01-01T00:00:00+00:00","expires_at":"2100-01-01T00:00:00+00:00",
                     "checks":{key:{"confirmed":True,"method":"independent_inspection","source_url":"https://example.test/fictional-inspection"}
                               for key in ("cab_ac_working","available_for_sale","condition_acceptable")}},
                 "checks":{key:True for key in ("high_roof","cab_ac","conversion_suitable","distance_within_100km","price_incl_vat_within_8000")}}
+        # Fictional measurement proof; these are not user project requirements.
+        from conversion_evidence import assess
+        requirements = {"available_payload_kg":500,"internal_height_cm":180,"internal_length_cm":300}
+        row = {**candidate["independent_review"], "measurements":{key:{"value":value,"source_url":"https://example.test/fictional-measurement","independently_checked":True} for key,value in requirements.items()}}
+        candidate["conversion_assessment"] = assess(candidate, requirements, [row])
+        return candidate
     def test_perfect_fixture_screening(self):
         self.assertTrue(screen(self.example())["qualified"])
     def test_unknown_ac_is_not_qualified(self):

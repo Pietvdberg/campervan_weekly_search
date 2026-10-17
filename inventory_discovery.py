@@ -10,7 +10,8 @@ import re
 from collections import deque
 from html.parser import HTMLParser
 from urllib.parse import parse_qs, urljoin, urlparse, urldefrag
-from listing_evidence import structured
+from listing_evidence import structured, parse_amount
+from discovery_queue import cards as inventory_cards, key as listing_key
 
 from source_catalog import VAN_MODEL as MODELS
 NEXT=re.compile(r"\b(volgende|next|volgende pagina|toon meer)\b",re.I)
@@ -82,6 +83,7 @@ def crawl(source,seeds,fetcher,maximum=MAX_INVENTORY_PAGES):
     queue=deque(seeds)
     visited=set()
     details={}
+    card_evidence={}
     errors=[]
     diagnostics=[]
     accessible=0
@@ -95,6 +97,7 @@ def crawl(source,seeds,fetcher,maximum=MAX_INVENTORY_PAGES):
             if "html" not in ctype.lower():raise ValueError("non-HTML inventory response")
             accessible+=1
             links=links_on_page(markup,url)
+            card_evidence.update(inventory_cards(markup, url))
             anchors+=len(links)
             candidate_count=0
             for label,link,rel in links:
@@ -103,6 +106,16 @@ def crawl(source,seeds,fetcher,maximum=MAX_INVENTORY_PAGES):
                 if kind=="detail":
                     if MODELS.search(label+" "+urlparse(link).path.replace("-"," ")):
                         details.setdefault(link,label)
+                        prices = [parse_amount(value) for value in re.findall(
+                            r"prijs(?:\s+voor\s+zakelijke\s+kopers)?\s*:\s*([0-9.]+(?:,[0-9]{2})?)", label, re.I)]
+                        prices = [value for value in prices if value is not None]
+                        if prices:
+                            # Explicit Dutch site purchase-price label within
+                            # this advert's own link; repeated old/new prices use
+                            # the lowest bound and never qualify a vehicle.
+                            card_evidence[listing_key(link)] = {"url":link,"title":label,
+                                "advertised_eur":float(min(prices)),"inventory_url":url,
+                                "evidence":"unverified labelled inventory price only"}
                         candidate_count+=1
                 elif kind=="inventory" and next_inventory(link,label,rel,source,url) and link not in visited:
                     queue.append(link)
@@ -113,7 +126,7 @@ def crawl(source,seeds,fetcher,maximum=MAX_INVENTORY_PAGES):
             if "429" in str(exc) or "403" in str(exc):
                 # Respect source access limits; stop this inventory traversal.
                 break
-    return {"details":details,"inventory_pages_checked":len(visited),
+    return {"details":details,"cards":card_evidence,"inventory_pages_checked":len(visited),
             "inventory_pages_accessible":accessible,"inventory_links_examined":anchors,
             "inventory_errors":errors[:8],"inventory_pending":len(queue),
             "inventory_diagnostics":diagnostics}

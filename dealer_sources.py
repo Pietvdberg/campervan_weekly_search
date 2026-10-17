@@ -78,7 +78,8 @@ def crawl_dealers(fetcher, maximum_pages=2, registry=None):
                         amount = parse_amount(price_match.group(1)) if price_match else None
                         card = {"url": link, "title": label,
                             "advertised_eur": float(amount) if amount is not None else None,
-                            "inventory_url": url, "evidence": "unverified inventory card only"}
+                            "inventory_url": url, "evidence": "unverified inventory card only",
+                            "discovery_city_hint": dealer.get("discovery_locations", [""])[0] if len(dealer.get("discovery_locations", [])) == 1 else ""}
                         if price_match and amount is not None and re.match(
                                 r"^[\s,.-]*(?:ex\.?|excl\.?|exclusief)\s*(?:21%\s*)?btw\b",
                                 label[price_match.end():price_match.end()+30], re.I):

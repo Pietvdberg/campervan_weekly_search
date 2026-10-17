@@ -63,3 +63,12 @@ class ScopedStateTests(unittest.TestCase):
 
     def test_unsupported_marketplace_cannot_claim_known_state_semantics(self):
         self.assertIsNone(detail_facts(page(record()), URL.replace("autoscout24.nl", "other.test")))
+
+    def test_autotrack_syndication_requires_exact_uuid_and_its_page_controller(self):
+        track_url = URL.replace("autoscout24.nl/aanbod/", "autotrack.nl/a/")
+        state = {"listingDetails": record(), "canonicalOrigin": "https://www.autotrack.nl", "marketplace": {"domain": "autotrack_nl"}}
+        content = '<script id="__NEXT_DATA__">' + json.dumps(state) + '</script>'
+        self.assertIsNotNone(detail_facts(content, track_url))
+        for change in ({"canonicalOrigin": "https://other.test"}, {"marketplace": {"domain": "other"}}, {"listingDetails": {**record(), "id": "00000000-0000-0000-0000-000000000000"}}):
+            invalid = '<script id="__NEXT_DATA__">' + json.dumps({**state, **change}) + '</script>'
+            self.assertIsNone(detail_facts(invalid, track_url))

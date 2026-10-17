@@ -26,6 +26,8 @@ jobs:
         run: python3 discover_listings.py --output discovered_candidates.json
       - name: Screen discovered listings and check confirmed plates with RDW
         run: python3 camper_pipeline.py --input discovered_candidates.json
+      - name: Validate screening invariants and stage outcomes
+        run: python3 validate_search.py --discovery discovered_candidates.json --screening screening_results.json
       - name: Live RDW API connectivity probe on historical test plate
         shell: bash
         run: |
@@ -44,6 +46,7 @@ jobs:
             discovered_candidates.json
             screening_results.json
             research_pack.json
+            validation_summary.json
             reviewed_evidence_template.json
             rdw_probe.json
             report.txt

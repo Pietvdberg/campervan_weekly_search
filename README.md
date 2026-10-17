@@ -12,9 +12,12 @@ It is not yet an automated production weekly search. See
 python3 discover_listings.py --output discovered_candidates.json
 python3 camper_pipeline.py --input discovered_candidates.json
 python3 verify_discovery.py discovered_candidates.json
+python3 validate_search.py --discovery discovered_candidates.json --screening screening_results.json
 ```
 
-The outputs are `screening_results.json` and `report.txt`; no mail is sent by these
+The outputs include `screening_results.json`, `report.txt`, `research_pack.json` and
+`reviewed_evidence_template.json`. Validation writes `validation_summary.json`.
+See the [dated live validation](docs/live-validation-2026-10-17.md). No mail is sent by these
 commands. Optional reviewed conversion evidence has a separate documented
 [contract](docs/conversion-evidence.md). Source groups, inventory seeds and model
 patterns are centralized in `source_catalog.py`. The supplied handover is reconciled in [requirements](docs/requirements.md);

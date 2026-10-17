@@ -24,11 +24,12 @@ def item_card(item):
     research_html = "".join('<p class="muted"><strong>Aandrijflijnonderzoek:</strong> ' + e(' '.join(note.get('findings', []))) + ' ' + ' '.join('<a href="' + e(source['url']) + '">Bron</a>' for source in note.get('sources', [])) + '</p>' for note in editorial['research_notes'][:2])
     if not research_html:
         research_html = '<p class="muted">Exacte aandrijflijn nog onvoldoende onderzocht; geen algemene betrouwbaarheidsclaim.</p>'
-    risks = "; ".join([risk["message"] for risk in item.get("rdw_risks", [])] + [reason for reason in item.get("reasons", []) if "RDW" in reason]) or "Geen gemelde RDW-signalen; technische staat blijft ongeverifieerd"
+    risks = "; ".join(dict.fromkeys([risk["message"] for risk in item.get("rdw_risks", [])] + [reason for reason in item.get("reasons", []) if "RDW" in reason])) or "Geen gemelde RDW-signalen; technische staat blijft ongeverifieerd"
     return (f'<div class="vehicle"><h3>{title}</h3><p class="meta">Bron: {e(c.get("source","?"))} · Zoekbewijs: {e(item.get("search_assessment", {}).get("checklist_coverage_percent", 0))}% · '
             f'{e(status)}</p><p><strong>Prijs incl. btw:</strong> {price} '
             f'<span class="muted">(geadverteerd: {advertised}; btw-status: {e(c.get("vat_basis","unknown"))})</span></p>'
             f'<p><strong>Rijafstand:</strong> {distance} vanaf Bergen op Zoom</p>'
+            + (f'<p><strong>Verkopersinformatie:</strong> {e("; ".join(c.get("advertised_cautions", [])))}</p>' if c.get("advertised_cautions") else '') +
             f'<p class="muted"><strong>RDW-aandachtspunten:</strong> {e(risks)}</p>'
             f'<p><strong>Waarom bekijken:</strong> {e(editorial["why"])}</p>'
             f'<p class="muted">Categorie {e(editorial["category"])} · {e(editorial["ranking"])} · {e(editorial["history"])}</p>'
@@ -61,10 +62,13 @@ def render_html(data):
         f'<td>{e(screening.get(source,{}).get("verified_distances",0))}</td>'
         f'<td>{e(coverage.get(source,{}).get("status","niet gecontroleerd"))}</td></tr>'
         for source in SOURCES)
-    return f"""<!doctype html><html lang="nl"><head><meta charset="utf-8">
+    review = data.get("report_context") == "development_review"
+    introduction = ("Ontwikkeltest: herbeoordeling van bekende voorraad, geen nieuwe advertenties. Brongegevens en RDW zijn waargenomen op " + str(data.get("evidence_observed_on", data.get("generated_on", "onbekend"))) + "."
+                    if review else "Je wekelijkse overzicht, met alleen gecontroleerde feiten als harde conclusie.")
+    return f"""<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {{font:15px/1.55 Arial,Helvetica,sans-serif;color:#253345;background:#f3f6f9;margin:0;padding:20px}}
-main {{max-width:720px;margin:auto;background:white;padding:28px;border-radius:12px}}
+main {{max-width:720px;margin:auto;background:white;padding:28px;border-radius:12px;overflow-wrap:anywhere}}
 h1 {{font-size:25px;line-height:1.3;margin:0 0 8px;color:#173451}}
 h2 {{font-size:19px;margin:30px 0 12px;color:#173451;border-bottom:1px solid #dce3e9;padding-bottom:8px}}
 h3 {{font-size:16px;margin:0 0 5px}}
@@ -74,9 +78,10 @@ p {{margin:8px 0}}.muted,.meta {{color:#566675;font-size:13px}}
 a {{color:#165ba5}} table {{width:100%;border-collapse:collapse;font-size:12px}}
 td,th {{border-bottom:1px solid #e5eaf0;padding:8px 5px;text-align:left;vertical-align:top}}
 li {{margin:12px 0}}.note {{background:#fff5e3;padding:12px;border-radius:7px}}
-</style></head><body><main>
+@media(max-width:520px) {{body {{padding:8px}} main {{padding:14px}} .vehicle {{padding:12px}} td,th {{padding:6px 2px;font-size:11px}} h1 {{font-size:22px}}}}
+</style></head><body style="margin:0;background:#f3f6f9;font-family:Arial,Helvetica,sans-serif;color:#253345"><main style="max-width:720px;margin:auto;background:white;overflow-wrap:anywhere">
 <h1>Camperzoektocht · {e(data.get("generated_on",""))}</h1>
-<p>Je wekelijkse overzicht, met alleen gecontroleerde feiten als harde conclusie.</p>
+<p>{e(introduction)}</p>
 <div class="stats"><strong>{search_count} zoekmatches</strong> · {len(qualified)} bevestigde matches voor aankoop · {len(results)} advertenties bekeken · {rejected} afgewezen</div>
 <p class="note">{match_note}</p>
 <h2>✓ Volledig beoordeeld voor aankoop</h2>

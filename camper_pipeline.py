@@ -56,11 +56,14 @@ def report_priority(item):
     checks = c.get("checks", {})
     suitability = item.get("suitability", {})
     return (int(item.get("search_assessment", {}).get("matched", False)),
+            -sum(risk.get("code") == "odometer_inconsistent" for risk in item.get("rdw_risks", [])),
+            int(checks.get("price_incl_vat_within_8000") is True and checks.get("distance_within_100km") is True),
+            int(checks.get("distance_within_100km") is True),
+            int(checks.get("price_incl_vat_within_8000") is True),
+            int(checks.get("high_roof") is True and checks.get("cab_ac") is True),
+            -sum(bool(risk.get("blocks_qualification")) for risk in item.get("rdw_risks", [])),
             int(suitability.get("critical_research_supported", False)),
             suitability.get("weighted_score_known_criteria") or 0 if suitability.get("critical_research_supported") else 0,
-            int(checks.get("price_incl_vat_within_8000") is True),
-            int(checks.get("distance_within_100km") is True),
-            int(checks.get("high_roof") is True and checks.get("cab_ac") is True),
             int(bool(item.get("plate"))), item["score"])
 
 
@@ -79,15 +82,18 @@ def report_selection(data):
     """One presentation model for text and HTML; the raw audit stays intact."""
     results = data.get("results", [])
     grouped = list(unique_report_items(results))
-    qualified = sorted((x for x in grouped if candidate_state(x) == "QUALIFIED" and x.get("history", {}).get("show_in_digest", True)),
+    # An explicit development review can revisit known stock without mutating
+    # durable history or claiming it is newly advertised. Weekly suppression stays on.
+    visible = lambda x: data.get("report_context") == "development_review" or x.get("history", {}).get("show_in_digest", True)
+    qualified = sorted((x for x in grouped if candidate_state(x) == "QUALIFIED" and visible(x)),
                        key=report_priority, reverse=True)
     potential = [x for x in grouped if candidate_state(x) == "POTENTIAL MATCH — UNVERIFIED"
                  and x.get("search_assessment", {}).get("status") in ("SEARCH_MATCH", "CONDITIONAL")
-                 and x.get("history", {}).get("show_in_digest", True)]
+                 and visible(x)]
     potential.sort(key=report_priority, reverse=True)
-    search_matches = [x for x in grouped if x.get("search_assessment", {}).get("matched") and x.get("history", {}).get("show_in_digest", True)]
+    search_matches = [x for x in grouped if x.get("search_assessment", {}).get("matched") and visible(x)]
     return {"qualified": qualified, "potential": potential[:5], "search_matches": search_matches,
-            "unchanged_suppressed": sum(not x.get("history", {}).get("show_in_digest", True) for x in grouped),
+            "unchanged_suppressed": sum(not visible(x) for x in grouped),
             "screened_records": len(results),
             "rejected_records": sum(candidate_state(x) == "REJECTED" for x in results)}
 
@@ -284,6 +290,7 @@ def report(data):
     potential = selection["potential"]
     rejected = selection["rejected_records"]
     rows = ["Camper van search — concise development report",
+            "DEVELOPMENT REVIEW: known stock revisited; not newly advertised." if data.get("report_context") == "development_review" else "Weekly selection: new or materially updated evidence.",
             "Generated: " + str(data.get("generated_on", "unknown")),
             "Advertised search matches: " + str(len(selection["search_matches"])),
             "Verified >=90% qualifiers: " + str(len(qualified)) + " (purchase readiness; separate from search fit)",
@@ -300,6 +307,7 @@ def report(data):
         rows.extend(["- " + unescape(str(c.get("name", "Unknown"))),
                      "  Search status: " + item.get("search_assessment", {}).get("status", "unverified") + "; category " + editorial["category"],
                      "  Why investigate: " + editorial["why"],
+                     "  Seller cautions: " + ("; ".join(c.get("advertised_cautions", [])) or "No specific seller caution extracted; condition remains unverified"),
                      "  Drivetrain research: " + research_text,
                      "  Weighted suitability: " + editorial["ranking"],
                      "  History: " + editorial["history"],

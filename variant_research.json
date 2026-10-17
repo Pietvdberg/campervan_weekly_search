@@ -111,5 +111,147 @@
       "Cold/hot idle and injection-system diagnosis if symptoms are present."
     ],
     "automatic_reliability_score": null
+  },
+  {
+    "id": "transporter-t5-19-tdi",
+    "applies_to": {
+      "make": "Volkswagen",
+      "model": "Transporter",
+      "generation": "T5 pre-facelift",
+      "engine": "1.9 TDI"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://www.promobil.de/kaufberatung/vw-t5-kaufberatung-gebrauchter-campingbus/",
+        "kind": "camper_buyer_guide",
+        "independence": "Onafhankelijke redactionele koopgids uit 2021; geen vlootstatistiek. Vermogenspecifieke uitspraken worden niet op alle 1.9 TDI toegepast."
+      }
+    ],
+    "findings": [
+      "De koopgids noemt bij de vroege 1.9/2.5 TDI lekkage rond pompverstuivers met mogelijke dieselverdunning van motorolie. Laat oliepeil en facturen controleren. Dit is geen gemeten storingskans; CFCA-problemen horen bij een andere motor."
+    ],
+    "seller_questions": [
+      "Zijn pompverstuivers of afdichtingen gerepareerd en stijgt het oliepeil? Controleer distributiehistorie volgens motorcode."
+    ],
+    "inspection_priorities": [
+      "Onafhankelijke keuring en onderhoudsfacturen van deze bus; brononderzoek bewijst geen actuele technische staat."
+    ],
+    "automatic_reliability_score": null
+  },
+  {
+    "id": "transporter-t5-25-automatic",
+    "applies_to": {
+      "make": "Volkswagen",
+      "model": "Transporter",
+      "generation": "T5 pre-facelift",
+      "engine": "2.5 TDI",
+      "gearbox": "6-speed automatic"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://www.promobil.de/kaufberatung/vw-t5-kaufberatung-gebrauchter-campingbus/",
+        "kind": "camper_buyer_guide",
+        "independence": "Redactionele koopgids; inspectiepunten, geen incidentiecijfers of garantie op een specifieke bus."
+      }
+    ],
+    "findings": [
+      "De gids noemt bij de 2.5 TDI koelvloeistoflekkage via de waterpomp en bij de vroege zestrapsautomaat kostbare slijtage. Controleer koelvloeistof/olie en schakelen koud én warm. Dit betreft mogelijke variantproblemen, geen vastgestelde schade aan deze bus."
+    ],
+    "seller_questions": [
+      "Welke facturen zijn er voor automaatonderhoud of revisie en waterpompwerk? Meet bruikbare woonruimte achter de dubbele cabine."
+    ],
+    "inspection_priorities": [
+      "Onafhankelijke keuring en onderhoudsfacturen van deze bus; brononderzoek bewijst geen actuele technische staat."
+    ],
+    "automatic_reliability_score": null
+  },
+  {
+    "id": "jumper-2020-bluehdi-22",
+    "applies_to": {
+      "make": "Citroen",
+      "model": "Jumper",
+      "engine": "2.2 BlueHDi",
+      "gearbox": "6-speed manual",
+      "first_registration_year": "2020"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://www.media.stellantis.com/fr-fr/citroen/press/nouvelle-gamme-citroen-jumper-inspiree-par-les-pros",
+        "kind": "manufacturer_model_introduction",
+        "independence": "Fabrikantsinformatie over modelidentiteit; geen onafhankelijke betrouwbaarheidstest of storingsonderzoek."
+      }
+    ],
+    "findings": [
+      "Citroën beschrijft vanaf 2019 de 2.2 BlueHDi met handgeschakelde zesbak en 120/140/165 pk. Dit ondersteunt de geadverteerde motorfamilie; het bewijst geen betrouwbaarheid, motorcode of onderhoudstoestand van deze bus."
+    ],
+    "seller_questions": [
+      "Welke onderhouds- en emissiesysteemfacturen zijn beschikbaar? Laat motorcode, storingsgeheugen en onderhoudstermijnen op VIN controleren."
+    ],
+    "inspection_priorities": [
+      "Onafhankelijke keuring en onderhoudsfacturen van deze bus; brononderzoek bewijst geen actuele technische staat."
+    ],
+    "automatic_reliability_score": null
+  },
+  {
+    "id": "ducato-2014-20-multijet",
+    "applies_to": {
+      "make": "Fiat",
+      "model": "Ducato",
+      "engine": "2.0 MultiJet",
+      "first_registration_year": "2014"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://fr-rta.haynes.com/products/fiat-ducato-250-de-2006-a-2015",
+        "kind": "workshop_manual_catalogue",
+        "independence": "Handleidingcatalogus voor variantidentiteit en onderhoudsinformatie; geen storingsfrequenties. Geen 2.3-problemen toegeschreven aan de 2.0."
+      }
+    ],
+    "findings": [
+      "Haynes biedt werkplaatsinformatie voor de 2.0 diesel in deze bouwjaren. De catalogus noemt motorcode 250A1000; die is bij deze advertentie niet bevestigd. Een beschikbare handleiding bewijst geen goede technische staat of Europese onderdelenvoorraad."
+    ],
+    "seller_questions": [
+      "Bevestig motorcode en onderhoudsvoorschrift; zijn distributie- en onderhoudsfacturen aanwezig? Meet stahoogte en laadruimte van deze KH1."
+    ],
+    "inspection_priorities": [
+      "Onafhankelijke keuring en onderhoudsfacturen van deze bus; brononderzoek bewijst geen actuele technische staat."
+    ],
+    "automatic_reliability_score": null
+  },
+  {
+    "id": "transit-mk7-22-family",
+    "applies_to": {
+      "make": "Ford",
+      "model": "Transit",
+      "generation": "Mk7 2006-2013",
+      "engine": "2.2 TDCi"
+    },
+    "reviewed_on": "2026-10-17",
+    "review_by": "2027-04-17",
+    "sources": [
+      {
+        "url": "https://uk.haynes.com/blogs/tips-tutorials/ford-transit-diesel-2006-2013-buyer-s-guide",
+        "kind": "workshop_manual_publisher",
+        "independence": "Modelkoopgids met beperkte variantinformatie; geen storingsfrequentie of inspectie van deze bus."
+      }
+    ],
+    "findings": [
+      "Haynes noemt bij 2.2 TDCi vanaf 2008 mogelijke brandstofverdunning van motorolie bij DPF-problemen. Controleer of een DPF is gemonteerd, oliepeil en diagnosehistorie. Injectorproblemen die de gids specifiek aan de 115 pk-versie toeschrijft, zijn hiermee niet vastgesteld voor deze andere uitvoering."
+    ],
+    "seller_questions": [
+      "Welke DPF- en onderhoudsfacturen zijn beschikbaar? Laat oliepeil, regeneratiehistorie en openstaande terugroepacties op VIN controleren."
+    ],
+    "inspection_priorities": [
+      "Koud/warm testen en onafhankelijke diagnose; uitvoering en bouwdatum bevestigen."
+    ],
+    "automatic_reliability_score": null
   }
 ]

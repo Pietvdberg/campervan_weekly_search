@@ -39,14 +39,32 @@ def variant_research(candidate, registry=None, today=None):
         if variant.get("model") == "Boxer" and year.isdigit() and 2007 <= int(year) <= 2013:
             variant["generation"] = "II 2006-2014"
             inferred.append("generation")
-        engine = re.search(r"\b([23][.,][023])\s*(HDi|BlueHDi)\b", description, re.I)
+        model_year = int(year) if year.isdigit() else None
+        generations = {("Volkswagen", "Transporter"): (2004, 2008, "T5 pre-facelift"),
+                       ("Ford", "Transit"): (2007, 2012, "Mk7 2006-2013")}
+        scope = generations.get((variant.get("make"), variant.get("model")))
+        if scope and model_year and scope[0] <= model_year <= scope[1]:
+            variant["generation"] = scope[2]
+            inferred.append("generation")
+        registration_year = str(clue.get("firstRegistrationDateRaw") or "")[:4]
+        if registration_year.isdigit():
+            variant["first_registration_year"] = registration_year
+        engine_pattern = r"\b([123][.,][0-9])\s*(BlueHDi|HDi|MultiJet|TDCi|TDI)\b"
+        engine = re.search(engine_pattern, description, re.I) or re.search(engine_pattern, str(clue.get("motorTypeName") or ""), re.I)
         if engine:
-            variant["engine"] = engine.group(1).replace(",", ".") + " " + ("BlueHDi" if engine.group(2).lower() == "bluehdi" else "HDi")
-        if str(clue.get("gears")) == "6" and str(clue.get("transmissionType")).casefold() in ("manual", "handgeschakeld", "schaltgetriebe"):
-            variant["gearbox"] = "6-speed manual"
+            labels = {s.casefold(): s for s in ("BlueHDi", "HDi", "MultiJet", "TDCi", "TDI")}
+            variant["engine"] = engine.group(1).replace(",", ".") + " " + labels[engine.group(2).casefold()]
+        transmission = str(clue.get("transmissionType")).casefold()
+        gearbox = "manual" if transmission in ("manual", "handgeschakeld", "schaltgetriebe") else "automatic" if transmission in ("automatic", "automatisch", "automatik") else None
+        if gearbox and str(clue.get("gears")) in ("4", "5", "6", "7", "8", "9", "10"):
+            variant["gearbox"] = str(clue["gears"]) + "-speed " + gearbox
+        if isinstance(clue.get("powerInHp"), str):
+            variant["advertised_power"] = clue["powerInHp"]
         body = re.search(r"\bL[1-4][ .-]*H[1-3]\b", description, re.I)
         if body:
             variant["body"] = re.sub(r"[ .-]", "", body.group()).upper()
+        elif clue.get("advertisedBody"):
+            variant["body"] = clue["advertisedBody"]
 
     fields = ("make", "model", "generation", "engine", "gearbox", "body")
     matches = []

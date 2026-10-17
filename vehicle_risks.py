@@ -16,17 +16,19 @@ def auction_evidence(text):
     return False
 
 
-CURRENT_FAILURE = re.compile(r"\b(?:(?:motor|injector(?:en)?|versnellingsbak|koppeling|airco)\s+(?:(?:is|zijn)\s+)?(?:defect|kapot|vast)|(?:motor|airco)\s+(?:loopt|werkt)\s+niet|start\s+niet|(?:betreft|is)\s+(?:(?:een|deze)\s+)?schadeauto)\b", re.I)
+CURRENT_FAILURE = re.compile(r"\b(?:(?:motor|injector(?:en)?|versnellingsbak|koppeling|airco)\s+(?:(?:is|zijn)\s+)?(?:defect|kapot|vast)|motor\s+(?:is\s+)?niet\s+(?:100\s*%|%\s*100)|motorproblemen|motor(?:storings)?lampje\s+(?:brandt(?!\s+niet\b)|is\s+aan)|(?:motor|airco)\s+(?:loopt|werkt)\s+niet|start\s+niet|(?:betreft|is)\s+(?:(?:een|deze)\s+)?schadeauto)(?!\w)", re.I)
 
 
 def mechanical_failure(text):
     text = str(text or "")
     for hit in CURRENT_FAILURE.finditer(text):
         before = text[max(0, hit.start() - 24):hit.start()]
+        # Repair wording must refer to this fault, not a different component in
+        # a later sentence ("motor defect. Koppeling vervangen" is a non-runner).
         after = text[hit.end():hit.end() + 45]
         if re.search(r"\b(?:geen|zonder|no|indien|als|bij|in geval van)\s+$", before, re.I):
             continue
-        if re.search(r"\b(?:geweest|gerepareerd|verholpen|hersteld|vervangen)\b", after, re.I):
+        if re.match(r"\s*(?:geweest\b|[,;]?\s*(?:maar\s+)?(?:inmiddels\s+|nu\s+)?(?:gerepareerd|verholpen|hersteld|vervangen)\b)", after, re.I):
             continue
         return hit.group(0)
     return None
@@ -39,7 +41,7 @@ def sale_exclusion(candidate):
         if isinstance(value, str) and value.casefold().strip() in ("sold", "closed", "deleted", "inactive", "verkocht", "niet meer beschikbaar"):
             return "Individual advert explicitly reports the vehicle as unavailable"
     if candidate.get("reported_mechanical_failure"):
-        return "Explicitly reported current mechanical failure: " + str(candidate["reported_mechanical_failure"])
+        return "Explicitly reported current defect or engine warning: " + str(candidate["reported_mechanical_failure"])
     host = (urlparse(candidate.get("listing_url") or "").hostname or "").lower()
     if any(host == domain or host.endswith("." + domain) for domain in EXCLUDED_DOMAINS):
         return "Explicitly excluded marketplace"

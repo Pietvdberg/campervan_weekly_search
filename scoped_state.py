@@ -1,5 +1,7 @@
 """Minimal facts from a uniquely URL-linked marketplace detail record."""
 from urllib.parse import urlparse, urljoin
+from html import unescape
+import re
 
 from listing_evidence import structured, parse_amount
 
@@ -15,7 +17,20 @@ def detail_facts(markup, url):
     matches = []
     for node in structured(markup):
         record = node.get("listingDetails")
-        if isinstance(record, dict) and isinstance(record.get("webPage"), str) and reference(urljoin(url, record["webPage"])) == reference(url):
+        if not isinstance(record, dict) or not isinstance(record.get("webPage"), str):
+            continue
+        record_url = urljoin(url, record["webPage"])
+        same_page = reference(record_url) == reference(url)
+        record_id = record.get("id")
+        # AutoTrack explicitly syndicates AS24 detail records. Accept only the
+        # exact shared UUID under an AutoTrack page controller; never infer
+        # identity from a similar title, plate guess or third-party URL.
+        syndicated = (reference(url)[1] == "autotrack.nl" and reference(record_url)[1] == "autoscout24.nl"
+            and reference(str(node.get("canonicalOrigin") or ""))[:2] == reference(url)[:2]
+            and isinstance(node.get("marketplace"), dict) and node["marketplace"].get("domain") == "autotrack_nl"
+            and isinstance(record_id, str) and re.fullmatch(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}", record_id)
+            and urlparse(url).path.endswith(record_id) and urlparse(record_url).path.endswith(record_id))
+        if same_page or syndicated:
             matches.append(record)
     if len(matches) != 1:
         return None
@@ -33,7 +48,8 @@ def detail_facts(markup, url):
         for group in equipment.values():
             if isinstance(group, list):
                 labels.extend(str(item["id"]) for item in group if isinstance(item, dict) and isinstance(item.get("id"), str))
-    fields["description"] = " ".join([str(vehicle.get("modelVersionInput") or "")] + labels)
+    description = " ".join(re.sub(r"<[^>]+>", " ", unescape(str(record.get("description") or ""))).split())
+    fields["description"] = " ".join([str(vehicle.get("modelVersionInput") or ""), description] + labels)
     prices = record.get("prices", {})
     public = prices.get("public", {}) if isinstance(prices, dict) else {}
     display = record.get("price", {})

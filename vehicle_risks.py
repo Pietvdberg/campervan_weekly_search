@@ -16,7 +16,25 @@ def auction_evidence(text):
     return False
 
 
+CURRENT_FAILURE = re.compile(r"\b(?:(?:motor|injector(?:en)?|versnellingsbak|koppeling|airco)\s+(?:(?:is|zijn)\s+)?(?:defect|kapot|vast)|(?:motor|airco)\s+(?:loopt|werkt)\s+niet|start\s+niet|(?:betreft|is)\s+(?:(?:een|deze)\s+)?schadeauto)\b", re.I)
+
+
+def mechanical_failure(text):
+    text = str(text or "")
+    for hit in CURRENT_FAILURE.finditer(text):
+        before = text[max(0, hit.start() - 24):hit.start()]
+        after = text[hit.end():hit.end() + 45]
+        if re.search(r"\b(?:geen|zonder|no|indien|als|bij|in geval van)\s+$", before, re.I):
+            continue
+        if re.search(r"\b(?:geweest|gerepareerd|verholpen|hersteld|vervangen)\b", after, re.I):
+            continue
+        return hit.group(0)
+    return None
+
+
 def sale_exclusion(candidate):
+    if candidate.get("reported_mechanical_failure"):
+        return "Explicitly reported current mechanical failure: " + str(candidate["reported_mechanical_failure"])
     host = (urlparse(candidate.get("listing_url") or "").hostname or "").lower()
     if any(host == domain or host.endswith("." + domain) for domain in EXCLUDED_DOMAINS):
         return "Explicitly excluded marketplace"

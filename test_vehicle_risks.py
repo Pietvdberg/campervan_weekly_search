@@ -53,3 +53,15 @@ class VehicleRiskTests(unittest.TestCase):
     def test_rss_auction_lead_is_excluded(self):
         lead = {"url": "https://www.autowereld.nl/peugeot/boxer/l2h2-123/details.html", "title": "Boxer L2H2 veiling", "description": "Vraagprijs: € 5000"}
         self.assertEqual(rss_shortlist([lead]), [])
+
+    def test_current_failure_is_distinct_from_explicitly_repaired_history(self):
+        from vehicle_risks import mechanical_failure
+        self.assertIsNotNone(mechanical_failure("Motor defect, start niet"))
+        self.assertIsNone(mechanical_failure("Motor defect geweest, inmiddels gerepareerd"))
+        self.assertIsNone(mechanical_failure("Geen schadeauto"))
+        self.assertIsNone(mechanical_failure("Geadverteerde schadeauto- of occasionprijs"))
+        self.assertIsNone(mechanical_failure("Garantie uitgesloten bij motor defect"))
+        candidate = self.fixture()
+        candidate["reported_mechanical_failure"] = "start niet"
+        result = evaluate({"candidates": [candidate]}, lambda _: self.fail("Do not recommend or query a known non-runner"))
+        self.assertEqual(result["qualifiers"], 0)

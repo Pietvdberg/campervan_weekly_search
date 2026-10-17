@@ -58,3 +58,12 @@ class InventoryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class LabelledInventoryPriceTests(unittest.TestCase):
+    def test_viabovag_business_price_is_used_only_for_discovery(self):
+        page = '<a href="' + DETAIL + '">Peugeot Boxer L2H2 Prijs voor zakelijke kopers: 27.950,- Excl. BTW</a>'
+        result = crawl("viaBOVAG", [ROOT], lambda _: (page, "text/html"))
+        entry = next(iter(result["cards"].values()))
+        self.assertEqual(entry["advertised_eur"], 27950)
+        self.assertNotIn("price_incl_vat", entry)
+        self.assertNotIn("checks", entry)

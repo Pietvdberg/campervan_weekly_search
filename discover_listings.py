@@ -13,10 +13,11 @@ import xml.etree.ElementTree as ET
 from listing_evidence import enrich, structured, PLATE
 from listing_identity import bind_evidence, require_same_listing
 from source_access import SourceFetch, host_key
-from vehicle_risks import auction_evidence
+from vehicle_risks import auction_evidence, mechanical_failure
 from rdw_lookup import normalize_plate
 from discovery_queue import cards as inventory_cards, select as select_queue, budget_applied
 from dealer_sources import dealer_for_url, crawl_dealers, load_registry
+from validate_search import code_fingerprint
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from autowereld_html import html_to_xml, response_identity
 from autowereld_snapshot import read_snapshot_records
@@ -192,6 +193,7 @@ def extract(title,url,source,markup):
     return {"name":name,"source":source,"listing_url":url,"individual_listing_confirmed":provenance["status"] == "bound",
             "evidence_provenance":provenance,
             "sale_method":"auction" if auction_evidence(primary_title + " " + scoped_text) else "unverified",
+            "reported_mechanical_failure":mechanical_failure(primary_title + " " + scoped_text),
             "checks":checks,"plate":plate,"plate_confirmed_from_listing":bool(plate),
             "plate_conflicts":list(normalized_plates) if len(normalized_plates) > 1 else [],
             "field_evidence":{ "price":evidence["vat"], "location_source":evidence.get("location_source"),
@@ -206,6 +208,8 @@ def extract(title,url,source,markup):
             "observed_at":datetime.now(timezone.utc).isoformat()}
 
 def discover(fetcher=fetch,max_per_source=50):
+    run_metadata = {"started_at": datetime.now(timezone.utc).isoformat(), "max_per_source": max_per_source,
+                    "code_fingerprint": code_fingerprint()}
     fetcher = SourceFetch(fetcher)
     coverage={};candidates=[];seen=set();rss_leads=[]
     for source,domain in SOURCES.items():
@@ -227,6 +231,7 @@ def discover(fetcher=fetch,max_per_source=50):
         if source=="viaBOVAG":
             inventory_stats=crawl_inventory(source,SEED_PAGES[source],fetcher)
             direct_urls.update(inventory_stats["details"])
+            card_evidence.update(inventory_stats.get("cards", {}))
             seed_success=inventory_stats["inventory_pages_accessible"]
             seed_errors=[x["error"] for x in inventory_stats["inventory_errors"]]
             anchor_count=inventory_stats["inventory_links_examined"]
@@ -420,7 +425,8 @@ def discover(fetcher=fetch,max_per_source=50):
         except Exception as exc:
             coverage[source]={"status":"unavailable","error":str(exc)[:160],"individual_pages_fetched":0,
                               "inventory_pages_fetched":seed_success,"direct_eligible_urls":len(direct_urls),"inventory_errors":seed_errors}
-    return {"candidates":candidates,"source_coverage":coverage,
+    run_metadata["completed_at"] = datetime.now(timezone.utc).isoformat()
+    return {"run_metadata":run_metadata,"candidates":candidates,"source_coverage":coverage,
             "unverified_rss_leads":rss_leads,
             "discovery_method":"Inventory pages are traversed separately from individual vehicle URLs. Sources with no validated vehicles are not presumed to have no stock; no completeness, VAT, distance or availability guarantee."}
 

@@ -143,6 +143,12 @@ def screen(candidate):
     exclusion = sale_exclusion(candidate)
     if exclusion:
         reasons.append(exclusion)
+    if checks.get("conversion_suitable") is True:
+        prior = candidate.get("conversion_assessment", {})
+        prior = prior if isinstance(prior, dict) else {}
+        conversion_review = assess_conversion(candidate, prior.get("requirements"), [prior.get("assessment")])
+        if conversion_review["suitable"] is not True:
+            reasons.append("independent conversion measurements: unverified or failed")
     independent_review = assess_vehicle(candidate)
     reasons.extend(independent_review["reasons"])
     return {"candidate":candidate, "score":score, "plate":plate, "reasons":reasons, "qualified":score >= 90 and not reasons, "rdw":None, "independent_review_assessment":independent_review}

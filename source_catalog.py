@@ -47,3 +47,8 @@ BUDGET_PAGES = {
                   for path in ("peugeot/boxer", "ford/transit", "fiat/ducato", "renault/master", "citroen/jumper")],
 }
 INVENTORY_SEEDS = INVENTORY_SEEDS | frozenset(url for urls in BUDGET_PAGES.values() for url in urls)
+
+# Ranking hints only; never substitute these names for a road route.
+DISCOVERY_TOWNS = ("bergen op zoom", "roosendaal", "zevenbergen", "breda", "etten-leur",
+                   "halsteren", "steenbergen", "tholen", "goes", "tilburg", "dordrecht",
+                   "rotterdam", "oosterhout", "hoogerheide", "rucphen")

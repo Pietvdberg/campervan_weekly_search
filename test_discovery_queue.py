@@ -83,3 +83,14 @@ class DiscoveryQueueTests(unittest.TestCase):
         self.assertEqual(len(queue), 1)
         self.assertTrue(queue[0][1].endswith("two"))
         self.assertEqual(len(rejected), 1)
+
+    def test_regional_town_hint_ranks_but_does_not_verify_road_distance(self):
+        first = card(1, 6000)
+        first["location"] = {"city": "Malden"}
+        second = card(2, 6000)
+        second["location"] = {"city": "Roosendaal"}
+        evidence = cards(markup([first, second]), BASE)
+        queue, _ = select([(row["title"], row["url"]) for row in evidence.values()], evidence, lambda _: True)
+        self.assertTrue(queue[0][1].endswith("000000000002"))
+        self.assertNotIn("distance_km", evidence[key(queue[0][1])])
+        self.assertNotIn("checks", evidence[key(queue[0][1])])

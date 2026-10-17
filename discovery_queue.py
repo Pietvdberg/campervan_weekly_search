@@ -4,8 +4,8 @@ import re
 from urllib.parse import urljoin, urlparse, urlunparse
 
 from listing_evidence import structured, parse_amount
-from source_catalog import VAN_MODEL
-from vehicle_risks import auction_evidence
+from source_catalog import VAN_MODEL, DISCOVERY_TOWNS
+from vehicle_risks import auction_evidence, mechanical_failure
 
 LOW_ROOF = re.compile(r"\bL[1-4]\s*H1\b", re.I)
 HIGH_ROOF = re.compile(r"\bL[234][ .-]*H[23]\b|\bhoog\s*dak\b", re.I)
@@ -52,7 +52,9 @@ def cards(markup, base):
         url = urljoin(base, raw_url)
         if urlparse(url).scheme != "https" or not title:
             continue
-        entry = {"url": url, "title": unescape(title), "advertised_eur": amount,
+        location = node.get("location", {})
+        city = str(location.get("city") or location.get("cityName") or "") if isinstance(location, dict) else ""
+        entry = {"condition_clue": mechanical_failure(title + " " + str(node.get("description") or "")), "discovery_city_hint": city, "url": url, "title": unescape(title), "advertised_eur": amount,
                  "inventory_url": base, "evidence": "unverified inventory card only"}
         previous = result.get(key(url))
         if previous is None:
@@ -84,7 +86,9 @@ def select(pairs, evidence, eligible):
         title = card.get("title") or label or urlparse(url).path.replace("-", " ")
         amount = card.get("gross_lower_bound_eur", card.get("advertised_eur"))
         reason = None
-        if not VAN_MODEL.search(title + " " + urlparse(url).path.replace("-", " ")):
+        if card.get("condition_clue") or mechanical_failure(title):
+            reason = "explicit current mechanical failure"
+        elif not VAN_MODEL.search(title + " " + urlparse(url).path.replace("-", " ")):
             reason = "not a target van model"
         elif LOW_ROOF.search(title):
             reason = "explicit low-roof configuration"
@@ -98,7 +102,8 @@ def select(pairs, evidence, eligible):
         if reason:
             rejected.append({"url": url, "reason": reason, "inventory_evidence": card or None})
             continue
-        score = (bool(HIGH_ROOF.search(title)), amount is not None,
+        regional_hint = str(card.get("discovery_city_hint") or "").casefold().strip() in DISCOVERY_TOWNS
+        score = (regional_hint, bool(HIGH_ROOF.search(title)), amount is not None,
                  bool(re.search(r"\bairco|airconditioning\b", title, re.I)))
         previous = selected.get(identity)
         if previous is None or score > previous[0]:

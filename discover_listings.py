@@ -14,6 +14,7 @@ from listing_evidence import enrich, structured, PLATE
 from listing_identity import bind_evidence, require_same_listing
 from source_access import SourceFetch, host_key
 from vehicle_risks import auction_evidence
+from discovery_queue import cards as inventory_cards, select as select_queue, budget_applied
 from marketplace_links import extract as extract_marketplace_links, diagnostics as marketplace_diagnostics
 from autowereld_html import html_to_xml, response_identity
 from autowereld_snapshot import read_snapshot_records
@@ -22,9 +23,9 @@ from browser_render import render as browser_render
 from html.parser import HTMLParser
 from urllib.parse import urljoin,urldefrag
 
-from source_catalog import SOURCE_DOMAINS as SOURCES, SEED_PAGES, VAN_MODEL as MODEL, INVENTORY_SEEDS
+from source_catalog import SOURCE_DOMAINS as SOURCES, SEED_PAGES, VAN_MODEL as MODEL, INVENTORY_SEEDS, BUDGET_PAGES
 
-ROOF = re.compile(r"\bL[234]H[23]\b|\bhoog ?dak\b",re.I)
+ROOF = re.compile(r"\bL[234]\s*[- ]?H[23]\b|\bhoog ?dak\b",re.I)
 AC = re.compile(r"\b(airco|airconditioning|climate control)\b",re.I)
 CITIES = ("bergen op zoom","roosendaal","zevenbergen","breda","etten-leur","halsteren","steenbergen","tholen","goes","tilburg","dordrecht","rotterdam","oosterhout","hoogerheide","rucphen")
 MAX_BYTES=2600000
@@ -77,7 +78,7 @@ def valid_url(url,source):
     path=parsed.path.lower()
     if source=="Marktplaats": return bool(re.search(r"/v/[^/]+/[^/]+/m\d+",path))
     if source=="AutoScout24": return bool(re.fullmatch(r"/aanbod/[a-z0-9_-]+-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}/?",path))
-    if source=="AutoTrack": return bool(re.fullmatch(r"/a/[a-z0-9-]+-\d{6,}/?",path))
+    if source=="AutoTrack": return bool(re.fullmatch(r"/a/[a-z0-9_-]+-(?:\d{6,}|[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})/?",path))
     if source=="AutoWereld": return bool(re.fullmatch(r"/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+-\d+/details\.html",path))
     if source=="viaBOVAG": return classify_inventory(url,source)=="detail"
     if source in ("Local dealers","AutoWereld") and "/aanbieder/" in path: return False
@@ -193,6 +194,8 @@ def discover(fetcher=fetch,max_per_source=50):
     coverage={};candidates=[];seen=set();rss_leads=[]
     for source,domain in SOURCES.items():
         direct_urls = {}
+        card_evidence = {}
+        filter_confirmed = False
         inventory_stats = None
         seed_success = 0
         seed_errors = []
@@ -206,7 +209,9 @@ def discover(fetcher=fetch,max_per_source=50):
             seed_success=inventory_stats["inventory_pages_accessible"]
             seed_errors=[x["error"] for x in inventory_stats["inventory_errors"]]
             anchor_count=inventory_stats["inventory_links_examined"]
-        for seed in ([] if inventory_stats is not None else SEED_PAGES[source]):
+        for seed in ([] if inventory_stats is not None else BUDGET_PAGES.get(source, []) + SEED_PAGES[source]):
+            if filter_confirmed and seed not in BUDGET_PAGES.get(source, []):
+                continue
             if host_key(seed) in fetcher.stops:
                 continue
             if valid_url(seed,source) and relevant_link("",seed,source):
@@ -215,6 +220,11 @@ def discover(fetcher=fetch,max_per_source=50):
                 page, typ = fetcher(seed)
                 if "html" not in typ.lower(): raise ValueError("non-HTML inventory page")
                 seed_success += 1
+                card_evidence.update(inventory_cards(page, seed))
+                filter_confirmed = filter_confirmed or budget_applied(page)
+                for card in card_evidence.values():
+                    if valid_url(card["url"], source):
+                        direct_urls.setdefault(card["url"], card["title"])
                 parser = LinkCollector()
                 parser.feed(page)
                 if not parser.links and os.environ.get("ENABLE_BROWSER_RENDER")=="1":
@@ -310,7 +320,10 @@ def discover(fetcher=fetch,max_per_source=50):
                 hits=[]
                 index_error=str(exc)[:140]
             found=0;failures=0;rejected=0;matched=0;samples=[];attempts=0;rate_limited=source_blocked
-            for title,url in [(title,url) for url,title in direct_urls.items()] + hits[:25]:
+            queue, inventory_rejections = select_queue(
+                [(title, url) for url, title in direct_urls.items()] + hits[:25],
+                card_evidence, lambda url: valid_url(url, source))
+            for title,url in queue:
                 if found>=max_per_source or attempts>=MAX_FETCH_ATTEMPTS or rate_limited: break
                 if url in seen or host_key(url) in fetcher.stops: continue
                 if not valid_url(url,source) or not relevant_link(title,url,source):
@@ -353,6 +366,10 @@ def discover(fetcher=fetch,max_per_source=50):
                               "inventory_diagnostics":inventory_stats["inventory_diagnostics"] if inventory_stats else [],
                               "inventory_links":anchor_count,"response_diagnostics":response_diagnostics,
                               "direct_eligible_urls":len(direct_urls),
+                              "budget_filter_confirmed":filter_confirmed,
+                              "inventory_cards":len(card_evidence),
+                              "inventory_prefilter_rejections":inventory_rejections,
+                              "detail_queue_size":len(queue),
                               "inventory_errors":seed_errors,"source_block_reason":source_block_reason,
                               "host_restrictions":restrictions,
                               "host_request_counts":{host:fetcher.counts.get(host,0) for host in sorted(source_hosts)},
@@ -377,8 +394,9 @@ def discover(fetcher=fetch,max_per_source=50):
 if __name__=="__main__":
     parser=argparse.ArgumentParser()
     parser.add_argument("--output",default="discovered_candidates.json")
+    parser.add_argument("--max-per-source", type=int, choices=range(1, 51), default=50, metavar="1..50")
     args=parser.parse_args()
-    result=discover()
+    result=discover(max_per_source=args.max_per_source)
     Path(args.output).write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     print("Candidate pages:",len(result["candidates"]))
     print(json.dumps(result["source_coverage"],indent=2))

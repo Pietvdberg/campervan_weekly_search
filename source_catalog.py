@@ -37,3 +37,13 @@ REQUIRED_CHECKS = ("high_roof", "cab_ac", "conversion_suitable", "distance_withi
 # entry points. Detail responses always retain strict path identity.
 INVENTORY_SEEDS = frozenset(url for urls in SEED_PAGES.values() for url in urls
                             if not url.endswith("/details.html"))
+
+# Verified against the public response's pageQuery on 17 October 2026.
+# Unsupported Marktplaats/viaBOVAG query parameters are deliberately not used.
+BUDGET_PAGES = {
+    "AutoScout24": ["https://www.autoscout24.nl/lst/" + path + "?priceto=8000&sort=price&desc=0"
+                    for path in ("peugeot/boxer", "ford/transit", "fiat/ducato", "renault/master", "citroen/jumper")],
+    "AutoTrack": ["https://www.autotrack.nl/aanbod/" + path + "?priceto=8000&sort=price&desc=0"
+                  for path in ("peugeot/boxer", "ford/transit", "fiat/ducato", "renault/master", "citroen/jumper")],
+}
+INVENTORY_SEEDS = INVENTORY_SEEDS | frozenset(url for urls in BUDGET_PAGES.values() for url in urls)

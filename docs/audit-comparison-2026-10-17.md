@@ -40,3 +40,48 @@ follow-up classifies external-origin redirects as source stops and records the
 reason. Configured inventory seeds may follow HTTPS path changes on the same
 host; advert responses retain strict URL identity. This does not establish that
 all historically reported dealer records were false; the two runs differ.
+
+## Follow-up runs supplied by the user
+
+| Run | Result | Screened records | Qualified matches |
+|---|---|---:|---:|
+| [39014586903](https://github.com/Pietvdberg/campervan_weekly_search/actions/runs/39014586903) | Success | 195 | 0 |
+| [39014733473](https://github.com/Pietvdberg/campervan_weekly_search/actions/runs/39014733473) | Cancelled before any job started; no artifact | — | — |
+| [39014829289](https://github.com/Pietvdberg/campervan_weekly_search/actions/runs/39014829289) | Success | 193 | 0 |
+
+The latest successful run includes the context reconciliation, risk gates and
+consent-redirect reporting. All 193 screened records have bound listing identity.
+Its development acceptance reports `production_ready: false`, and no mail step ran.
+
+| Source | Records | Confirmed VAT prices | Road routes | Listing plates |
+|---|---:|---:|---:|---:|
+| Marktplaats | 50 | 3 | 0 | 8 |
+| AutoScout24 | 50 | 2 | 39 | 5 |
+| AutoTrack | 45 | 45 | 0 | 41 |
+| viaBOVAG | 48 | 44 | 45 | 0 |
+| AutoWereld | 0 | 0 | 0 | 0 |
+| Local dealers | 0 | 0 | 0 | 0 |
+| Total | 193 | 94 | 84 | 54 |
+
+Compared with the broken identity-gate run 39013660683, Marktplaats recovered
+3 VAT prices and 8 plates, AutoScout24 recovered 2 VAT prices, 39 routes and 5
+plates. Across the changing samples, total reported prices remain 94 and routes
+increase from 46 to 84 (+38). This is recovery of lost evidence, not proof that
+all source coverage is restored to the original 210-record baseline.
+
+AutoWereld has 75 fresh RSS-only leads and no independently validated advert
+pages. Its external consent redirect is now explicitly recorded for both the
+marketplace and local-dealer source group. Independent local dealer retrieval
+also found no validated details; this does not establish zero stock. One expired
+APK concern appears in the latest audit. Conversion suitability is unknown for
+all 193 records; there are no purchase-ready recommendations.
+
+A further budget correction rejects a bound EUR offer explicitly above EUR 8,000
+without inventing its VAT-inclusive price. An amount at or below the ceiling
+remains unknown until VAT treatment is supported. That correction is validated
+by offline regressions; it is not included in the three run counts above.
+
+The latest live job log reports 115 tests: its fixed unittest list did not include
+all newer modules. PR CI had already run the complete suite. The follow-up changes
+live integration and the manual candidate-verification workflow to unittest
+discovery, so the same full regressions run before live work (182 tests now).

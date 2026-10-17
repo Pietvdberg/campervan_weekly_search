@@ -43,3 +43,9 @@ price, route or equipment. Audit candidates include `evidence_provenance` and an
 observation timestamp. This intentionally reduces apparent verification when a
 marketplace omits usable identity markup. It does not establish availability or
 working equipment; those remain separate requirements.
+
+A bound structured EUR offer already above EUR 8,000 fails the budget criterion
+even when tax treatment is unknown. This does not populate a verified gross
+price or change the count of verified VAT prices. Offers at/below EUR 8,000 stay
+unverified without a tax basis; unrelated amounts and non-EUR offers do not
+supply this EUR lower bound.

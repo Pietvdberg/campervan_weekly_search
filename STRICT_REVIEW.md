@@ -255,3 +255,17 @@ access state now records/stops external-origin redirects. Same-host HTTPS path
 changes are allowed only for configured inventory seeds; detail identity remains
 strict. Four regressions bring the suite to 178 tests. These checks do not bypass
 consent and do not reclassify old sampled records without their original pages.
+
+The user-supplied follow-up runs are now compared in the audit report. Runs
+39014586903 and 39014829289 passed; 39014733473 was cancelled before any job ran.
+The latest audit has 193 bound records, 94 VAT prices, 84 road routes, 54 listing
+plates and zero qualifiers. Restored Marktplaats/AutoScout24 evidence is confirmed
+in actual artifacts; AutoWereld/dealer consent limits and unknown conversion
+suitability remain. All mail steps were skipped. A new budget lower-bound fix
+rejects bound EUR offers above EUR 8,000 even without VAT evidence, retaining the
+unknown gross price. Four regressions bring the suite to 182 tests.
+
+The latest live integration log ran only 115 tests from an old fixed list, while
+PR CI used the full suite. Integration and manual candidate verification now use
+full unittest discovery and compilation, closing that remaining CI consistency
+gap. The historical run counters above are not rewritten as 182-test runs.

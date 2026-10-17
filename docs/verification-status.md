@@ -5,7 +5,7 @@ schedule. The user has now supplied `context.md`; public requirements and operat
 boundaries are reconciled in [requirements](requirements.md).
 
 - PR CI runs syntax compilation and all offline unittest modules. The strict
-  review follow-ups currently have 178 tests, including vehicle identity,
+  review follow-ups currently have 182 tests, including vehicle identity,
   conversion review, source access stops, report consistency and mail retry state.
 - The marketplace integration workflow performs bounded live discovery across
   six source groups. It records coverage gaps and requires identity-bound evidence

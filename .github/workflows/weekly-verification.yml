@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Syntax and regression tests
         run: |
-          python3 -m compileall -q camper_pipeline.py rdw_lookup.py send_report.py
-          python3 -m unittest -v test_camper_pipeline.py test_mail_routing.py
+          python3 -m compileall -q .
+          python3 -m unittest discover -v
       - name: Evaluate candidates and perform RDW checks for confirmed plates
         run: python3 camper_pipeline.py --input candidates.json
       - name: Preserve evidence

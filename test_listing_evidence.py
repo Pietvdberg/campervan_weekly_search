@@ -76,3 +76,23 @@ class AddressSuffixTests(unittest.TestCase):
         right = {**wrong, "huisletter": "B"}
         self.assertIsNone(pdok_coordinates(address, lambda _: {"response": {"docs": [wrong]}}))
         self.assertEqual(pdok_coordinates(address, lambda _: {"response": {"docs": [wrong, right]}}), (4.31, 51.51))
+
+class BudgetLowerBoundTests(unittest.TestCase):
+    def test_primary_eur_offer_over_limit_fails_without_inventing_vat(self):
+        page = '<script type="application/ld+json">{"@type":"Offer","price":9000,"priceCurrency":"EUR"}</script>'
+        result = enrich(page)
+        self.assertFalse(result["checks"]["price_incl_vat_within_8000"])
+        self.assertIsNone(result["vat"]["amount_incl_vat"])
+        self.assertEqual(result["vat"]["basis"], "unknown")
+
+    def test_offer_at_limit_remains_unknown_without_vat_basis(self):
+        page = '<script type="application/ld+json">{"@type":"Offer","price":8000,"priceCurrency":"EUR"}</script>'
+        self.assertNotIn("price_incl_vat_within_8000", enrich(page)["checks"])
+
+    def test_unrelated_visible_price_does_not_override_selected_offer(self):
+        page = '<script type="application/ld+json">{"@type":"Offer","price":7000,"priceCurrency":"EUR"}</script><p>Other vehicle € 9000 incl btw</p>'
+        self.assertNotIn("price_incl_vat_within_8000", enrich(page)["checks"])
+
+    def test_non_eur_offer_does_not_supply_eur_lower_bound(self):
+        page = '<script type="application/ld+json">{"@type":"Offer","price":9000,"priceCurrency":"USD"}</script>'
+        self.assertNotIn("price_incl_vat_within_8000", enrich(page)["checks"])

@@ -20,10 +20,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:06a3364c0645c8d141bd6d9677137d31118594194799f15541ba598de02fbe37": {
@@ -45,10 +45,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:e3b081e8fc5cfe9ad0b6c4187652c93f102ea27bc8d2873781c41752968b2d31": {
@@ -70,10 +70,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:e8ea8bb39361b4878beb4d9261696a3c68d4d34e6ae67e7fd77e3aa81775ded1": {
@@ -95,10 +95,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:14THF5": {
@@ -133,10 +133,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:7VJL82": {
@@ -172,7 +172,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
           "price_incl_vat": null,
@@ -200,10 +200,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:J479RR": {
@@ -238,10 +238,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:02VGK6": {
@@ -278,7 +278,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
           "price_incl_vat": 5748.0,
@@ -307,10 +307,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:bb6e692652139cada52ad6bfe769f8dd109637a48dd3da1b8e20fd039e8a8a23": {
@@ -346,10 +346,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:3e018392b1353b0bac05f93f4b84d6a3ccf0c90401bdefe116866b2ba9740895": {
@@ -384,10 +384,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VN699N": {
@@ -424,7 +424,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2": {
           "price_incl_vat": 5627.0,
@@ -453,10 +453,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:61d1c97c868012bba13d299b1fc0f1b073aea363cffbfa9663e4b855cb0b9cf7": {
@@ -492,10 +492,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:f4a3826e12a894bc46d8612f86ed3ba0e889c8c3470186abc9a8baa416c9784b": {
@@ -531,10 +531,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:7VRK05": {
@@ -570,10 +570,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:848b301926a00723fba848f7e9d47c708c513e7855e326876f5d6a54bc1de09f": {
@@ -609,10 +609,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VBD15G": {
@@ -648,10 +648,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:4e84cde27608e26ec69159e36bdd4fffa0b99c2619dd454ccae6edcc381dbc0f": {
@@ -687,10 +687,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VK287G": {
@@ -712,10 +712,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "viaBOVAG",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VL431P": {
@@ -737,10 +737,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "viaBOVAG",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VR850F": {
@@ -762,10 +762,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "viaBOVAG",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:V570TP": {
@@ -787,10 +787,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "viaBOVAG",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:V458HB": {
@@ -812,10 +812,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Local dealers",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:V09RJG": {
@@ -837,10 +837,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Local dealers",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VB501K": {
@@ -862,10 +862,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Local dealers",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:946a7a12f236a60684093499b8eeb0b414964f16350c9b758fdff13c311669a3": {
@@ -887,10 +887,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:0371def985739447f10d1c5e2e2d024a6cfab4636acd9388905621841b663acd": {
@@ -912,10 +912,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:7e3c0494de82b70d0df3923ebd7e68dee9e16c067e66e7ebe00ba4dd646315ae": {
@@ -937,10 +937,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:7f8d9f7edd4c445f147992ddfa0abd04235a251db1f6b542dc1eba6b066a6b5d": {
@@ -962,10 +962,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:62VVL9": {
@@ -1001,7 +1001,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
           "price_incl_vat": null,
@@ -1029,10 +1029,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VK273J": {
@@ -1133,7 +1133,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
           "price_incl_vat": 5560.0,
@@ -1161,10 +1161,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:26BTKZ": {
@@ -1200,7 +1200,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
           "price_incl_vat": null,
@@ -1228,10 +1228,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:P171JN": {
@@ -1253,10 +1253,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "viaBOVAG",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:50ee4418966bb394785033d6a364637b2a19efc9b66bea14599de192c299b7ce": {
@@ -1278,10 +1278,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:c8d89eb68ca3dad6e59dbd07488afd7f4accb3cc91609b2eac8c33411e8a5988": {
@@ -1303,10 +1303,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:beff87e2c8ac09e6ffbce61df2ebbd701ba9d68a15af5db6edd41135eca92bad": {
@@ -1328,10 +1328,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:5b4323d197e49e15b28736417b2e4e526f5d471f410a2ec5053361fad705d34e": {
@@ -1353,10 +1353,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:d1813e84fe4abdd02e221d2d425f26b9639c6f7c8cdd562dcb5b70ee9485e415": {
@@ -1378,10 +1378,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:3b2684dbeaa5202d56f66f67d64e2ff071f08aa5c45a0fa69db68117a8a632c4": {
@@ -1403,10 +1403,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:b4da9dae6f6a97283c3961b4879f2a13efefbc742332e4070141fb16b3f1cf8b": {
@@ -1428,10 +1428,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:10f4f12b8e1fc79d78c27e3b56d65951732defdfca95ba0181eb6ad612de2dcb": {
@@ -1453,10 +1453,10 @@
           "variant": {},
           "variant_clues": [],
           "source": "Marktplaats",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:53VKL8": {
@@ -1492,10 +1492,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:bcb57da2aab431c93bb919e67055fbc9f6b2f2e8aaf8c9d8fbfc1343600ef8b6": {
@@ -1531,10 +1531,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VD611Z": {
@@ -1570,10 +1570,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VB737J": {
@@ -1608,10 +1608,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:8VXZ27": {
@@ -1647,7 +1647,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/peugeot-boxer-335-2-2-hdi-l3h2-laadklep-diesel-cat_ma55mo14821-e024e6fa-fcce-4159-9a32-f56affc1426e": {
           "price_incl_vat": 6655.0,
@@ -1675,10 +1675,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:V640RT": {
@@ -1714,7 +1714,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/ford-transit-310-2-0-tdci-l3h2-trend-moter-no-start-diesel-cat_ma29mo2160-91f6dce0-95a7-42d9-b409-a6e40b194a26": {
           "price_incl_vat": null,
@@ -1742,10 +1742,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VLV31S": {
@@ -1780,10 +1780,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:V320TL": {
@@ -1818,10 +1818,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:82VLX7": {
@@ -1858,7 +1858,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/renault-master-t35-2-5-dci-l3h3-koelwagen-refrigerated-diesel-cat_ma60mo14717-60daf6d1-bc20-47be-b1de-36147440becc": {
           "price_incl_vat": 5385.0,
@@ -1887,10 +1887,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:9VFR59": {
@@ -1926,10 +1926,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VNV42K": {
@@ -1964,10 +1964,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:f9f6d0634ab81efea5c144c3172ad4a64505739eb6160c0d5e111382d3809c0d": {
@@ -2003,10 +2003,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:20d0afeb47720e444573121ea66443c0fb23de4d40e9de27f58ccfa46eb8d89e": {
@@ -2041,10 +2041,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VRZ87R": {
@@ -2081,7 +2081,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/citroen-jumper-35-2-2-bluehdi-165-l3h2-driver-zwaar-e-6-450-n-diesel-wit-cat_ma21mo14710-a30c1389-9725-4410-9c15-ab54a6144874": {
           "price_incl_vat": 7805.0,
@@ -2110,10 +2110,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:6VPS97": {
@@ -2150,7 +2150,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/ford-transit-3-zits-airco-trekhaak-diesel-wit-cat_ma29mo2160-3ced8a16-4de0-437f-b715-d05539206ecb": {
           "price_incl_vat": 2360.0,
@@ -2179,10 +2179,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:8VXX70": {
@@ -2219,7 +2219,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/ford-transit-2-2-tdci-3-zits-airco-trekhaak-imperiaal-diesel-wit-cat_ma29mo2160-333a3884-218a-4725-8208-7dc54d330f52": {
           "price_incl_vat": 2723.0,
@@ -2248,10 +2248,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VB421B": {
@@ -2288,7 +2288,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/ford-transit-280m-2-2-tdc-dc-7-pers-airco-marge-2800kg-trekhaak-diesel-wit-cat_ma29mo2160-14cc6990-3ded-4dd1-896e-a92bfe5a1d75": {
           "price_incl_vat": 2999.0,
@@ -2317,10 +2317,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:67VGN1": {
@@ -2384,10 +2384,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VS789J": {
@@ -2424,7 +2424,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/fiat-ducato-2-3-multijet-l1h1-120pk-airco-diesel-wit-cat_ma28mo14783-89b26951-adcd-4b9a-8081-0357fcd0bd03": {
           "price_incl_vat": 4538.0,
@@ -2453,10 +2453,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VZ243R": {
@@ -2493,7 +2493,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/fiat-ducato-2-3multijet-130pk-automaat-lang-euro-6-airco-diesel-cat_ma28mo14783-f90f4b2a-4948-4d57-a5f1-34683d1fb172": {
           "price_incl_vat": 5324.0,
@@ -2522,10 +2522,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:27LFP2": {
@@ -2561,7 +2561,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/citroen-jumper-2-2-hdi-airco-8-pers-diesel-wit-cat_ma21mo14710-ee5d96cc-6eed-44ee-be78-978bba65df15": {
           "price_incl_vat": null,
@@ -2589,10 +2589,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VP818N": {
@@ -2629,7 +2629,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/citroen-jumper-30-2-2-hdi-l1h1-airco-navi-camera-cruise-diesel-wit-cat_ma21mo14710-fa39aacb-dc84-40bd-85de-ee95c12cb98d": {
           "price_incl_vat": 7805.0,
@@ -2658,10 +2658,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:85VDH1": {
@@ -2697,7 +2697,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/volkswagen-transporter-2-5-tdi-340-4m-mhd-lang-airco-cruise-lm-read-diesel-grijs-cat_ma74mo18230-1d3127ab-b2b0-4e17-9cbe-7a8b7f55679b": {
           "price_incl_vat": 2965.0,
@@ -2725,10 +2725,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VSJ01P": {
@@ -2764,7 +2764,7 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         },
         "https://autotrack.nl/a/volkswagen-transporter-1-9tdi-l2-airco-trekhaak-diesel-wit-cat_ma74mo18230-a60cdeb5-4ae1-4e0f-ae05-4853d974ca7e": {
           "price_incl_vat": 2965.0,
@@ -2792,10 +2792,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:f56bc48288025ac6cd83483c6610da4d69a079226e5cb0e1d7de5d9a476ac231": {
@@ -2830,10 +2830,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VKJ08F": {
@@ -2868,10 +2868,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:c5ff01f435edef208fdb796cf503b0ae6da530406d7e9ea064783e41497afb23": {
@@ -2907,10 +2907,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:08d504d2ddd8b119ad21c92516f00363e28460e4187f794d47b138f85fee4542": {
@@ -2945,10 +2945,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:d51fcfaeea2f6db4efec8f950880f6bce5190f752d39e436b6fb7a72191b7b18": {
@@ -2983,10 +2983,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:80d630433ecc763834cd7a4041487eb970f006730fbf47a89aa0f36965e0fc19": {
@@ -3021,10 +3021,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:23SLG2": {
@@ -3059,10 +3059,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:2d0276de7945a1f39f2af24ca7ae03cd01938044bff132aa9b56cb2954533fad": {
@@ -3097,10 +3097,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:10BHXJ": {
@@ -3136,10 +3136,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:9VFJ42": {
@@ -3174,10 +3174,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:46VSGX": {
@@ -3212,10 +3212,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:9168c2537220ee78d4f15f339ea3cafba458ad0a9246f141cdd5541fa6fd53dc": {
@@ -3250,10 +3250,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VV627B": {
@@ -3288,10 +3288,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:1VNP33": {
@@ -3326,10 +3326,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:8bbef998864d805bf2468132567db0d28efbcf36a6a757a9dfd602a87e7488b7": {
@@ -3365,10 +3365,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VPK71D": {
@@ -3404,10 +3404,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:V343TL": {
@@ -3443,10 +3443,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VDK86K": {
@@ -3482,10 +3482,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:G974VJ": {
@@ -3520,10 +3520,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:G974VV": {
@@ -3558,10 +3558,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:V96PZL": {
@@ -3597,10 +3597,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VGV43Z": {
@@ -3636,10 +3636,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VSG50K": {
@@ -3675,10 +3675,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VPG36X": {
@@ -3714,10 +3714,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:49fc0dc91e8b5b1f450951f5c400c27b2949366997618e721da3e82638c5aa27": {
@@ -3753,10 +3753,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VH602S": {
@@ -3792,10 +3792,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:7VTJ12": {
@@ -3830,10 +3830,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:6KKD08": {
@@ -3868,10 +3868,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:4VVG77": {
@@ -3944,10 +3944,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:4VSJ10": {
@@ -3983,10 +3983,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:VH086P": {
@@ -4021,10 +4021,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:97VNH9": {
@@ -4059,10 +4059,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:03VGS2": {
@@ -4097,10 +4097,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:20BRJX": {
@@ -4136,10 +4136,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:58VDK7": {
@@ -4174,10 +4174,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:92VGX1": {
@@ -4213,10 +4213,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "url:ca718ab2c65eefafe3d8d656e986361cf691eb95e74928afa91aeb3bbaa44c58": {
@@ -4251,10 +4251,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:7KGG47": {
@@ -4289,10 +4289,10 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:8VTN26": {
@@ -4328,10 +4328,10 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
       "last_status": "unchanged"
     },
     "plate:7VSX49": {
@@ -4367,11 +4367,11 @@
             }
           ],
           "source": "AutoScout24",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
-      "last_status": "newly_observed"
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
+      "last_status": "unchanged"
     },
     "url:ece71180292966851dd755a884ef5bed59d077e9bdc201efea2e58cf27488636": {
       "first_seen": "2026-10-17T18:08:59.720390+00:00",
@@ -4406,11 +4406,11 @@
             }
           ],
           "source": "AutoTrack",
-          "extractor_fingerprint": "35a5e82097ec20da0d6abe90e8905966ab3b1e5200f260d8805a8bf9fdd9fd71"
+          "extractor_fingerprint": "e21e40c5c04f205b47edafb674f33b2bace1111edc855df997a68764616ddf86"
         }
       },
-      "last_seen": "2026-10-17T18:08:59.720390+00:00",
-      "last_status": "newly_observed"
+      "last_seen": "2026-10-17T19:39:12.625188+00:00",
+      "last_status": "unchanged"
     }
   },
   "runs": [
@@ -14757,6 +14757,1128 @@
           "conflicting_source_prices": []
         }
       }
+    },
+    {
+      "run_id": "39063095639",
+      "observed_at": "2026-10-17T19:39:12.625188+00:00",
+      "changes": {
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2439132752-peugeot-boxer-330-2-2-hdi-100-l2h2-2006": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2443757742-toyota-hi-ace-2-5-d4-d-100-4wd": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2449980210-toyota-hi-ace-2-5-d4-d-90-spacer-dc-2003": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453696085-peugeot-boxer-330-2-0-bluehdi-l2h2-premium-3-zitplaatsen": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454390687-peugeot-boxer-2-0-bluehdi-l2h2-premium-131pk-gesloten-bestel": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2450895355-ford-transit-gb-350-l2h2-tdci-automaat": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2453196296-peugeot-boxer-gb-330-l2h1-bluehdi-110pk-2018": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2412027537-toyota-hi-ace-2-5-d-4d-95-2008": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454183752-toyota-hiace-bj-2006": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2452039207-toyota-hiace-2-5-d-4d-95-sod-2008-schuifdeur-2x-apk-167dkm": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2451041143-toyota-hiace-2-5-d-4d-kwb-comfort-4-950-netto-bij": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454019544-toyota-hiace-2-5-d-4d-kwb-comfort": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2454022337-gereserveerd-toyota-hi-ace-2-5-d4-d-90-dc-2002": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2447688511-toyota-hiace-2-5-d-4d-kwb-comfort": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2446475394-toyota-hiace-2-5-d4-d-100-dc-emotion-executive": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://marktplaats.nl/v/auto-s/bestelauto-s/m2446991925-toyota-hi-ace-2-5-d4-d-lang-2002-hiace-rolstoelauto-uniek": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-2-l2h2-diesel-wit-cat_ma60mo14717-678368e8-6c08-4400-a1d9-25402361c7ca": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-budgetline-dc-export-nap-airco-diesel-wit-cat_ma74mo18230-f4ced6d5-e12d-44ce-919b-1800e02faf41": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-shd-motorlamp-brandt-rechtsachter-diesel-cat_ma29mo2160-48d80238-23a6-409f-9ea8-5d2416791659": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-transit-undefined-diesel-wit-cat_ma29mo2160-c8038dbd-089b-4c54-b0f5-59f5de678e4c": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-28-full-electrisch-l1h1-actual-accupakket-moet-nag-elektrisch-rood-cat_ma28mo14783-b6b79d95-0182-4755-8014-30c6d0eee20e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9-tdi-300-bud-dc-diesel-wit-cat_ma74mo18230-f7b1cace-6f2c-4998-9b39-c87502cebcac": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-335-3-0-hdi-l2h2-apk-airco-nap-diesel-blauw-cat_ma55mo14821-9311ec6a-76fa-47bb-93a2-f49e064f9390": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-t33-l1h2-automaat-airco-diesel-wit-cat_ma60mo14717-f7eb0cd3-ea7c-4833-a048-ee95a4cc51fc": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-marge-l2h2-nl-trekhaak-airco-diesel-cat_ma60mo14717-e5740f97-a0d4-4cdd-9ca6-13158ff63ef1": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/citroen-jumper-2-2-hdi-130-l2h2-130-pk-cruise-navi-airco-diesel-wit-cat_ma21mo14710-76de2e61-6110-425a-85e6-8999de44a9f2": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-3-0-hdi-l3-h2-180-pk-lbw-airco-cruise-control-diesel-wit-cat_ma21mo14710-90df4254-578c-47b5-a9b2-4db8d01e40bb": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-330-2-2-hdi-l2h2-e-1-950-marge-injectoren-d-diesel-cat_ma55mo14821-bc7ad82d-8d9a-4922-b2be-4d586a85ec98": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-boxer-435-2-2-hdi-l3h2-diesel-wit-cat_ma55mo14821-fa9953e6-cbc7-4b91-b85c-b28ed5566e66": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-boxer-335-2-2-hdi-l2h2-diesel-grijs-cat_ma55mo14821-f8467024-e6f7-472c-aba5-38be0de64433": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-335-2-2-hdi-l3h2-laadklep-diesel-cat_ma55mo14821-e024e6fa-fcce-4159-9a32-f56affc1426e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-335-2-2-hdi-l3h2-laadklep-diesel-cat_ma55mo14821-e024e6fa-fcce-4159-9a32-f56affc1426e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-310-2-0-tdci-l3h2-trend-moter-no-start-diesel-cat_ma29mo2160-91f6dce0-95a7-42d9-b409-a6e40b194a26": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-310-2-0-tdci-l3h2-trend-moter-no-start-diesel-cat_ma29mo2160-91f6dce0-95a7-42d9-b409-a6e40b194a26": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-310-2-0-tdci-l3h3-tr-diesel-wit-cat_ma29mo2160-ef2e3481-d440-46f6-ad7f-267d01801d00": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-t33-2-3-dci-l2h2-diesel-wit-cat_ma60mo14717-65c52292-e9fb-4d56-b5e9-4d428cd97985": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-t35-2-5-dci-l3h3-koelwagen-refrigerated-diesel-cat_ma60mo14717-60daf6d1-bc20-47be-b1de-36147440becc": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-t35-2-5-dci-l3h3-koelwagen-refrigerated-diesel-cat_ma60mo14717-60daf6d1-bc20-47be-b1de-36147440becc": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-t35-l2h2-diesel-zwart-cat_ma60mo14717-1645b443-86ed-4a0e-baf8-1c3216d58775": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/renault-master-master-t33-2-3-dci-l2h2-diesel-cat_ma60mo14717-3d1d7cef-81b0-4d8d-bd64-aacfacc172bd": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-bestel-30-2-2-hdi-l2h2-diesel-grijs-cat_ma21mo14710-11e423c2-df03-46f7-84b4-883788311f27": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-33-l3h2-laadklep-werkend-historie-en-onderhoud-diesel-wit-cat_ma21mo14710-fe10193b-7ea8-4066-a194-364b51291374": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-35-2-2-bluehdi-165-l3h2-driver-zwaar-e-6-450-n-diesel-wit-cat_ma21mo14710-a30c1389-9725-4410-9c15-ab54a6144874": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/citroen-jumper-35-2-2-bluehdi-165-l3h2-driver-zwaar-e-6-450-n-diesel-wit-cat_ma21mo14710-a30c1389-9725-4410-9c15-ab54a6144874": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-3-zits-airco-trekhaak-diesel-wit-cat_ma29mo2160-3ced8a16-4de0-437f-b715-d05539206ecb": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-3-zits-airco-trekhaak-diesel-wit-cat_ma29mo2160-3ced8a16-4de0-437f-b715-d05539206ecb": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-2-2-tdci-3-zits-airco-trekhaak-imperiaal-diesel-wit-cat_ma29mo2160-333a3884-218a-4725-8208-7dc54d330f52": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-2-2-tdci-3-zits-airco-trekhaak-imperiaal-diesel-wit-cat_ma29mo2160-333a3884-218a-4725-8208-7dc54d330f52": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-280m-2-2-tdc-dc-7-pers-airco-marge-2800kg-trekhaak-diesel-wit-cat_ma29mo2160-14cc6990-3ded-4dd1-896e-a92bfe5a1d75": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-280m-2-2-tdc-dc-7-pers-airco-marge-2800kg-trekhaak-diesel-wit-cat_ma29mo2160-14cc6990-3ded-4dd1-896e-a92bfe5a1d75": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/fiat-ducato-2-3-multijet-l1h1-120pk-airco-diesel-wit-cat_ma28mo14783-89b26951-adcd-4b9a-8081-0357fcd0bd03": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-2-3-multijet-l1h1-120pk-airco-diesel-wit-cat_ma28mo14783-89b26951-adcd-4b9a-8081-0357fcd0bd03": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/fiat-ducato-2-3multijet-130pk-automaat-lang-euro-6-airco-diesel-cat_ma28mo14783-f90f4b2a-4948-4d57-a5f1-34683d1fb172": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-2-3multijet-130pk-automaat-lang-euro-6-airco-diesel-cat_ma28mo14783-f90f4b2a-4948-4d57-a5f1-34683d1fb172": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-2-2-hdi-airco-8-pers-diesel-wit-cat_ma21mo14710-ee5d96cc-6eed-44ee-be78-978bba65df15": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/citroen-jumper-2-2-hdi-airco-8-pers-diesel-wit-cat_ma21mo14710-ee5d96cc-6eed-44ee-be78-978bba65df15": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/citroen-jumper-30-2-2-hdi-l1h1-airco-navi-camera-cruise-diesel-wit-cat_ma21mo14710-fa39aacb-dc84-40bd-85de-ee95c12cb98d": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/citroen-jumper-30-2-2-hdi-l1h1-airco-navi-camera-cruise-diesel-wit-cat_ma21mo14710-fa39aacb-dc84-40bd-85de-ee95c12cb98d": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-2-5-tdi-340-4m-mhd-lang-airco-cruise-lm-read-diesel-grijs-cat_ma74mo18230-1d3127ab-b2b0-4e17-9cbe-7a8b7f55679b": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-2-5-tdi-340-4m-mhd-lang-airco-cruise-lm-read-diesel-grijs-cat_ma74mo18230-1d3127ab-b2b0-4e17-9cbe-7a8b7f55679b": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/volkswagen-transporter-1-9tdi-l2-airco-trekhaak-diesel-wit-cat_ma74mo18230-a60cdeb5-4ae1-4e0f-ae05-4853d974ca7e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-1-9tdi-l2-airco-trekhaak-diesel-wit-cat_ma74mo18230-a60cdeb5-4ae1-4e0f-ae05-4853d974ca7e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-benzine-9-persoons-nieuwe-apk-cruise-control-trekh-benzine-groen-cat_ma55mo14821-53c0e1d5-7613-48cd-832e-2f4c30010d87": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-boxer-330-2-2-hdi-l1h1-p-diesel-wit-cat_ma55mo14821-e6601a9d-74bb-4a1d-bb53-06a931bad2b7": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-hdi-330-l1-h1-diesel-cat_ma55mo14821-65fd7545-299b-453c-b53d-0ac87b6384f2": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-hdi-335-l3-diesel-cat_ma55mo14821-e5906564-754d-4ea7-90f5-a802d65fa010": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-hdi-350-lh-automatik-diesel-cat_ma55mo14821-04f40eb2-608e-436d-9eeb-db437f60efa3": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-hdi-330-l2h1-komfort-plus-diesel-cat_ma55mo14821-eae812c9-e8a5-43cd-a2b6-a13791f2e602": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/peugeot-boxer-320lh-2-5tdi-diesel-blauw-cat_ma55mo14821-ba51721f-11a0-4440-86ef-b821728acb98": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-diesel-wit-cat_ma29mo2160-6fcd5d43-5e41-473b-a4e4-7a4563a1295f": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-0tdci-shd-camper-inrichting-turbo-defect-diesel-blauw-cat_ma29mo2160-914217d9-f71e-4708-acbf-362590e085a7": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-diesel-wit-cat_ma29mo2160-0f96409f-aa47-4de5-906b-4f7dbc05d3a8": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-330m-2-4tddi-shd-dc-diesel-cat_ma29mo2160-fb644653-5bdc-4785-8274-3e6cc9c77910": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-camper-van-diesel-cat_ma29mo2160-ecd6a0e0-03a1-4de4-84d8-84c65d246540": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-transit-300m-2-4tddi-hd-diesel-blauw-cat_ma29mo2160-b4e0d5c2-0458-4647-a08e-c4f3cb920365": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-260s-2-2-tdci-econed-diesel-wit-cat_ma29mo2160-bdec9592-e793-4c7c-be64-62a707122715": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T18:08:59.720390+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-klima-ahk-2x-schuifdeur-diesel-zilver-cat_ma29mo2160-94f6da64-624f-4743-b619-f53014b24c37": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autoscout24.nl/aanbod/ford-transit-kombi-2-2-tdci-turbo-defect-3995-incl-btw-9-pers-diesel-wit-cat_ma29mo2160-d590f085-2c3b-4a2d-9ed7-10dd6c2898d9": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:44:43.009114+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-3-0-hdi-l2-h2-airco-3-0-180pk-diesel-wit-cat_ma55mo14821-7ce5a3ab-e53e-40cc-a128-be958f0ad0ae": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3dci-125-pk-l2h2-airco-trekhaak-diesel-zwart-cat_ma60mo14717-0b81cff6-546b-44dc-ac5c-3551d20e45dd": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3-dci-110kw-150-l2h2-airco-klima-euro6-diesel-geel-cat_ma60mo14717-b9b8981f-ff44-41db-b358-a799118bec6c": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3dci-l3h2-maxi-egr-cooler-not-ok-airco-cam-diesel-cat_ma60mo14717-836abf39-a36d-4959-95ba-1a70cadaaf68": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/citroen-jumper-3-0-hdi-l3-h2-180-pk-lbw-airco-cruise-control-diesel-wit-cat_ma21mo14710-90df4254-578c-47b5-a9b2-4db8d01e40bb": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-330-2-2-hdi-l2h2-e-1-950-marge-injectoren-d-diesel-cat_ma55mo14821-bc7ad82d-8d9a-4922-b2be-4d586a85ec98": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-330-2-0-bluehdi-l2h2-premium-pack-diesel-wit-cat_ma55mo14821-644975ee-c0ff-4264-a251-ba89ea98c997": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-bestel-330-2-2-hdi-l1h2-xr-hoog-diesel-wit-cat_ma55mo14821-e5d5a89a-af5d-4c44-a7d6-0dc7ce1a4aea": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-350-2-0-tdci-l4h3-trend-rwd-e-2-950-netto-mot-diesel-cat_ma29mo2160-a44647a1-112f-44af-aad5-0977945a1148": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-fiat-l3h2-lift-3x-rollstuhl-bus-oder-9-sitzplaetze-gecomprimeerd-aardgas-wit-cat_ma28mo14783-609e8b34-e996-4e25-97f5-2099726095f8": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-fiat-l3h2-lift-3x-rollstuhl-bus-oder-9-sitzplaetze-benzine-wit-cat_ma28mo14783-5f6360c3-3cd3-4a82-be2b-2a326ee91d2c": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-2-3dci-180pk-l3h2-2x-schuifdeur-cruisecontrol-diesel-zwart-cat_ma60mo14717-2911a9b2-731c-4b4e-a75d-3f29c3e31e17": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-bestel-t35-2-3-dci-135-l2h2-diesel-wit-cat_ma60mo14717-f0709d2c-2966-4cf0-badd-168507c36e7f": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-t35-2-3-dci-l3h2-energy-e-4-950-netto-euro-diesel-cat_ma60mo14717-197e0e9e-58a1-4bd2-a530-afafe51280df": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-t33-2-3-dci-l2h2-export-camera-parkeersensor-diesel-wit-cat_ma60mo14717-f2964775-2cb8-490c-b656-2622cfbec20e": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/citroen-jumper-bestel-30-2-2-hdi-l2h2-diesel-grijs-cat_ma21mo14710-11e423c2-df03-46f7-84b4-883788311f27": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-330-2-2-hdi-130pk-l1h1-airco-2-schuifdeuren-trekha-diesel-wit-cat_ma55mo14821-e14e3bea-2ba5-44d5-8e9f-6542ff2b45cb": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-260s-2-2-tdci-apk-10-2027-airco-marge-diesel-wit-cat_ma29mo2160-3ad4925d-5f8c-4cc7-8a85-bb30ca711368": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-280m-2-2-tdci-hd-3-zits-dubbele-schuifdeur-airco-diesel-cat_ma29mo2160-304eb081-6c39-4f20-8111-7a1b94b11d8d": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/ford-transit-kombi-300s-2-2-tdci-shd-9-personen-airco-rad-diesel-wit-cat_ma29mo2160-e5234458-a157-4620-9c47-5b74ea165e3b": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-28-2-0-multijet-kh1-actual-airco-diesel-cat_ma28mo14783-4961d297-a33c-422a-8fd5-f9f6d07f4cc7": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/fiat-ducato-30-2-3mj-131pk-l2h1-airco-3-pers-145-000km-nap-diesel-wit-cat_ma28mo14783-770cc19a-6490-4535-acf9-d7b6d307a952": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/renault-master-nieuwstaat-apk-nieuw-rolstoelbus-automaat-airco-diesel-blauw-cat_ma60mo14717-1953c225-524b-478c-856a-5a65ae96fae0": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-2-5-tdi-dubbele-cabine-zwart-airco-2008-diesel-zwart-cat_ma74mo18230-1e6db861-28f2-414b-b66c-8bbc4d212ee1": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-2-5-tdi-l1-dubbel-cab-airco-cruiscontrol-ahk-diesel-wit-cat_ma74mo18230-40e51a97-4c68-484d-832d-c55a65bcc888": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/volkswagen-transporter-2-5-tdi-300-budgetline-dc-96kw-airco-trekhaak-diesel-grijs-cat_ma74mo18230-60c16a9a-3349-47f0-ab4e-fc5cc06701b2": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/toyota-hiace-2-5-d-4d-kwb-comfort-117pk-airco-marge-diesel-wit-cat_ma70mo14711-34da8b35-e15b-43c2-86c3-c0d409ad1553": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-2-2hdi-l2-h1-trekhaak-diesel-wit-cat_ma55mo14821-b3a4d980-840d-4405-aa95-dafe0e3dbba7": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-benzine-9-persoons-nieuwe-apk-cruise-control-trekh-benzine-groen-cat_ma55mo14821-53c0e1d5-7613-48cd-832e-2f4c30010d87": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:16:16.393412+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-2-2hdi-l2-h2-apk-tot-27-3-2027-diesel-blauw-cat_ma55mo14821-43f0f758-8c47-4d81-a9a0-5d50083fe3fb": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T13:44:43.009114+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://autotrack.nl/a/peugeot-boxer-330-2-2-hdi-l1h1-nieuwe-apk-diesel-grijs-cat_ma55mo14821-b5d60b3a-a866-424c-b1c3-123fd15c5ee2": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T18:08:59.720390+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-350-22-tdci-l3h2-trend-rwd-exclusief-btw-88bs18a": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-l1h2-rolstoelbus-94as1k9": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-290-22-tdci-l2h2-trend-direct-leverbaar-rolstoelbus-g2st2zc": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/ford-transit-22-tdci-l2h2-direct-leverbaar-rolstoelbus-5nh1eh0": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://viabovag.nl/auto/aanbod/peugeot-boxer-330-22-hdi-l1h1-9-persoons-14950-excl-btw-2by2qs5": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:20:39.980154+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/51586631-volkswagen-crafter-35-2-0-tdi-l2h2-koelauto-dag-nacht-werkt-100-2-zits-dub-lucht-opstap-airco-euro-5-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56710118-mercedes-benz-sprinter-310-2-2-cdi-366-l2-h2-cruise-3-zits-opstap-euro-5b-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        },
+        "https://bwcr.nl/occasions-kopen/56575589-ford-transit-300m-2-2-tdci-ambiente-shd-3-zits-trekhaak-2800-kg-opstap-euro-5-export": {
+          "status": "unchanged",
+          "first_seen": "2026-10-17T10:08:56.662669+00:00",
+          "last_seen": "2026-10-17T19:39:12.625188+00:00",
+          "show_in_digest": false,
+          "reasons": [],
+          "note": "Newly observed by this system, not proof of the seller's publication date.",
+          "conflicting_source_prices": []
+        }
+      }
     }
   ],
   "coverage": [
@@ -17043,6 +18165,226 @@
       "status": "bounded_coverage_available",
       "exhaustive": false,
       "observations": 12,
+      "note": "Per-run history; repeated runs on one day do not establish weeks of unattended reliability."
+    },
+    {
+      "run_id": "39063095639",
+      "observed_at": "2026-10-17T19:39:12.625188+00:00",
+      "sources": {
+        "Marktplaats": {
+          "sample_limit": 50,
+          "bound": 16,
+          "discovered": 68,
+          "attempts": 16,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 16,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": [],
+          "failure_kind": null,
+          "remediation": "Inspect discovery/parser diagnostics and compare recent samples.",
+          "role": "core",
+          "rss_health_reason": null,
+          "detail_status": "validated_adverts_available",
+          "rss_evaluated": 0,
+          "rss_interesting": 0,
+          "rss_needs_info": 0
+        },
+        "AutoScout24": {
+          "sample_limit": 50,
+          "bound": 50,
+          "discovered": 125,
+          "attempts": 50,
+          "verified_prices": 27,
+          "verified_routes": 30,
+          "price_rate": 0.54,
+          "route_rate": 0.6,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 50,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": [],
+          "failure_kind": null,
+          "remediation": "Inspect discovery/parser diagnostics and compare recent samples.",
+          "role": "core",
+          "rss_health_reason": null,
+          "detail_status": "validated_adverts_available",
+          "rss_evaluated": 0,
+          "rss_interesting": 0,
+          "rss_needs_info": 0
+        },
+        "AutoTrack": {
+          "sample_limit": 50,
+          "bound": 50,
+          "discovered": 107,
+          "attempts": 50,
+          "verified_prices": 37,
+          "verified_routes": 46,
+          "price_rate": 0.74,
+          "route_rate": 0.92,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 50,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": [],
+          "failure_kind": null,
+          "remediation": "Inspect discovery/parser diagnostics and compare recent samples.",
+          "role": "core",
+          "rss_health_reason": null,
+          "detail_status": "validated_adverts_available",
+          "rss_evaluated": 0,
+          "rss_interesting": 0,
+          "rss_needs_info": 0
+        },
+        "viaBOVAG": {
+          "sample_limit": 50,
+          "bound": 5,
+          "discovered": 48,
+          "attempts": 5,
+          "verified_prices": 1,
+          "verified_routes": 5,
+          "price_rate": 0.2,
+          "route_rate": 1.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 5,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": null,
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": 0,
+          "dealers": [],
+          "failure_kind": null,
+          "remediation": "Inspect discovery/parser diagnostics and compare recent samples.",
+          "role": "core",
+          "rss_health_reason": null,
+          "detail_status": "validated_adverts_available",
+          "rss_evaluated": 0,
+          "rss_interesting": 0,
+          "rss_needs_info": 0
+        },
+        "AutoWereld": {
+          "sample_limit": 50,
+          "bound": 0,
+          "discovered": 75,
+          "attempts": 0,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0,
+          "route_rate": 0,
+          "zero_bound_streak": 13,
+          "recent_max_bound": 0,
+          "severity": "ok",
+          "source_status": "source_unavailable",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "fresh_index_only",
+          "pending_inventory_pages": null,
+          "dealers": [],
+          "failure_kind": "external_redirect",
+          "remediation": "Restore permitted access to public advert pages or inspect independent dealer adverts; do not bypass the access stop.",
+          "role": "optional_rss",
+          "rss_health_reason": "Fresh RSS snapshot; every supplied item was assessed.",
+          "detail_status": "blocked",
+          "rss_evaluated": 75,
+          "rss_interesting": 10,
+          "rss_needs_info": 8
+        },
+        "Local dealers": {
+          "sample_limit": 50,
+          "bound": 3,
+          "discovered": 134,
+          "attempts": 13,
+          "verified_prices": 0,
+          "verified_routes": 0,
+          "price_rate": 0.0,
+          "route_rate": 0.0,
+          "zero_bound_streak": 0,
+          "recent_max_bound": 3,
+          "severity": "ok",
+          "source_status": "individual_pages_found",
+          "access_restriction": "autowereld.nl: Source redirected to another origin (myprivacy.dpgmedia.nl); content not validated",
+          "rss_status": "not_applicable",
+          "pending_inventory_pages": null,
+          "dealers": [
+            {
+              "dealer_id": "bwcr-roosendaal",
+              "name": "Bedrijfswagencentrum Roosendaal",
+              "domain": "bwcr.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 99,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.bwcr.nl/aanbod",
+              "contact_url": "https://www.bwcr.nl/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 3,
+              "index_exclusions": 96
+            },
+            {
+              "dealer_id": "mana",
+              "name": "MANA Bedrijfswagens",
+              "domain": "mana-bedrijfswagens.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 12,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://mana-bedrijfswagens.nl/occasions/",
+              "contact_url": "https://mana-bedrijfswagens.nl/contact/",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 12
+            },
+            {
+              "dealer_id": "van-mossel",
+              "name": "Van Mossel Bedrijfswagens",
+              "domain": "vanmossel.nl",
+              "inventory_pages_checked": 1,
+              "inventory_pages_fetched": 1,
+              "detail_urls_discovered": 23,
+              "errors": [],
+              "status": "inventory_accessible",
+              "inventory_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/voorraad?category=van&country=nl&type=used",
+              "contact_url": "https://www.vanmossel.nl/van-mossel-bedrijfswagens/contact/contact",
+              "registry_checked_on": "2026-10-17",
+              "inventory_pages_pending": 0,
+              "note": "Bounded public inventory sample; not exhaustive stock or verified route/availability.",
+              "identity_bound_candidates": 0,
+              "index_exclusions": 13
+            }
+          ],
+          "failure_kind": "external_redirect",
+          "remediation": "Restore permitted access to public advert pages or inspect independent dealer adverts; do not bypass the access stop.",
+          "role": "core",
+          "rss_health_reason": null,
+          "detail_status": "blocked",
+          "rss_evaluated": 0,
+          "rss_interesting": 0,
+          "rss_needs_info": 0
+        }
+      },
+      "alerts": [],
+      "optional_alerts": [],
+      "status": "bounded_coverage_available",
+      "exhaustive": false,
+      "observations": 13,
       "note": "Per-run history; repeated runs on one day do not establish weeks of unattended reliability."
     }
   ]

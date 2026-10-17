@@ -5,6 +5,7 @@ import json
 import os
 import subprocess
 import sys
+import tarfile
 import tempfile
 from pathlib import Path
 
@@ -45,14 +46,45 @@ def check_artifact():
         raise RuntimeError("Restored history differs from the uploaded data")
 
 
+def check_source_distribution():
+    """Ensure the source archive includes offline test prerequisites."""
+    archives = list(Path("dist").glob("*.tar.gz"))
+    if len(archives) != 1:
+        raise RuntimeError("Expected one source distribution")
+    required = {
+        "pyproject.toml",
+        "config/candidates.json",
+        "autowereld_snapshot.py",
+        "autowereld_upload.py",
+        "tests/__init__.py",
+        "tests/helpers.py",
+        "tests/fixtures/report.html",
+        "tests/fixtures/report_case.json",
+        ".github/actions/download-artifact/extract.py",
+        "src/campervan_search/resources/dealer_registry.json",
+        "src/campervan_search/resources/variant_research.json",
+        "src/campervan_search/resources/report.html",
+    }
+    with tarfile.open(archives[0]) as archive:
+        files = {name.split("/", 1)[-1] for name in archive.getnames()}
+    missing = required - files
+    if missing:
+        raise RuntimeError(
+            "Source distribution is incomplete: " + str(missing)
+        )
+    print("Source distribution contains test fixtures and runtime resources")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("check", choices=("planner", "artifact"))
+    parser.add_argument("check", choices=("planner", "artifact", "sdist"))
     args = parser.parse_args()
     if args.check == "planner":
         check_planner()
-    else:
+    elif args.check == "artifact":
         check_artifact()
+    else:
+        check_source_distribution()
 
 
 if __name__ == "__main__":

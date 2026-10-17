@@ -1,0 +1,7 @@
+include README.md pyproject.toml
+include autowereld_snapshot.py autowereld_upload.py
+recursive-include config *.json
+recursive-include tests *.py *.json *.html
+recursive-include scripts *.py *.sh
+recursive-include docs *.md *.json
+recursive-include .github *.py *.yml

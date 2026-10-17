@@ -8,6 +8,7 @@ on:
       - 'src/**'
       - 'config/**'
       - 'pyproject.toml'
+      - 'MANIFEST.in'
       - '.github/actions/**'
       - '.github/workflows/marketplace-rdw-integration.yml'
 permissions:

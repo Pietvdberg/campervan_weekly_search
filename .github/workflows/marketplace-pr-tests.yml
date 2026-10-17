@@ -7,6 +7,7 @@ on:
       - 'src/**'
       - 'config/**'
       - 'pyproject.toml'
+      - 'MANIFEST.in'
       - 'scripts/**'
       - '.github/actions/**'
       - '.github/workflows/**'
@@ -88,6 +89,8 @@ jobs:
         run: python3 -m unittest discover -s tests -t . -v
       - name: Build source distribution and wheel
         run: python3 -m build
+      - name: Verify source archive contains offline test prerequisites
+        run: python3 scripts/ci_checks.py sdist
       - name: Install wheel into an isolated environment
         run: |
           python3 -m venv "$RUNNER_TEMP/camper-wheel"

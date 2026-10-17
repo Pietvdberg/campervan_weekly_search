@@ -6,6 +6,8 @@ on:
     paths:
       - 'src/campervan_search/autowereld_container_probe.py'
       - 'pyproject.toml'
+      - 'MANIFEST.in'
+      - '.github/actions/setup-project/**'
       - '.github/workflows/autowereld-container-probe.yml'
 
 permissions:

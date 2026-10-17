@@ -35,5 +35,10 @@ The [17 October live-shortlist audit](shortlist-review-2026-10-17.md) reviews th
 124-record successful Actions run, re-extracts 17 exact public pages, and records
 current fault/VAT corrections and matching research for the final five leads.
 One development HTML/plain-text message was sent and read back from Gmail Sent;
-local desktop/mobile rendering passed. Received Hotmail appearance remains
-unconfirmed; these checks do not activate production.
+local desktop/mobile rendering passed. On 17 October the recipient confirmed
+receipt and readable appearance on both phone and PC, with screenshots. The
+[post-merge live run](https://github.com/Pietvdberg/campervan_weekly_search/actions/runs/39037474619)
+also succeeded on the merged commit, including discovery, RDW screening, invariant
+validation, artifact upload and durable history restoration/persistence. Its mail
+step was skipped as intended for a push-triggered run. This closes the remaining
+recipient-side check for priorities 1–3; production activation remains separate.

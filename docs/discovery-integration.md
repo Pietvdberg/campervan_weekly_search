@@ -1,14 +1,32 @@
 # Marketplace discovery and RDW integration
 
-Manual development workflow only. It queries public Bing RSS indexes for nine categories, attempts to fetch individual listing pages, screens conservative evidence, then queries RDW only for plates explicitly extracted from individual listings. Source coverage reports failures and partial discovery. It also performs an independent live RDW connectivity probe using historical plate V-706-SG, without claiming the vehicle is currently listed.
+The development workflow runs on selected code changes to main and on manual
+dispatch. It uses direct seeds for six source groups: Marktplaats, AutoScout24,
+AutoTrack, viaBOVAG, AutoWereld and local dealers. viaBOVAG has bounded inventory
+pagination. Public Bing RSS provides fallback links; a validated external
+AutoWereld RSS snapshot supplies separate unverified leads.
 
-Unknown road distance, VAT, actual A/C operation, mechanical condition, and payload must not be scored as verified. Indexed results are incomplete and sometimes stale; a source listed as checked does not mean its whole inventory was checked. This is a best-effort index search, not a marketplace API.
+Discovery attempts individual pages, scopes evidence to the requested vehicle,
+screens conservative facts and queries RDW only for confirmed listing plates.
+It also probes RDW with historical plate V-706-SG; that probe does not imply the
+vehicle is for sale. A returned page without bound identity is an unverified
+lead, not confirmed registration/equipment evidence.
 
-Workflow emails only the Hotmail test recipient, saves artifacts and does not enable production scheduling. A green run does not certify complete marketplace coverage.
+A shared per-host guard stops HTTP 403/429 requests and limits each host to 100
+requests per run across inventory/feed/detail phases and source groups. Coverage
+records restriction reasons and host counts; independent dealer hosts continue.
 
-Discovery now shares per-host access state across every source group and phase.
-An HTTP 403 or 429 stops subsequent underlying fetches to that host for the run,
-including when AutoWereld is encountered again through local-dealer seeds.
-Independent dealer hosts can continue. Each host has a 100-request run budget;
-coverage records the host counts, HTTP restriction reasons and budget stops.
-Errors are classified by HTTP status, not by digits in an exception message.
+`verify_discovery.py discovered_candidates.json` requires at least one
+identity-bound candidate plus coverage records for all six source groups to pass
+**development discovery verification**. It reports groups without bound candidates
+and never declares production readiness. This is not exhaustive inventory or a
+claim that empty sources have no vehicles. A blocked source is an operational gap.
+
+Unknown road distance, VAT, actual A/C operation, mechanical condition and payload
+remain unverified. Conversion review requires explicit requirements and dated,
+independently checked evidence; see [conversion evidence](conversion-evidence.md).
+
+Push runs do not send mail. Manual development dispatch sends only to the Hotmail
+test recipient. Mail retry state is preserved as a separate artifact. No production
+weekly schedule is enabled. Passing PR tests establishes offline regression
+behavior; development discovery acceptance and actual delivery are separate.

@@ -1,4 +1,26 @@
-# Camper van weekly search — RDW lookup
+# Camper van weekly search — development pipeline
+
+The repository combines bounded six-source listing discovery, conservative
+vehicle screening, RDW lookups, text/HTML reports and development email delivery.
+It is not yet an automated production weekly search. See
+[verification status](docs/verification-status.md) and the
+[strict review](STRICT_REVIEW.md) for scope and outstanding gaps.
+
+## Local discovery and screening
+
+```bash
+python3 discover_listings.py --output discovered_candidates.json
+python3 camper_pipeline.py --input discovered_candidates.json
+python3 verify_discovery.py discovered_candidates.json
+```
+
+The outputs are `screening_results.json` and `report.txt`; no mail is sent by these
+commands. Optional reviewed conversion evidence has a separate documented
+[contract](docs/conversion-evidence.md). Source groups, inventory seeds and model
+patterns are centralized in `source_catalog.py`. The missing `context.md` and
+actual project measurement requirements remain outstanding.
+
+## RDW request handoff
 
 `rdw_lookup.py` retrieves actual official RDW registration records (`m9d7-ebf2`) and recorded APK defects (`a34c-vvps`) for Dutch number plates.
 

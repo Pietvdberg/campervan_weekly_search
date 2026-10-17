@@ -12,7 +12,7 @@ from html.parser import HTMLParser
 from urllib.parse import parse_qs, urljoin, urlparse, urldefrag
 from listing_evidence import structured
 
-MODELS=re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|nv400)\b",re.I)
+from source_catalog import VAN_MODEL as MODELS
 NEXT=re.compile(r"\b(volgende|next|volgende pagina|toon meer)\b",re.I)
 MAX_INVENTORY_PAGES=24
 MAX_VEHICLE_URLS=500

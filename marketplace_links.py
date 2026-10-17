@@ -8,7 +8,7 @@ import re
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlparse, urldefrag
 
-TARGETS = re.compile(r"\b(boxer|jumper|ducato|transit|master|movano|sprinter|crafter|daily|transporter|nv400)\b", re.I)
+from source_catalog import VAN_MODEL as TARGETS
 UUID = r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}"
 AUTO_SCOUT = re.compile(r"/aanbod/[a-z0-9_-]+-" + UUID + r"/?$", re.I)
 BEDRIJFSAUTO = re.compile(r"/[a-z0-9-]+-\d{7,}/?$", re.I)

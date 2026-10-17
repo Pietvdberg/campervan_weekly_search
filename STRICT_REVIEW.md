@@ -207,3 +207,12 @@ Workflow reruns restore state and verify rather than blindly resending. Seven
 mocked delivery regressions bring the suite to 153 tests. The state artifact lasts
 30 days; cross-run/concurrent exactly-once delivery and full audit retention still
 need a persistent operational service.
+
+PR #51 merged after CI passed. Finding #10 now centralizes source groups, seed
+URLs, target model patterns and required screening checks. Candidate input
+validation rejects malformed batches before external lookups; docs describe the
+actual six-source development pipeline. Finding #6's development acceptance gate
+now requires identity-bound evidence and coverage records for all source groups,
+rather than merely any returned page. Six additional regressions bring the suite
+to 159 tests. Missing context, genuine measurements, stable coverage, production
+cadence and durable operational state remain explicitly outstanding.

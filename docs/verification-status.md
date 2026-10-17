@@ -1,11 +1,27 @@
 # Pipeline verification scope
 
-This development workflow **does not implement live listing discovery** and is not a production weekly search.
+This repository remains a development search system, without a production weekly
+schedule. `context.md` was not present during the strict review; full project
+requirements have not been recovered.
 
-* Unit tests exercise candidate screening, missing specifications, unconfirmed plates, RDW successful records and RDW errors using synthetic fixtures.
-* The workflow processes `candidates.json`, which initially contains no real candidates and honestly declares all nine sources unverified.
-* Live RDW calls are made only for a plate explicitly linked to a current individual listing and confirmed by a separate verification step. They are not called on guessed plates.
-* The message goes only to `piet.v.d.berg@hotmail.com`. Production mode is not exposed in this workflow.
-* To complete production deployment, implement lawful, stable live discovery for each requested marketplace and local dealer; independent listing/plate verification; actual source-coverage reporting; a production schedule; and end-to-end checks against real, verified candidates.
+- PR CI runs syntax compilation and all offline unittest modules. The strict
+  review follow-ups currently have 159 tests, including vehicle identity,
+  conversion review, source access stops, report consistency and mail retry state.
+- The marketplace integration workflow performs bounded live discovery across
+  six source groups. It records coverage gaps and requires identity-bound evidence
+  for development acceptance. This does not demonstrate exhaustive coverage.
+- `weekly-verification.yml` processes `candidates.json`, which is an empty manual
+  candidate input. It does not run discovery and must not be interpreted as a
+  production search.
+- Controlled fixtures demonstrate passing and failing conversion review. No real
+  vehicle measurements or user-approved minima were available in this review.
+- Manual mail workflows address only the development recipient. SMTP acceptance
+  and Gmail Sent confirmation do not prove recipient delivery. Retry state blocks
+  blind resubmission after ambiguous or accepted SMTP submission.
+- The external Pi timer collects RSS locally. Upload is separate; data-only pushes
+  do not trigger marketplace discovery. This is not end-to-end weekly automation.
 
-Do not interpret a green run of this workflow as confirmation that the complete weekly production search has been implemented.
+Remaining production work: actual project requirements, real reviewed candidates,
+stable source access and maintained dealer coverage, an operational cadence,
+durable mail/audit state, appropriate retention and independently demonstrated
+live end-to-end outcomes. PR CI passing alone does not satisfy those conditions.

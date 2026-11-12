@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "collected_at": "2026-11-05T12:30:57.553596+00:00",
+  "collected_at": "2026-11-12T12:30:57.677225+00:00",
   "source": "AutoWereld public RSS",
   "feeds_checked": [
     "https://www.autowereld.nl/rss/peugeot/boxer/",
@@ -11,226 +11,268 @@
   ],
   "entries": [
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/335-2-0-bluehdi-160-pk-laadbak4-20m-44018734/details.html",
-      "title": "Peugeot Boxer - 335 2.0 BlueHDI 160 pk.laadbak4.20m",
-      "description": "<img src=\"https://www.autowereld.nl/I784873549/240x180/peugeot-boxer-335-2-0-bluehdi-160-pk-laadbak4-20m.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 335 2.0 BlueHDI 160 pk.laadbak4.20m\" /><br /><b>Vraagprijs</b>: € 13.950<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 104.074 km",
-      "pub_date": "Thu, 05 Nov 2026 13:30:21 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-euro-6-premium-laadlift-lier-1-eigenaar-44051214/details.html",
+      "title": "Peugeot Boxer - 330 2.0 BlueHDI Euro 6 Premium Laadlift+Lier 1-Eigenaar",
+      "description": "<img src=\"https://www.autowereld.nl/I786099196/240x180/peugeot-boxer-330-2-0-bluehdi-euro-6-premium-laadlift-lier-1-eigenaar.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 330 2.0 BlueHDI Euro 6 Premium Laadlift+Lier 1-Eigenaar\" /><br /><b>Vraagprijs</b>: € 6.400<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 242.150 km",
+      "pub_date": "Thu, 12 Nov 2026 09:32:54 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/330-2-2-hdi-l2h1-dc-dubbelcabine-airco-44017980/details.html",
-      "title": "Peugeot Boxer - 330 2.2 HDI L2H1 DC | dubbelcabine | airco",
-      "description": "<img src=\"https://www.autowereld.nl/I784851409/240x180/peugeot-boxer-330-2-2-hdi-l2h1-dc-dubbelcabine-airco.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 330 2.2 HDI L2H1 DC | dubbelcabine | airco\" /><br /><b>Vraagprijs</b>: € 2.750<br /><b>Bouwjaar</b>: 2011<br /><b>Kilometerstand</b>: 346.542 km",
-      "pub_date": "Thu, 05 Nov 2026 11:56:31 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/2-8-hdi-l1-h2-airco-trekhaak-nieuwstaat-44049669/details.html",
+      "title": "Peugeot Boxer - 2.8 HDI L1 H2 Airco Trekhaak NIEUWSTAAT",
+      "description": "<img src=\"https://www.autowereld.nl/I786017899/240x180/peugeot-boxer-2-8-hdi-l1-h2-airco-trekhaak-nieuwstaat.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 2.8 HDI L1 H2 Airco Trekhaak NIEUWSTAAT\" /><br /><b>Vraagprijs</b>: € 2.450<br /><b>Bouwjaar</b>: 2003<br /><b>Kilometerstand</b>: 140.992 km",
+      "pub_date": "Wed, 11 Nov 2026 17:43:54 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l1h1-premium-pack-navi-camera-pdc-cruise-trekhaak-44017860/details.html",
-      "title": "Peugeot Boxer - 330 2.0 BlueHDI L1H1 Premium Pack|Navi|Camera|PDC|Cruise|Trekhaak|",
-      "description": "<img src=\"https://www.autowereld.nl/I784848275/240x180/peugeot-boxer-330-2-0-bluehdi-l1h1-premium-pack-navi-camera-pdc-cruise-trekhaak.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 330 2.0 BlueHDI L1H1 Premium Pack|Navi|Camera|PDC|Cruise|Trekhaak|\" /><br /><b>Vraagprijs</b>: € 6.950<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 228.894 km",
-      "pub_date": "Thu, 05 Nov 2026 11:44:28 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-pro-koelwagen-44046110/details.html",
+      "title": "Peugeot Boxer - 330 2.0 BlueHDI L2H2 Pro Koelwagen",
+      "description": "<img src=\"https://www.autowereld.nl/I785918957/240x180/peugeot-boxer-330-2-0-bluehdi-l2h2-pro-koelwagen.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 330 2.0 BlueHDI L2H2 Pro Koelwagen\" /><br /><b>Vraagprijs</b>: € 10.950<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 208.405 km",
+      "pub_date": "Wed, 11 Nov 2026 12:00:12 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/l3-h2-2-0hdi-96kw-e6-ac-4-2017-142-380km-44017306/details.html",
-      "title": "Peugeot Boxer - L3-H2, 2.0HDi., 96kw, E6, AC, 4-2017.142.380km",
-      "description": "<img src=\"https://www.autowereld.nl/I784835145/240x180/peugeot-boxer-l3-h2-2-0hdi-96kw-e6-ac-4-2017-142-380km.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - L3-H2, 2.0HDi., 96kw, E6, AC, 4-2017.142.380km\" /><br /><b>Vraagprijs</b>: € 4.995<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 142.380 km",
-      "pub_date": "Thu, 05 Nov 2026 10:45:41 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/290c-2-0-benzine-stuurbek-nieuwe-a-p-k-44045392/details.html",
+      "title": "Peugeot Boxer - 290C 2.0 *BENZINE*Stuurbek*Nieuwe A.P.K",
+      "description": "<img src=\"https://www.autowereld.nl/I785906530/240x180/peugeot-boxer-290c-2-0-benzine-stuurbek-nieuwe-a-p-k.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 290C 2.0 *BENZINE*Stuurbek*Nieuwe A.P.K\" /><br /><b>Vraagprijs</b>: € 5.980<br /><b>Bouwjaar</b>: 2005<br /><b>Kilometerstand</b>: 204.175 km",
+      "pub_date": "Wed, 11 Nov 2026 11:26:54 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/435-2-0-bluehdi-l3h2-pro-laadklep-euro-6-44016544/details.html",
-      "title": "Peugeot Boxer - 435 2.0 BlueHDI L3H2 Pro LAADKLEP EURO 6",
-      "description": "<img src=\"https://www.autowereld.nl/I784812730/240x180/peugeot-boxer-435-2-0-bluehdi-l3h2-pro-laadklep.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 435 2.0 BlueHDI L3H2 Pro LAADKLEP EURO 6\" /><br /><b>Vraagprijs</b>: € 9.580<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 316.334 km",
-      "pub_date": "Thu, 05 Nov 2026 08:43:53 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/435-2-2-bluehdi-140-l4h2-zwaar-pro-dc-ongebruikt-44045025/details.html",
+      "title": "Peugeot Boxer - 435 2.2 BlueHDi 140 L4H2 Zwaar Pro DC ONGEBRUIKT",
+      "description": "<img src=\"https://www.autowereld.nl/I785924318/240x180/peugeot-boxer-435-2-2-bluehdi-140-l4h2-zwaar-pro-dc-ongebruikt.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 435 2.2 BlueHDi 140 L4H2 Zwaar Pro DC ONGEBRUIKT\" /><br /><b>Vraagprijs</b>: € 27.900<br /><b>Bouwjaar</b>: 2023<br /><b>Kilometerstand</b>: 831 km",
+      "pub_date": "Wed, 11 Nov 2026 10:36:00 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/2-2-hdi-130pk-ac-euro-5-apk-7-2027-44014618/details.html",
-      "title": "Peugeot Boxer - 2.2 HDI 130PK - AC - EURO 5 - APK 7/2027",
-      "description": "<img src=\"https://www.autowereld.nl/I784750515/240x180/peugeot-boxer-2-2-hdi-130pk-ac-apk-7-2027-euro-5-1e-eig.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 2.2 HDI 130PK - AC - EURO 5 - APK 7/2027\" /><br /><b>Vraagprijs</b>: € 5.950<br /><b>Bouwjaar</b>: 2015<br /><b>Kilometerstand</b>: 147.835 km",
-      "pub_date": "Wed, 04 Nov 2026 16:40:15 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/2012-2-2-hdi-150-pk-l3h2-marge-export-en-handel-44041088/details.html",
+      "title": "Peugeot Boxer - | 2012 | 2.2 HDi 150 pk | L3H2 | Marge | Export en Handel",
+      "description": "<img src=\"https://www.autowereld.nl/I785736703/240x180/peugeot-boxer-2012-2-2-hdi-150-pk-l3h2-marge-export-en-handel.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - | 2012 | 2.2 HDi 150 pk | L3H2 | Marge | Export en Handel\" /><br /><b>Vraagprijs</b>: € 7.500<br /><b>Bouwjaar</b>: 2012<br /><b>Kilometerstand</b>: 150.572 km",
+      "pub_date": "Tue, 10 Nov 2026 14:55:31 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/335-2-2-hdi-88kw-l3-doka-dubbelcabine-pickup-open-laadbak-44013733/details.html",
-      "title": "Peugeot Boxer - 335 2.2 HDI 88KW L3 DOKA Dubbelcabine PickUp Open Laadbak",
-      "description": "<img src=\"https://www.autowereld.nl/I784727588/240x180/peugeot-boxer-335-2-2-hdi-88kw-l3-doka-dubbelcabine-pickup-open-laadbak.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 335 2.2 HDI 88KW L3 DOKA Dubbelcabine PickUp Open Laadbak\" /><br /><b>Vraagprijs</b>: € 6.400<br /><b>Bouwjaar</b>: 2009<br /><b>Kilometerstand</b>: 100.995 km",
-      "pub_date": "Wed, 04 Nov 2026 15:24:48 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/2-2bluehdi-180pk-automaat-l4h2-s-s-nieuw-model-navi-camera-carplay-pdc-44038816/details.html",
+      "title": "Peugeot Boxer - 2.2BlueHDi 180PK Automaat L4H2 S&S Nieuw model Navi Camera Carplay PDC",
+      "description": "<img src=\"https://www.autowereld.nl/I785664801/240x180/peugeot-boxer-2-2bluehdi-180pk-automaat-l4h2-s-s-nieuw-model-navi-camera-carplay-pdc.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 2.2BlueHDi 180PK Automaat L4H2 S&S Nieuw model Navi Camera Carplay PDC\" /><br /><b>Vraagprijs</b>: € 22.900<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 52.660 km",
+      "pub_date": "Tue, 10 Nov 2026 09:53:55 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/gb-333-l1h1-bluehdi-130pk-premium-trekhaak-navigatie-achteruitrijcamera-airco-crui-44013123/details.html",
-      "title": "Peugeot Boxer - GB 333 L1H1 BlueHDi 130PK Premium TREKHAAK | Navigatie | Achteruitrijcamera | AIRCO | Crui",
-      "description": "<img src=\"https://www.autowereld.nl/I784710825/240x180/peugeot-boxer-gb-333-l1h1-bluehdi-130pk-premium-trekhaak-navigatie-achteruitrijcamera-airco-crui.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - GB 333 L1H1 BlueHDi 130PK Premium TREKHAAK | Navigatie | Achteruitrijcamera | AIRCO | Crui\" /><br /><b>Vraagprijs</b>: € 12.500<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 126.653 km",
-      "pub_date": "Wed, 04 Nov 2026 14:23:18 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/2-2-bluehdi-180-s-s-l2h2-3-5t-zwaar-navi-nieuwmodel-2-x-schuifdeur-44037538/details.html",
+      "title": "Peugeot Boxer - 2.2 BlueHDi 180 S&S L2H2 3.5t Zwaar navi nieuwmodel 2 x schuifdeur",
+      "description": "<img src=\"https://www.autowereld.nl/I785457951/240x180/peugeot-boxer-2-2-bluehdi-180-s-s-l2h2-3-5t-zwaar-navi-nieuwmodel-2-x-schuifdeur.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 2.2 BlueHDi 180 S&S L2H2 3.5t Zwaar navi nieuwmodel 2 x schuifdeur\" /><br /><b>Vraagprijs</b>: € 12.950<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 84.631 km",
+      "pub_date": "Mon, 09 Nov 2026 17:51:29 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise-44011848/details.html",
-      "title": "Peugeot Boxer - 330 2.0 BlueHDI L2H2 Premium | 3 Zitplaatsen | Bluetooth | Airco | Cruise",
-      "description": "<img src=\"https://www.autowereld.nl/I784675322/240x180/peugeot-boxer-330-2-0-bluehdi-l2h2-premium-3-zitplaatsen-bluetooth-airco-cruise.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 330 2.0 BlueHDI L2H2 Premium | 3 Zitplaatsen | Bluetooth | Airco | Cruise\" /><br /><b>Vraagprijs</b>: € 4.500<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 144.415 km",
-      "pub_date": "Wed, 04 Nov 2026 11:54:22 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/2-2-bluehdi-120-dc-6-zits-camera-cruise-airco-trekhaak-44035960/details.html",
+      "title": "Peugeot Boxer - 2.2 BlueHDi 120 | DC 6-Zits | Camera | Cruise | Airco | Trekhaak",
+      "description": "<img src=\"https://www.autowereld.nl/I785409096/240x180/peugeot-boxer-2-2-bluehdi-120-dc-6-zits-camera-cruise-airco-trekhaak.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 2.2 BlueHDi 120 | DC 6-Zits | Camera | Cruise | Airco | Trekhaak\" /><br /><b>Vraagprijs</b>: € 20.950<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 78.461 km",
+      "pub_date": "Mon, 09 Nov 2026 15:17:57 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/330-2-2-hdi-l2h1profiteuro-5cool-aircoelecktrish-raamelecktrish-spiegelsapk-28-1-2027lang-44011057/details.html",
-      "title": "Peugeot Boxer - 330 2.2 HDI L2H1ProfitEURO 5COOL AIRCOELECKTRISH RAAMELECKTRISH SPIEGELSAPK:28-1-2027LANG",
-      "description": "<img src=\"https://www.autowereld.nl/I784651993/240x180/peugeot-boxer-330-2-2-hdi-l2h1profit-euro-5-cool-airco-elecktrish-raam-elecktrish-spiegels-apk-28-1-2027.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 330 2.2 HDI L2H1ProfitEURO 5COOL AIRCOELECKTRISH RAAMELECKTRISH SPIEGELSAPK:28-1-2027LANG\" /><br /><b>Vraagprijs</b>: € 5.999<br /><b>Bouwjaar</b>: 2015<br /><b>Kilometerstand</b>: 212.500 km",
-      "pub_date": "Wed, 04 Nov 2026 10:31:53 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/330-2-0-bluehdi-l2h2-pro-airco-navi-bj-2018-44033244/details.html",
+      "title": "Peugeot Boxer - 330 2.0 BlueHDI L2H2 Pro AIRCO/NAVI BJ 2018",
+      "description": "<img src=\"https://www.autowereld.nl/I785312304/240x180/peugeot-boxer-330-2-0-bluehdi-l2h2-pro-airco-navi-bj-2018.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 330 2.0 BlueHDI L2H2 Pro AIRCO/NAVI BJ 2018\" /><br /><b>Vraagprijs</b>: € 7.750<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 222.995 km",
+      "pub_date": "Mon, 09 Nov 2026 08:40:27 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/335-l4h2-motor-kapot-euro6-44010661/details.html",
-      "title": "Peugeot Boxer - 335 L4H2 MOTOR KAPOT EURO6",
-      "description": "<img src=\"https://www.autowereld.nl/I784640920/240x180/peugeot-boxer-335-l4h2-motor-kapot-euro6.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 335 L4H2 MOTOR KAPOT EURO6\" /><br /><b>Vraagprijs</b>: € 4.950<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 248.206 km",
-      "pub_date": "Wed, 04 Nov 2026 09:49:05 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/335-2-2-hdi-l2h2-3-zitplaatsen-bluetooth-airco-cruise-turbo-stuk-44028993/details.html",
+      "title": "Peugeot Boxer - 335 2.2 HDI L2H2 | 3 Zitplaatsen | Bluetooth | Airco | Cruise TURBO STUK",
+      "description": "<img src=\"https://www.autowereld.nl/I785533910/240x180/peugeot-boxer-335-2-2-hdi-l2h2-3-zitplaatsen-bluetooth-airco-cruise-turbo-stuk.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 335 2.2 HDI L2H2 | 3 Zitplaatsen | Bluetooth | Airco | Cruise TURBO STUK\" /><br /><b>Vraagprijs</b>: € 2.750<br /><b>Bouwjaar</b>: 2014<br /><b>Kilometerstand</b>: 287.455 km",
+      "pub_date": "Sat, 07 Nov 2026 10:53:13 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/140-pk-s-s-l2h2-3-3t-apple-carplay-android-auto-trekhaak-achteruitrijcamera-naviga-44007848/details.html",
-      "title": "Peugeot Boxer - 140 pk S&S L2H2 3.3t | Apple Carplay/Android Auto | Trekhaak | Achteruitrijcamera | Naviga",
-      "description": "<img src=\"https://www.autowereld.nl/I784550516/240x180/peugeot-boxer-140-pk-s-s-l2h2-3-3t-apple-carplay-android-auto-trekhaak-achteruitrijcamera-naviga.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 140 pk S&S L2H2 3.3t | Apple Carplay/Android Auto | Trekhaak | Achteruitrijcamera | Naviga\" /><br /><b>Vraagprijs</b>: € 21.700<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 31.589 km",
-      "pub_date": "Tue, 03 Nov 2026 15:37:33 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/435-2-2-bluehdi-140-l4h2-camera-44028241/details.html",
+      "title": "Peugeot Boxer - 435 2.2 BlueHDi 140 L4H2 CAMERA",
+      "description": "<img src=\"https://www.autowereld.nl/I785613225/240x180/peugeot-boxer-435-2-2-bluehdi-140-l4h2-camera.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 435 2.2 BlueHDi 140 L4H2 CAMERA\" /><br /><b>Vraagprijs</b>: € 18.850<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 68.860 km",
+      "pub_date": "Sat, 07 Nov 2026 01:05:08 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/335-2-2-bluehdi-140-l3h3-premium-44007534/details.html",
-      "title": "Peugeot Boxer - 335 2.2 BlueHDi 140 L3H3 Premium",
-      "description": "<img src=\"https://www.autowereld.nl/I784543089/240x180/peugeot-boxer-335-2-2-bluehdi-140-l3h3-premium-335-2-2-bluehdi-140-l3h3-premium.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 335 2.2 BlueHDi 140 L3H3 Premium\" /><br /><b>Vraagprijs</b>: € 12.995<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 169.000 km",
-      "pub_date": "Tue, 03 Nov 2026 15:03:25 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/l2h2-dubbel-cabine-dc-7-personen-imperiaal-boxer-l2h2-dubbel-cabine-7-personen-met-imperia-44028239/details.html",
+      "title": "Peugeot Boxer - L2H2 DUBBEL CABINE DC 7 personen IMPERIAAL Boxer L2H2 DUBBEL CABINE 7 personen met IMPERIA",
+      "description": "<img src=\"https://www.autowereld.nl/I785612545/240x180/peugeot-boxer-l2h2-dubbel-cabine-dc-7-personen-imperiaal-peugeot-boxer-l2h2-dubbel-cabine-7-personen-met.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - L2H2 DUBBEL CABINE DC 7 personen IMPERIAAL Boxer L2H2 DUBBEL CABINE 7 personen met IMPERIA\" /><br /><b>Vraagprijs</b>: € 14.950<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 127.902 km",
+      "pub_date": "Sat, 07 Nov 2026 01:04:18 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/330-2-2-bluehdi-140-l2h2-premium-trekhaak-achteruitrijcamera-navigatie-44004992/details.html",
-      "title": "Peugeot Boxer - 330 2.2 BlueHDi 140 L2H2 Premium | Trekhaak | Achteruitrijcamera | Navigatie |",
-      "description": "<img src=\"https://www.autowereld.nl/I784474823/240x180/peugeot-boxer-330-2-2-bluehdi-140-l2h2-premium-trekhaak-achteruitrijcamera-navigatie.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 330 2.2 BlueHDi 140 L2H2 Premium | Trekhaak | Achteruitrijcamera | Navigatie |\" /><br /><b>Vraagprijs</b>: € 17.990<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 38.957 km",
-      "pub_date": "Tue, 03 Nov 2026 10:57:45 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/333-2-2-bluehdi-l2h2-premium-laadbak-kipper-pick-up-3-zits-euro-6-44027695/details.html",
+      "title": "Peugeot Boxer - 333 2.2 BlueHDI L2H2 Premium LAADBAK / KIPPER / PICK UP / 3 ZITS / EURO 6",
+      "description": "<img src=\"https://www.autowereld.nl/I785674824/240x180/peugeot-boxer-333-2-2-bluehdi-l2h2-premium-laadbak-kipper-pick-up-3-zits-euro-6.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 333 2.2 BlueHDI L2H2 Premium LAADBAK / KIPPER / PICK UP / 3 ZITS / EURO 6\" /><br /><b>Vraagprijs</b>: € 21.202<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 41.992 km",
+      "pub_date": "Fri, 06 Nov 2026 19:41:10 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/peugeot/boxer/bestel-330-2-0-bluehdi-l1h1-premium-44004967/details.html",
-      "title": "Peugeot Boxer - Bestel 330 2.0 BlueHDI L1H1 Premium",
-      "description": "<img src=\"https://www.autowereld.nl/I784475901/240x180/peugeot-boxer-bestel-330-2-0-bluehdi-l1h1-premium.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - Bestel 330 2.0 BlueHDI L1H1 Premium\" /><br /><b>Vraagprijs</b>: € 14.295<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 81.634 km",
-      "pub_date": "Tue, 03 Nov 2026 10:56:49 +0100",
+      "url": "https://www.autowereld.nl/peugeot/boxer/335-2-0-bluehdi-l3h3-pro-airco-cruisecontrol-super-nette-bus-44026861/details.html",
+      "title": "Peugeot Boxer - 335 2.0 BlueHDI L3H3 Pro, Airco, Cruisecontrol, Super nette BUs",
+      "description": "<img src=\"https://www.autowereld.nl/I785114979/240x180/peugeot-boxer-335-2-0-bluehdi-l3h3-pro-335-2-0-bluehdi-l3h3-pro-airco-cruisecontrol-super-nette-bus.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Peugeot Boxer - 335 2.0 BlueHDI L3H3 Pro, Airco, Cruisecontrol, Super nette BUs\" /><br /><b>Vraagprijs</b>: € 11.555<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 90.912 km",
+      "pub_date": "Fri, 06 Nov 2026 17:07:32 +0100",
       "feed": "https://www.autowereld.nl/rss/peugeot/boxer/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/330-2-0-tdci-l3h2-haak-cam-a-c-cruise-3-pers-navi-44017954/details.html",
-      "title": "Ford Transit - 330 2.0 TDCI L3H2*HAAK*CAM*A/C*CRUISE*3-PERS*NAVI",
-      "description": "<img src=\"https://www.autowereld.nl/I784850984/240x180/ford-transit-330-2-0-tdci-l3h2-haak-cam-a-c-cruise-3-pers-navi.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 330 2.0 TDCI L3H2*HAAK*CAM*A/C*CRUISE*3-PERS*NAVI\" /><br /><b>Vraagprijs</b>: € 14.250<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 138.343 km",
-      "pub_date": "Thu, 05 Nov 2026 11:55:25 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/2-2-tdci-280m-ambiente-3-pers-airco-trekhaak-eerste-eigenaar-44052956/details.html",
+      "title": "Ford Transit - 2.2 TDCi 280M Ambiente 3 pers. Airco Trekhaak eerste eigenaar",
+      "description": "<img src=\"https://www.autowereld.nl/I786150768/240x180/ford-transit-2-2-tdci-280m-ambiente-3-pers-airco-trekhaak-eerste-eigenaar.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 2.2 TDCi 280M Ambiente 3 pers. Airco Trekhaak eerste eigenaar\" /><br /><b>Vraagprijs</b>: € 3.450<br /><b>Bouwjaar</b>: 2012<br /><b>Kilometerstand</b>: 205.406 km",
+      "pub_date": "Thu, 12 Nov 2026 12:41:48 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/350-2-0-tdci-l3h2-rwd-haak-cam-a-c-cruise-3-pers-44017703/details.html",
-      "title": "Ford Transit - 350 2.0 TDCI L3H2 RWD*HAAK*CAM*A/C*CRUISE*3-PERS",
-      "description": "<img src=\"https://www.autowereld.nl/I784844214/240x180/ford-transit-350-2-0-tdci-l3h2-rwd-haak-cam-a-c-cruise-3-pers.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 2.0 TDCI L3H2 RWD*HAAK*CAM*A/C*CRUISE*3-PERS\" /><br /><b>Vraagprijs</b>: € 15.500<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 97.788 km",
-      "pub_date": "Thu, 05 Nov 2026 11:27:27 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/l2h2-airco-impriaal-trap-trekhaak-130pk-44052660/details.html",
+      "title": "Ford Transit - l2h2 airco impriaal trap trekhaak 130pk",
+      "description": "<img src=\"https://www.autowereld.nl/I786143602/240x180/ford-transit-l2h2-airco-impriaal-trap-trekhaak-130pk.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - l2h2 airco impriaal trap trekhaak 130pk\" /><br /><b>Vraagprijs</b>: € 7.750<br /><b>Bouwjaar</b>: 2015<br /><b>Kilometerstand</b>: 160.825 km",
+      "pub_date": "Thu, 12 Nov 2026 12:23:43 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/2-0-tdci-131pk-l4h3-jumbo-euro6-airco-camera-apple-carplay-cruisecontrol-android-aut-44017272/details.html",
-      "title": "Ford Transit - 2.0 TDCI 131pk L4H3 Jumbo Euro6 Airco | Camera | Apple Carplay | Cruisecontrol Android Aut",
-      "description": "<img src=\"https://www.autowereld.nl/I784832941/240x180/ford-transit-2-0-tdci-131pk-l4h3-jumbo-euro6-airco-camera-apple-carplay-cruisecontrol-android-aut.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 2.0 TDCI 131pk L4H3 Jumbo Euro6 Airco | Camera | Apple Carplay | Cruisecontrol Android Aut\" /><br /><b>Vraagprijs</b>: € 26.750<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 95.772 km",
-      "pub_date": "Thu, 05 Nov 2026 10:40:02 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/260s-2-2-tdci-shd-dc-44051928/details.html",
+      "title": "Ford Transit - 260S 2.2 TDCI SHD DC",
+      "description": "<img src=\"https://www.autowereld.nl/I786122077/240x180/ford-transit-260s-2-2-tdci-shd-dc-260s-2-2-tdci-shd-dc.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 260S 2.2 TDCI SHD DC\" /><br /><b>Vraagprijs</b>: € 1.790<br /><b>Bouwjaar</b>: 2008<br /><b>Kilometerstand</b>: 306.826 km",
+      "pub_date": "Thu, 12 Nov 2026 11:12:14 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/350-oprijwagen-euro6-ac-cruisecontrol-lier-3-zits-44017092/details.html",
-      "title": "Ford Transit - 350 oprijwagen EURO6 ac cruisecontrol lier 3-zits",
-      "description": "<img src=\"https://www.autowereld.nl/I784827940/240x180/ford-transit-350-oprijwagen-euro6-ac-cruisecontrol-lier-3-zits.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 oprijwagen EURO6 ac cruisecontrol lier 3-zits\" /><br /><b>Vraagprijs</b>: € 25.950<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 135.582 km",
-      "pub_date": "Thu, 05 Nov 2026 10:16:35 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/350l-2-4-tdci-115-pk-2011-dubbelcabine-pickup-44051890/details.html",
+      "title": "Ford Transit - 350L 2.4 TDCI 115 Pk 2011 Dubbelcabine Pickup",
+      "description": "<img src=\"https://www.autowereld.nl/I786120894/240x180/ford-transit-350l-2-4-tdci-115-pk-2011-dubbelcabine-pickup.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350L 2.4 TDCI 115 Pk 2011 Dubbelcabine Pickup\" /><br /><b>Vraagprijs</b>: € 3.750<br /><b>Bouwjaar</b>: 2011<br /><b>Kilometerstand</b>: 276.000 km",
+      "pub_date": "Thu, 12 Nov 2026 11:08:30 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/2-0-bakwagen-laadklep-44016908/details.html",
-      "title": "Ford Transit - 2.0 Bakwagen Laadklep",
-      "description": "<img src=\"https://www.autowereld.nl/I784823134/240x180/ford-transit-2-0-bakwagen-laadklep.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 2.0 Bakwagen Laadklep\" /><br /><b>Vraagprijs</b>: € 26.850<br /><b>Bouwjaar</b>: 2022<br /><b>Kilometerstand</b>: 107.179 km",
-      "pub_date": "Thu, 05 Nov 2026 09:51:56 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/260s-2-2-tdci-economy-edition-44051543/details.html",
+      "title": "Ford Transit - 260S 2.2 TDCI Economy Edition",
+      "description": "<img src=\"https://www.autowereld.nl/I786109960/240x180/ford-transit-260s-2-2-tdci-economy-edition-260s-2-2-tdci-economy-edition.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 260S 2.2 TDCI Economy Edition\" /><br /><b>Vraagprijs</b>: € 2.350<br /><b>Bouwjaar</b>: 2011<br /><b>Kilometerstand</b>: 226.310 km",
+      "pub_date": "Thu, 12 Nov 2026 10:24:08 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/trend-2-0tdci-l3h2-automaat-airco-applecarplay-trekhaak-44016806/details.html",
-      "title": "Ford Transit - Trend 2.0TDCI L3H2 Automaat Airco AppleCarplay Trekhaak",
-      "description": "<img src=\"https://www.autowereld.nl/I784820410/240x180/ford-transit-trend-2-0tdci-l3h2-automaat-airco-applecarplay-trekhaak.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - Trend 2.0TDCI L3H2 Automaat Airco AppleCarplay Trekhaak\" /><br /><b>Vraagprijs</b>: € 32.500<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 400 km",
-      "pub_date": "Thu, 05 Nov 2026 09:39:14 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/350-2-0-tdci-l5h1-ambiente-skeletal-129pk-bakwagen-meubelbak-spouwmuurisolatie-inrichting-44051291/details.html",
+      "title": "Ford Transit - 350 2.0 TDCI L5H1 Ambiente Skeletal 129PK Bakwagen Meubelbak Spouwmuurisolatie Inrichting",
+      "description": "<img src=\"https://www.autowereld.nl/I786101572/240x180/ford-transit-350-2-0-tdci-l5h1-ambiente-skeletal-129pk-bakwagen-meubelbak-spouwmuurisolatie-inrichting.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 2.0 TDCI L5H1 Ambiente Skeletal 129PK Bakwagen Meubelbak Spouwmuurisolatie Inrichting\" /><br /><b>Vraagprijs</b>: € 19.900<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 59.994 km",
+      "pub_date": "Thu, 12 Nov 2026 09:45:19 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/350-2-0-tdci-170pk-l2h2-trail-airco-adap-cruise-navi-camera-xenon-44016649/details.html",
-      "title": "Ford Transit - 350 2.0 TDCI 170PK L2H2 Trail Airco | Adap.Cruise | Navi | Camera | Xenon",
-      "description": "<img src=\"https://www.autowereld.nl/I784816319/240x180/ford-transit-350-2-0-tdci-170pk-l2h2-trail-airco-adap-cruise-navi-camera-xenon.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 2.0 TDCI 170PK L2H2 Trail Airco | Adap.Cruise | Navi | Camera | Xenon\" /><br /><b>Vraagprijs</b>: € 18.950<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 157.971 km",
-      "pub_date": "Thu, 05 Nov 2026 09:15:05 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/290-2-0-tdci-l2h3-trend-44051129/details.html",
+      "title": "Ford Transit - 290 2.0 TDCI L2H3 Trend",
+      "description": "<img src=\"https://www.autowereld.nl/I786095212/240x180/ford-transit-290-2-0-tdci-l2h3-trend-290-2-0-tdci-l2h3-trend.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 290 2.0 TDCI L2H3 Trend\" /><br /><b>Vraagprijs</b>: € 5.999<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 196.507 km",
+      "pub_date": "Thu, 12 Nov 2026 09:06:45 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/350l-2-2-tdci-bj-02-2012-airco-nap-44016642/details.html",
-      "title": "Ford Transit - 350L 2.2 TDCI Bj’02-2012 AIRCO NAP",
-      "description": "<img src=\"https://www.autowereld.nl/I784816124/240x180/ford-transit-350l-2-2-tdci-bj-02-2012-airco-nap.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350L 2.2 TDCI Bj’02-2012 AIRCO NAP\" /><br /><b>Vraagprijs</b>: € 4.350<br /><b>Bouwjaar</b>: 2012<br /><b>Kilometerstand</b>: 158.172 km",
-      "pub_date": "Thu, 05 Nov 2026 09:13:21 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/2-0tdci-dubbelcabine-openlaadbak-airco-trekhaak-88-000km-euro-6-44049164/details.html",
+      "title": "Ford Transit - 2.0TDCI Dubbelcabine Openlaadbak Airco Trekhaak 88, 000KM EURO 6",
+      "description": "<img src=\"https://www.autowereld.nl/I786002613/240x180/ford-transit-2-0tdci-dubbelcabine-openlaadbak-airco-trekhaak-88-000km-euro-6.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 2.0TDCI Dubbelcabine Openlaadbak Airco Trekhaak 88, 000KM EURO 6\" /><br /><b>Vraagprijs</b>: € 14.500<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 88.000 km",
+      "pub_date": "Wed, 11 Nov 2026 16:52:29 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/350-2-0-tdci-130pk-l3h2-trend-airco-camera-cruise-control-04-2023-44015926/details.html",
-      "title": "Ford Transit - 350 2.0 TDCI 130pk L3H2 Trend Airco/Camera/Cruise Control 04-2023",
-      "description": "<img src=\"https://www.autowereld.nl/I784789135/240x180/ford-transit-350-2-0-tdci-130pk-l3h2-trend-airco-camera-cruise-control-04-2023.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 2.0 TDCI 130pk L3H2 Trend Airco/Camera/Cruise Control 04-2023\" /><br /><b>Vraagprijs</b>: € 19.950<br /><b>Bouwjaar</b>: 2023<br /><b>Kilometerstand</b>: 87.582 km",
-      "pub_date": "Wed, 04 Nov 2026 21:01:24 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/2-0-tdci-130pk-laadklep-bakwagen-cruise-control-euro-6-airco-parkeersensoren-voor-koffer-m-44049037/details.html",
+      "title": "Ford Transit - 2.0 TDCI 130PK Laadklep Bakwagen Cruise Control Euro 6 Airco Parkeersensoren Voor Koffer M",
+      "description": "<img src=\"https://www.autowereld.nl/I785998629/240x180/ford-transit-bakwagen-l4-cruise-control-airco-parkeersensoren-voor.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 2.0 TDCI 130PK Laadklep Bakwagen Cruise Control Euro 6 Airco Parkeersensoren Voor Koffer M\" /><br /><b>Vraagprijs</b>: € 24.445<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 37.909 km",
+      "pub_date": "Wed, 11 Nov 2026 16:40:58 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/280m-2-2-tdci-hd-bus-met-laadklep-dholandia-44015524/details.html",
-      "title": "Ford Transit - 280M 2.2 TDCI HD Bus met Laadklep Dholandia",
-      "description": "<img src=\"https://www.autowereld.nl/I784776653/240x180/ford-transit-280m-2-2-tdci-hd-bus-met-laadklep-dholandia.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 280M 2.2 TDCI HD Bus met Laadklep Dholandia\" /><br /><b>Vraagprijs</b>: € 2.250<br /><b>Bouwjaar</b>: 2007<br /><b>Kilometerstand</b>: 305.122 km",
-      "pub_date": "Wed, 04 Nov 2026 18:04:14 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/350-2-0-tdci-l2h2-trend-mhev-44048081/details.html",
+      "title": "Ford Transit - 350 2.0 TDCI L2H2 Trend MHEV",
+      "description": "<img src=\"https://www.autowereld.nl/I785968771/240x180/ford-transit-350-2-0-tdci-l2h2-trend-mhev-350-2-0-tdci-l2h2-trend-mhev.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 2.0 TDCI L2H2 Trend MHEV\" /><br /><b>Vraagprijs</b>: € 19.900<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 57.293 km",
+      "pub_date": "Wed, 11 Nov 2026 15:00:37 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/l2h2-cruise-control-airco-bluetooth-parkeersensoren-v-a-44015283/details.html",
-      "title": "Ford Transit - L2H2 Cruise Control Airco Bluetooth Parkeersensoren v+a",
-      "description": "<img src=\"https://www.autowereld.nl/I784770172/240x180/ford-transit-l2h2-cruise-control-airco-bluetooth-parkeersensoren-v-a.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - L2H2 Cruise Control Airco Bluetooth Parkeersensoren v+a\" /><br /><b>Vraagprijs</b>: € 18.945<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 19.267 km",
-      "pub_date": "Wed, 04 Nov 2026 17:40:51 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/260s-2-2-tdci-shd-dceuro-4cool-aircoelecktrish-raam-spiegelscruis-controleapk-7-20276-bak8-44047277/details.html",
+      "title": "Ford Transit - 260S 2.2 TDCI SHD DCEURO 4COOL AIRCOELECKTRISH RAAM&SPIEGELSCRUIS CONTROLEAPK:7-20276 BAK8",
+      "description": "<img src=\"https://www.autowereld.nl/I785956650/240x180/ford-transit-260s-2-2-tdci-shd-dc-euro-4-cool-airco-elecktrish-raam-spiegels-cruis-controle-apk-7-2027.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 260S 2.2 TDCI SHD DCEURO 4COOL AIRCOELECKTRISH RAAM&SPIEGELSCRUIS CONTROLEAPK:7-20276 BAK8\" /><br /><b>Vraagprijs</b>: € 4.999<br /><b>Bouwjaar</b>: 2009<br /><b>Kilometerstand</b>: 174.000 km",
+      "pub_date": "Wed, 11 Nov 2026 14:31:04 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/2-0-tdci-dc-full-options-2x-schuifdeur-ahk-44015059/details.html",
-      "title": "Ford Transit - 2.0 TDCI DC FULL OPTIONS 2x Schuifdeur AHK",
-      "description": "<img src=\"https://www.autowereld.nl/I784762970/240x180/ford-transit-2-0-tdci-dc-full-options-2x-schuifdeur-ahk.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 2.0 TDCI DC FULL OPTIONS 2x Schuifdeur AHK\" /><br /><b>Vraagprijs</b>: € 9.450<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 287.387 km",
-      "pub_date": "Wed, 04 Nov 2026 17:17:34 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/350-2-0-tdci-l3h2-lift-automaat-vol-goed-onder-44046626/details.html",
+      "title": "Ford Transit - 350 2.0 TDCI L3H2 LIFT Automaat VOL Goed onder",
+      "description": "<img src=\"https://www.autowereld.nl/I785935337/240x180/ford-transit-350-2-0-tdci-l3h2-lift-automaat-vol-goed-onder.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 2.0 TDCI L3H2 LIFT Automaat VOL Goed onder\" /><br /><b>Vraagprijs</b>: € 17.995<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 265.000 km",
+      "pub_date": "Wed, 11 Nov 2026 13:09:53 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/350-2-0-tdci-l3h2-trend-44014999/details.html",
-      "title": "Ford Transit - 350 2.0 TDCI L3H2 Trend",
-      "description": "<img src=\"https://www.autowereld.nl/I784761161/240x180/ford-transit-350-2-0-tdci-l3h2-trend-350-2-0-tdci-l3h2-trend.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 2.0 TDCI L3H2 Trend\" /><br /><b>Vraagprijs</b>: € 8.900<br /><b>Bouwjaar</b>: 2022<br /><b>Kilometerstand</b>: 206.908 km",
-      "pub_date": "Wed, 04 Nov 2026 17:11:08 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/260s-2-0tddi-business-edition-44045169/details.html",
+      "title": "Ford Transit - 260S 2.0TDdi Business Edition",
+      "description": "<img src=\"https://www.autowereld.nl/I785898530/240x180/ford-transit-260s-2-0tddi-business-edition.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 260S 2.0TDdi Business Edition\" /><br /><b>Vraagprijs</b>: € 2.450<br /><b>Bouwjaar</b>: 2004<br /><b>Kilometerstand</b>: 198.981 km",
+      "pub_date": "Wed, 11 Nov 2026 10:50:04 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/2-0tdci-130pk-l2h2-2024-airco-cruise-3-zits-betimmering-44014374/details.html",
-      "title": "Ford Transit - 2.0TDCi 130PK L2H2 (2024) | Airco | Cruise | 3-Zits | Betimmering",
-      "description": "<img src=\"https://www.autowereld.nl/I784744024/240x180/ford-transit-2-0tdci-130pk-l2h2-2024-airco-cruise-3-zits-betimmering.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 2.0TDCi 130PK L2H2 (2024) | Airco | Cruise | 3-Zits | Betimmering\" /><br /><b>Vraagprijs</b>: € 17.800<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 98.683 km",
-      "pub_date": "Wed, 04 Nov 2026 16:20:54 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/290-2-0-tdci-l2h2-trend-marge-incl-btw-bpm-trekhaak-cruise-control-bluetooth-44044269/details.html",
+      "title": "Ford Transit - 290 2.0 TDCI L2H2 Trend | MARGE | INCL. BTW/BPM | TREKHAAK | CRUISE CONTROL | BLUETOOTH |",
+      "description": "<img src=\"https://www.autowereld.nl/I785873569/240x180/ford-transit-290-2-0-tdci-l2h2-trend-marge-incl-btw-bpm-trekhaak-cruise-control-bluetooth.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 290 2.0 TDCI L2H2 Trend | MARGE | INCL. BTW/BPM | TREKHAAK | CRUISE CONTROL | BLUETOOTH |\" /><br /><b>Vraagprijs</b>: € 18.950<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 44.315 km",
+      "pub_date": "Wed, 11 Nov 2026 08:43:54 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/ford/transit/2-0-tdci-131pk-automaat-l2h2-rijklaar-inrichting-euro6-airco-navigatie-apple-carplay-44014298/details.html",
-      "title": "Ford Transit - 2.0 TDCI 131pk Automaat L2H2 *Rijklaar* Inrichting Euro6 Airco | Navigatie | Apple Carplay",
-      "description": "<img src=\"https://www.autowereld.nl/I784741912/240x180/ford-transit-2-0-tdci-131pk-automaat-l2h2-rijklaar-inrichting-euro6-airco-navigatie-apple-carplay.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 2.0 TDCI 131pk Automaat L2H2 *Rijklaar* Inrichting Euro6 Airco | Navigatie | Apple Carplay\" /><br /><b>Vraagprijs</b>: € 25.900<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 84.029 km",
-      "pub_date": "Wed, 04 Nov 2026 16:14:35 +0100",
+      "url": "https://www.autowereld.nl/ford/transit/350-2-0-tdci-130pk-euro-6-l2-h2-trend-186-000km-airco-camera-marge-auto-44043465/details.html",
+      "title": "Ford Transit - 350 2.0 TDCI 130pk Euro 6 L2 H2 Trend 186.000km Airco, Camera MARGE Auto",
+      "description": "<img src=\"https://www.autowereld.nl/I785809928/240x180/ford-transit-350-2-0-tdci-130pk-euro-6-l2-h2-trend-186-000km-airco-camera-marge-auto.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Ford Transit - 350 2.0 TDCI 130pk Euro 6 L2 H2 Trend 186.000km Airco, Camera MARGE Auto\" /><br /><b>Vraagprijs</b>: € 10.950<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 186.191 km",
+      "pub_date": "Tue, 10 Nov 2026 19:29:38 +0100",
       "feed": "https://www.autowereld.nl/rss/ford/transit/"
     },
     {
-      "url": "https://www.autowereld.nl/citroen/jumper/30-2-0-bluehdi-l1h1-2x-schuif-haak-a-c-inrichting-44017897/details.html",
-      "title": "Citroën Jumper - 30 2.0 BlueHDi L1H1*2X SCHUIF*HAAK*A/C*INRICHTING",
-      "description": "<img src=\"https://www.autowereld.nl/I784849409/240x180/citroen-jumper-30-2-0-bluehdi-l1h1-2x-schuif-haak-a-c-inrichting.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 30 2.0 BlueHDi L1H1*2X SCHUIF*HAAK*A/C*INRICHTING\" /><br /><b>Vraagprijs</b>: € 7.900<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 162.416 km",
+      "url": "https://www.autowereld.nl/citroen/jumper/2-2-bluehdi-140-l4h2-zwaar-3-5t-in-topstaat-2-stoelen-1e-eigenaar-camera-cruise-navi-44048751/details.html",
+      "title": "Citroën Jumper - 2.2 BlueHDi 140 L4H2 Zwaar 3.5t in Topstaat |2 stoelen |1e eigenaar |Camera |Cruise |Navi",
+      "description": "<img src=\"https://www.autowereld.nl/I785990001/240x180/citroen-jumper-2-2-bluehdi-140-l4h2-zwaar-3-5t-in-topstaat-2-stoelen-1e-eigenaar-camera-cruise-navi.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.2 BlueHDi 140 L4H2 Zwaar 3.5t in Topstaat |2 stoelen |1e eigenaar |Camera |Cruise |Navi\" /><br /><b>Vraagprijs</b>: € 27.500<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 29.655 km",
+      "pub_date": "Wed, 11 Nov 2026 16:12:16 +0100",
+      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
+    },
+    {
+      "url": "https://www.autowereld.nl/citroen/jumper/35-2-2-hdi-l3h3-l-export-schade-l-airco-l-meubelbak-l-marge-44048742/details.html",
+      "title": "Citroën Jumper - 35 2.2 HDI L3H3 l export/schade l airco l meubelbak l MARGE",
+      "description": "<img src=\"https://www.autowereld.nl/I785989738/240x180/citroen-jumper-35-2-2-hdi-l3h3-l-export-schade-l-airco-l-meubelbak-l-marge.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 35 2.2 HDI L3H3 l export/schade l airco l meubelbak l MARGE\" /><br /><b>Vraagprijs</b>: € 3.950<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 337.478 km",
+      "pub_date": "Wed, 11 Nov 2026 16:11:11 +0100",
+      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
+    },
+    {
+      "url": "https://www.autowereld.nl/citroen/jumper/2-2-hdi-airco-8-pers-44044262/details.html",
+      "title": "Citroën Jumper - 2.2 HDI Airco 8-PERS",
+      "description": "<img src=\"https://www.autowereld.nl/I785873376/240x180/citroen-jumper-2-2-hdi-airco-8-pers.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.2 HDI Airco 8-PERS\" /><br /><b>Vraagprijs</b>: € 4.950<br /><b>Bouwjaar</b>: 2010<br /><b>Kilometerstand</b>: 297.103 km",
+      "pub_date": "Wed, 11 Nov 2026 08:42:23 +0100",
+      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
+    },
+    {
+      "url": "https://www.autowereld.nl/citroen/jumper/30-2-2-hdi-l2h1-motorschade-duits-kenteken-44040540/details.html",
+      "title": "Citroën Jumper - 30 2.2 HDI L2H1 MOTORSCHADE DUITS KENTEKEN",
+      "description": "<img src=\"https://www.autowereld.nl/I785719962/240x180/citroen-jumper-30-2-2-hdi-l2h1-motorschade-duits-kenteken.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 30 2.2 HDI L2H1 MOTORSCHADE DUITS KENTEKEN\" /><br /><b>Vraagprijs</b>: € 1.450<br /><b>Bouwjaar</b>: 2010<br /><b>Kilometerstand</b>: 399.999 km",
+      "pub_date": "Tue, 10 Nov 2026 13:56:41 +0100",
+      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
+    },
+    {
+      "url": "https://www.autowereld.nl/citroen/jumper/l2h2-rolstoelbus-airco-achterin-44034413/details.html",
+      "title": "Citroën Jumper - L2H2 Rolstoelbus (airco achterin)",
+      "description": "<img src=\"https://www.autowereld.nl/I785346739/240x180/citroen-jumper-l2h2-rolstoelbus-airco-achterin.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - L2H2 Rolstoelbus (airco achterin)\" /><br /><b>Vraagprijs</b>: € 29.950<br /><b>Bouwjaar</b>: 2014<br /><b>Kilometerstand</b>: 66.572 km",
+      "pub_date": "Mon, 09 Nov 2026 11:59:32 +0100",
+      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
+    },
+    {
+      "url": "https://www.autowereld.nl/citroen/jumper/l2h2-rolstoelbus-groepsvervoer-7-1-airco-achterin-44034382/details.html",
+      "title": "Citroën Jumper - L2H2 Rolstoelbus Groepsvervoer 7+1 (airco achterin)",
+      "description": "<img src=\"https://www.autowereld.nl/I785345592/240x180/citroen-jumper-l2h2-rolstoelbus-groepsvervoer-7-1-airco-achterin.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - L2H2 Rolstoelbus Groepsvervoer 7+1 (airco achterin)\" /><br /><b>Vraagprijs</b>: € 29.950<br /><b>Bouwjaar</b>: 2014<br /><b>Kilometerstand</b>: 66.572 km",
+      "pub_date": "Mon, 09 Nov 2026 11:56:03 +0100",
+      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
+    },
+    {
+      "url": "https://www.autowereld.nl/citroen/jumper/2-0-hdi-l1h1-inrichting-2xschuif-haak-a-c-3-pers-44017897/details.html",
+      "title": "Citroën Jumper - 2.0 HDi L1H1*INRICHTING*2XSCHUIF*HAAK*A/C*3-PERS",
+      "description": "<img src=\"https://www.autowereld.nl/I785803819/240x180/citroen-jumper-2-0-hdi-l1h1-inrichting-2xschuif-haak-a-c-3-pers.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.0 HDi L1H1*INRICHTING*2XSCHUIF*HAAK*A/C*3-PERS\" /><br /><b>Vraagprijs</b>: € 7.900<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 162.416 km",
       "pub_date": "Thu, 05 Nov 2026 11:48:23 +0100",
       "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
     },
     {
       "url": "https://www.autowereld.nl/citroen/jumper/2-2-bluehdi-120pk-l2h2-trekhaak-3-zits-cruise-44016589/details.html",
       "title": "Citroën Jumper - 2.2 BlueHDi 120PK L2H2 Trekhaak / 3 zits / cruise",
-      "description": "<img src=\"https://www.autowereld.nl/I784814174/240x180/citroen-jumper-2-2-bluehdi-120pk-l2h2-trekhaak-3-zits-cruise.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.2 BlueHDi 120PK L2H2 Trekhaak / 3 zits / cruise\" /><br /><b>Vraagprijs</b>: € 16.950<br /><b>Bouwjaar</b>: 2023<br /><b>Kilometerstand</b>: 39.384 km",
+      "description": "<img src=\"https://www.autowereld.nl/I785645543/240x180/citroen-jumper-2-2-bluehdi-120pk-l2h2-trekhaak-3-zits-cruise.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.2 BlueHDi 120PK L2H2 Trekhaak / 3 zits / cruise\" /><br /><b>Vraagprijs</b>: € 16.950<br /><b>Bouwjaar</b>: 2023<br /><b>Kilometerstand</b>: 39.384 km",
       "pub_date": "Thu, 05 Nov 2026 08:57:26 +0100",
       "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
     },
@@ -244,14 +286,14 @@
     {
       "url": "https://www.autowereld.nl/citroen/jumper/35-2-0-bluehdi-l4h2-camera-navi-clima-camper-inrichting-44013084/details.html",
       "title": "Citroën Jumper - 35 2.0 BlueHDi L4H2 Camera Navi Clima Camper inrichting",
-      "description": "<img src=\"https://www.autowereld.nl/I784710726/240x180/citroen-jumper-35-2-0-bluehdi-l4h2-camera-navi-clima-camper-inrichting.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 35 2.0 BlueHDi L4H2 Camera Navi Clima Camper inrichting\" /><br /><b>Vraagprijs</b>: € 14.900<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 135.587 km",
+      "description": "<img src=\"https://www.autowereld.nl/I785644620/240x180/citroen-jumper-35-2-0-bluehdi-l4h2-camera-navi-clima-camper-inrichting.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 35 2.0 BlueHDi L4H2 Camera Navi Clima Camper inrichting\" /><br /><b>Vraagprijs</b>: € 14.900<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 135.587 km",
       "pub_date": "Wed, 04 Nov 2026 14:17:37 +0100",
       "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
     },
     {
       "url": "https://www.autowereld.nl/citroen/jumper/2-2-bluehdi-140-l3-h2-club-navi-airco-cruise-camera-153-176-km-44012761/details.html",
       "title": "Citroën Jumper - 2.2 BlueHDi 140 L3-H2 Club Navi Airco Cruise Camera 153.176 km",
-      "description": "<img src=\"https://www.autowereld.nl/I784701772/240x180/citroen-jumper-2-2-bluehdi-140-l3-h2-club-navi-airco-cruise-camera-153-176-km.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.2 BlueHDi 140 L3-H2 Club Navi Airco Cruise Camera 153.176 km\" /><br /><b>Vraagprijs</b>: € 12.950<br /><b>Bouwjaar</b>: 2022<br /><b>Kilometerstand</b>: 153.176 km",
+      "description": "<img src=\"https://www.autowereld.nl/I785531308/240x180/citroen-jumper-2-2-bluehdi-140-l3-h2-club-navi-airco-cruise-camera-153-176-km.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.2 BlueHDi 140 L3-H2 Club Navi Airco Cruise Camera 153.176 km\" /><br /><b>Vraagprijs</b>: € 12.950<br /><b>Bouwjaar</b>: 2022<br /><b>Kilometerstand</b>: 153.176 km",
       "pub_date": "Wed, 04 Nov 2026 13:49:25 +0100",
       "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
     },
@@ -265,7 +307,7 @@
     {
       "url": "https://www.autowereld.nl/citroen/jumper/2016-2-2-hdi-150-pk-l2h1-export-en-handel-ex-btw-44009923/details.html",
       "title": "Citroën Jumper - | 2016 | 2.2 HDi 150 pk | L2H1 | Export en Handel | Ex BTW",
-      "description": "<img src=\"https://www.autowereld.nl/I784614048/240x180/citroen-jumper-2016-2-2-hdi-150-pk-l2h1-export-en-handel-ex-btw.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - | 2016 | 2.2 HDi 150 pk | L2H1 | Export en Handel | Ex BTW\" /><br /><b>Vraagprijs</b>: € 3.995<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 281.576 km",
+      "description": "<img src=\"https://www.autowereld.nl/I785644167/240x180/citroen-jumper-2016-2-2-hdi-150-pk-l2h1-export-en-handel-ex-btw.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - | 2016 | 2.2 HDi 150 pk | L2H1 | Export en Handel | Ex BTW\" /><br /><b>Vraagprijs</b>: € 3.995<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 281.576 km",
       "pub_date": "Tue, 03 Nov 2026 21:38:27 +0100",
       "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
     },
@@ -279,260 +321,218 @@
     {
       "url": "https://www.autowereld.nl/citroen/jumper/33-2-2hdi-131pk-l2h2-airco-camera-3-pers-44003841/details.html",
       "title": "Citroën Jumper - 33 2.2HDI 131pk L2H2 Airco Camera 3-pers",
-      "description": "<img src=\"https://www.autowereld.nl/I784436567/240x180/citroen-jumper-33-2-2hdi-131pk-l2h2-airco-camera-3-pers.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 33 2.2HDI 131pk L2H2 Airco Camera 3-pers\" /><br /><b>Vraagprijs</b>: € 3.900<br /><b>Bouwjaar</b>: 2012<br /><b>Kilometerstand</b>: 180.715 km",
+      "description": "<img src=\"https://www.autowereld.nl/I785643016/240x180/citroen-jumper-33-2-2hdi-131pk-l2h2-airco-camera-3-pers.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 33 2.2HDI 131pk L2H2 Airco Camera 3-pers\" /><br /><b>Vraagprijs</b>: € 3.900<br /><b>Bouwjaar</b>: 2012<br /><b>Kilometerstand</b>: 180.715 km",
       "pub_date": "Mon, 02 Nov 2026 22:23:46 +0100",
       "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
     },
     {
-      "url": "https://www.autowereld.nl/citroen/jumper/33-l2h2-2-2-bluehdi-140-s-s-club-schade-export-l-veel-option-l-cruise-l-airco-l-camera-l-44002207/details.html",
-      "title": "Citroën Jumper - 33 L2H2 - 2.2 BlueHDi 140 S&S Club schade/export l veel option l cruise l airco l camera l",
-      "description": "<img src=\"https://www.autowereld.nl/I784389334/240x180/citroen-jumper-33-l2h2-2-2-bluehdi-140-s-s-club-schade-export-l-veel-option-l-cruise-l-airco-l-camera-l.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 33 L2H2 - 2.2 BlueHDi 140 S&S Club schade/export l veel option l cruise l airco l camera l\" /><br /><b>Vraagprijs</b>: € 8.950<br /><b>Bouwjaar</b>: 2023<br /><b>Kilometerstand</b>: 60.473 km",
-      "pub_date": "Mon, 02 Nov 2026 16:24:24 +0100",
-      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
-    },
-    {
-      "url": "https://www.autowereld.nl/citroen/jumper/2-2d-140-pk-maxi-l4h2-wordt-verwacht-9x-movano-blind-spot-airco-cruise-pdc-2-43999618/details.html",
-      "title": "Citroën Jumper - 2.2D 140 PK MAXI / L4H2 / WORDT VERWACHT 9x MOVANO / BLIND SPOT / AIRCO / CRUISE / PDC / 2",
-      "description": "<img src=\"https://www.autowereld.nl/I784312909/240x180/citroen-jumper-2-2d-140-pk-maxi-l4h2-wordt-verwacht-9x-movano-blind-spot-airco-cruise-p.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.2D 140 PK MAXI / L4H2 / WORDT VERWACHT 9x MOVANO / BLIND SPOT / AIRCO / CRUISE / PDC / 2\" /><br /><b>Vraagprijs</b>: € 17.950<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 42.135 km",
-      "pub_date": "Mon, 02 Nov 2026 11:06:25 +0100",
-      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
-    },
-    {
-      "url": "https://www.autowereld.nl/citroen/jumper/33-2-2-hdi-96kw-l2-open-laadbak-pickup-ahk-43998252/details.html",
-      "title": "Citroën Jumper - 33 2.2 HDI 96KW, L2 Open laadbak PickUp AHK",
-      "description": "<img src=\"https://www.autowereld.nl/I784263980/240x180/citroen-jumper-33-2-2-hdi-96kw-l2-open-laadbak-pickup-ahk.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 33 2.2 HDI 96KW, L2 Open laadbak PickUp AHK\" /><br /><b>Vraagprijs</b>: € 7.400<br /><b>Bouwjaar</b>: 2014<br /><b>Kilometerstand</b>: 183.362 km",
-      "pub_date": "Sun, 01 Nov 2026 14:53:11 +0100",
-      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
-    },
-    {
-      "url": "https://www.autowereld.nl/citroen/jumper/35-2-0-bluehdi-130-l2h2-airco-cruise-control-43997786/details.html",
-      "title": "Citroën Jumper - 35 2.0 BlueHDi 130 L2H2 AIRCO CRUISE CONTROL",
-      "description": "<img src=\"https://www.autowereld.nl/I784236094/240x180/citroen-jumper-35-2-0-bluehdi-130-l2h2-airco-cruise-control.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 35 2.0 BlueHDi 130 L2H2 AIRCO CRUISE CONTROL\" /><br /><b>Vraagprijs</b>: € 13.900<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 107.814 km",
-      "pub_date": "Sat, 31 Oct 2026 22:28:10 +0100",
-      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
-    },
-    {
-      "url": "https://www.autowereld.nl/citroen/jumper/bestel-2-2-140-l3h2-3-3t-15dkm-43995567/details.html",
-      "title": "Citroën Jumper - bestel 2.2 140 L3H2 3.3t 15DKM",
-      "description": "<img src=\"https://www.autowereld.nl/I784168828/240x180/citroen-jumper-bestel-2-2-140-l3h2-3-3t-15dkm.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - bestel 2.2 140 L3H2 3.3t 15DKM\" /><br /><b>Vraagprijs</b>: € 13.500<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 15.022 km",
-      "pub_date": "Sat, 31 Oct 2026 13:07:03 +0100",
-      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
-    },
-    {
-      "url": "https://www.autowereld.nl/citroen/jumper/2-2-hdi-koelwagen-hardewijk-ombouw-met-konvecta-koeling-43995504/details.html",
-      "title": "Citroën Jumper - 2.2 HDI Koelwagen Hardewijk ombouw met Konvecta koeling",
-      "description": "<img src=\"https://www.autowereld.nl/I784163575/240x180/citroen-jumper-2-2-hdi-koelwagen-hardewijk-ombouw-met-konvecta-koeling.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Citroën Jumper - 2.2 HDI Koelwagen Hardewijk ombouw met Konvecta koeling\" /><br /><b>Vraagprijs</b>: € 5.900<br /><b>Bouwjaar</b>: 2015<br /><b>Kilometerstand</b>: 147.073 km",
-      "pub_date": "Sat, 31 Oct 2026 12:56:35 +0100",
-      "feed": "https://www.autowereld.nl/rss/citroen/jumper/"
-    },
-    {
-      "url": "https://www.autowereld.nl/fiat/ducato/turbod-44018203/details.html",
-      "title": "Fiat Ducato - TurboD",
-      "description": "<img src=\"https://www.autowereld.nl/I784857406/240x180/fiat-ducato-turbod.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - TurboD\" /><br /><b>Vraagprijs</b>: € 5.250<br /><b>Bouwjaar</b>: 1991<br /><b>Kilometerstand</b>: 272.008 km",
-      "pub_date": "Thu, 05 Nov 2026 12:25:03 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/2-3mj-160pk-automaat-l2h2-climatcntrl-navi-camera-cruisecntrl-nieuwstaat-44052915/details.html",
+      "title": "Fiat Ducato - 2.3MJ 160PK Automaat, L2H2, Climatcntrl, Navi, Camera, Cruisecntrl, NIEUWSTAAT",
+      "description": "<img src=\"https://www.autowereld.nl/I786150112/240x180/fiat-ducato-2-3mj-160pk-automaat-l2h2-climatcntrl-navi-camera-cruisecntrl-nieuwstaat.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 2.3MJ 160PK Automaat, L2H2, Climatcntrl, Navi, Camera, Cruisecntrl, NIEUWSTAAT\" /><br /><b>Vraagprijs</b>: € 19.390<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 42.589 km",
+      "pub_date": "Thu, 12 Nov 2026 12:41:30 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/professional-standaard-chassis-cabine-cruise-control-met-begrenzer-44016272/details.html",
-      "title": "Fiat Ducato - Professional Standaard - Chassis Cabine | Cruise control met begrenzer",
-      "description": "<img src=\"https://www.autowereld.nl/I784796015/240x180/fiat-ducato-professional-standaard-chassis-cabine-cruise-control-met-begrenzer.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Chassis Cabine | Cruise control met begrenzer\" /><br /><b>Vraagprijs</b>: € 52.352<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
-      "pub_date": "Wed, 04 Nov 2026 22:33:51 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/l1h1-rolstoelbus-automaat-44052157/details.html",
+      "title": "Fiat Ducato - L1H1 Rolstoelbus Automaat",
+      "description": "<img src=\"https://www.autowereld.nl/I786129397/240x180/fiat-ducato-l1h1-rolstoelbus-automaat.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - L1H1 Rolstoelbus Automaat\" /><br /><b>Vraagprijs</b>: € 19.950<br /><b>Bouwjaar</b>: 2010<br /><b>Kilometerstand</b>: 109.611 km",
+      "pub_date": "Thu, 12 Nov 2026 11:40:26 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/professional-standaard-elektrisch-cruise-control-met-begrenzer-pakket-city-plus-44016265/details.html",
+      "url": "https://www.autowereld.nl/fiat/ducato/professional-standaard-elektrisch-cruise-control-met-begrenzer-pakket-city-plus-44050561/details.html",
       "title": "Fiat Ducato - Professional Standaard - Elektrisch | Cruise control met begrenzer | Pakket City Plus",
-      "description": "<img src=\"https://www.autowereld.nl/I784795926/240x180/fiat-ducato-professional-standaard-elektrisch-cruise-control-met-begrenzer-pakket-city-plus.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Elektrisch | Cruise control met begrenzer | Pakket City Plus\" /><br /><b>Vraagprijs</b>: € 58.148<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
-      "pub_date": "Wed, 04 Nov 2026 22:32:48 +0100",
+      "description": "<img src=\"https://www.autowereld.nl/I786051087/240x180/fiat-ducato-professional-standaard-elektrisch-cruise-control-met-begrenzer-pakket-city-plus.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Elektrisch | Cruise control met begrenzer | Pakket City Plus\" /><br /><b>Vraagprijs</b>: € 58.148<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
+      "pub_date": "Wed, 11 Nov 2026 22:23:48 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/30-2-3-mj-kh1-44015204/details.html",
-      "title": "Fiat Ducato - 30 2.3 MJ KH1",
-      "description": "<img src=\"https://www.autowereld.nl/I784767611/240x180/fiat-ducato-30-2-3-mj-kh1.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 30 2.3 MJ KH1\" /><br /><b>Vraagprijs</b>: € 2.600<br /><b>Bouwjaar</b>: 2008<br /><b>Kilometerstand</b>: 248.783 km",
-      "pub_date": "Wed, 04 Nov 2026 17:34:16 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/bestel-30-2-3-multijet-l1h1-44049933/details.html",
+      "title": "Fiat Ducato - bestel 30 2.3 MultiJet L1H1",
+      "description": "<img src=\"https://www.autowereld.nl/I786030416/240x180/fiat-ducato-bestel-30-2-3-multijet-l1h1.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - bestel 30 2.3 MultiJet L1H1\" /><br /><b>Vraagprijs</b>: € 5.995<br /><b>Bouwjaar</b>: 2015<br /><b>Kilometerstand</b>: 203.434 km",
+      "pub_date": "Wed, 11 Nov 2026 19:17:59 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/33-2-3-multijet-l2h2-44014452/details.html",
-      "title": "Fiat Ducato - 33 2.3 MultiJet L2H2",
-      "description": "<img src=\"https://www.autowereld.nl/I784746148/240x180/fiat-ducato-33-2-3-multijet-l2h2-33-2-3-multijet-l2h2.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 33 2.3 MultiJet L2H2\" /><br /><b>Vraagprijs</b>: € 3.995<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 273.811 km",
-      "pub_date": "Wed, 04 Nov 2026 16:27:10 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/l3h2-2-3mj-160pk-dc-6-zits-automaat-cruise-navi-climatronic-44049361/details.html",
+      "title": "Fiat Ducato - L3H2 2.3MJ 160PK | DC 6-Zits | Automaat | Cruise | Navi | Climatronic",
+      "description": "<img src=\"https://www.autowereld.nl/I786008444/240x180/fiat-ducato-l3h2-2-3mj-160pk-dc-6-zits-automaat-cruise-navi-climatronic.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - L3H2 2.3MJ 160PK | DC 6-Zits | Automaat | Cruise | Navi | Climatronic\" /><br /><b>Vraagprijs</b>: € 25.950<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 73.789 km",
+      "pub_date": "Wed, 11 Nov 2026 17:09:59 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/2-3-multijet-l2h2-clima-camera-cruise-3-zits-trekhaak-navigatie-44014419/details.html",
-      "title": "Fiat Ducato - 2.3 MultiJet L2H2 | Clima | Camera | Cruise | 3 Zits | Trekhaak | Navigatie",
-      "description": "<img src=\"https://www.autowereld.nl/I784745119/240x180/fiat-ducato-2-3-multijet-l2h2-clima-camera-cruise-3-zits-trekhaak-navigatie.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 2.3 MultiJet L2H2 | Clima | Camera | Cruise | 3 Zits | Trekhaak | Navigatie\" /><br /><b>Vraagprijs</b>: € 13.900<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 165.061 km",
-      "pub_date": "Wed, 04 Nov 2026 16:23:45 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/2-2-multijet-140pk-s-s-l2h2-3-5t-heavy-hd-camera-270-graden-deuren-cruise-airco-44049140/details.html",
+      "title": "Fiat Ducato - 2.2 MultiJet 140pk S&S L2H2 3.5t Heavy HD Camera 270 graden deuren Cruise Airco",
+      "description": "<img src=\"https://www.autowereld.nl/I786001814/240x180/fiat-ducato-2-2-multijet-140pk-s-s-l2h2-3-5t-heavy-hd-camera-270-graden-deuren-cruise-airco.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 2.2 MultiJet 140pk S&S L2H2 3.5t Heavy HD Camera 270 graden deuren Cruise Airco\" /><br /><b>Vraagprijs</b>: € 22.900<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 36.862 km",
+      "pub_date": "Wed, 11 Nov 2026 16:50:22 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/2-2-multijet-140-l3h2-3-5t-automaat-adaptive-cruise-full-led-koplampen-trekhaak-camera-44012022/details.html",
-      "title": "Fiat Ducato - 2.2 MultiJet 140 L3H2 3.5t Automaat |Adaptive Cruise |Full-LED koplampen |Trekhaak |Camera",
-      "description": "<img src=\"https://www.autowereld.nl/I784680493/240x180/fiat-ducato-2-2-multijet-140-l3h2-3-5t.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 2.2 MultiJet 140 L3H2 3.5t Automaat |Adaptive Cruise |Full-LED koplampen |Trekhaak |Camera\" /><br /><b>Vraagprijs</b>: € 31.950<br /><b>Bouwjaar</b>: 2025<br /><b>Kilometerstand</b>: 8.166 km",
-      "pub_date": "Wed, 04 Nov 2026 12:16:29 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/2-2-multijet-180-s-s-l2h2-3-5t-heavy-automaat-in-topstaat-2-stoelen-camera-full-led-tr-44048673/details.html",
+      "title": "Fiat Ducato - 2.2 MultiJet 180 S&S L2H2 3.5t Heavy Automaat in Topstaat |2 stoelen |Camera |Full-LED |Tr",
+      "description": "<img src=\"https://www.autowereld.nl/I785987227/240x180/fiat-ducato-2-2-multijet-180-s-s-l2h2-3-5t-heavy-automaat-in-topstaat-2-stoelen-camera-full-led-tr.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 2.2 MultiJet 180 S&S L2H2 3.5t Heavy Automaat in Topstaat |2 stoelen |Camera |Full-LED |Tr\" /><br /><b>Vraagprijs</b>: € 29.950<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 44.617 km",
+      "pub_date": "Wed, 11 Nov 2026 16:04:08 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/bestel-35h-2-3-multijet-l2h2-dubbele-cabine-44004051/details.html",
-      "title": "Fiat Ducato - bestel 35H 2.3 MultiJet L2H2 dubbele cabine",
-      "description": "<img src=\"https://www.autowereld.nl/I784450045/240x180/fiat-ducato-bestel-35h-2-3-multijet-l2h2-dubbele-cabine.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - bestel 35H 2.3 MultiJet L2H2 dubbele cabine\" /><br /><b>Vraagprijs</b>: € 12.950<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 206.500 km",
-      "pub_date": "Tue, 03 Nov 2026 08:04:53 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/l1h1-rolstoelbus-automaat-airco-44047105/details.html",
+      "title": "Fiat Ducato - L1H1 Rolstoelbus Automaat (airco)",
+      "description": "<img src=\"https://www.autowereld.nl/I785950761/240x180/fiat-ducato-l1h1-rolstoelbus-automaat-airco.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - L1H1 Rolstoelbus Automaat (airco)\" /><br /><b>Vraagprijs</b>: € 29.950<br /><b>Bouwjaar</b>: 2015<br /><b>Kilometerstand</b>: 99.989 km",
+      "pub_date": "Wed, 11 Nov 2026 14:09:57 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/2-2d-140-pk-maxi-l4h2-wordt-verwacht-9x-movano-blind-spot-airco-cruise-pdc-2-43999620/details.html",
-      "title": "Fiat Ducato - 2.2D 140 PK MAXI / L4H2 / WORDT VERWACHT 9x MOVANO / BLIND SPOT / AIRCO / CRUISE / PDC / 2",
-      "description": "<img src=\"https://www.autowereld.nl/I784312972/240x180/fiat-ducato-2-2d-140-pk-maxi-l4h2-wordt-verwacht-9x-movano-blind-spot-airco-cruise-p.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 2.2D 140 PK MAXI / L4H2 / WORDT VERWACHT 9x MOVANO / BLIND SPOT / AIRCO / CRUISE / PDC / 2\" /><br /><b>Vraagprijs</b>: € 17.950<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 42.135 km",
-      "pub_date": "Mon, 02 Nov 2026 11:06:59 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/professional-standaard-chassis-cabine-cruise-control-met-begrenzer-44043943/details.html",
+      "title": "Fiat Ducato - Professional Standaard - Chassis Cabine | Cruise control met begrenzer",
+      "description": "<img src=\"https://www.autowereld.nl/I785827558/240x180/fiat-ducato-professional-standaard-chassis-cabine-cruise-control-met-begrenzer.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Professional Standaard - Chassis Cabine | Cruise control met begrenzer\" /><br /><b>Vraagprijs</b>: € 52.509<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 10 km",
+      "pub_date": "Tue, 10 Nov 2026 22:14:18 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/bestel-35-2-2-multijet-l1h2-43996947/details.html",
-      "title": "Fiat Ducato - bestel 35 2.2 MultiJet L1H2",
-      "description": "<img src=\"https://www.autowereld.nl/I784207281/240x180/fiat-ducato-bestel-35-2-2-multijet-l1h2.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - bestel 35 2.2 MultiJet L1H2\" /><br /><b>Vraagprijs</b>: € 17.995<br /><b>Bouwjaar</b>: 2023<br /><b>Kilometerstand</b>: 88.941 km",
-      "pub_date": "Sat, 31 Oct 2026 16:29:59 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/horsetruck-mvv-alu-competition-3xl-2007-164-369km-manual-120pk-3-seat-44043439/details.html",
+      "title": "Fiat Ducato - | HORSETRUCK | MVV | ALU | COMPETITION 3XL | 2007 | 164.369KM | MANUAL | 120PK | 3-SEAT |",
+      "description": "<img src=\"https://www.autowereld.nl/I785808500/240x180/fiat-ducato-horsetruck-mvv-alu-competition-3xl-2007-164-369km-manual-120pk-3-seat.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - | HORSETRUCK | MVV | ALU | COMPETITION 3XL | 2007 | 164.369KM | MANUAL | 120PK | 3-SEAT |\" /><br /><b>Vraagprijs</b>: € 19.995<br /><b>Bouwjaar</b>: 2007<br /><b>Kilometerstand</b>: 164.369 km",
+      "pub_date": "Tue, 10 Nov 2026 19:19:26 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/30-2-3-multijet-l2h2-3pers-airco-imperiaal-trekhaak-43995619/details.html",
-      "title": "Fiat Ducato - 30 2.3 MultiJet L2H2 3pers Airco Imperiaal trekhaak",
-      "description": "<img src=\"https://www.autowereld.nl/I784167667/240x180/fiat-ducato-30-2-3-multijet-l2h2-3pers-airco-imperiaal-trekhaak.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 30 2.3 MultiJet L2H2 3pers Airco Imperiaal trekhaak\" /><br /><b>Vraagprijs</b>: € 18.950<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 30.130 km",
-      "pub_date": "Sat, 31 Oct 2026 13:16:44 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/horsetruck-alu-stallion-3xl-2015-hengst-130pk-129-516km-l3-3-seat-manu-44041053/details.html",
+      "title": "Fiat Ducato - | HORSETRUCK | ALU | STALLION 3XL | 2015 | HENGST | 130PK | 129.516KM | L3 | 3-SEAT | MANU",
+      "description": "<img src=\"https://www.autowereld.nl/I785735644/240x180/fiat-ducato-horsetruck-alu-stallion-3xl-2015-hengst-130pk-129-516km-l3-3-seat-manu.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - | HORSETRUCK | ALU | STALLION 3XL | 2015 | HENGST | 130PK | 129.516KM | L3 | 3-SEAT | MANU\" /><br /><b>Vraagprijs</b>: € 34.995<br /><b>Bouwjaar</b>: 2015<br /><b>Kilometerstand</b>: 129.516 km",
+      "pub_date": "Tue, 10 Nov 2026 14:51:15 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/30-2-3-multijet-mh1-3-zits-l2-h1-43993081/details.html",
-      "title": "Fiat Ducato - 30 2.3 MultiJet MH1 3 zits l2-h1",
-      "description": "<img src=\"https://www.autowereld.nl/I784075835/240x180/fiat-ducato-30-2-3-multijet-mh1-3-zits-l2-h1.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 30 2.3 MultiJet MH1 3 zits l2-h1\" /><br /><b>Vraagprijs</b>: € 2.990<br /><b>Bouwjaar</b>: 2010<br /><b>Kilometerstand</b>: 242.215 km",
-      "pub_date": "Fri, 30 Oct 2026 19:00:01 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/35-2-3-multijet-kipper-trekhaak-44034848/details.html",
+      "title": "Fiat Ducato - 35 2.3 MultiJet KIPPER TREKHAAK",
+      "description": "<img src=\"https://www.autowereld.nl/I785362176/240x180/fiat-ducato-35-2-3-multijet-kipper-trekhaak.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 35 2.3 MultiJet KIPPER TREKHAAK\" /><br /><b>Vraagprijs</b>: € 13.850<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 155.862 km",
+      "pub_date": "Mon, 09 Nov 2026 12:54:38 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/bestel-28-2-0-multijet-kh1-actual-43992256/details.html",
-      "title": "Fiat Ducato - bestel 28 2.0 MultiJet KH1 Actual",
-      "description": "<img src=\"https://www.autowereld.nl/I784049145/240x180/fiat-ducato-bestel-28-2-0-multijet-kh1-actual.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - bestel 28 2.0 MultiJet KH1 Actual\" /><br /><b>Vraagprijs</b>: € 2.200<br /><b>Bouwjaar</b>: 2013<br /><b>Kilometerstand</b>: 193.746 km",
-      "pub_date": "Fri, 30 Oct 2026 17:09:08 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/bakwagen-meubelbak-laadklep-44034831/details.html",
+      "title": "Fiat Ducato - BAKWAGEN MEUBELBAK LAADKLEP",
+      "description": "<img src=\"https://www.autowereld.nl/I785361639/240x180/fiat-ducato-bakwagen-meubelbak-laadklep.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - BAKWAGEN MEUBELBAK LAADKLEP\" /><br /><b>Vraagprijs</b>: € 29.900<br /><b>Bouwjaar</b>: 2023<br /><b>Kilometerstand</b>: 66.158 km",
+      "pub_date": "Mon, 09 Nov 2026 12:52:11 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/ducato-maxi-lh2-35-3-0-cng-dubbel-cabine-6-persoons-43992054/details.html",
-      "title": "Fiat Ducato - Ducato Maxi LH2 35 3.0 CNG Dubbel Cabine 6 persoons",
-      "description": "<img src=\"https://www.autowereld.nl/I784042804/240x180/fiat-ducato-fiat-ducato-maxi-lh2-35-3-0-cng-dubbel-cabine-6-persoons.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - Ducato Maxi LH2 35 3.0 CNG Dubbel Cabine 6 persoons\" /><br /><b>Vraagprijs</b>: € 12.450<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 37.800 km",
-      "pub_date": "Fri, 30 Oct 2026 16:52:38 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/2-3-multijet-l1h1-120pk-airco-44034825/details.html",
+      "title": "Fiat Ducato - 2.3 MultiJet L1H1 120PK AIRCO",
+      "description": "<img src=\"https://www.autowereld.nl/I785361237/240x180/fiat-ducato-2-3-multijet-l1h1-120pk-airco.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 2.3 MultiJet L1H1 120PK AIRCO\" /><br /><b>Vraagprijs</b>: € 3.700<br /><b>Bouwjaar</b>: 2011<br /><b>Kilometerstand</b>: 244.057 km",
+      "pub_date": "Mon, 09 Nov 2026 12:51:31 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/fiat/ducato/140pk-multijet-2-2-d-l2h2-3-zits-camera-cruise-navi-climatronic-imperiaal-43987999/details.html",
-      "title": "Fiat Ducato - 140PK Multijet 2, 2 D L2H2 | 3-Zits | Camera | Cruise | Navi | Climatronic | Imperiaal",
-      "description": "<img src=\"https://www.autowereld.nl/I783918975/240x180/fiat-ducato-140pk-multijet-2-2-d-l2h2-3-zits-camera-cruise-navi-climatronic-imperiaal.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - 140PK Multijet 2, 2 D L2H2 | 3-Zits | Camera | Cruise | Navi | Climatronic | Imperiaal\" /><br /><b>Vraagprijs</b>: € 21.950<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 37.509 km",
-      "pub_date": "Fri, 30 Oct 2026 09:32:18 +0100",
+      "url": "https://www.autowereld.nl/fiat/ducato/l2h2-camper-44034810/details.html",
+      "title": "Fiat Ducato - L2H2 CAMPER",
+      "description": "<img src=\"https://www.autowereld.nl/I785360635/240x180/fiat-ducato-l2h2-camper.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Fiat Ducato - L2H2 CAMPER\" /><br /><b>Vraagprijs</b>: € 25.900<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 97.950 km",
+      "pub_date": "Mon, 09 Nov 2026 12:50:21 +0100",
       "feed": "https://www.autowereld.nl/rss/fiat/ducato/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-l3h2-44017902/details.html",
-      "title": "Renault Master - T35 2.3 dCi L3H2",
-      "description": "<img src=\"https://www.autowereld.nl/I784849440/240x180/renault-master-t35-2-3-dci-l3h2-t35-2-3-dci-l3h2.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi L3H2\" /><br /><b>Vraagprijs</b>: € 5.450<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 220.891 km",
-      "pub_date": "Thu, 05 Nov 2026 11:48:50 +0100",
+      "url": "https://www.autowereld.nl/renault/master/135-l3h2-postnl-inrichting-achteruitrijcamera-44052693/details.html",
+      "title": "Renault Master - 135 L3H2 PostNL inrichting + Achteruitrijcamera",
+      "description": "<img src=\"https://www.autowereld.nl/I786144580/240x180/renault-master-135-l3h2-postnl-inrichting-achteruitrijcamera.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - 135 L3H2 PostNL inrichting + Achteruitrijcamera\" /><br /><b>Vraagprijs</b>: € 25.400<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 35.861 km",
+      "pub_date": "Thu, 12 Nov 2026 12:27:38 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-l3h2-44017877/details.html",
-      "title": "Renault Master - T35 2.3 dCi L3H2",
-      "description": "<img src=\"https://www.autowereld.nl/I784848770/240x180/renault-master-t35-2-3-dci-l3h2-t35-2-3-dci-l3h2.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi L3H2\" /><br /><b>Vraagprijs</b>: € 5.450<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 255.490 km",
-      "pub_date": "Thu, 05 Nov 2026 11:47:25 +0100",
+      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-l3h2-cruise-control-navigatie-44052430/details.html",
+      "title": "Renault Master - T35 2.3 dCi L3H2 Cruise Control / Navigatie",
+      "description": "<img src=\"https://www.autowereld.nl/I786136576/240x180/renault-master-t35-2-3-dci-l3h2-cruise-control-navigatie.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi L3H2 Cruise Control / Navigatie\" /><br /><b>Vraagprijs</b>: € 8.950<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 270.744 km",
+      "pub_date": "Thu, 12 Nov 2026 12:01:29 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-l3h2-44017876/details.html",
-      "title": "Renault Master - T35 2.3 dCi L3H2",
-      "description": "<img src=\"https://www.autowereld.nl/I784848769/240x180/renault-master-t35-2-3-dci-l3h2-t35-2-3-dci-l3h2.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi L3H2\" /><br /><b>Vraagprijs</b>: € 5.450<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 205.621 km",
-      "pub_date": "Thu, 05 Nov 2026 11:47:25 +0100",
+      "url": "https://www.autowereld.nl/renault/master/bestel-t35-2-3-dci-135-l2h2-comfort-carplay-44052420/details.html",
+      "title": "Renault Master - bestel T35 2.3 dCi 135 L2H2 Comfort, Carplay",
+      "description": "<img src=\"https://www.autowereld.nl/I786136342/240x180/renault-master-bestel-t35-2-3-dci-135-l2h2-comfort-carplay.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - bestel T35 2.3 dCi 135 L2H2 Comfort, Carplay\" /><br /><b>Vraagprijs</b>: € 16.900<br /><b>Bouwjaar</b>: 2022<br /><b>Kilometerstand</b>: 102.550 km",
+      "pub_date": "Thu, 12 Nov 2026 12:00:51 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/horsetruck-stx-stallion-5-2014-automaat-hengst-5-seat-l3-150pk-luxe-44017257/details.html",
-      "title": "Renault Master - | HORSETRUCK | STX | STALLION 5 | 2014 | AUTOMAAT | HENGST | 5-SEAT | L3 | 150PK | LUXE |",
-      "description": "<img src=\"https://www.autowereld.nl/I784832490/240x180/renault-master-horsetruck-stx-stallion-5-2014-automaat-hengst-5-seat-l3-150pk-luxe.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - | HORSETRUCK | STX | STALLION 5 | 2014 | AUTOMAAT | HENGST | 5-SEAT | L3 | 150PK | LUXE |\" /><br /><b>Vraagprijs</b>: € 37.995<br /><b>Bouwjaar</b>: 2014<br /><b>Kilometerstand</b>: 198.050 km",
-      "pub_date": "Thu, 05 Nov 2026 10:38:30 +0100",
+      "url": "https://www.autowereld.nl/renault/master/lowliner-verkoopwagen-lange-versie-44050190/details.html",
+      "title": "Renault Master - LOWLINER VERKOOPWAGEN LANGE VERSIE",
+      "description": "<img src=\"https://www.autowereld.nl/I786044271/240x180/renault-master-lowliner-verkoopwagen-lange-versie.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - LOWLINER VERKOOPWAGEN LANGE VERSIE\" /><br /><b>Vraagprijs</b>: € 19.850<br /><b>Bouwjaar</b>: 2017<br /><b>Kilometerstand</b>: 120.942 km",
+      "pub_date": "Wed, 11 Nov 2026 21:45:37 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/red-van-fwd-3t5-e6-l3h2-135-pk-trekhaak-navigatie-airco-stoel-bank-44017142/details.html",
-      "title": "Renault Master - RED - VAN FWD 3T5 E6 - L3H2 135 PK TREKHAAK / NAVIGATIE / AIRCO / STOEL BANK /",
-      "description": "<img src=\"https://www.autowereld.nl/I784829479/240x180/renault-master-red-van-fwd-3t5-e6-l3h2-135-pk-trekhaak-navigatie-airco-stoel-bank.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - RED - VAN FWD 3T5 E6 - L3H2 135 PK TREKHAAK / NAVIGATIE / AIRCO / STOEL BANK /\" /><br /><b>Vraagprijs</b>: € 16.750<br /><b>Bouwjaar</b>: 2021<br /><b>Kilometerstand</b>: 130.500 km",
-      "pub_date": "Thu, 05 Nov 2026 10:24:25 +0100",
+      "url": "https://www.autowereld.nl/renault/master/2-3-dci-vrieswagen-koelwagen-dag-nacht-master-t35-2-3-dci-vrieswagen-koelwagen-dag-nacht-44050188/details.html",
+      "title": "Renault Master - 2.3 dCi VRIESWAGEN KOELWAGEN DAG NACHT Master T35 2.3 dCi VRIESWAGEN KOELWAGEN DAG NACHT",
+      "description": "<img src=\"https://www.autowereld.nl/I786044138/240x180/renault-master-2-3-dci-vrieswagen-koelwagen-dag-nacht-renault-master-t35-2-3-dci-vrieswagen-koelwagen-dag.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - 2.3 dCi VRIESWAGEN KOELWAGEN DAG NACHT Master T35 2.3 dCi VRIESWAGEN KOELWAGEN DAG NACHT\" /><br /><b>Vraagprijs</b>: € 19.700<br /><b>Bouwjaar</b>: 2018<br /><b>Kilometerstand</b>: 168.981 km",
+      "pub_date": "Wed, 11 Nov 2026 21:44:14 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-0-dci-170-l3h2-advance-trekhaak-camera-apple-carplay-android-auto-laadruim-44017124/details.html",
-      "title": "Renault Master - T35 2.0 dCi 170 L3H2 Advance | Trekhaak | Camera | Apple Carplay & Android Auto | Laadruim",
-      "description": "<img src=\"https://www.autowereld.nl/I784828871/240x180/renault-master-t35-2-0-dci-170-l3h2-advance-trekhaak-camera-apple-carplay-android-auto-laadrui.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.0 dCi 170 L3H2 Advance | Trekhaak | Camera | Apple Carplay & Android Auto | Laadruim\" /><br /><b>Vraagprijs</b>: € 34.950<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 4.413 km",
-      "pub_date": "Thu, 05 Nov 2026 10:21:07 +0100",
+      "url": "https://www.autowereld.nl/renault/master/2-3-dci-12m-hoogwerker-fe121ft-euro-6d-n1-44049259/details.html",
+      "title": "Renault Master - 2.3 DCI 12M Hoogwerker FE121FT Euro 6D N1",
+      "description": "<img src=\"https://www.autowereld.nl/I786005308/240x180/renault-master-2-3-dci-12m-hoogwerker-fe121ft-euro-6d-n1.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - 2.3 DCI 12M Hoogwerker FE121FT Euro 6D N1\" /><br /><b>Vraagprijs</b>: € 17.950<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 227.335 km",
+      "pub_date": "Wed, 11 Nov 2026 17:00:09 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/2-3-dci-130-l3-44017026/details.html",
-      "title": "Renault Master - 2.3 DCI 130 L3",
-      "description": "<img src=\"https://www.autowereld.nl/I784826208/240x180/renault-master-2-3-dci-130-l3.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - 2.3 DCI 130 L3\" /><br /><b>Vraagprijs</b>: € 11.750<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 197.483 km",
-      "pub_date": "Thu, 05 Nov 2026 10:08:18 +0100",
+      "url": "https://www.autowereld.nl/renault/master/t35-2-5-dci-l3h1-dc-meubelbak-airco-prijs-is-zo-meenemen-en-inclusief-btw-44049098/details.html",
+      "title": "Renault Master - T35 2.5 dCi L3H1 DC Meubelbak (Airco) Prijs is zo meenemen en inclusief Btw",
+      "description": "<img src=\"https://www.autowereld.nl/I786000631/240x180/renault-master-t35-2-5-dci-l3h1-dc-meubelbak-airco-prijs-is-zo-meenemen-en-inclusief-btw.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.5 dCi L3H1 DC Meubelbak (Airco) Prijs is zo meenemen en inclusief Btw\" /><br /><b>Vraagprijs</b>: € 3.495<br /><b>Bouwjaar</b>: 2007<br /><b>Kilometerstand</b>: 422.718 km",
+      "pub_date": "Wed, 11 Nov 2026 16:46:20 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t33-2-5dci-74-kw-l1h2-trekhaak-44016866/details.html",
-      "title": "Renault Master - T33 2.5dCi 74 kW L1H2 Trekhaak",
-      "description": "<img src=\"https://www.autowereld.nl/I784821815/240x180/renault-master-t33-2-5dci-74-kw-l1h2-trekhaak.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T33 2.5dCi 74 kW L1H2 Trekhaak\" /><br /><b>Vraagprijs</b>: € 2.400<br /><b>Bouwjaar</b>: 2005<br /><b>Kilometerstand</b>: 184.379 km",
-      "pub_date": "Thu, 05 Nov 2026 09:46:07 +0100",
+      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-165pk-l3-energy-euro-vi-oprijwagen-nr-v087-airco-cruise-trekhaak-elek-44048797/details.html",
+      "title": "Renault Master - T35 2.3 dCi 165PK L3 Energy EURO VI Oprijwagen nr. V087 | Airco | Cruise | Trekhaak | Elek",
+      "description": "<img src=\"https://www.autowereld.nl/I785991545/240x180/renault-master-t35-2-3-dci-165pk-l3-energy-euro-vi-oprijwagen-nr-v087-airco-cruise-trekhaak-elek.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi 165PK L3 Energy EURO VI Oprijwagen nr. V087 | Airco | Cruise | Trekhaak | Elek\" /><br /><b>Vraagprijs</b>: € 32.950<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 20.665 km",
+      "pub_date": "Wed, 11 Nov 2026 16:17:59 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-l3-dc-pick-up-7-zitplaatsen-44016208/details.html",
-      "title": "Renault Master - T35 2.3 dCi L3 DC Pick up 7 zitplaatsen",
-      "description": "<img src=\"https://www.autowereld.nl/I784795019/240x180/renault-master-t35-2-3-dci-l3-dc-pick-up-7-zitplaatsen.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi L3 DC Pick up 7 zitplaatsen\" /><br /><b>Vraagprijs</b>: € 7.355<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 208.000 km",
-      "pub_date": "Wed, 04 Nov 2026 22:20:12 +0100",
+      "url": "https://www.autowereld.nl/renault/master/t-35-e-tech-87kwh-l2h2-longe-range-44048438/details.html",
+      "title": "Renault Master - T 35 E Tech 87Kwh L2H2 Longe Range",
+      "description": "<img src=\"https://www.autowereld.nl/I785980157/240x180/renault-master-t-35-e-tech-87kwh-l2h2-longe-range.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T 35 E Tech 87Kwh L2H2 Longe Range\" /><br /><b>Vraagprijs</b>: € 41.900<br /><b>Bouwjaar</b>: 2026<br /><b>Kilometerstand</b>: 401 km",
+      "pub_date": "Wed, 11 Nov 2026 15:38:58 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/2-3-dci-135-l2h2-3-pers-airco-cruise-navi-camera-44015476/details.html",
-      "title": "Renault Master - 2.3 dCi 135 | L2H2 3-Pers | Airco | Cruise | Navi | Camera",
-      "description": "<img src=\"https://www.autowereld.nl/I784775463/240x180/renault-master-2-3-dci-135-l2h2-3-pers-airco-cruise-navi-camera.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - 2.3 dCi 135 | L2H2 3-Pers | Airco | Cruise | Navi | Camera\" /><br /><b>Vraagprijs</b>: € 10.450<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 150.991 km",
-      "pub_date": "Wed, 04 Nov 2026 17:58:36 +0100",
+      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-100kkw-l2h2-airco-klima-inrichting-44047141/details.html",
+      "title": "Renault Master - T35 2.3 dCi 100KKW L2H2 AIRCO KLIMA INRICHTING",
+      "description": "<img src=\"https://www.autowereld.nl/I785952161/240x180/renault-master-t35-2-3-dci-100kkw-l2h2-airco-klima-inrichting.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi 100KKW L2H2 AIRCO KLIMA INRICHTING\" /><br /><b>Vraagprijs</b>: € 7.250<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 207.685 km",
+      "pub_date": "Wed, 11 Nov 2026 14:14:21 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-l3h3-energy-laadklep-navigatie-pack-dab-apple-44015220/details.html",
-      "title": "Renault Master - T35 2.3 dCi L3H3 Energy LAADKLEP | NAVIGATIE PACK | DAB | APPLE |",
-      "description": "<img src=\"https://www.autowereld.nl/I784767962/240x180/renault-master-t35-2-3-dci-l3h3-energy-laadklep-navigatie-pack-dab-apple.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi L3H3 Energy LAADKLEP | NAVIGATIE PACK | DAB | APPLE |\" /><br /><b>Vraagprijs</b>: € 39.900<br /><b>Bouwjaar</b>: 2023<br /><b>Kilometerstand</b>: 42.560 km",
-      "pub_date": "Wed, 04 Nov 2026 17:35:50 +0100",
+      "url": "https://www.autowereld.nl/renault/master/automaat-pick-up-t35-2-3-dci-150pk-euro6-l3-energy-airco-3persoons-bak-385cmx204cm-rij-44047121/details.html",
+      "title": "Renault Master - Automaat Pick Up T35 2.3 dCi 150pk euro6 L3 Energy, Airco, 3Persoons, bak 385cmx204cm, RIJ",
+      "description": "<img src=\"https://www.autowereld.nl/I785951254/240x180/renault-master-automaat-pick-up-t35-2-3-dci-150pk-euro6-l3-energy-airco-3persoons-bak-385cmx204cm-rij.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - Automaat Pick Up T35 2.3 dCi 150pk euro6 L3 Energy, Airco, 3Persoons, bak 385cmx204cm, RIJ\" /><br /><b>Vraagprijs</b>: € 17.500<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 157.178 km",
+      "pub_date": "Wed, 11 Nov 2026 14:11:12 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-135-l2h2-comfort-groot-navi-airco-trekhaak-zeer-netjes-44014970/details.html",
-      "title": "Renault Master - T35 2.3 dCi 135 L2H2 Comfort Groot NAVI AIRCO TREKHAAK ZEER NETJES",
-      "description": "<img src=\"https://www.autowereld.nl/I784760163/240x180/renault-master-t35-2-3-dci-135-l2h2-comfort-groot-navi-airco-trekhaak-zeer-netjes.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi 135 L2H2 Comfort Groot NAVI AIRCO TREKHAAK ZEER NETJES\" /><br /><b>Vraagprijs</b>: € 15.850<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 94.227 km",
-      "pub_date": "Wed, 04 Nov 2026 17:08:43 +0100",
+      "url": "https://www.autowereld.nl/renault/master/2-3-dci-146pk-bakwagen-1158kg-laadvermogen-achterdeuren-zijdeur-euro6-airco-navigatie-44046726/details.html",
+      "title": "Renault Master - 2.3 dCi 146pk Bakwagen 1158kg Laadvermogen Achterdeuren Zijdeur Euro6 Airco | Navigatie |",
+      "description": "<img src=\"https://www.autowereld.nl/I785938327/240x180/renault-master-2-3-dci-146pk-bakwagen-achterdeuren-zijdeur-euro6-airco-navigatie-cruisecontrol-led.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - 2.3 dCi 146pk Bakwagen 1158kg Laadvermogen Achterdeuren Zijdeur Euro6 Airco | Navigatie |\" /><br /><b>Vraagprijs</b>: € 23.750<br /><b>Bouwjaar</b>: 2022<br /><b>Kilometerstand</b>: 97.029 km",
+      "pub_date": "Wed, 11 Nov 2026 13:22:14 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-l3-open-laadbak-150pk-dc-7p-airco-trekhaak-dubbele-cabine-pick-up-openl-44014232/details.html",
-      "title": "Renault Master - T35 2.3 dCi L3 OPEN LAADBAK, 150PK, DC-7P, AIRCO, TREKHAAK, DUBBELE CABINE, PICK-UP, OPENL",
-      "description": "<img src=\"https://www.autowereld.nl/I784740268/240x180/renault-master-t35-2-3-dci-l3-open-laadbak-150pk-dc-7p-airco-trekhaak-dubbele-cabine-pick-up-openl.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi L3 OPEN LAADBAK, 150PK, DC-7P, AIRCO, TREKHAAK, DUBBELE CABINE, PICK-UP, OPENL\" /><br /><b>Vraagprijs</b>: € 18.950<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 98.708 km",
-      "pub_date": "Wed, 04 Nov 2026 16:08:06 +0100",
+      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-165pk-l4-dubbellucht-energy-meubelbak-laadklep-nr-v086-airco-cruise-n-44046047/details.html",
+      "title": "Renault Master - T35 2.3 dCi 165PK L4 Dubbellucht Energy Meubelbak + laadklep nr. V086 | Airco | Cruise | N",
+      "description": "<img src=\"https://www.autowereld.nl/I785916516/240x180/renault-master-t35-2-3-dci-165pk-l4-dubbellucht-energy-meubelbak-klep-airco-cruise-navi-gevverde.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi 165PK L4 Dubbellucht Energy Meubelbak + laadklep nr. V086 | Airco | Cruise | N\" /><br /><b>Vraagprijs</b>: € 44.950<br /><b>Bouwjaar</b>: 2024<br /><b>Kilometerstand</b>: 14.001 km",
+      "pub_date": "Wed, 11 Nov 2026 11:52:43 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-l3h2-ijs-verkoopwagen-44013552/details.html",
-      "title": "Renault Master - T35 2.3 dCi L3H2 , (ijs)verkoopwagen",
-      "description": "<img src=\"https://www.autowereld.nl/I784723013/240x180/renault-master-t35-2-3-dci-l3h2-t35-2-3-dci-l3h2-ijs-verkoopwagen.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi L3H2 , (ijs)verkoopwagen\" /><br /><b>Vraagprijs</b>: € 14.500<br /><b>Bouwjaar</b>: 2019<br /><b>Kilometerstand</b>: 214.255 km",
-      "pub_date": "Wed, 04 Nov 2026 15:08:04 +0100",
+      "url": "https://www.autowereld.nl/renault/master/2-3dci-l3h2-135pk-airco-cruisecontrol-185000km-euro-6-44045393/details.html",
+      "title": "Renault Master - 2.3DCI L3H2 135PK Airco Cruisecontrol 185000KM EURO 6",
+      "description": "<img src=\"https://www.autowereld.nl/I786131974/240x180/renault-master-2-3dci-l3h2-135pk-airco-cruisecontrol-185000km-euro-6.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - 2.3DCI L3H2 135PK Airco Cruisecontrol 185000KM EURO 6\" /><br /><b>Vraagprijs</b>: € 11.750<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 185.000 km",
+      "pub_date": "Wed, 11 Nov 2026 11:26:55 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     },
     {
-      "url": "https://www.autowereld.nl/renault/master/t35-2-3-dci-135-l2h2-dc-44013271/details.html",
-      "title": "Renault Master - T35 2.3 dCi 135 L2H2 DC",
-      "description": "<img src=\"https://www.autowereld.nl/I784715111/240x180/renault-master-t35-2-3-dci-135-l2h2-dc-t35-2-3-dci-135-l2h2-dc.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - T35 2.3 dCi 135 L2H2 DC\" /><br /><b>Vraagprijs</b>: € 13.450<br /><b>Bouwjaar</b>: 2020<br /><b>Kilometerstand</b>: 151.434 km",
-      "pub_date": "Wed, 04 Nov 2026 14:37:54 +0100",
+      "url": "https://www.autowereld.nl/renault/master/2-3-dci-136pk-l2h2-airco-camera-cruisecontrol-trekhaak-parkeersensoren-bijrijdersb-44044800/details.html",
+      "title": "Renault Master - 2.3 dCi 136pk L2H2 Airco | Camera | Cruisecontrol | Trekhaak | Parkeersensoren Bijrijdersb",
+      "description": "<img src=\"https://www.autowereld.nl/I785887519/240x180/renault-master-2-3-dci-136pk-l2h2-airco-camera-cruisecontrol-trekhaak-parkeersensoren-bijrijdersb.jpg\" align=\"left\" hspace=\"8\" width=\"100\" alt=\"Renault Master - 2.3 dCi 136pk L2H2 Airco | Camera | Cruisecontrol | Trekhaak | Parkeersensoren Bijrijdersb\" /><br /><b>Vraagprijs</b>: € 14.900<br /><b>Bouwjaar</b>: 2016<br /><b>Kilometerstand</b>: 107.482 km",
+      "pub_date": "Wed, 11 Nov 2026 09:59:08 +0100",
       "feed": "https://www.autowereld.nl/rss/renault/master/"
     }
   ]
